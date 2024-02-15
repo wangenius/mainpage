@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmatrixtime=self.webpackChunkmatrixtime||[]).push([[8908],{3272:a=>{a.exports=JSON.parse('{"label":"facebook","permalink":"/blog/tags/facebook","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

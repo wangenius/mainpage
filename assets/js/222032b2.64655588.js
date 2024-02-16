@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmatrixtime=self.webpackChunkmatrixtime||[]).push([[8560],{1899:a=>{a.exports=JSON.parse('{"label":"\u611f\u609f","permalink":"/blog/tags/\u611f\u609f","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

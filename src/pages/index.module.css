@@ -3,47 +3,30 @@
  * and scoped locally.
  */
 .heroBanner {
-  padding: 16rem 0;
+  padding: 40vh 0;
   text-align: center;
   position: relative;
+  margin-top: -60px;
   overflow: hidden;
+  background: rgb(238, 174, 202);
+  background: radial-gradient(circle, rgb(238, 174, 202) 0%, rgb(235, 215, 244) 42%, rgb(148, 187, 233) 100%);
 }
 .heroBanner .tagline {
-  font-size: 0.9rem;
-  max-width: 60%;
-  margin: 0 auto;
+  font-size: 1.2rem;
+  text-indent: 2.4rem;
+  margin: 10px auto;
+  padding: 0 8rem;
   text-align: start;
+  color: #6c6c6c;
 }
 .heroBanner .title {
-  font-size: 2rem;
+  font-size: 5rem;
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 6rem;
+    padding: 4rem;
   }
-}
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-.buttons button {
-  outline: none;
-  color: #DAA06D;
-  padding: 1em;
-  padding-left: 3em;
-  padding-right: 3em;
-  border: 2px dashed #DAA06D;
-  border-radius: 15px;
-  background-color: #EADDCA;
-  box-shadow: 0 0 0 4px #EADDCA, 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
-  transition: 0.1s ease-in-out, 0.4s color;
-}
-.buttons button:active {
-  transform: translateX(0.1em) translateY(0.1em);
-  box-shadow: 0 0 0 4px #EADDCA, 1.5px 1.5px 2.5px 1.5px rgba(0, 0, 0, 0.5);
 }
 
 /*# sourceMappingURL=index.module.css.map */

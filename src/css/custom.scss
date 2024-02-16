@@ -1,23 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
-  margin: 2rem 0;
-}
-.markdown h1 {
-  font-size: 3rem;
-}
-.markdown h2 {
-  font-size: 2.4rem;
-}
-.markdown h3 {
-  font-size: 1.5rem;
-}
-.markdown p, .markdown li {
-  line-height: 1.8rem;
-  margin: 6px 0;
-  color: #505050;
-}
+@import "typography";
+
 
 :root {
   --ifm-color-primary: #0c1781;
@@ -31,7 +16,7 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-[data-theme=dark] {
+[data-theme='dark'] {
   --ifm-color-primary: #e38c4e;
   --ifm-color-primary-dark: #af7121;
   --ifm-color-primary-darker: #a5471f;
@@ -60,49 +45,58 @@
   /*border: 2px solid #555555;*/
 }
 
-a svg {
-  display: inline-block;
+a{
+
+  svg {
+    display: inline-block;
+  }
 }
 
-.plugin-pages .navbar {
-  background-color: transparent;
-  box-shadow: none;
-  position: relative;
-}
-.plugin-pages .navbar .navbar__link {
-  color: #000000;
-  border-radius: 10px;
-}
-.plugin-pages .navbar .navbar__link:hover {
-  background-color: rgba(239, 239, 239, 0.24);
-}
-.plugin-pages .navbar .navbar__brand {
-  color: #000000;
-}
-.plugin-pages .navbar button:hover {
-  background-color: rgba(239, 239, 239, 0.24);
+.plugin-pages{
+  .navbar{
+    background-color: transparent;
+    box-shadow: none;
+    position: relative;
+
+    .navbar__link {
+      color: #000000;
+      border-radius: 10px;
+      &:hover {
+        background-color: rgba(239, 239, 239, 0.24);
+      }
+    }
+
+    .navbar__brand{
+      color: #000000;
+    }
+    button{
+      &:hover{
+        background-color: rgba(239, 239, 239, 0.24)
+      }
+
+    }
+  }
 }
 
-.theme-edit-this-page {
+
+.theme-edit-this-page{
   padding: 10px;
   color: #000000;
   border-radius: 10px;
-}
-.theme-edit-this-page:hover {
-  background-color: rgba(239, 239, 239, 0.24);
+  &:hover {
+    background-color: rgba(239, 239, 239, 0.24);
+  }
 }
 
-.pagination-nav__link {
+.pagination-nav__link{
   border: none;
   transition: all ease-in 100ms;
-}
-.pagination-nav__link:hover {
-  background-color: rgba(231, 231, 231, 0.35);
+  &:hover{
+    background-color: rgba(231, 231, 231, 0.35);
+  }
 }
 
-.footer__copyright {
+.footer__copyright{
   color: #c9c9c9;
-  font-size: 0.8rem;
+  font-size: 0.8rem ;
 }
-
-/*# sourceMappingURL=custom.css.map */

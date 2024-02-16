@@ -392,5 +392,3 @@ error[E0038]: the trait `std::clone::Clone` cannot be made into an object
 
 这意味着不能以这种方式使用此 trait 作为 trait 对象。如果你对对象安全的更多细节感兴趣，请查看 [Rust RFC 255](https://github.com/rust-lang/rfcs/blob/master/text/0255-object-safety.md)。
 
-[设计模式](OOP+9bb616ca-f129-4b14-941a-a66543dfd541/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%20aa9e910a-8aa6-473d-bc0e-fdbb64a0eded.md)
-

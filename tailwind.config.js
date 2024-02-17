@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+
+// noinspection ES6ConvertModuleExportToExport
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -9,4 +10,3 @@ module.exports = {
   },
   plugins: [require("@tailwindcss/typography"),require("daisyui")],
 }
-

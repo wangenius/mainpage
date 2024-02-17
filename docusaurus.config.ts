@@ -1,11 +1,13 @@
 import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+
 const theme = {
-  // Replace with your project's social card
-  // image: "img/docusaurus-social-card.jpg",
+  colorMode:{
+    disableSwitch:true
+  },
   navbar: {
     title: "从柯布西耶到迪杰斯特拉的一个特解",
     logo: {
@@ -19,7 +21,6 @@ const theme = {
         position: "right",
         label: "知识库",
       },
-
       { to: "/blog", label: "博客", position: "right" },
       {
         href: "https://github.com/wangenius/wangenius.github.io",
@@ -59,7 +60,7 @@ const theme = {
           {
             label: "bilibili",
             href: "https://space.bilibili.com/247967944",
-          }
+          },
         ],
       },
       {
@@ -79,8 +80,7 @@ const theme = {
     copyright: `Copyright © ${new Date().getFullYear()} Docup, Inc. Built with Docusaurus.`,
   },
   prism: {
-    theme: prismThemes.github,
-    darkTheme: prismThemes.dracula,
+    theme: prismThemes.oneDark,
   },
 } satisfies Preset.ThemeConfig;
 
@@ -106,11 +106,12 @@ export default {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "zh-Hans",
-    locales: ["en","zh-Hans"],
+    locales: ["en", "zh-Hans"],
   },
   plugins: [
     "docusaurus-plugin-sass",
     async function myPlugin() {
+      // noinspection JSUnusedGlobalSymbols
       return {
         name: "docusaurus-tailwindcss",
         configurePostCss(postcssOptions) {
@@ -149,11 +150,11 @@ export default {
   ],
   stylesheets: [
     {
-      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
-      type: 'text/css',
+      href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+      type: "text/css",
       integrity:
-          'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
-      crossorigin: 'anonymous',
+        "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+      crossorigin: "anonymous",
     },
   ],
   themeConfig: theme,

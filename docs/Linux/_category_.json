@@ -1,8 +1,5 @@
 {
   "label": "linux",
-  "position":8,
-  "link": {
-    "type": "generated-index",
-    "description": "linux系统知识"
-  }
+  "position":11
+
 }

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,7 +9,7 @@
   font-size: 3rem;
 }
 .markdown h2 {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 .markdown h3 {
   font-size: 1.5rem;
@@ -18,7 +19,35 @@
   margin: 6px 0;
   color: #505050;
 }
+.markdown p a, .markdown li a {
+  color: #0c10d3;
+}
+.markdown img {
+  border: 1px solid transparent;
+  transition: all ease-in 50ms;
+}
+.markdown img:hover {
+  border: 1px solid #dedede;
+  border-radius: 12px;
+}
+.markdown ol {
+  list-style: thumbs;
+  margin-left: 20px;
+}
+.markdown li {
+  margin: 0;
+  text-indent: 0;
+}
+.markdown li p {
+  text-indent: 0;
+  margin: 0;
+}
 
+@counter-style thumbs {
+  system: cyclic;
+  symbols: "🌎" "🌽" "🍌" "🔥" "🍀" "🍑" "🍕" "🍪" "🍭" "🎈" "📌" "📢";
+  suffix: " ";
+}
 :root {
   --ifm-color-primary: #0c1781;
   --ifm-color-primary-dark: #29784c;

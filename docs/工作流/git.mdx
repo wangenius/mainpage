@@ -1,7 +1,113 @@
 ---
-sidebar_position : git
+sidebar_position : 1
 title : git
 slug : git
 ---
 
+:::info 什么是版本控制？
+
+你可以把一个版本控制系统（缩写VCS）理解为一个“数据库”，在需要的时候，它可以帮你完整地保存一个项目的快照。当你需要查看一个之前的快照（称之为“版本”）时，版本控制系统可以显示出当前版本与上一个版本之间的所有改动的细节。
+
+版本控制与项目的种类，使用的技术和基础框架并无关系：
+
+- 无论是设计开发一个HTML网站或者是一个苹果应用，它的工作原理都是一样的。
+
+- 你可以选择任何你喜欢的工具来工作，它并不关心你用什么样的文本编辑器，绘图程序，文件管理器或其他工具。
+
+因此不要混淆版本控制的备份系统和一般的部署系统。当你开始尝试在你的项目中使用版本控制，你不需要替换和改变开发过程中使用的那些常用工具。
+
+版本控制系统会记录所有对项目文件的更改。这就是版本控制，听起来很简单。
+
+:::
+
+
 # git
+
+在打开Git之前，你需要完成一些最基本的设置。例如你的用户名，你的邮箱地址以及在命令行界面中的一些重要的显示设置：
+
+```Shell
+$ git config --global user.name "wangenius"
+$ git config --global user.email "wangenius@qq.com"
+$ git config --global color.ui auto
+```
+
+
+
+
+git 不走系统代理，如果remote github，需要当都设置代理
+
+
+
+- 查看远程连接方式
+
+```PowerShell
+git remote -v
+# 执行命令，查看连接方式。
+# (https|http):// 开头的是http方式；
+# git@ 开头的是ssh方式；
+# 两种方式的代理配置不同，如下。
+```
+
+
+```Plain Text
+#查看当前代理
+    git config --global http.proxy
+#命令行模式下配置(可走http代理也可以走socks5代理)
+    git config --global https.proxy https://proxyuser:proxypassword@ip/域名:port
+    git config --global http.proxy http://proxyuser:proxypassword@ip/域名:port
+    git config --global http.proxy socks5://127.0.0.1:1080	#这里的 socks5 仅仅是代理使用的协议，它依然是针对 http 设置的，所以仅对 http 协议的仓库有效。
+    #特殊字符需要编码
+        ! --> %21    # --> %23    $ --> %24    & --> %26    ' --> %27
+        ( --> %28    ) --> %29    * --> %2A    + --> %2B    , --> %2C
+        / --> %2F    : --> %3A    ; --> %3B    = --> %3D    ? --> %3F
+        @ --> %40    [ --> %5B    ] --> %5D
+#移除代理配置
+    git config --global --unset http.proxy
+
+#只对github.com
+    git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
+    git config --global https.https://github.com.proxy https://127.0.0.1:1080
+#取消代理
+    git config --global --unset http.https://github.com.proxy
+```
+
+
+## ssh
+
+```Plain Text
+###方式一
+#ssh配置文件地址为：~/.ssh/config;windows中就是：C:\Users\你的用户名\.ssh\config (若不存在自行创建)
+Host github.com *.github.com gitee.com	#可针对域名配置不同的代理；亦可以不配置
+    User git
+    # SSH默认端口22， HTTPS默认端口443
+    Port 22
+    Hostname %h
+    # 这里放你的SSH私钥
+    IdentityFile ~\.ssh\id_rsa
+    # 设置代理, 127.0.0.1:10808 换成你自己代理软件监听的本地地址
+    # HTTPS使用-H，SOCKS使用-S
+    ProxyCommand connect -S 127.0.0.1:10808 %h %p	#ProxyCommand connect -H http://127.0.0.1:22 %h %p
+#配置说明，通过 ProxyCommand1 命令设置代理，其中的 connect 是一个工具用于进行代理的转换。connect 通常需要安装(小乌龟已安装Git\mingw64\bin\connect.exe)。
+    connect项目地址：https://bitbucket.org/gotoh/connect
+    connect.c is the simple relaying command to make network connection via SOCKS and https proxy.
+    windows系统中，下载connect.exe，把所在路径放入系统环境变量，就可以在命令行使用了。
+    这儿的%h表示要连接的目标机,也就是Hostname指定的ip或者主机名,%p表示要连接到目标机的端口.这儿可以直接写死固定值,但是使用%h和%p可以保证在Hostname和Port变化的情况下ProxyCommand这行不用跟着变化.
+
+###方式二
+#安装 corkscrew
+    sudo apt install corkscrew
+#修改 ~/.ssh/config
+Host github.com gitee.com
+    User git
+    Hostname %h
+    Port 443
+    ProxyCommand /usr/bin/corkscrew proxy_server proxy_port %h %p ~/.ssh/proxyauth
+    IdentityFile ~/.ssh/id_rsa
+#proxy_server 为代理服务器地址，proxy_port 为代理服务器端口。
+#修改 ~/.ssh/proxyauth，写上代理用户名密码
+    username:password
+```
+
+
+
+

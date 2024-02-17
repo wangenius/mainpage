@@ -5,3 +5,221 @@ slug : 图
 ---
 
 # 图
+
+# 存储结构
+
+邻接表`Node`要链接`first_edge`,`Edge`要链接`next_edge`,`A_node`,`B_node`.
+
+邻接多重表在邻接表的基础上`Edge`的`next_edge`有两个,`A_next`,`B_next`,`A_node`,`B_node`.
+
+十字链表在邻接多重表的基础上,`Node`有两种`out_first`,`in_first`
+
+```Rust
+typedef struct {
+    Info info;
+}Node;
+typedef struct {
+    Node node[maxSize];
+    int edges[maxSize][maxSize];//带权图 float 使用\infin代表不存在边
+    int nodes,edges;
+}Graph;
+//无权图:1有边,0无边,自身0
+//有权图:∞无边,权值有边,自身0
+```
+
+
+```Rust
+typedef int Info;
+typedef struct Edge{
+    Info info;//weight or something else
+    int from_node,to_node;
+    struct Edge next;
+}Edge;
+
+typedef struct Node{
+    Info info;
+    Edge first;
+}Node;
+
+typedef struct Graph{
+    struct info{
+        int node_num,edge_num;
+    }
+    Node node[maxSize];
+
+}Graph;
+```
+
+
+```Rust
+//无向图的一种链式存储结构
+typedef struct Edge{
+	char info;
+	Node *A, *B;
+	Edge *A_next,*B_next;
+}Edge;
+typedef struct Node{
+	char data;
+	Edge *first;
+}Node;
+typedef struct Graph{
+    Node node[maxSize];
+    int nodes,edges;
+}Graph;
+```
+
+
+```Rust
+//有向图的一种链式存储结构
+typedef struct Edge{
+	char info;
+	Node *from,*to;
+	Edge *from_next,*to_next;
+}
+typedef struct Node{
+	char data;
+	Edge *out_first,*in_first;
+}
+typedef struct Graph{
+    Node node[maxSize];
+    int nodes,edges;
+}Graph;
+```
+
+
+# 遍历
+
+## 深度优先DFS
+
+```Rust
+bool visited[maxSize];//访问标记
+Edge edge;//边指针
+
+// 非连通图循环访问
+void traverse(Graph &G){
+    for(int i=0;i<G.info.node_num;++i)
+        if(visit[i]==0)
+            DFS(G,i);
+}
+//递归算法
+void DFS(Graph &G, int id){
+    //访问
+    visit[id] = 1;
+    edge = G.node[id].first;
+    while(edge){
+        if(visit[edge.to_node]==0) DFS(G,edge.to_node);
+        edge=edge.next;
+    }
+}
+```
+
+
+## 广度优先BFS
+
+```Rust
+bool visited[MAXSIZE];//访问标记
+int Q[MAXSIZE],front=0,rear=0;
+Edge edge;
+
+void enQue(int v){
+    rear=(rear + 1) % MAXSIZE;
+    Q[rear]=v;
+}
+
+void deQue(int &v){
+    front=(front+1) % maxSize;
+    v=Q[front];
+}
+
+void isEmpty(){
+    return front==rear?1:0
+        }
+
+void visit(int v){
+    visited[v] = TRUE;
+}
+
+// 非连通图循环访问
+void traverse(Graph &G){
+    for(int i = 0;i<G.info.node_num;++i)
+        if(visit[i]==0) BFS(g,i)
+            }
+
+void BFS（Graph &G,int id){
+    //访问
+    visit(id);
+    //入队
+    enQue(id);
+    //循环遍历
+    while(!isEmpty()){
+        deQue(v);
+        edge=G.nodes[id].first;
+        while(edge){
+            if(!visited[edge.to_node]){
+                visit(edge.to_node);
+                enQue(edge.to_node);
+            }
+            edge=edge.next;
+        }
+    }
+}
+```
+
+
+# 最小生成树`MST`
+
+一个带权连通无向图的生成树中边的权值之和最小的那个叫做图的最小生成树`MST`
+
+## 普里姆算法`Prim`
+
+无向图稠密图
+
+正面战场
+
+![https://cdn.nlark.com/yuque/__latex/788a6a1c2e659004f53073bd49e60ef0.svg](https://cdn.nlark.com/yuque/__latex/788a6a1c2e659004f53073bd49e60ef0.svg)
+
+```Rust
+vset[node_num];顶点已经并入生成树
+lowcost[node_num];当前生成树到剩余各顶点最短边的权值
+```
+
+
+## 克鲁斯卡尔算法`Kruskal`
+
+稀疏图并查集
+
+每次查找**并查集**找出候选边中权值最小的边，并入生成树
+
+# 最短路径（有向图）
+
+## 迪杰斯特拉算法Dijkstra
+
+某点到其余各点的最小距离最小路径
+
+![https://cdn.nlark.com/yuque/__latex/f2d5f588234eb61a559ff90c41511b85.svg](https://cdn.nlark.com/yuque/__latex/f2d5f588234eb61a559ff90c41511b85.svg)
+
+组织扩充模型,挑选关系最好近的人成为新成员，关系最近的人成为新成员，新成员的关系网纳入发展对象,并更新已经是发展对象的人的关系距离。
+
+## 弗洛伊德算法Floyd
+
+![https://cdn.nlark.com/yuque/__latex/a77815a52a2d0050828079fb142b1410.svg](https://cdn.nlark.com/yuque/__latex/a77815a52a2d0050828079fb142b1410.svg)
+
+```Rust
+//维护A[node_num][node_num]和Path[node_num][node_num]
+loop(node_num){
+    A[i][j] = min(A[i][j],A[i][mid]+A[mid][j]);
+    if(change)Path[i][j]=mid
+        }
+```
+
+
+# 应用
+
+## 拓扑排序
+
+循环删除没有入边的点
+
+## 关键路径
+
+最迟发生时间是在不推迟整个工程完成的前提下的最迟必须发生时间,剩余时间=最迟发生时间-最早发生时间
+

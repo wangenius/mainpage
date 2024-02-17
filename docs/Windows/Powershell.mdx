@@ -1,0 +1,29 @@
+# PowerShell
+
+## 设置代理
+
+设置**临时**代理（关闭powershell即设置的代理消失）
+
+```PowerShell
+$env:all_proxy="socks5://127.0.0.1:10808"
+```
+
+
+删除当前临时代理
+
+```PowerShell
+$env:all_proxy=""
+```
+
+
+查看当前环境变量
+
+```PowerShell
+ls env:*
+```
+
+
+暂不知晓curl和ping层面上检测代理是否成功,设置完临时代理，通过命令行界面已成功获得下载相关速度
+
+
+

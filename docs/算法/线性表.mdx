@@ -1,0 +1,480 @@
+---
+sidebar_position: 2
+---
+
+# 线性表
+
+具有相同特性数据元素的一组有限序列，逻辑特性：表头表尾唯一，中间的前驱后继唯一
+1. 有限性：元素个数有限
+
+2. 顺序性：有先后次序
+
+3. 同类型：数据元素类型相同，有先后次序
+
+4. 抽象性：只讨论元素间的逻辑关系
+
+链表：无需移动元素
+
+顺序表：随机访问和连续空间
+
+头结点和头指针的区别！默认为有头结点。
+
+静态链表的指针不是内存地址的指针型变量，而是存储数组下标的整型变量。
+
+5. 线性表：具有相同特性数据元素(同类型)的一组有限(有限性)序列(有先后次序，顺序性)，逻辑(只讨论元素间的逻辑关系,抽象性)特性：表头表尾唯一，中间的前驱后继唯一
+
+6. 链表：无需移动元素
+
+7. 顺序表：随机访问和连续空间
+
+8. 静态链表：一个结构体数组，一个`data`，一个`next`。静态链表的指针不是内存地址的指针型变量，而是存储数组下标的整型变量。
+
+9. 双向链表：不提高查找速度。
+
+元素位序是从1开始的，数组中的元素下标是从0开始的。
+
+10. 删除结点后队列为空时，必须特殊处理。
+
+## 顺序表
+
+```C++
+// 顺序表
+typedef struct
+{
+    int data[maxSize];//最大长度
+    int length;
+}Sqlist;
+
+//考试中一般
+int A[maxSize];
+int n;
+```
+
+
+
+```C++
+int search(Sqlist L,int e){
+    int i;
+    for(i=0;i<L.length;++i){
+        if(e==L.data[i])
+            return i; //返回数组下标
+    }
+    return -1;
+}
+
+int insert(SqList &L, int p, int e){
+    //插入环境判断 位置有效，空间未满
+    if(p < 0 || p > L.length || L.length == maxSize) return 0;
+    // 后元素右移
+    for(int i = L.length - 1; i>=p; --i)
+        L.data[i+1]=L.data[i];
+    // 插入操作 长度加1
+    L.data[p] = e;
+    ++(L.length);
+    return 1;
+}
+
+int delete(Sqlist &L, int p, int &e){
+    int i;
+    if(p < 0 || p > L.length - 1)
+        return 0;
+    // 操作目标元素返回
+    e = L.data[p];
+    // 后元素左移
+    for(i = p; i< L.length - 1; ++i)
+        L.data[i]=L.data[i+1];
+    --(L.length);
+    return 1;
+}
+
+//将left到right之间的数据逆置
+void reverse(int a[],int left,int right){
+    int temp;
+    for(int i = left,j = right;i < right + 1 && i<j;++i,--j){
+        temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+}
+//循环左移通过逆置算法实现
+void moveP(int a[],int n, int p){
+    reverse(a,0,p-1);
+    reverse(a,p,n-1);
+    reverse(a,0,n-1);
+}
+```
+
+
+## 链表操作
+
+```Rust
+// 单链表
+typedef struct Node{
+int data;
+struct Node *next;
+}Node;
+
+// 双链表
+typedef struct Node{
+int data;
+struct Node *next,*prior;
+}Node;
+```
+
+
+```Rust
+int isEmpty(Node L){
+    if(NO_HEAD_LIST) return L == NULL;//不带头结点
+    if(HEAD_LIST_Unidirectional) return L.next == NULL;//带头结点单双链表
+    if(HEAD_LIST_bidirectional) return L == L.next;//带头结点循环链表
+    return -1;
+}
+
+void createAtEnd(Node *&L,int a[],int n){
+    Node *temp,*rear; //新节点和终端节点的指针
+    L = (Node *)malloc(sizeof(Node));
+    L.next = NULL;
+    rear = L;
+    for (int i = 0; i < n; ++i){
+        temp=(Node *)malloc(sizeof(Node));
+        temp->data = a[i];
+        rear->next = temp;
+        rear = rear->next;
+    }
+    rear->next = NULL;
+}
+
+void createAtStart(Node *&L,int a[],int n){
+    Node *temp; //新节点指针
+    L = (Node *)malloc(sizeof(Node));
+    L->next = NULL;
+    for (int i = 0; i < n; ++i){
+        temp=(Node *)malloc(sizeof(Node));
+        temp->data = a[i];
+        temp->next = C->next;
+        C->next = temp;
+    }
+}
+
+int search(Node *L,int x,Node *&p){
+	p = L;
+	while(p->next!=NULL){
+		if(p->next->data == x) return 1;
+		p = p->next;
+	}
+	return 0;
+}
+
+int delete(Node *p){
+  	Node *q=p->next;
+    p->data = q->data;
+    p->next = q->next;
+    free(q);
+    return 1;
+}
+
+void findMidNode(Node *L, Node *&mid){
+	Node *p2;
+	mid=p2=L;
+	while(p2->next){
+		p2=p2->next;
+		mid=mid->next;
+		if(p2->next) p2=p2->next;
+    }
+}
+
+void reverse(Node *&L){
+	Node *rear,*front;
+	rear = NULL;
+	front = L->next;
+	while(front){
+		L->next=rear;
+		rear = L;
+		L = front;
+		front = front->next;
+    };
+	L->next = rear;
+}
+
+void merge(Node *A, Node *B, Node *&C){
+    //set up tracer
+    Node *a = A -> next;
+    Node *b = B -> next;
+    Node *rear;
+    // initial status
+    C = A; // 有头节点
+    C -> next = NULL;
+    free(B);
+    rear = C;
+    //归并循环
+    while(a!=NULL && b !=NULL){
+        if(a->data <= b->data){
+            rear->next=a;
+            a=a->next;
+        }
+        else{
+            rear->next = b;
+            b = b -> next;
+        }
+        rear = rear->next;
+    }
+    if(a!=NULL) rear->next = a;
+    if(b!=NULL) rear->next = b;
+}
+```
+
+
+# 栈和队列
+
+![data:image/svg+xml;utf8,%3Csvg%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2215.098ex%22%20height%3D%225.343ex%22%20style%3D%22vertical-align%3A%20-2.005ex%3B%22%20viewBox%3D%220%20-1437.2%206500.5%202300.3%22%20role%3D%22img%22%20focusable%3D%22false%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20aria-labelledby%3D%22MathJax-SVG-1-Title%22%3E%0A%3Ctitle%20id%3D%22MathJax-SVG-1-Title%22%3EEquation%3C%2Ftitle%3E%0A%3Cdefs%20aria-hidden%3D%22true%22%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMATHI-4E%22%20d%3D%22M234%20637Q231%20637%20226%20637Q201%20637%20196%20638T191%20649Q191%20676%20202%20682Q204%20683%20299%20683Q376%20683%20387%20683T401%20677Q612%20181%20616%20168L670%20381Q723%20592%20723%20606Q723%20633%20659%20637Q635%20637%20635%20648Q635%20650%20637%20660Q641%20676%20643%20679T653%20683Q656%20683%20684%20682T767%20680Q817%20680%20843%20681T873%20682Q888%20682%20888%20672Q888%20650%20880%20642Q878%20637%20858%20637Q787%20633%20769%20597L620%207Q618%200%20599%200Q585%200%20582%202Q579%205%20453%20305L326%20604L261%20344Q196%2088%20196%2079Q201%2046%20268%2046H278Q284%2041%20284%2038T282%2019Q278%206%20272%200H259Q228%202%20151%202Q123%202%20100%202T63%202T46%201Q31%201%2031%2010Q31%2014%2034%2026T39%2040Q41%2046%2062%2046Q130%2049%20150%2085Q154%2091%20221%20362L289%20634Q287%20635%20234%20637Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMAIN-3D%22%20d%3D%22M56%20347Q56%20360%2070%20367H707Q722%20359%20722%20347Q722%20336%20708%20328L390%20327H72Q56%20332%2056%20347ZM56%20153Q56%20168%2072%20173H708Q722%20163%20722%20153Q722%20140%20707%20133H70Q56%20140%2056%20153Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMAIN-31%22%20d%3D%22M213%20578L200%20573Q186%20568%20160%20563T102%20556H83V602H102Q149%20604%20189%20617T245%20641T273%20663Q275%20666%20285%20666Q294%20666%20302%20660V361L303%2061Q310%2054%20315%2052T339%2048T401%2046H427V0H416Q395%203%20257%203Q121%203%20100%200H88V46H114Q136%2046%20152%2046T177%2047T193%2050T201%2052T207%2057T213%2061V578Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMATHI-6E%22%20d%3D%22M21%20287Q22%20293%2024%20303T36%20341T56%20388T89%20425T135%20442Q171%20442%20195%20424T225%20390T231%20369Q231%20367%20232%20367L243%20378Q304%20442%20382%20442Q436%20442%20469%20415T503%20336T465%20179T427%2052Q427%2026%20444%2026Q450%2026%20453%2027Q482%2032%20505%2065T540%20145Q542%20153%20560%20153Q580%20153%20580%20145Q580%20144%20576%20130Q568%20101%20554%2073T508%2017T439%20-10Q392%20-10%20371%2017T350%2073Q350%2092%20386%20193T423%20345Q423%20404%20379%20404H374Q288%20404%20229%20303L222%20291L189%20157Q156%2026%20151%2016Q138%20-11%20108%20-11Q95%20-11%2087%20-5T76%207T74%2017Q74%2030%20112%20180T152%20343Q153%20348%20153%20366Q153%20405%20129%20405Q91%20405%2066%20305Q60%20285%2060%20284Q58%20278%2041%20278H27Q21%20284%2021%20287Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMAIN-2B%22%20d%3D%22M56%20237T56%20250T70%20270H369V420L370%20570Q380%20583%20389%20583Q402%20583%20409%20568V270H707Q722%20262%20722%20250T707%20230H409V-68Q401%20-82%20391%20-82H389H387Q375%20-82%20369%20-68V230H70Q56%20237%2056%20250Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMATHI-43%22%20d%3D%22M50%20252Q50%20367%20117%20473T286%20641T490%20704Q580%20704%20633%20653Q642%20643%20648%20636T656%20626L657%20623Q660%20623%20684%20649Q691%20655%20699%20663T715%20679T725%20690L740%20705H746Q760%20705%20760%20698Q760%20694%20728%20561Q692%20422%20692%20421Q690%20416%20687%20415T669%20413H653Q647%20419%20647%20422Q647%20423%20648%20429T650%20449T651%20481Q651%20552%20619%20605T510%20659Q484%20659%20454%20652T382%20628T299%20572T226%20479Q194%20422%20175%20346T156%20222Q156%20108%20232%2058Q280%2024%20350%2024Q441%2024%20512%2092T606%20240Q610%20253%20612%20255T628%20257Q648%20257%20648%20248Q648%20243%20647%20239Q618%20132%20523%2055T319%20-22Q206%20-22%20128%2053T50%20252Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMAIN-32%22%20d%3D%22M109%20429Q82%20429%2066%20447T50%20491Q50%20562%20103%20614T235%20666Q326%20666%20387%20610T449%20465Q449%20422%20429%20383T381%20315T301%20241Q265%20210%20201%20149L142%2093L218%2092Q375%2092%20385%2097Q392%2099%20409%20186V189H449V186Q448%20183%20436%2095T421%203V0H50V19V31Q50%2038%2056%2046T86%2081Q115%20113%20136%20137Q145%20147%20170%20174T204%20211T233%20244T261%20278T284%20308T305%20340T320%20369T333%20401T340%20431T343%20464Q343%20527%20309%20573T212%20619Q179%20619%20154%20602T119%20569T109%20550Q109%20549%20114%20549Q132%20549%20151%20535T170%20489Q170%20464%20154%20447T109%20429Z%22%3E%3C%2Fpath%3E%0A%3C%2Fdefs%3E%0A%3Cg%20stroke%3D%22currentColor%22%20fill%3D%22currentColor%22%20stroke-width%3D%220%22%20transform%3D%22matrix(1%200%200%20-1%200%200)%22%20aria-hidden%3D%22true%22%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMATHI-4E%22%20x%3D%220%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMAIN-3D%22%20x%3D%221166%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%3Cg%20transform%3D%22translate(1944%2C0)%22%3E%0A%3Cg%20transform%3D%22translate(397%2C0)%22%3E%0A%3Crect%20stroke%3D%22none%22%20width%3D%222443%22%20height%3D%2260%22%20x%3D%220%22%20y%3D%22220%22%3E%3C%2Frect%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMAIN-31%22%20x%3D%22971%22%20y%3D%22676%22%3E%3C%2Fuse%3E%0A%3Cg%20transform%3D%22translate(60%2C-687)%22%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMATHI-6E%22%20x%3D%220%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMAIN-2B%22%20x%3D%22822%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMAIN-31%22%20x%3D%221823%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%3C%2Fg%3E%0A%3C%2Fg%3E%0A%3C%2Fg%3E%0A%3Cg%20transform%3D%22translate(4906%2C0)%22%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMATHI-43%22%20x%3D%220%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%20%3Cuse%20transform%3D%22scale(0.707)%22%20xlink%3Ahref%3D%22%23E1-MJMATHI-6E%22%20x%3D%221094%22%20y%3D%22499%22%3E%3C%2Fuse%3E%0A%3Cg%20transform%3D%22translate(715%2C-308)%22%3E%0A%20%3Cuse%20transform%3D%22scale(0.707)%22%20xlink%3Ahref%3D%22%23E1-MJMAIN-32%22%20x%3D%220%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%20%3Cuse%20transform%3D%22scale(0.707)%22%20xlink%3Ahref%3D%22%23E1-MJMATHI-6E%22%20x%3D%22500%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%3C%2Fg%3E%0A%3C%2Fg%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E](data:image/svg+xml;utf8,%3Csvg%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%2215.098ex%22%20height%3D%225.343ex%22%20style%3D%22vertical-align%3A%20-2.005ex%3B%22%20viewBox%3D%220%20-1437.2%206500.5%202300.3%22%20role%3D%22img%22%20focusable%3D%22false%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20aria-labelledby%3D%22MathJax-SVG-1-Title%22%3E%0A%3Ctitle%20id%3D%22MathJax-SVG-1-Title%22%3EEquation%3C%2Ftitle%3E%0A%3Cdefs%20aria-hidden%3D%22true%22%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMATHI-4E%22%20d%3D%22M234%20637Q231%20637%20226%20637Q201%20637%20196%20638T191%20649Q191%20676%20202%20682Q204%20683%20299%20683Q376%20683%20387%20683T401%20677Q612%20181%20616%20168L670%20381Q723%20592%20723%20606Q723%20633%20659%20637Q635%20637%20635%20648Q635%20650%20637%20660Q641%20676%20643%20679T653%20683Q656%20683%20684%20682T767%20680Q817%20680%20843%20681T873%20682Q888%20682%20888%20672Q888%20650%20880%20642Q878%20637%20858%20637Q787%20633%20769%20597L620%207Q618%200%20599%200Q585%200%20582%202Q579%205%20453%20305L326%20604L261%20344Q196%2088%20196%2079Q201%2046%20268%2046H278Q284%2041%20284%2038T282%2019Q278%206%20272%200H259Q228%202%20151%202Q123%202%20100%202T63%202T46%201Q31%201%2031%2010Q31%2014%2034%2026T39%2040Q41%2046%2062%2046Q130%2049%20150%2085Q154%2091%20221%20362L289%20634Q287%20635%20234%20637Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMAIN-3D%22%20d%3D%22M56%20347Q56%20360%2070%20367H707Q722%20359%20722%20347Q722%20336%20708%20328L390%20327H72Q56%20332%2056%20347ZM56%20153Q56%20168%2072%20173H708Q722%20163%20722%20153Q722%20140%20707%20133H70Q56%20140%2056%20153Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMAIN-31%22%20d%3D%22M213%20578L200%20573Q186%20568%20160%20563T102%20556H83V602H102Q149%20604%20189%20617T245%20641T273%20663Q275%20666%20285%20666Q294%20666%20302%20660V361L303%2061Q310%2054%20315%2052T339%2048T401%2046H427V0H416Q395%203%20257%203Q121%203%20100%200H88V46H114Q136%2046%20152%2046T177%2047T193%2050T201%2052T207%2057T213%2061V578Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMATHI-6E%22%20d%3D%22M21%20287Q22%20293%2024%20303T36%20341T56%20388T89%20425T135%20442Q171%20442%20195%20424T225%20390T231%20369Q231%20367%20232%20367L243%20378Q304%20442%20382%20442Q436%20442%20469%20415T503%20336T465%20179T427%2052Q427%2026%20444%2026Q450%2026%20453%2027Q482%2032%20505%2065T540%20145Q542%20153%20560%20153Q580%20153%20580%20145Q580%20144%20576%20130Q568%20101%20554%2073T508%2017T439%20-10Q392%20-10%20371%2017T350%2073Q350%2092%20386%20193T423%20345Q423%20404%20379%20404H374Q288%20404%20229%20303L222%20291L189%20157Q156%2026%20151%2016Q138%20-11%20108%20-11Q95%20-11%2087%20-5T76%207T74%2017Q74%2030%20112%20180T152%20343Q153%20348%20153%20366Q153%20405%20129%20405Q91%20405%2066%20305Q60%20285%2060%20284Q58%20278%2041%20278H27Q21%20284%2021%20287Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMAIN-2B%22%20d%3D%22M56%20237T56%20250T70%20270H369V420L370%20570Q380%20583%20389%20583Q402%20583%20409%20568V270H707Q722%20262%20722%20250T707%20230H409V-68Q401%20-82%20391%20-82H389H387Q375%20-82%20369%20-68V230H70Q56%20237%2056%20250Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMATHI-43%22%20d%3D%22M50%20252Q50%20367%20117%20473T286%20641T490%20704Q580%20704%20633%20653Q642%20643%20648%20636T656%20626L657%20623Q660%20623%20684%20649Q691%20655%20699%20663T715%20679T725%20690L740%20705H746Q760%20705%20760%20698Q760%20694%20728%20561Q692%20422%20692%20421Q690%20416%20687%20415T669%20413H653Q647%20419%20647%20422Q647%20423%20648%20429T650%20449T651%20481Q651%20552%20619%20605T510%20659Q484%20659%20454%20652T382%20628T299%20572T226%20479Q194%20422%20175%20346T156%20222Q156%20108%20232%2058Q280%2024%20350%2024Q441%2024%20512%2092T606%20240Q610%20253%20612%20255T628%20257Q648%20257%20648%20248Q648%20243%20647%20239Q618%20132%20523%2055T319%20-22Q206%20-22%20128%2053T50%20252Z%22%3E%3C%2Fpath%3E%0A%3Cpath%20stroke-width%3D%221%22%20id%3D%22E1-MJMAIN-32%22%20d%3D%22M109%20429Q82%20429%2066%20447T50%20491Q50%20562%20103%20614T235%20666Q326%20666%20387%20610T449%20465Q449%20422%20429%20383T381%20315T301%20241Q265%20210%20201%20149L142%2093L218%2092Q375%2092%20385%2097Q392%2099%20409%20186V189H449V186Q448%20183%20436%2095T421%203V0H50V19V31Q50%2038%2056%2046T86%2081Q115%20113%20136%20137Q145%20147%20170%20174T204%20211T233%20244T261%20278T284%20308T305%20340T320%20369T333%20401T340%20431T343%20464Q343%20527%20309%20573T212%20619Q179%20619%20154%20602T119%20569T109%20550Q109%20549%20114%20549Q132%20549%20151%20535T170%20489Q170%20464%20154%20447T109%20429Z%22%3E%3C%2Fpath%3E%0A%3C%2Fdefs%3E%0A%3Cg%20stroke%3D%22currentColor%22%20fill%3D%22currentColor%22%20stroke-width%3D%220%22%20transform%3D%22matrix(1%200%200%20-1%200%200)%22%20aria-hidden%3D%22true%22%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMATHI-4E%22%20x%3D%220%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMAIN-3D%22%20x%3D%221166%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%3Cg%20transform%3D%22translate(1944%2C0)%22%3E%0A%3Cg%20transform%3D%22translate(397%2C0)%22%3E%0A%3Crect%20stroke%3D%22none%22%20width%3D%222443%22%20height%3D%2260%22%20x%3D%220%22%20y%3D%22220%22%3E%3C%2Frect%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMAIN-31%22%20x%3D%22971%22%20y%3D%22676%22%3E%3C%2Fuse%3E%0A%3Cg%20transform%3D%22translate(60%2C-687)%22%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMATHI-6E%22%20x%3D%220%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMAIN-2B%22%20x%3D%22822%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMAIN-31%22%20x%3D%221823%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%3C%2Fg%3E%0A%3C%2Fg%3E%0A%3C%2Fg%3E%0A%3Cg%20transform%3D%22translate(4906%2C0)%22%3E%0A%20%3Cuse%20xlink%3Ahref%3D%22%23E1-MJMATHI-43%22%20x%3D%220%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%20%3Cuse%20transform%3D%22scale(0.707)%22%20xlink%3Ahref%3D%22%23E1-MJMATHI-6E%22%20x%3D%221094%22%20y%3D%22499%22%3E%3C%2Fuse%3E%0A%3Cg%20transform%3D%22translate(715%2C-308)%22%3E%0A%20%3Cuse%20transform%3D%22scale(0.707)%22%20xlink%3Ahref%3D%22%23E1-MJMAIN-32%22%20x%3D%220%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%20%3Cuse%20transform%3D%22scale(0.707)%22%20xlink%3Ahref%3D%22%23E1-MJMATHI-6E%22%20x%3D%22500%22%20y%3D%220%22%3E%3C%2Fuse%3E%0A%3C%2Fg%3E%0A%3C%2Fg%3E%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E)
+
+11. 共享栈 栈底在两端
+
+12. 双端队列
+
+## 栈
+
+```Rust
+typedef struct SqStack{
+    int data[maxSize];
+    int top;
+} SqStack;
+
+typedef struct Node {
+    int data;
+    struct Node *node;
+} Node;
+```
+
+
+```Rust
+//init
+//sqstack
+void init(SqStack &st){
+    st.top = -1;
+};
+
+//Linked Stack
+void init(Node *&st){
+    st = (LNode *)malloc(sizeof(LNode));
+    st -> next = NULL;
+}
+//check stat
+int isEmpty(Stack st){
+   	if(SQSTACK) return st.top == -1;
+    if(LINKED_STACK) return st->next == NULL;
+}
+int isFull(SqStack st){
+  return st.top == maxSize - 1;
+}
+//sqstack
+int push(SqStack &st,int x){
+    if	(isFull(st)) return 0;
+    st.data[++st.top] = x;
+    return 1;
+}
+//listack
+int push(Node *&st,int x){
+    Node *p;
+    p = (Node *)malloc(sizeof(Node));
+    p->next = NULL;
+    p -> data = x;
+    p -> next = st ->next;
+    st ->next  = p;
+}
+// sqstack
+int pop(SqStack &st,int &x){
+    if(isEmpty(st)) return 0;
+    x = st.data[st.top--];
+    return 1;
+}
+//listack
+int pop(Node &st,int &x){
+    Node *p;
+    if (st.next = NULL) return 0;
+    p=st.next;
+    x = p.data;
+    st.next=p->next;
+    free(p);
+    return 1;
+}
+
+//simple expression
+int stack[maxSize]; int top = -1;
+stack[++top] = x;
+x = stack[top--];
+```
+
+
+## 队列
+
+```Rust
+typedef struct {
+    int data[maxSize];
+    int front;
+    int rear;
+}SqQuene;
+
+typedef struct Node {
+    int data;
+    struct Node *next;
+}Node;
+
+typedef struct Queue {
+    Node *front;
+    Node *rear;
+}Queue;
+```
+
+
+```Rust
+void initQueue(SqQueue &Q){
+    Q.front = Q.rear = 0;
+}
+
+
+void isEmpty(SqQueue Q){
+	return  Q.front == Q.rear;
+}
+
+void isFull(SqQueue Q){
+	return(Q.rear + 1) % maxSize = Q.front;
+}
+
+int enqueue(SqQueue &Q, int x){
+	if(isFull(Q)) return 0;
+	Q.rear = (Q.rear + 1) % maxSize;
+	Q.data[Q.rear] = x;
+	return 1;
+}
+
+int dequeue(SqQueue &Q,int &x){
+	if(isEmpty(Q)) return 0;
+	Q.front = (Q.front + 1)% maxSize;
+	x = Q.data[Q.front];
+	return 1;
+}
+```
+
+
+# 字符串
+
+```Rust
+//定长顺序分配表示
+typedef struct {
+    char str[maxSize+1]; //\0 位置
+    int length;
+}String;
+
+//动态分配存储
+typedef struct {
+    char *ch;
+    int length;
+}String;
+//需要malloc一个长度为length，类型为char型的连续存储空间
+```
+
+
+```Rust
+//赋值法 不能直接等于
+int strassign(Str &str,char * ch){
+    if (str.ch) free(str.ch);
+
+    int len = 0;
+    char *c = ch;
+    while(*c){
+        ++len;
+        ++c;
+    }
+    if(len = 0){
+        str.ch = NULL;
+        str.length = 0;
+        return 1;
+    }
+    else{
+        str.ch = (char*)malloc((len+1) * sizeof(char));
+        if(str.ch == NULL) return 0;
+        else{
+            c = ch;
+            for(int i = 0; i<=len; ++i,++c) str.ch[i] = *c;
+            str.length = len;
+            return 1;
+        }
+    }
+}
+
+while(*p != '\0'){
+	...
+    ++p;
+}
+```
+
+
+## KMP
+
+`Knuth-Morris-Pratt`算法
+
+
+
+## BM
+
+精确字符串匹配算法
+
+# 数组和矩阵
+
+13. 二维数组是一维数组的一维数组，一般采用顺序存储
+
+14. 广义表：表元素可以是原子或者广义表的线型表拓展结构。
+
+15. 二维数组行优先列优先的下标问题
+
+16. 对称矩阵、三角矩阵、对角矩阵的物理表示和确定元素位置问题
+
+稀疏矩阵：
+
+```Rust
+三元组表示法
+int trimat[maxterms+1][3];
+trimat[k][0]; 表示原矩阵中元素按照行优先的顺序的第k个非零元素值
+float trimat[maxterms+1][3] 的行号 (int)trimat[k][1];
+
+伪地址表示法
+两元组表示，值和伪地址：元素在矩阵中按照行优先或列优先存储的相对位置
+```
+
+
+```Rust
+邻接表表示法
+每一行的非零元素连成一个链表，链表结点中有两个分量，一个是元素值，一个是列号。
+
+十字链表表示法
+行和列都用带头结点的邻接表表示，头结点数组不存储任何信息
+链表结点有5个分量，行分量、列分量、数据域分量、同列下一个结点、同行下一个结点指针。
+    十字链表结点有5个分量，行数、列数、非零元素个数、行头结点数组指针、列头结点数组指针。
+typedef struct OLNode {
+int row,col;
+struct OLNode *right,*down;
+float val;
+} OLNode;
+
+typedef struct CrossList {
+OLNode *rhead,*chead;
+int m,n,k;
+}
+```
+
+
+```Rust
+//T
+void trsmat(int A[][maxSize],int B[][maxSize],int m,int n){
+    for(int i = 0;i <m;++i)
+        for(int j = 0;j < n ; ++ j)
+            B[j][i] = A[i][j];
+}
+```
+
+
+# 哈希表
+
+
+

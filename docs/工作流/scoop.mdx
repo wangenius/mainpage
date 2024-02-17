@@ -5,3 +5,180 @@ slug : scoop
 ---
 
 # scoop
+
+最新推荐文章于 2023-09-07 16:46:16 发布
+
+[tuanzi+](https://blog.csdn.net/qq_40302536)
+
+于 2021-04-24 18:52:34 发布
+
+版权声明：本文为博主原创文章，遵循 [CC 4.0 BY-SA](http://creativecommons.org/licenses/by-sa/4.0/) 版权协议，转载请附上原文出处链接和本声明。
+
+Scoop 官网: [https://scoop.sh](https://scoop.sh/)
+[Github](https://so.csdn.net/so/search?q=Github&spm=1001.2101.3001.7020) 地址: [https://github.com/lukesampson/scoop](https://github.com/lukesampson/scoop)
+
+## Scoop 安装
+
+### 环境需求
+
+- PowerShell 5 +
+
+- .NET Framework 4.5 +
+
+![https://img-blog.csdnimg.cn/20210424174348194.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMzAyNTM2,size_16,color_FFFFFF,t_70](https://img-blog.csdnimg.cn/20210424174348194.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMzAyNTM2,size_16,color_FFFFFF,t_70)
+
+### 安装
+
+#### 指定安装位置（配置环境变量）
+
+以管理员身份打开[PowerShell](https://so.csdn.net/so/search?q=PowerShell&spm=1001.2101.3001.7020)
+
+```Plain Text
+`$env:SCOOP='D:\Applications\Scoop'
+[Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
+$env:SCOOP_GLOBAL='F:\GlobalScoopApps'
+[Environment]::SetEnvironmentVariable('SCOOP_GLOBAL', $env:SCOOP_GLOBAL, 'Machine')`
+
+*   1
+*   2
+*   3
+*   4
+```
+
+
+![https://img-blog.csdnimg.cn/20210424174553584.png](https://img-blog.csdnimg.cn/20210424174553584.png)
+
+#### 安装Scoop
+
+首先确保你能访问 `raw.githubusercontent.com`
+
+```Plain Text
+`Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
+
+iwr -useb get.scoop.sh | iex`
+
+*   1
+*   2
+*   3
+```
+
+
+![https://img-blog.csdnimg.cn/2021042418005236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMzAyNTM2,size_16,color_FFFFFF,t_70](https://img-blog.csdnimg.cn/2021042418005236.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMzAyNTM2,size_16,color_FFFFFF,t_70)
+
+## Scoop 使用
+
+### Scoop官方维护的仓库
+
+- [main](https://github.com/ScoopInstaller/Main) - 默认仓库
+
+- [extras](https://github.com/lukesampson/scoop-extras) - 默认仓库的补充超级强大
+
+- [games](https://github.com/Calinou/scoop-games) - 看名字就知道啦
+
+- [nerd-fonts](https://github.com/matthewjberger/scoop-nerd-fonts) - Nerd Fonts
+
+- [nirsoft](https://github.com/kodybrown/scoop-nirsoft) - A subset of the [250](https://github.com/rasa/scoop-directory/blob/master/by-score.md#MCOfficer_scoop-nirsoft) [Nirsoft](https://nirsoft.net/) apps
+
+- [java](https://github.com/ScoopInstaller/Java) - Installers for Oracle Java, OpenJDK, Zulu, ojdkbuild, AdoptOpenJDK, Amazon Corretto, BellSoft Liberica & SapMachine
+
+- [jetbrains](https://github.com/Ash258/Scoop-JetBrains) - Installers for all JetBrains utilities and IDEs
+
+- [nonportable](https://github.com/TheRandomLabs/scoop-nonportable) - Non-portable apps (may require UAC)
+
+- [php](https://github.com/ScoopInstaller/PHP) - Installers for most versions of PHP
+
+- [versions](https://github.com/ScoopInstaller/Versions) - Alternative versions of apps found in other buckets
+
+可以直接通过`scoop bucket add <repo_name>`安装
+
+由于某些原因，每次更新仓库的时间奇慢，所以还是换为国内镜像仓库来增加使用体验
+
+### 镜像仓库
+
+- [main](https://codechina.csdn.net/mirrors/ScoopInstaller/Main.git)
+
+- [extras](https://codechina.csdn.net/mirrors/lukesampson/scoop-extras.git)
+
+- [java](https://codechina.csdn.net/mirrors/ScoopInstaller/Java.git)
+
+- [jetbrains](https://codechina.csdn.net/mirrors/Ash258/Scoop-JetBrains.git)
+
+- 更多的可以在[CSDN GitHub加速计划上](https://codechina.csdn.net/mirrors)找到
+
+### Scoop仓库换为国内仓库
+
+#### 安装git（如果你的电脑有git可以跳过）
+
+```Plain Text
+`scoop install git`
+
+*   1
+```
+
+
+![https://img-blog.csdnimg.cn/2021042418045790.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMzAyNTM2,size_16,color_FFFFFF,t_70](https://img-blog.csdnimg.cn/2021042418045790.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMzAyNTM2,size_16,color_FFFFFF,t_70)
+
+#### 删除原有仓库
+
+```Plain Text
+`scoop bucket list
+scoop bucket rm main`
+
+*   1
+*   2
+```
+
+
+![https://img-blog.csdnimg.cn/20210424180710746.png](https://img-blog.csdnimg.cn/20210424180710746.png)
+
+#### 添加镜像仓库
+
+```Plain Text
+ `scoop bucket add main https://codechina.csdn.net/mirrors/ScoopInstaller/Main.git
+
+scoop bucket add extras https://codechina.csdn.net/mirrors/lukesampson/scoop-extras.git`
+
+*   1
+*   2
+*   3
+*   4
+```
+
+
+![https://img-blog.csdnimg.cn/2021042418133216.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMzAyNTM2,size_16,color_FFFFFF,t_70](https://img-blog.csdnimg.cn/2021042418133216.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMzAyNTM2,size_16,color_FFFFFF,t_70)
+
+!!! 别忘了更新一下
+
+```Plain Text
+`scoop update`
+
+*   1
+```
+
+
+![https://img-blog.csdnimg.cn/20210424182700521.png](https://img-blog.csdnimg.cn/20210424182700521.png)
+
+### 使用Scoop安装常用软件
+
+```Plain Text
+`scoop install 7zip aria2 python vscode typora vlc sumatrapdf`
+
+*   1
+```
+
+
+![https://img-blog.csdnimg.cn/20210424183524546.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMzAyNTM2,size_16,color_FFFFFF,t_70](https://img-blog.csdnimg.cn/20210424183524546.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMzAyNTM2,size_16,color_FFFFFF,t_70)
+
+最后，愉快的使用scoop吧~
+
+### 安装指定版本的软件
+
+可以在软件名字后面指定完整的版本号
+
+```Plain Text
+`scoop install python@3.7.8`
+
+*   1
+```
+
+

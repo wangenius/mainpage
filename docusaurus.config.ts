@@ -9,7 +9,7 @@ const theme = {
   navbar: {
     title: "从柯布西耶到迪杰斯特拉的一个特解",
     logo: {
-      alt: "My Site Logo",
+      alt: "logo",
       src: "img/logo.png",
     },
     items: [
@@ -57,13 +57,9 @@ const theme = {
             href: "https://weibo.com/u/6320492937",
           },
           {
-            label: "Bilibili",
+            label: "bilibili",
             href: "https://space.bilibili.com/247967944",
-          },
-          {
-            label: "Twitter",
-            href: "https://twitter.com/docusaurus",
-          },
+          }
         ],
       },
       {
@@ -109,7 +105,7 @@ export default {
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: "en",
+    defaultLocale: "zh-Hans",
     locales: ["en"],
   },
   plugins: [

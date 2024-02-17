@@ -1,0 +1,48 @@
+### `HTTP`
+
+一个用于传输超媒体文档（例如 `HTML`）的[应用层](https://zh.wikipedia.org/wiki/%E5%BA%94%E7%94%A8%E5%B1%82)协议。它是为 `Web` 浏览器与 `Web`服务器之间的通信而设计的，但也可以用于其他目的。HTTP 遵循经典的[客户端—服务端模型](https://zh.wikipedia.org/wiki/%E4%B8%BB%E5%BE%9E%E5%BC%8F%E6%9E%B6%E6%A7%8B)，客户端打开一个连接以发出请求，然后等待直到收到服务器端响应。HTTP 是[无状态协议](http://zh.wikipedia.org/wiki/%E6%97%A0%E7%8A%B6%E6%80%81%E5%8D%8F%E8%AE%AE)，这意味着服务器不会在两个请求之间保留任何数据（状态）。
+
+HTTP是一个客户端（用户）和服务端（网站）之间请求和应答的标准，通常使用[TCP协议](https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE)。通过使用[网页浏览器](https://zh.wikipedia.org/wiki/%E7%B6%B2%E9%A0%81%E7%80%8F%E8%A6%BD%E5%99%A8)、[网络爬虫](https://zh.wikipedia.org/wiki/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB)或者其它的工具，客户端发起一个HTTP请求到服务器上指定端口（默认[端口](https://zh.wikipedia.org/wiki/%E9%80%9A%E8%A8%8A%E5%9F%A0)为80）。我们称这个客户端为用户代理程式（user agent）。应答的服务器上存储着一些资源，比如HTML文件和图像。我们称这个应答服务器为源服务器（origin server）。在用户代理和源服务器中间可能存在多个“中间层”，比如[代理伺服器](https://zh.wikipedia.org/wiki/%E4%BB%A3%E7%90%86%E4%BC%BA%E6%9C%8D%E5%99%A8)、[网关](https://zh.wikipedia.org/wiki/%E7%BD%91%E5%85%B3)或者[隧道](https://zh.wikipedia.org/wiki/%E9%9A%A7%E9%81%93)（tunnel）。
+
+尽管[TCP/IP](https://zh.wikipedia.org/wiki/TCP/IP)协议是互联网上最流行的应用，但是在HTTP协议中并没有规定它必须使用或它支持的层。事实上HTTP可以在任何互联网协议或其他网络上实现。HTTP假定其下层协议提供可靠的传输。因此，任何能够提供这种保证的协议都可以被其使用，所以其在TCP/IP协议族使用TCP作为其传输层。
+
+通常，由HTTP客户端发起一个请求，建立一个到服务器指定端口（默认是80端口）的TCP连接。HTTP服务器则在那个端口监听客户端的请求。一旦收到请求，服务器会向客户端返回一个状态，比如"HTTP/1.1 200 OK"，以及返回的内容，如请求的文件、错误消息、或者其它信息。
+
+1. 非持久连接
+
+2. 持久连接
+
+3. 
+
+    4. 非流水线
+
+    5. 流水线
+
+6. 请求报文：`GET/POST`
+
+7. 响应报文
+
+8. 客户端连接到 Web 服务器：一个 HTTP 客户端，通常是浏览器，与 Web 服务器的 HTTP 端口（默认为 80）建立一个 TCP 套接字连接。
+
+9. 发送 HTTP 请求：通过 TCP `socket`，客户端向 Web 服务器发送一个文本的请求报文，一个请求报文由请求行、请求头部、空行和请求数据 4 部分组成。
+
+10. 服务器接受请求并返回 HTTP 响应：Web 服务器解析请求，定位请求资源。服务器将资源复本写到 TCP 套接字，由客户端读取。一个响应由状态行、响应头部、空行和响应数据 4 部分组成。
+
+11. 释放连接 [TCP 连接](http://www.jianshu.com/p/ef892323e68f)：若 connection 模式为 close，则服务器主动关闭 [TCP 连接](http://www.jianshu.com/p/ef892323e68f)，客户端被动关闭连接，释放 [TCP 连接](http://www.jianshu.com/p/ef892323e68f); 若 connection 模式为 keepalive，则该连接会保持一段时间，在该时间内可以继续接收请求;
+
+12. 客户端浏览器解析 HTML 内容：客户端浏览器首先解析状态行，查看表明请求是否成功的状态代码。然后解析每一个响应头，响应头告知以下为若干字节的 HTML 文档和文档的字符集。客户端浏览器读取响应数据 HTML，根据 HTML 的语法对其进行格式化，并在浏览器窗口中显示。
+
+例如：在浏览器地址栏键入 URL，按下回车之后会经历以下流程：
+
+1、浏览器向 DNS 服务器请求解析该 URL 中的域名所对应的 IP 地址;
+
+2、解析出 IP 地址后，根据该 IP 地址和默认端口 80，和服务器建立 [TCP 连接](http://www.jianshu.com/p/ef892323e68f);
+
+3、浏览器发出读取文件 (URL 中域名后面部分对应的文件) 的 HTTP 请求，该请求报文作为 [TCP 三次握手](http://www.jianshu.com/p/ef892323e68f)的第三个报文的数据发送给服务器;
+
+4、服务器对浏览器请求作出响应，并把对应的 html 文本发送给浏览器;
+
+5、释放 [TCP 连接](http://www.jianshu.com/p/ef892323e68f);
+
+6、浏览器将该 html 文本并显示内容;
+

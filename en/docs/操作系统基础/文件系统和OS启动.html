@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-操作系统基础/文件系统和OS启动" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.1.1">
+<title data-rh="true">文件 | 从柯布西耶到迪杰斯特拉的一个特解</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://wangenius.github.io/en/docs/操作系统基础/文件系统和OS启动"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="文件 | 从柯布西耶到迪杰斯特拉的一个特解"><meta data-rh="true" name="description" content="逻辑结构"><meta data-rh="true" property="og:description" content="逻辑结构"><link data-rh="true" rel="icon" href="/en/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://wangenius.github.io/en/docs/操作系统基础/文件系统和OS启动"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/en/docs/操作系统基础/文件系统和OS启动" hreflang="en"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/docs/操作系统基础/文件系统和OS启动" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/docs/操作系统基础/文件系统和OS启动" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/en/blog/rss.xml" title="从柯布西耶到迪杰斯特拉的一个特解 RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/en/blog/atom.xml" title="从柯布西耶到迪杰斯特拉的一个特解 Atom Feed">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/en/assets/css/styles.286bbcba.css">
+<script src="/en/assets/js/runtime~main.4795b8a2.js" defer="defer"></script>
+<script src="/en/assets/js/main.7b49d668.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/en/"><div class="navbar__logo"><img src="/en/img/logo.png" alt="logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/en/img/logo.png" alt="logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">从柯布西耶到迪杰斯特拉的一个特解</b></a></div><div class="navbar__items navbar__items--right"><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/en/docs/intro">知识库</a><a class="navbar__item navbar__link" href="/en/blog">博客</a><a href="https://github.com/wangenius/wangenius.github.io" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/en/docs/intro">我与世界久别重逢</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/en/docs/category/收藏">收藏</a><button aria-label="Expand sidebar category &#x27;收藏&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/en/docs/数学/离散数学">数学</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/en/docs/category/工作流">工作流</a><button aria-label="Expand sidebar category &#x27;工作流&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/en/docs/category/算法">算法</a><button aria-label="Expand sidebar category &#x27;算法&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/en/docs/rust">RUST</a><button aria-label="Expand sidebar category &#x27;RUST&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/en/docs/category/软件工程">软件工程</a><button aria-label="Expand sidebar category &#x27;软件工程&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/en/docs/category/linux">linux</a><button aria-label="Expand sidebar category &#x27;linux&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/en/docs/数据库">数据库</a><button aria-label="Expand sidebar category &#x27;数据库&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/en/docs/计算机网络">计算机网络</a><button aria-label="Expand sidebar category &#x27;计算机网络&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/en/docs/TS">TS</a><button aria-label="Expand sidebar category &#x27;TS&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" href="/en/docs/Windows/BIOS">Windows</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" aria-expanded="true" href="/en/docs/操作系统基础">特征</a><button aria-label="Collapse sidebar category &#x27;特征&#x27;" type="button" class="clean-btn menu__caret"></button></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" tabindex="0" href="/en/docs/操作系统基础/IO系统和设备管理">IO系统和设备管理</a><button aria-label="Expand sidebar category &#x27;IO系统和设备管理&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" tabindex="0" href="/en/docs/操作系统基础/M-Cache系统和内存空间管理">M-Cache系统和内存空间管理</a><button aria-label="Expand sidebar category &#x27;M-Cache系统和内存空间管理&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/docs/操作系统基础/OS运行环境和中断系统">OS运行环境和中断系统</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" tabindex="0" href="/en/docs/操作系统基础/多道异步机制下的处理机管理">程序装入</a><button aria-label="Expand sidebar category &#x27;程序装入&#x27;" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/en/docs/操作系统基础/文件系统和OS启动">文件</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" aria-expanded="false" href="/en/docs/组成原理">组成原理</a><button aria-label="Expand sidebar category &#x27;组成原理&#x27;" type="button" class="clean-btn menu__caret"></button></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/en/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item"><a class="breadcrumbs__link" itemprop="item" href="/en/docs/操作系统基础"><span itemprop="name">特征</span></a><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">文件</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><h1>文件</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="逻辑结构">逻辑结构<a href="#逻辑结构" class="hash-link" aria-label="Direct link to 逻辑结构" title="Direct link to 逻辑结构">​</a></h2>
+<ol>
+<li>
+<p>流式文件：无结构文件</p>
+</li>
+<li>
+<p>顺序文件：记录定长，效率最快，顺序存储和链表存储。串结构，无序，费时顺序结构：折半查找</p>
+</li>
+<li>
+<p>索引文件：记录不定长，建立索引表，每个记录设置一个索引表项，包括指向变长记录的指针和记录长度。提高了查找效率，增加了空间</p>
+</li>
+<li>
+<p>索引顺序文件：先索引再顺序查找，提高了查找效率，增加了空间</p>
+</li>
+<li>
+<p><code>hash</code>文件：键值直接决定记录物理位置，存取速度很高，但是会引起冲突</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="物理结构">物理结构<a href="#物理结构" class="hash-link" aria-label="Direct link to 物理结构" title="Direct link to 物理结构">​</a></h2>
+<ol>
+<li>
+<p>Continuous Allcation(连续分配)：快速,无法动态增减,定期紧缩。逻辑文件中的记录顺序存储在相邻的块中，一个文件的目录项中物理地址字段包括：第一块的地址和该文件所分配的区域长度简单，快；长度不宜动态增加，保持有序性付出的代价，外部碎片</p>
+</li>
+<li>
+<p>Linked Allocation(离散分配，链接分配)：</p>
+</li>
+<li></li>
+<li>
+<p>隐式链接：目录项中含有第一个和最后一个盘块的指针，每个盘块含有下一个盘块的指针，对用户透明，只适合顺序访问，稳定性也差。每个盘块都下一个盘块的指针,访问效率低,可靠性差</p>
+</li>
+<li></li>
+<li></li>
+<li>
+<p>优点：消除了外部碎片，提高了磁盘的利用率，可以动态分配</p>
+</li>
+<li>
+<p>Cluster(簇)的使用：几个盘块组成cluster，增加了内部碎片，改善了磁盘访问时间</p>
+</li>
+<li></li>
+<li>
+<p>显式链接：磁盘中设置一张FAT(文件分配表)，每个表项存放链接指针。文件的第一个盘号记录在目录项的物理地址中。FAT在系统启动时会读入内存，查找的过程在内存中进行，显著提高了检索速度，明显的减少了访问磁盘的次数。链接每个物理快的指针显式的存放在内存一张表中,每个磁盘设置一张链接表,文件分配表</p>
+</li>
+<li>
+<p>Index Allocation（混合索引分配）检索分配：每个文件设置一个索引块,索引块存放索引表,索引表每个表项对应分配一个物理块。支持直接访问,不产生外部碎片,文件长度不限。增加系统存储开销,两次访问外存,降低了存取速度</p>
+</li>
+<li></li>
+<li>
+<p>FAT太大，只需将文件对应盘块的编号调入内存即可，为此，索引分配将每个文件所有的盘块号集中放在一起构成了索引块（索引表），是一个磁盘块地址的数组。直接访问，没有外部碎片，占用系统存储空间</p>
+</li>
+<li>
+<p>混合索引：小文件地址，将每个盘块地址直接放入FCB中，直接从FCB中读取； 中型文件单级索引，FCB中找到索引表，从中获得该文件的盘块地址，一次间址；大型文件：二级三级索引</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="fcb">FCB<a href="#fcb" class="hash-link" aria-label="Direct link to FCB" title="Direct link to FCB">​</a></h2>
+<p>用来存放控制文件需要的各种信息的数据结构，FCB的有序集合称为文件目录，一个FCB就是一个文件目录项</p>
+<p>文件名和文件描述信息分开，使文件描述信息单独形成一个称为索引结点的数据结构，简称i结点，inode。在文件目录中每个目录项仅由文件名和指向该文件所对应的索引结点的指针构成，大大节省系统开销</p>
+<div class="language-Rust language-rust codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-rust codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token string" style="color:#e3116c">&quot;host&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;文件主标识符&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token string" style="color:#e3116c">&quot;type&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;文件类型:普通文件,目录文件,特别文件&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token string" style="color:#e3116c">&quot;auth&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;各类用户存取权限&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token string" style="color:#e3116c">&quot;es_ad&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;外存物理地址-盘块编号&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token string" style="color:#e3116c">&quot;len&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;文件长度&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token string" style="color:#e3116c">&quot;link&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;本文件系统中所有指向该文件的文件名的指针数&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token string" style="color:#e3116c">&quot;time&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;各类时间&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token string" style="color:#e3116c">&quot;count&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;访问计数器&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token string" style="color:#e3116c">&quot;status&quot;</span><span class="token punctuation" style="color:#393A34">:</span><span class="token string" style="color:#e3116c">&quot;是否上锁或被修改&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">...</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h1>文件系统</h1>
+<p>文件系统格式分为<code>FAT</code>、<code>EXT</code>、<code>NTFS</code>等，每种类型的文件系统，都规定了文件的组织形式，文件系统格式与相对应，而不是与相对应，一个硬盘在存放文件前必须要规定文件的组织形式，即规定该分区或硬盘的文件系统格式，所以硬盘需要先分区、然后格式化成指定文件系统后才可使用。文件管理系统提供高效和便捷的磁盘访问，以便允许存储、定位、提取数据。</p>
+<ol>
+<li>
+<p>文件目录系统：查找目录,获取inode等</p>
+</li>
+<li>
+<p>存取控制验证：auth确认</p>
+</li>
+<li>
+<p>逻辑文件系统：获取文件逻辑地址</p>
+</li>
+<li>
+<p>物理文件系统：由逻辑地址到物理地址的转化</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="组织结构">组织结构<a href="#组织结构" class="hash-link" aria-label="Direct link to 组织结构" title="Direct link to 组织结构">​</a></h2>
+<p><code>MBR:Master Boot Record</code>硬盘：<code>MBR</code>是一种硬盘划分规范，其规定了硬盘扇区的组织方式，遵循该规范的硬盘称作<code>MBR</code>硬盘，与传统<code>Legacy BIOS</code>配合使用；<code>MBR</code>引导扇区中的硬盘分区表<code>DPT</code>以特定标识符区分<code>active Partition</code>有操作系统的扇区。活动扇区的第一个扇区叫<code>PBR</code>分区引导记录，记录<code>Loader</code>操作系统引导程序的位置。</p>
+<p><code>GPT:GUID Partition Table</code>硬盘：<code>GPT</code>是<code>Intel</code>公司开发的一种硬盘划分规范，规定了硬盘扇区的组织方式，是<code>UEFI</code>规范中的一部分，遵循该划分规范的硬盘称作<code>GPT</code>硬盘，配合UEFI BIOS使用，逐渐替代<code>Legacy BIOS</code>+<code>MBR</code>硬盘的使用方式；</p>
+<p><code>UEFI</code>操作系统：按照<code>GPT</code>硬盘划分规范进行操作的称作<code>UEFI</code>操作系统，UEFI操作系统必须在磁盘中开辟一个<code>ESP</code>分区，用于存放操作系统启动文件，该分区的格式为<code>FAT</code>文件系统格式；</p>
+<p><code>ESP:UEFI System Partition</code>分区：<code>UEFI</code>操作系统必须在磁盘中开辟一个<code>ESP</code>分区（安装操作系统前会对磁盘进行分区操作），用于存放启动文件，且格式化为<code>FAT</code>格式，以便<code>UEFI BIOS</code>能够获取该分区中的启动文件，从而加载操作系统；</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="vfs">VFS<a href="#vfs" class="hash-link" aria-label="Direct link to VFS" title="Direct link to VFS">​</a></h2>
+<p>采用标准的系统调用读写位于不同物理介质上的不同文件系统</p>
+<p>为用户程序提供了文件系统操作的统一接口，屏蔽了不同文件系统的差异和操作细节，同时提高了系统进程</p>
+<p>抽象出一个通用的文件 系统类型，定义了通用文件都支持的接口，新得文件系统只要支持并实现这些接口，即可安装使用。</p>
+<ol>
+<li>
+<p>超级对象</p>
+</li>
+<li>
+<p>索引结点对象</p>
+</li>
+<li>
+<p>目录项对象</p>
+</li>
+<li>
+<p>文件对象</p>
+</li>
+</ol>
+<p><code>mounting</code>挂载是指由操作系统使一个存储设备上的计算机文件和目录可供用户通过计算机的文件系统访问的一个过程。额外的一个文件系统与根文件系统的某个现存目录建立关系,使得该目录成为其他文件的访问入口</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="文件接口">文件接口<a href="#文件接口" class="hash-link" aria-label="Direct link to 文件接口" title="Direct link to 文件接口">​</a></h2>
+<p>进程读、排序、写文件过程：通过read系统调用完成。创建一条消息包含文件描述符fd ，缓冲区buffer，大小nbytes等参数，以及表示read类型的消息码。然后将这条消息送给文件系统，并阻塞该进程以等待文件系统的响应。文件系统在收到消息后，以消息类型为下标，查找过程表，调用响应的过程处理读请求，数据输入完成后，操作系统切换到排序进程进行排序工作。完成后调用write系统调用。</p>
+<ol>
+<li>
+<p><code>create</code>：分配外存空间，目录中创建目录项</p>
+</li>
+<li>
+<p><code>write</code>：执行系统调用，维护写指针</p>
+</li>
+<li>
+<p><code>read</code>：执行系统调用，维护和更新读指针</p>
+</li>
+<li>
+<p><code>locate</code>：搜索目录找到适当条目，当前文件位置指针重新定位到给定值</p>
+</li>
+<li>
+<p><code>delete</code>：目录中检索目录项并释放，<code>count == 0</code> 删除</p>
+</li>
+<li>
+<p><code>cut</code>：文件所有属性不变，删除文件内容，将其长度置0,释放空间</p>
+</li>
+<li>
+<p><code>open</code>：</p>
+</li>
+<li></li>
+<li>
+<p>系统打开文件表复制FCB副本和其他信息（打开计数器<code>open count</code>）</p>
+</li>
+<li>
+<p>进程打开文件表指向系统打开文件表中该文件的指针</p>
+</li>
+<li>
+<p>打开文件的关联信息：文件指针，文件打开计数器，文件磁盘位置，访问权限</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="内存映射文件mmf">内存映射文件<code>MMF</code><a href="#内存映射文件mmf" class="hash-link" aria-label="Direct link to 内存映射文件mmf" title="Direct link to 内存映射文件mmf">​</a></h3>
+<p>因为常规文件操作需要从磁盘到页缓存再到用户主存的两次数据拷贝。而<code>mmap</code>操控文件，只需要从磁盘到用户主存的一次数据拷贝过程。说白了，<code>mmap</code>的关键点是实现了用户空间和内核空间的数据直接交互而省去了空间不同数据不通的繁琐过程。因此<code>mmap</code>效率更高。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="文件共享">文件共享<a href="#文件共享" class="hash-link" aria-label="Direct link to 文件共享" title="Direct link to 文件共享">​</a></h2>
+<ol>
+<li>
+<p>硬链接（<code>inode</code>）静态共享：FCB不放在目录块中，放在索引结点中。文件目录只设置文件名和指向相应的索引结点的指针。count链接计数器，表示链接到本索引结点即文件上的用户目录项的数目。基于inode的共享,两个不同的目录项指向相同的inode</p>
+</li>
+<li>
+<p>快捷方式：实际上是一个后缀.link的文件，这个文件只有在windows图形界面下点击才能到达目标文件路径，在命令行下仅是一个文件而已无快捷效果</p>
+</li>
+<li>
+<p>软链接（含路径名的LINK类型）静态共享：LINK文件记录被链接文件的路径名，不拥有指向其索引结点的指针，不会发生空指针问题.也是一个目录文件但是携带链接属性(l)，这个文件在图形界面与快捷方式无异，但在命令行下，程序会把它当做一个目录。只有文件拥有者拥有指向inode的指针,其他共享该文件的用户只有该文件的路径名</p>
+</li>
+<li>
+<p>动态共享：两个进程同时对文件进行操作</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="文件保护">文件保护<a href="#文件保护" class="hash-link" aria-label="Direct link to 文件保护" title="Direct link to 文件保护">​</a></h2>
+<ol>
+<li>
+<p>访问控制表（矩阵）<code>ACL</code>：某种记录每个用户（组）对于每个文件的操作权限。</p>
+</li>
+<li>
+<p>口令：创建文件时附在<code>FCB</code>上，访问时需要。不够安全。</p>
+</li>
+<li>
+<p>密码：对文件进行加密，访问时需要密钥，保密性极强，但编译和破译需要时间。</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="目录结构">目录结构<a href="#目录结构" class="hash-link" aria-label="Direct link to 目录结构" title="Direct link to 目录结构">​</a></h2>
+<p><code>FCB</code>的有序集合称为文件目录。本质是一个外存文件</p>
+<p>目录项：文件名和指向该文件inode的指针构成</p>
+<ol>
+<li>
+<p>单级目录结构：整个文件系统只建立一张目录表，查找速度慢，不允许重名</p>
+</li>
+<li>
+<p>两级目录结构：主文件目录<code>MFD(master file directory)</code>和<code>UFD(user file directory)</code>，不能分类，用户内不能重名</p>
+</li>
+<li>
+<p>树型目录结构：/分隔符，根目录出发的绝对路径，进程对个文件的访问都是相对于当前目录进行的，每个用户都有一个自己的当前目录，明显提高了对目录的检索速度和文件系统的性能</p>
+</li>
+<li>
+<p>无环图目录结构（文件共享）：每个共享结点设置一个共享计数器，仅当共享计数器为0时，才可以真正的删除该结点</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="空间管理">空间管理<a href="#空间管理" class="hash-link" aria-label="Direct link to 空间管理" title="Direct link to 空间管理">​</a></h2>
+<ol>
+<li>
+<p>空闲表法不适用于大型文件系统：连续分配 表项:空闲区第一个空闲盘块号|空闲盘块数目</p>
+</li>
+<li>
+<p>空闲链表法不适用于大型文件系统：空闲盘块链，空闲盘区链（一个盘区可能包括多/个  ）空闲块链接成链表</p>
+</li>
+<li>
+<p>位示图法：每一位代表一个盘块的状态</p>
+</li>
+<li>
+<p>成组链接法unix：用来存放一组空闲盘块号</p>
+</li>
+<li></li>
+<li>
+<p>分配：超级块不止一块,出栈;超级块就剩下一个索引块,则将索引块调入主存超级块中,把该索引块分配</p>
+</li>
+<li>
+<p>回收：超级块没满,则入超级块栈;超级块满了,内存超级块写入该回收块,内存超级块入栈该回收块</p>
+</li>
+</ol>
+<h1>操作系统启动步骤？</h1>
+<p>磁盘的组织结构规范，以MBR和<code>Legacy BIOS</code>启动为例。</p>
+<p>一共可以分为五步（CPU-磁盘-分区-扇区-表和程序）：</p>
+<ol>
+<li>
+<p>CPU激活，boot启动BIOS</p>
+</li>
+<li>
+<p>BIOS获权硬件自检<code>POST</code>通知CPU各种硬件设备的中断向量地址，并提供<code>BIOS</code>中断服务程序。</p>
+</li>
+<li>
+<p>BIOS读取CMOS中的Boot Sequence，依次加载MBR，寻找引导硬盘</p>
+</li>
+<li>
+<p>MBR（磁盘的第一个扇区55AAh结尾）获权通过DPT（硬盘分区表）查找活动分区</p>
+</li>
+<li>
+<p>PBR（操作系统分区的第一扇区首字母为0x80h）找到分区下的引导程序地址</p>
+</li>
+<li>
+<p>引导程序<code>Loader</code>引导操作系统启动</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="操作系统初始化init步骤">操作系统初始化<code>init</code>步骤？<a href="#操作系统初始化init步骤" class="hash-link" aria-label="Direct link to 操作系统初始化init步骤" title="Direct link to 操作系统初始化init步骤">​</a></h2>
+<ol>
+<li>
+<p>Loader的任务和boot程序很相似，将存储设备中的操作系统内核kernel.dll载入内存；加载内核头程序：在内核启动前还需要进行全局段描述表GDT、中断描述表IDT以及页表PT的结构初始化，为后面内核进行中断处理和内存管理的初始化奠定基础；然后将控制权交给kernel。</p>
+</li>
+<li>
+<p>kernel：内核初始化的主要是初始化处理器和中断、各个管理模块、最后创建主进程。以Linux为例，内核加载成功后，第一个运行的程序是/sbin/init。它根据配置文件产生init进程。这是Linux启动后的第一个进程，pid进程编号为1，其他进程都是它的后代。</p>
+</li>
+<li></li>
+<li>
+<p>中断处理初始化：依托于内核头程序完成的 IDT 以及 GDT ，我们在进行一些中断策略等初始化操作就完成了中断处理的初始化了。</p>
+</li>
+<li>
+<p>内存管理初始化：对于内存管理的初始化，主要就是如何获取物理内存信息，如何进行物理内存的分配管理以及如何设计可用内存和可用物理页的分配与回收等等。</p>
+</li>
+<li>
+<p>进程管理初始化：而对于进程管理我们可以分为两个步骤，如何设计我们的进程控制结构PCB以及如何设计进程间的调度策略。</p>
+</li>
+<li>
+<p>虚拟文件系统初始化：如何进行文件到磁盘逻辑地址的映射，逻辑地址到物理地址的映射也是我们需要解决的事情。当我们进行open()、read()、write()这些系统调用的时候肯定需要对底层的物理磁盘介质进行操作，而虚拟文件系统 VFS 就是我们文件与物理介质中的胶水层。这一步其实并没有进行整个文件系统的初始化，没有进行物理磁盘文件系统的挂载，而仅仅是创建了第一个挂载点目录/ 和进行一些格式的定义 ，也就是说我们现在并不能通过类似 /root/xxx 去访问文件。</p>
+</li>
+<li>
+<p>在虚拟文件系统初始化完成之后就需要进入用户态以完成真正的用户文件系统的创建过程。ramdisk/init 先根据存储系统的类型加载驱动，设置真正的根文件系统，然后我们就可以访问根文件系统中的 init 程序做一些用户态的初始化了。</p>
+</li>
+<li>
+<p>2号用户进程是内核进程的祖先，管理调度其它的内核线程。它会一直循环运行 kthreadd 函数，这个函数主要就是负责所有内核态的线程的调度和管理。等到内核态也有了管理者，整个内核的初始化流程也就结束了。用户就可以开始自己创建进程，运行各种软件了。然后，init线程加载系统的各个模块，比如窗口程序和网络程序，直至执行/bin/login程序，跳出登录界面，等待用户输入用户名和密码。</p>
+</li>
+<li>
+<p>至此，全部启动过程完成。</p>
+</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/wangenius/wangenius.github.io/tree/master/docs/操作系统基础/文件系统和OS启动.mdx" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/en/docs/操作系统基础/多道异步机制下的处理机管理/进程间通信"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">进程间通信</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/en/docs/组成原理"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">组成原理</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#逻辑结构" class="table-of-contents__link toc-highlight">逻辑结构</a></li><li><a href="#物理结构" class="table-of-contents__link toc-highlight">物理结构</a></li><li><a href="#fcb" class="table-of-contents__link toc-highlight">FCB</a></li><li><a href="#组织结构" class="table-of-contents__link toc-highlight">组织结构</a></li><li><a href="#vfs" class="table-of-contents__link toc-highlight">VFS</a></li><li><a href="#文件接口" class="table-of-contents__link toc-highlight">文件接口</a><ul><li><a href="#内存映射文件mmf" class="table-of-contents__link toc-highlight">内存映射文件<code>MMF</code></a></li></ul></li><li><a href="#文件共享" class="table-of-contents__link toc-highlight">文件共享</a></li><li><a href="#文件保护" class="table-of-contents__link toc-highlight">文件保护</a></li><li><a href="#目录结构" class="table-of-contents__link toc-highlight">目录结构</a></li><li><a href="#空间管理" class="table-of-contents__link toc-highlight">空间管理</a></li><li><a href="#操作系统初始化init步骤" class="table-of-contents__link toc-highlight">操作系统初始化<code>init</code>步骤？</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">知识库</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/en/docs/intro">简介</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/rust">Rust</a></li></ul></div><div class="col footer__col"><div class="footer__title">社区</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://weibo.com/u/6320492937" target="_blank" rel="noopener noreferrer" class="footer__link-item">微博<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://space.bilibili.com/247967944" target="_blank" rel="noopener noreferrer" class="footer__link-item">bilibili<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">更多</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/en/blog">博客</a></li><li class="footer__item"><a href="https://github.com/wangenius/wangenius.github.io" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 Docup, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

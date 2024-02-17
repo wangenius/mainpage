@@ -106,11 +106,11 @@ export default {
   // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "zh-Hans",
-    locales: ["en"],
+    locales: ["en","zh-Hans"],
   },
   plugins: [
     "docusaurus-plugin-sass",
-    async function myPlugin(context, options) {
+    async function myPlugin() {
       return {
         name: "docusaurus-tailwindcss",
         configurePostCss(postcssOptions) {

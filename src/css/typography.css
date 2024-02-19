@@ -1,13 +1,67 @@
-h1 {
+@charset "UTF-8";
+.markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
+  margin: 2rem 0;
+}
+.markdown h1 {
   font-size: 3rem;
 }
-
-h2 {
+.markdown h2 {
   font-size: 2rem;
 }
-
-h3 {
+.markdown h3 {
   font-size: 1.5rem;
 }
+.markdown p, .markdown li {
+  line-height: 1.8rem;
+  margin: 6px 0;
+  color: #616161;
+}
+.markdown p a, .markdown li a {
+  color: var(--ifm-color-primary);
+}
+.markdown code {
+  font-family: "code";
+  font-size: small;
+}
+.markdown code * {
+  font-family: "code";
+}
+.markdown .theme-code-block {
+  box-shadow: none;
+}
+.markdown .theme-code-block * {
+  font-family: "code";
+}
+.markdown .theme-code-block div[class*=codeBlockTitle] {
+  border-bottom-color: #f3f0ed;
+  padding: 8px 20px;
+}
+.markdown pre code {
+  font-size: 0.93rem;
+}
+.markdown img {
+  border: 1px solid transparent;
+  transition: all ease-in 50ms;
+}
+.markdown img:hover {
+  border: 1px solid #dedede;
+  border-radius: 12px;
+}
+.markdown ol {
+  list-style: thumbs;
+  margin-left: 20px;
+}
+.markdown li {
+  margin: 0;
+  text-indent: 0;
+}
+.markdown li p {
+  text-indent: 0;
+  margin: 0;
+}
 
-/*# sourceMappingURL=typography.css.map */
+@counter-style thumbs {
+  system: cyclic;
+  symbols: "🌎" "🌽" "🍌" "🔥" "🍀" "🍑" "🍕" "🍪" "🍭" "🎈" "📌" "📢";
+  suffix: " ";
+}/*# sourceMappingURL=typography.css.map */

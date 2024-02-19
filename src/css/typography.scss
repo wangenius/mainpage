@@ -14,19 +14,36 @@
   p,li{
     line-height: 1.8rem;
     margin: 6px 0;
-    color: #505050;
+    color: #616161;
     a{
-      color: #2527b3;
+      color: var(--ifm-color-primary);
     }
   }
   code{
     // background-color: #f3f3f3;
     // color: #616161;
-    font-family: 'J_regular';
+    font-family: 'code';
     font-size: small;
+    *{
+      font-family: "code";
+    }
+  }
+  .theme-code-block{
+    box-shadow: none;
+    *{
+      font-family: "code";
+    }
+    div[class*="codeBlockTitle"]{
+        border-bottom-color: #f3f0ed;
+        padding: 8px 20px;
+      }
+    
   }
   pre {
+    // background-color: #f5dbb51a !important;
+    // box-shadow: none !important;
     code {
+
       font-size: 0.93rem;
     }
   }

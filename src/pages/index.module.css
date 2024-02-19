@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * CSS files with the .module.css suffix will be treated as CSS modules
  * and scoped locally.
@@ -8,26 +9,24 @@
   position: relative;
   margin-top: -60px;
   overflow: hidden;
-  background: rgb(250, 242, 242);
-  /* background: radial-gradient(circle, rgb(238, 174, 202) 0%, rgb(235, 215, 244) 42%, rgb(148, 187, 233) 100%); */
 }
 .heroBanner .tagline {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-indent: 2.4rem;
   margin: 10px auto;
   padding: 0;
+  font-weight: 300;
   max-width: 1200px;
   text-align: start;
-  color: #0b3661;
+  color: #a78a65;
+  font-family: "微软雅黑";
 }
 .heroBanner .title {
-  font-size: 5rem;
+  font-size: 4rem;
 }
 
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 4rem;
   }
-}
-
-/*# sourceMappingURL=index.module.css.map */
+}/*# sourceMappingURL=index.module.css.map */

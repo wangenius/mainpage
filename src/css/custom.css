@@ -1,4 +1,7 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lobster&family=Noto+Sans+SC:wght@100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,10 +20,17 @@
 .markdown p, .markdown li {
   line-height: 1.8rem;
   margin: 6px 0;
-  color: #505050;
+  color: #616161;
 }
 .markdown p a, .markdown li a {
-  color: #0c10d3;
+  color: var(--ifm-color-primary);
+}
+.markdown code {
+  font-family: "code";
+  font-size: small;
+}
+.markdown pre code {
+  font-size: 0.93rem;
 }
 .markdown img {
   border: 1px solid transparent;
@@ -48,8 +58,116 @@
   symbols: "🌎" "🌽" "🍌" "🔥" "🍀" "🍑" "🍕" "🍪" "🍭" "🎈" "📌" "📢";
   suffix: " ";
 }
+.kanit-thin {
+  font-family: "Kanit", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.kanit-extralight {
+  font-family: "Kanit", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.kanit-light {
+  font-family: "Kanit", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.kanit-regular {
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.kanit-medium {
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.kanit-semibold {
+  font-family: "Kanit", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.kanit-bold {
+  font-family: "Kanit", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.kanit-extrabold {
+  font-family: "Kanit", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.kanit-black {
+  font-family: "Kanit", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.kanit-thin-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.kanit-extralight-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.kanit-light-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.kanit-regular-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.kanit-medium-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.kanit-semibold-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.kanit-bold-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.kanit-extrabold-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.kanit-black-italic {
+  font-family: "Kanit", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
 :root {
-  --ifm-color-primary: #0c1781;
+  --ifm-color-primary: #b68a6d;
   --ifm-color-primary-dark: #29784c;
   --ifm-color-primary-darker: #277148;
   --ifm-color-primary-darkest: #205d3b;
@@ -58,6 +176,66 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-menu-color-background-active:#e2c5b121;
+  --ifm-menu-color-background-hover:#d6bda021;
+  --ifm-toc-border-color:#889cac21;
+  --ifm-navbar-shadow:rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  --ifm-footer-background-color:rgb(248, 246, 246);
+}
+
+.theme-doc-sidebar-item-link .menu__link--active {
+  position: relative;
+}
+.theme-doc-sidebar-item-link .menu__link--active::before {
+  content: "";
+  height: 60%;
+  position: absolute;
+  left: -6px;
+  top: 20%;
+  width: 3px;
+  background-color: var(--ifm-color-primary);
+  z-index: 1;
+}
+
+.menu__link, .menu__caret {
+  border-radius: 5px;
+}
+
+.navbar__title {
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  color: var(--ifm-color-primary);
+  font-family: "Lobster", sans-serif;
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "code";
+  src: url("font/CascadiaCode.ttf");
+}
+@font-face {
+  font-family: "mono";
+  src: url("font/CascadiaMono.ttf");
+}
+@font-face {
+  font-display: block;
+  font-family: "J_Medium";
+  src: url("font/JetBrainsMono-Medium.ttf");
+}
+@font-face {
+  font-family: "J_Regular";
+  src: url("font/JetBrainsMono-Regular.ttf");
+}
+@font-face {
+  font-family: "J_Light";
+  src: url("font/JetBrainsMono-Light.ttf");
+}
+@font-face {
+  font-family: "J_Bold";
+  src: url("font/JetBrainsMono-Bold.ttf");
+}
+* {
+  font-family: "Noto Sans SC";
 }
 
 ::-webkit-scrollbar {
@@ -121,6 +299,4 @@ a svg {
 .footer__copyright {
   color: #c9c9c9;
   font-size: 0.8rem;
-}
-
-/*# sourceMappingURL=custom.css.map */
+}/*# sourceMappingURL=custom.css.map */

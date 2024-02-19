@@ -51,7 +51,7 @@ const theme = {
             to: "/docs/操作系统基础",
           }, {
             label: "算法和数据结构",
-            to: "/docs/算法",
+            to: "/docs/算法和数据结构",
           },
           {
             label: "Rust",

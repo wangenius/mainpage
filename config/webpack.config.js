@@ -85,6 +85,10 @@ const hasJsxRuntime = (() => {
   }
 })();
 
+function resolve(dir) {
+  return path.join(paths.appPath,dir);
+}
+
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function (webpackEnv) {
@@ -310,7 +314,11 @@ module.exports = function (webpackEnv) {
         .map(ext => `.${ext}`)
         .filter(ext => useTypeScript || !ext.includes('ts')),
       alias: {
+        // "@gears":path.resolve(__dirname, "../src/components"),
         // Support React Native Web
+        // 设置了webpack别名
+        '@': paths.appSrc,
+        'components':path.resolve(paths.appSrc,"components"),
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
         // Allows for better profiling with ReactDevTools

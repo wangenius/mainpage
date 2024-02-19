@@ -145,7 +145,16 @@ export default {
           return postcssOptions;
         },
       };
-    }
+    },
+    [
+      'docusaurus-plugin-module-alias',
+      {
+          alias: {
+              '@': path.resolve(__dirname, 'src'),
+              'components':path.resolve(__dirname,"./src/components")
+          },
+      },
+  ],
   ],
   presets: [
     [

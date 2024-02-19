@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmatrixtime=self.webpackChunkmatrixtime||[]).push([[7619],{630:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/english","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

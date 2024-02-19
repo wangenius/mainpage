@@ -6,14 +6,17 @@ import rehypeKatex from "rehype-katex";
 
 const theme = {
   colorMode:{
-    disableSwitch:true
+    disableSwitch:true,
+    respectPrefersColorScheme: false,
+
   },
   navbar: {
-    title: "从柯布西耶到迪杰斯特拉的一个特解",
+    title: "吕麓乐章",
     logo: {
       alt: "logo",
       src: "img/logo.png",
     },
+    hideOnScroll:true,
     items: [
       {
         type: "docSidebar",
@@ -26,7 +29,7 @@ const theme = {
         href: "https://github.com/wangenius/wangenius.github.io",
         label: "GitHub",
         position: "right",
-      },
+      }
     ],
   },
   docs: {
@@ -47,6 +50,10 @@ const theme = {
           {
             label: "Rust",
             to: "/docs/rust",
+          },
+          {
+            label: "算法",
+            to: "/docs/算法",
           },
         ],
       },
@@ -72,21 +79,23 @@ const theme = {
           },
           {
             label: "GitHub",
-            href: "https://github.com/wangenius/wangenius.github.io",
+            href: "https://github.com/wangenius",
           },
         ],
       },
     ],
-    copyright: `Copyright © ${new Date().getFullYear()} Docup, Inc. Built with Docusaurus.`,
+    copyright: `Copyright © ${new Date().getFullYear()} WANGENIUS, Inc. Built with Docusaurus.`,
   },
   prism: {
-    theme: prismThemes.oneDark,
+    theme: prismThemes.github,
+    additionalLanguages:['powershell','rust'],
+    defaultLanguage:"rust"
   },
 } satisfies Preset.ThemeConfig;
 
 // noinspection JSUnusedGlobalSymbols
 export default {
-  title: "从柯布西耶到迪杰斯特拉的一个特解",
+  title: "WANGENIUS",
   tagline:
     "故事的开始是一个有限但维数很大的矩阵空间。每一次的选择，矩阵空间都会做一次降维折叠，直到空间湮灭，主体消散。而折叠路径串起的大小传奇，将作为整个宇宙的岁月史书中，某个角落的蒙尘日志。日志的主人公形象是光线在躯壳和意识之间的反射，当一个环节发生变故，就会像日出后的雪人一样令人唏嘘的不见。那就把左矩阵刻录下来，叠成教训的谱，将歌声传向每一个开放的终端。",
   url: "https://wangenius.github.io", // Set the /<baseUrl>/ pathname under which your site is served

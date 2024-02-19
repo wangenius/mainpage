@@ -5,7 +5,7 @@
 
 
 :root {
-  --ifm-color-primary: #0c1781;
+  --ifm-color-primary: #e94615;
   --ifm-color-primary-dark: #29784c;
   --ifm-color-primary-darker: #277148;
   --ifm-color-primary-darkest: #205d3b;
@@ -14,6 +14,86 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-menu-color-background-active:#e2c5b121;
+  --ifm-menu-color-background-hover:#d6bda021;
+   --ifm-toc-border-color:#889cac21;
+   --ifm-navbar-shadow:rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+   --ifm-footer-background-color:rgb(248, 246, 246);
+
+  
+}
+
+.theme-doc-sidebar-item-link{
+  .menu__link--active{
+    position: relative;
+    &::before{
+      content: "";
+      height: 60%;
+      position: absolute;
+      left: -6px;
+      top: 20%;
+      width: 3px;
+      background-color: var(--ifm-color-primary);
+      z-index: 1;
+    }
+  }
+}
+
+
+.menu__link, .menu__caret{
+  border-radius: 5px;
+
+
+}
+
+
+@font-face {
+  font-display: block;
+  font-family: "J_Medium";
+  src: url("font/JetBrainsMono-Medium.ttf");
+}
+
+@font-face {
+  font-family: "J_Regular";
+  src: url("font/JetBrainsMono-Regular.ttf");
+}
+
+@font-face {
+  font-family: "J_Light";
+  src: url("font/JetBrainsMono-Light.ttf");
+}
+
+@font-face {
+  font-family: "J_Bold";
+  src: url("font/JetBrainsMono-Bold.ttf");
+}
+
+@font-face {
+  font-family: 'h-medium';
+  src: url("font/HarmonyOS_Sans_SC_Medium.ttf");
+}
+
+@font-face {
+  font-family: 'h-regular';
+  src: url("font/HarmonyOS_Sans_SC_Regular.ttf");
+}
+
+@font-face {
+  font-family: 'h-light';
+  src: url("font/HarmonyOS_Sans_SC_Light.ttf");
+}
+
+@font-face {
+  font-family: 'h-bold';
+  src: url("font/HarmonyOS_Sans_SC_Bold.ttf");
+}
+
+@font-face {
+  font-family: 'h-thin';
+  src: url("font/HarmonyOS_Sans_SC_Thin.ttf");
+}
+*{
+  font-family: "h-regular";
 }
 
 //[data-theme='dark'] {

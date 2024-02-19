@@ -25,7 +25,6 @@ export default function Home(): JSX.Element {
   return (
     <Layout title={`${siteConfig.title}`} description="wangenius个人知识库">
       <HomepageHeader />
-
     </Layout>
   );
 }

@@ -3,12 +3,19 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import path from 'path';
 
 const theme = {
   colorMode:{
     disableSwitch:true,
     respectPrefersColorScheme: false,
 
+  },
+  giscus: {
+    repo: 'wangenius/wangenius.github.io',
+    repoId: 'R_kgDOLSHkiw',
+    category: 'General',
+    categoryId: 'DIC_kwDOLSHki84CdVYI',
   },
   navbar: {
     title: "panovista",
@@ -95,8 +102,8 @@ const theme = {
     copyright: `Copyright © ${new Date().getFullYear()} WANGENIUS, Inc. Built with Docusaurus.`,
   },
   prism: {
-    theme: prismThemes.oneLight,
-    additionalLanguages:['powershell','rust'],
+    theme: prismThemes.oneDark,
+    additionalLanguages:['rust','powershell','toml'],
     defaultLanguage:"rust"
   },
 } satisfies Preset.ThemeConfig;
@@ -117,6 +124,7 @@ export default {
   onBrokenMarkdownLinks: "warn",
   trailingSlash: false,
   deploymentBranch: "gh-pages",
+  // clientModules: [require.resolve('./src/clientModules/routeModules.ts')],
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -137,7 +145,7 @@ export default {
           return postcssOptions;
         },
       };
-    },
+    }
   ],
   presets: [
     [

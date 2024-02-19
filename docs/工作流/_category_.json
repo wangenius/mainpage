@@ -1,8 +1,4 @@
 {
   "label": "工作流",
-  "position": 3,
-  "link": {
-    "type": "generated-index",
-    "description": "掌握一些工具来保证工作的快速进展"
-  }
+  "position": 300
 }

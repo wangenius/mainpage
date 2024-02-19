@@ -22,22 +22,32 @@
 .markdown code {
   font-family: "code";
   font-size: small;
-}
-.markdown code * {
-  font-family: "code";
+  background-color: #edf0f3;
+  border: none;
+  padding: 3px 5px;
 }
 .markdown .theme-code-block {
   box-shadow: none;
 }
+.markdown .theme-code-block code {
+  padding: 16px;
+}
 .markdown .theme-code-block * {
-  font-family: "code";
+  font-family: "J_Light";
+  font-size: 0.88rem;
 }
 .markdown .theme-code-block div[class*=codeBlockTitle] {
-  border-bottom-color: #f3f0ed;
+  background-color: #252833;
   padding: 8px 20px;
+  border: none;
+  color: #d8d8d8;
+}
+.markdown pre * {
+  background-color: #252833 !important;
 }
 .markdown pre code {
   font-size: 0.93rem;
+  font-weight: 300;
 }
 .markdown img {
   border: 1px solid transparent;

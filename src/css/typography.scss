@@ -20,31 +20,37 @@
     }
   }
   code{
-    // background-color: #f3f3f3;
-    // color: #616161;
     font-family: 'code';
     font-size: small;
-    *{
-      font-family: "code";
-    }
+    background-color: #edf0f3;
+    border: none;
+    padding: 3px 5px;
   }
   .theme-code-block{
     box-shadow: none;
+    code {
+      padding: 16px;
+    }
     *{
-      font-family: "code";
+      font-family: "J_Light";
+      font-size: 0.88rem;
     }
     div[class*="codeBlockTitle"]{
-        border-bottom-color: #f3f0ed;
+      background-color: #252833;
         padding: 8px 20px;
+        border: none;
+        color: #d8d8d8;
       }
     
   }
   pre {
-    // background-color: #f5dbb51a !important;
-    // box-shadow: none !important;
-    code {
+    *{
+      background-color: #252833 !important;
 
+    }
+    code {
       font-size: 0.93rem;
+      font-weight: 300;
     }
   }
   img{

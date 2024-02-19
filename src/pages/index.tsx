@@ -2,9 +2,9 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import styles from "./index.module.css";
-
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
+  
   return (
     <header className={styles.heroBanner}>
         <h1 className={styles.title}>

@@ -1,0 +1,29 @@
+.to {
+  display: block;
+  width: 100%;
+  height: 80px;
+  border-radius: 10px;
+  margin: 10px 0;
+  padding-left: 12px;
+  position: relative;
+  border: 1px solid #f1eeea;
+}
+.to:hover {
+  text-decoration: none;
+  color: var(--ifm-color-primary);
+  border: 1px solid #e7e0d9;
+}
+.to img:hover {
+  border-color: transparent;
+}
+.to .top {
+  display: flex;
+  height: 60px;
+  align-items: center;
+}
+.to .bottom {
+  color: #a7a7a7;
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 10px;
+}/*# sourceMappingURL=tag.module.css.map */

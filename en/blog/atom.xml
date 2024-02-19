@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wangenius.github.io/en/blog</id>
-    <title>从柯布西耶到迪杰斯特拉的一个特解 Blog</title>
+    <title>Panovista Blog</title>
     <updated>2024-02-16T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangenius.github.io/en/blog"/>
-    <subtitle>从柯布西耶到迪杰斯特拉的一个特解 Blog</subtitle>
-    <icon>https://wangenius.github.io/en/img/favicon.ico</icon>
+    <subtitle>Panovista Blog</subtitle>
+    <icon>https://wangenius.github.io/en/img/panorama.ico</icon>
     <entry>
         <title type="html"><![CDATA[《不如见一面》]]></title>
         <id>https://wangenius.github.io/en/blog/不如见一面</id>
         <link href="https://wangenius.github.io/en/blog/不如见一面"/>
         <updated>2024-02-16T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[歌词]]></summary>
-        <content type="html"><![CDATA[<audio src="./no.mp3" controls=""></audio>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="歌词">歌词<a href="https://wangenius.github.io/en/blog/%E4%B8%8D%E5%A6%82%E8%A7%81%E4%B8%80%E9%9D%A2#%E6%AD%8C%E8%AF%8D" class="hash-link" aria-label="Direct link to 歌词" title="Direct link to 歌词">​</a></h2>
+        <content type="html"><![CDATA[<audio src="./no.mp3" controls="" loop=""></audio>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="歌词">歌词<a href="https://wangenius.github.io/en/blog/%E4%B8%8D%E5%A6%82%E8%A7%81%E4%B8%80%E9%9D%A2#%E6%AD%8C%E8%AF%8D" class="hash-link" aria-label="Direct link to 歌词" title="Direct link to 歌词">​</a></h2>
 <p>听说你现在一个人睡，后来没少遭婚姻的罪。我听到这里如此难过，又拼了命的想要保护</p>
 <p>她们说提起我你沉默，常借着酒意分著对错。我不懂得你情深似海，你不懂得我思念成灾</p>
 <p>不如见一面，哪怕是一眼。这世间太多的难免亏欠，你是我穿过思念的箭</p>

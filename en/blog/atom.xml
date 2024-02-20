@@ -6,7 +6,7 @@
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wangenius.github.io/en/blog"/>
     <subtitle>Panovista Blog</subtitle>
-    <icon>https://wangenius.github.io/en/img/panorama.ico</icon>
+    <icon>https://wangenius.github.io/en/img/panovista.svg</icon>
     <entry>
         <title type="html"><![CDATA[最后的演讲]]></title>
         <id>https://wangenius.github.io/en/blog/最后的演讲</id>

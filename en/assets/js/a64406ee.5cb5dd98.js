@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmatrixtime=self.webpackChunkmatrixtime||[]).push([[5990],{9367:e=>{e.exports=JSON.parse('{"label":"speech","permalink":"/en/blog/tags/speech","allTagsPath":"/en/blog/tags","count":1,"unlisted":false}')}}]);

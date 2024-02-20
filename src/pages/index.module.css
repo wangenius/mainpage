@@ -3,29 +3,259 @@
  * and scoped locally.
  */
 .heroBanner {
-  padding: 40vh 0;
+  padding: 30vh 0;
+  height: 100vh;
   text-align: center;
   position: relative;
   margin-top: -60px;
   overflow: hidden;
+  background-color: transparent;
+  display: flex;
+  flex-flow: wrap;
+  gap: 4rem;
+}
+.heroBanner .left {
+  flex: 1.4;
+  min-width: 400px;
+  padding: 0 120px;
+}
+.heroBanner .right {
+  flex: 1;
+  min-width: 400px;
+  padding: 0 300px 0 0;
+  height: 100%;
+}
+.heroBanner::before {
+  content: "";
+  background: url("../../static/img/panovista.png");
+  background-size: cover;
+  position: absolute;
+  inset: 0;
+  filter: blur(80px);
+  z-index: -2;
+}
+.heroBanner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: rgba(255, 255, 255, 0.5019607843);
+}
+.heroBanner .offsetBox {
+  background-color: rgba(255, 255, 255, 0.562);
+  padding: 20px;
+  border-radius: 20px;
+  height: 100%;
+  border: 1px solid white;
+  position: relative;
+  overflow: hidden;
+}
+.heroBanner .offsetBox::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: #7026c5;
+  top: 0;
+  z-index: 1;
+  left: 60px;
+}
+.heroBanner .info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 60px;
+  margin-top: 10px;
+  z-index: 3;
+}
+.heroBanner .info > span {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  font-family: "slim";
+  text-align: start;
+}
+.heroBanner .info > span span {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.heroBanner .info > span::before {
+  z-index: 4;
+  box-sizing: border-box;
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 1px;
+  left: -30px;
+  top: 12px;
+  border-radius: 4px;
+  background-color: #7026c5;
+}
+.heroBanner .field {
+  display: flex;
+  gap: 1rem;
+  z-index: 2;
+  align-items: center;
+}
+.heroBanner .field * {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.heroBanner .field .qrcode {
+  margin-right: 10px;
+  width: 36px;
+  height: 36px;
+  padding: 3px;
+  border-radius: 8px;
+}
+.heroBanner .field .qrcode:hover {
+  background-color: rgba(70, 70, 70, 0.0901960784);
+}
+.heroBanner .field .avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  border: 5px solid white;
+  z-index: 3;
+}
+.heroBanner .field .name {
+  height: 80px;
+  flex: 1;
+  overflow: hidden;
+}
+.heroBanner .field .name h1 {
+  width: 100%;
+  font-family: "normal";
+  font-size: 1.6rem;
+  line-height: 50px;
+  color: #363636;
+  text-align: start;
+  margin-bottom: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.heroBanner .field .name p {
+  color: #60656b;
+  position: relative;
+  top: -10px;
+  font-size: 0.9rem;
+  line-height: 30px;
+  text-align: start;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .heroBanner .tagline {
-  font-size: 1.2rem;
-  text-indent: 2.4rem;
+  font-size: 1rem;
+  text-indent: 2rem;
   margin: 20px auto;
   padding: 0;
   font-weight: 200;
   max-width: 1200px;
   text-align: start;
-  color: #979797;
-  font-family: "sanji";
+  color: #60656b;
+  font-family: "slim";
+  border-radius: 20px;
+  padding: 10px;
+}
+.heroBanner .tagline:hover {
+  background-color: rgba(112, 112, 112, 0.062745098);
 }
 .heroBanner .title {
-  font-size: 4rem;
+  width: 100%;
+  font-size: 6rem;
+  font-family: "baloo";
+  background: linear-gradient(to right, #f02206 0%, #ff643d 30%, #ff9900 60%, #db4113 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  text-align: start;
+  padding-left: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: 4s;
+}
+.heroBanner .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  height: 60px;
+  gap: 1rem;
+}
+.heroBanner .buttons a {
+  font-size: 1.3rem;
+  background-color: rgba(238, 238, 238, 0.5019607843);
+  color: #585858;
+  padding: 0 20px;
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border-radius: 10px;
+}
+.heroBanner .buttons a:hover {
+  text-decoration: none;
+  background-color: rgba(226, 226, 226, 0.662745098);
+}
+.heroBanner .buttons a:first-child {
+  flex: 4;
+  background-color: #8c52ff;
+  border: 3px solid #5f29ca;
+  color: #f7f7f7;
+}
+.heroBanner .buttons a:first-child:hover {
+  text-decoration: none;
+  background-color: #5f29ca;
 }
 
-@media screen and (max-width: 996px) {
+@media screen and (max-width: 1600px) {
+  .heroBanner .left {
+    padding: 0 20px;
+  }
+  .heroBanner .left .title {
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 0;
+    margin: 0 auto;
+  }
+  .heroBanner .left .buttons {
+    margin: 0 auto;
+  }
+  .heroBanner .right {
+    padding: 0 100px 0 0;
+  }
+}
+@media screen and (max-width: 863px) {
   .heroBanner {
     padding: 4rem 0;
+  }
+  .heroBanner .left {
+    padding: 0 20px;
+  }
+  .heroBanner .left .title {
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 0;
+    margin: 0 auto;
+  }
+  .heroBanner .left .buttons {
+    margin: 0 auto;
+  }
+  .heroBanner .right {
+    padding: 0;
+    width: 100%;
+  }
+  .heroBanner .right .offsetBox {
+    margin: 0 auto;
+    width: 100%;
   }
 }/*# sourceMappingURL=index.module.css.map */

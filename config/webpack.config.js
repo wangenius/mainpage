@@ -318,7 +318,7 @@ module.exports = function (webpackEnv) {
         // Support React Native Web
         // 设置了webpack别名
         '@': paths.appSrc,
-        'components':path.resolve(paths.appSrc,"components"),
+        '@components':path.resolve(paths.appSrc,"components"),
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
         // Allows for better profiling with ReactDevTools

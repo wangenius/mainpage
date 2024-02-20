@@ -9,7 +9,7 @@ const theme = {
   colorMode:{
     disableSwitch:true,
     respectPrefersColorScheme: false,
-
+    defaultMode:"light"
   },
   giscus: {
     repo: 'wangenius/wangenius.github.io',
@@ -21,7 +21,7 @@ const theme = {
     title: "panovista",
     logo: {
       alt: "logo",
-      src: "img/panorama.svg",
+      src: "img/panovista.png",
     },
     hideOnScroll:true,
     items: [
@@ -29,9 +29,9 @@ const theme = {
         type: "docSidebar",
         sidebarId: "tutorialSidebar",
         position: "right",
-        label: "知识库",
+        label: "Panorama",
       },
-      { to: "/blog", label: "博客", position: "right" },
+      { to: "/blog", label: "Vista", position: "right" },
       {
         href: "https://github.com/wangenius/wangenius.github.io",
         label: "GitHub",
@@ -45,14 +45,14 @@ const theme = {
     },
   },
   footer: {
-    style: "light",
+    style: "dark",
     links: [
       {
         title: "知识库",
         items: [
           {
             label: "简介",
-            to: "/docs/intro",
+            to: "/docs/简介",
           }, {
             label: "操作系统基础",
             to: "/docs/操作系统基础",
@@ -99,11 +99,11 @@ const theme = {
         ],
       },
     ],
-    copyright: `Copyright © ${new Date().getFullYear()} WANGENIUS, Inc. Built with Docusaurus.`,
+    copyright: `Copyright © ${new Date().getFullYear()} 吕麓弥章, Inc. Built with Docusaurus.`,
   },
   prism: {
-    theme: prismThemes.oneDark,
-    additionalLanguages:['rust','powershell','toml'],
+    theme: prismThemes.github,
+    additionalLanguages:['toml','powershell'],
     defaultLanguage:"rust"
   },
 } satisfies Preset.ThemeConfig;
@@ -116,7 +116,7 @@ export default {
   url: "https://wangenius.github.io", // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
-  favicon: "img/panorama.ico", // GitHub pages deployment config.
+  favicon: "img/panovista.svg", // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "wangenius", // Usually your GitHub org/{username}.
   projectName: "wangenius.github.io", // Usually your repo name.
@@ -135,23 +135,12 @@ export default {
   },
   plugins: [
     "docusaurus-plugin-sass",
-    async function myPlugin() {
-      // noinspection JSUnusedGlobalSymbols
-      return {
-        name: "docusaurus-tailwindcss",
-        configurePostCss(postcssOptions) {
-          postcssOptions.plugins.push(require("tailwindcss"));
-          postcssOptions.plugins.push(require("autoprefixer"));
-          return postcssOptions;
-        },
-      };
-    },
     [
       'docusaurus-plugin-module-alias',
       {
           alias: {
               '@': path.resolve(__dirname, 'src'),
-              'components':path.resolve(__dirname,"./src/components")
+              '@components':path.resolve(__dirname,"./src/components")
           },
       },
   ],

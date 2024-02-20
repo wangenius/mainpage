@@ -10,12 +10,12 @@ export type GiscusConfig = GiscusProps & { darkTheme: Theme }
 const defaultConfig: Partial<GiscusProps> & { darkTheme: string } = {
   id: 'comments',
   mapping: 'title',
-  reactionsEnabled: '1',
+  reactionsEnabled: '1',  
   emitMetadata: '0',
   inputPosition: 'top',
   lang: 'zh-CN',
-  theme: 'light',
-  darkTheme: 'dark_dimmed',
+  theme: 'noborder_light',
+  darkTheme: 'transparent_dark',
 }
 
 export default function Comment(): JSX.Element {

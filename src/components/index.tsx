@@ -1,16 +1,8 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import style from "./tag.module.scss"
+
 export const Tag = ({ children }) => {
-  return <span style={{
-    backgroundColor:"#060a31",
-    borderRadius:20,
-    padding:3,
-    paddingLeft:6,
-    paddingRight:6,
-    fontSize:12,
-    color:"#ffffff",
-    userSelect:"none"
-  }}>{children}</span>;
+  return <span className={style.tag}>{children}</span>;
 };
 
 
@@ -29,7 +21,7 @@ function checkImgExists(imgurl: string) {
 
 
 
-const webicon = "https://www.svgrepo.com/show/438949/web-round.svg"
+const webicon = "https://www.svgrepo.com/show/331784/web-sites.svg"
 /** @description 外部链接 */
 export const To = ({name,icon,to}:{name:string,icon?:string,to:string})=>{
 
@@ -43,11 +35,8 @@ export const To = ({name,icon,to}:{name:string,icon?:string,to:string})=>{
   
   return <a target="_blank" className={style.to} href={to}>
     <div className={style.top}>
-    <span style={{paddingRight:10}}>
-      <img style={{
-        width:36,
-        borderRadius:18
-      }} src={url} />
+    <span>
+      <img src={url} />
     </span>
     <span style={{flex:1}}>{name}</span>
     </div>

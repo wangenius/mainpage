@@ -1,6 +1,7 @@
 .markdown{
   h1,h2,h3,h4,h5,h6{
     margin: 2rem 0;
+    font-family: "heavy";
   }
   h1{
     font-size: 3rem;
@@ -12,17 +13,19 @@
     font-size: 1.5rem;
   }
   p,li{
+    font-family: 'normal';
+    letter-spacing: 0.5px;
     line-height: 1.8rem;
     margin: 6px 0;
-    color: #616161;
+    color: #3f3f3f;
     a{
       color: var(--ifm-color-primary);
     }
   }
   code{
-    font-family: 'code';
+    font-family: 'code','slim';
     font-size: small;
-    background-color: #edf0f3;
+    background-color: #cacad652;
     border: none;
     padding: 3px 5px;
   }
@@ -32,33 +35,82 @@
       padding: 16px;
     }
     *{
-      font-family: "J_Light";
+      font-family: "J_Light",'canger';
       font-size: 0.88rem;
     }
+    border: 1px solid transparent;
+
+    &:hover{
+      border: 1px solid rgb(224, 225, 230);
+    }
     div[class*="codeBlockTitle"]{
-      background-color: #252833;
-        padding: 8px 20px;
+      // background-color: #252833;
+        padding: 8px 20px 0;
         border: none;
-        color: #d8d8d8;
+        color: #7c7c7c;
       }
     
   }
   pre {
-    *{
-      background-color: #252833 !important;
+    transition: all ease 100ms;
 
+    *{
+      background-color: #f6f8fa !important;
+      
     }
+ 
     code {
       font-size: 0.93rem;
       font-weight: 300;
+      white-space: pre-wrap; overflow-wrap: anywhere;
+      .comment{
+        color: #4d8a52 !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+      width: 10px;
+      background-color: #F5F5F5;
+    }
+    
+    ::-webkit-scrollbar-track {
+      /*background-color: darkgrey;*/
+      /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+      background-color: #F5F5F5;
+    }
+    ::-webkit-scrollbar-button{
+      display: none;
+    }
+    ::-webkit-scrollbar-thumb {
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+      background-color: #efefef;
+      border-radius: 20px;
+      /*border: 2px solid #555555;*/
+    }
+  }
+  blockquote{
+    background-color: #f7f7f8;
+    transition: all ease 100ms;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 10px;
+    *{
+      color: #868686;
+      font-family: "normal";
+      font-size: 0.88rem;
+    }
+    &:hover{
+      background-color: #f1f1f5;
     }
   }
   img{
     border: 1px solid transparent;
     transition: all ease-in 50ms;
+    border-radius: 12px;
+
     &:hover{
-      border: 1px solid #dedede;
-      border-radius: 12px;
+      border: 1px solid #838a92;
     }
 
   }
@@ -81,4 +133,10 @@
   system: cyclic;
   symbols:  "\1F30E" "\1F33D" "\1F34C" "\1F525" "\1F340" "\1F351" "\1F355" "\1F36A" "\1F36D" "\1F388" "\1F4CC" "\1F4E2" ;
   suffix: " ";
+}
+
+.pagination-nav__label{
+  font-family: "normal";
+  font-weight: 200;
+  font-size: 1.2rem;
 }

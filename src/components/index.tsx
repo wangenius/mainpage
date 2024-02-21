@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import style from "./tag.module.scss"
+import style from "./index.module.scss"
 
 export const Tag = ({ children }) => {
   return <span className={style.tag}>{children}</span>;
@@ -43,4 +43,11 @@ export const To = ({name,icon,to}:{name:string,icon?:string,to:string})=>{
    
     <span className={style.bottom}>{to}</span>
   </a>
+}
+
+export const MultiPic = ({children}) =>{
+
+  return <div className={style.MultiPic}>
+{children}
+  </div>
 }

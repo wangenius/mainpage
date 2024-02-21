@@ -83,19 +83,40 @@ const theme = {
             label: "bilibili",
             href: "https://space.bilibili.com/247967944",
           },
+          {
+            label: "知乎",
+            href: "https://www.zhihu.com/people/wangenius",
+          },
+          {
+            label: "GitHub",
+            href: "https://github.com/wangenius",
+          },
         ],
       },
       {
         title: "更多",
         items: [
           {
+            label: "关于我",
+            to: "/docs/关于我",
+          },
+          {
             label: "博客",
             to: "/blog",
           },
           {
-            label: "GitHub",
-            href: "https://github.com/wangenius",
+            label: "项目计划",
+            to: "/docs/项目计划",
           },
+          {
+            label: "讨论",
+            href: "https://github.com/wangenius/wangenius.github.io/discussions",
+          },
+          {
+            label: "FAQ",
+            href: "https://github.com/wangenius/wangenius.github.io/issues",
+          },
+        
         ],
       },
     ],

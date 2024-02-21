@@ -14,6 +14,13 @@
   flex-flow: wrap;
   gap: 4rem;
 }
+.heroBanner .tags span {
+  transition: all ease 100ms;
+}
+.heroBanner .tags span:hover {
+  scale: 1.05;
+  background-color: #5f29ca;
+}
 .heroBanner .left {
   flex: 1.4;
   min-width: 400px;
@@ -23,7 +30,6 @@
   flex: 1;
   min-width: 400px;
   padding: 0 300px 0 0;
-  height: 100%;
 }
 .heroBanner::before {
   content: "";
@@ -67,6 +73,7 @@
   padding-left: 60px;
   margin-top: 10px;
   z-index: 3;
+  padding-bottom: 70px;
 }
 .heroBanner .info > span {
   position: relative;
@@ -125,8 +132,9 @@
   height: 80px;
   flex: 1;
   overflow: hidden;
+  text-align: start;
 }
-.heroBanner .field .name h1 {
+.heroBanner .field .name a {
   width: 100%;
   font-family: "normal";
   font-size: 1.6rem;
@@ -142,7 +150,7 @@
   color: #60656b;
   position: relative;
   top: -10px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 30px;
   text-align: start;
   text-overflow: ellipsis;
@@ -208,13 +216,12 @@
 }
 .heroBanner .buttons a:first-child {
   flex: 4;
-  background-color: #8c52ff;
-  border: 3px solid #5f29ca;
+  background-color: #5f29ca;
   color: #f7f7f7;
 }
 .heroBanner .buttons a:first-child:hover {
   text-decoration: none;
-  background-color: #5f29ca;
+  background-color: #4919aa;
 }
 
 @media screen and (max-width: 1600px) {
@@ -258,4 +265,23 @@
     margin: 0 auto;
     width: 100%;
   }
+}
+.float {
+  display: flex;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+.float a {
+  display: block;
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 30px;
+  transition: all ease 200ms;
+}
+.float a:hover {
+  scale: 1.2;
+  box-shadow: 0 0 10px 0 #999999;
 }/*# sourceMappingURL=index.module.css.map */

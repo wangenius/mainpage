@@ -12,12 +12,12 @@
 }
 
 :root {
-  --ifm-color-primary: #8c52ff;
+  --ifm-color-primary: #5337f0;
   --ifm-code-font-size: 95%;
   --background-color:#ffffff;
   --docusaurus-highlighted-code-line-bg: rgba(173, 173, 173, 0.1);
-  --ifm-menu-color-background-active:#8c52ff17;
-  --ifm-menu-color-active:#8c52ff;
+  --ifm-menu-color-background-active:#303846;
+  --ifm-menu-color-active:#ffffff;
   --ifm-menu-color-background-hover:#f7f7f8;
    --ifm-toc-border-color:#2c323621;
    --ifm-menu-link-sublist-icon:url('/static/img/expand.svg');
@@ -35,6 +35,7 @@
 
   .menu__link, .menu__caret,.menu__link--sublist-caret,.menu__list-item-collapsible,a{
     border-radius: 20px;
+    padding: 3px 12px;
     &::before,  &::after{
 
       fill: #0000000c;
@@ -42,21 +43,32 @@
     }
 
   }
+  .menu__list-item-collapsible{
+    padding: 0;
+    margin: 0;
+  }
   
   .menu__link{
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    font-size: 0.9rem;
+
+
   }
   .li{
+    margin: 0;
     .menu__caret {
       padding-left: 20px;
     }
-
-
-    
-
   }
+ 
+
+  .menu__link--sublist.menu__link--active{
+    color: var(--ifm-menu-color);
+    // border: 2px solid var(--ifm-color-primary);
+  }
+
 }
 
 
@@ -206,8 +218,11 @@ a{
 .theme-edit-this-page{
   padding: 10px;
   border-radius: 10px;
+  color: #1d1d1d;
+  font-size: 0.8rem;
   &:hover {
     background-color: #f1f1f4;
+    color: #000000;
     text-decoration: none;
   }
 }
@@ -215,6 +230,11 @@ a{
 .pagination-nav__link{
   border: none;
   transition: all ease-in 100ms;
+  .pagination-nav__label{
+    color: #1d1d1d;
+    font-family: 'heavy';
+    font-size: large;
+  }
   &:hover{
     background-color: #5050500e;
   }
@@ -227,4 +247,39 @@ a{
 .footer__copyright{
   color: #808080;
   font-size: 0.8rem ;
+}
+
+.footer__link-item{
+  color: #bebebe;
+  &:hover{
+    color: #ffffff;
+  }
+}
+
+.table-of-contents{
+
+  li{
+    margin: 1px;
+    a{
+      padding: 2px 10px;
+      font-size: 0.8rem;
+      border-radius: 10px;
+    }
+  }
+
+  .table-of-contents__link--active{
+    background-color: #0000000a;
+    color: #1d1d1d;
+
+  }
+
+} 
+
+.hash-link{
+  color: #000000;
+}
+
+.theme-doc-toc-mobile{
+  background-color: #f7f7f7 !important;
+  border: #303846;
 }

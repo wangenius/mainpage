@@ -13,7 +13,7 @@ function HomepageHeader() {
         <h1 className={styles.title}>{siteConfig.title}</h1>
         <p className={styles.tagline}>{siteConfig.tagline}</p>
         <div className={styles.buttons}>
-          <Link to="/docs/简介">探索</Link>
+          <Link to="/docs/repository/简介">探索</Link>
           <Link to="/blog">博客</Link>
         </div>
       </div>
@@ -22,10 +22,10 @@ function HomepageHeader() {
           <div className={styles.field}>
             <img src="/img/avatar.png" className={styles.avatar} />
             <div className={styles.name}>
-              <Link to={"/docs/关于我"}>神仙鱼也一定要渡大海</Link>
+              <Link to={"/docs/repository/关于我"}>神仙鱼也一定要渡大海</Link>
               <p>@wangenius</p>
             </div>
-            <Link to={"/docs/赞助"}>
+            <Link to={"/docs/repository/赞助"}>
             <img src="/img/qrcode.svg" className={styles.qrcode} />
 
             </Link>
@@ -52,7 +52,7 @@ function HomepageHeader() {
           </div>
           <div className={styles.float}>
             {/* <Link to={"http://wpa.qq.com/msgrd?v=3&uin=136697038&site=qq&menu=yes"}><img src="/img/qq.svg" /></Link> */}
-            <Link to={"docs/关于我"}><img src="/img/wechat.svg" /></Link>
+            <Link to={"docs/repository/关于我"}><img src="/img/wechat.svg" /></Link>
           </div>
         </div>
       </div>

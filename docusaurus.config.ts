@@ -27,9 +27,15 @@ const theme = {
     items: [
       {
         type: "docSidebar",
-        sidebarId: "tutorialSidebar",
+        sidebarId: "repository",
         position: "right",
-        label: "Panorama",
+        label: "Repository",
+      },
+      {
+        type: 'docSidebar',
+        position: 'right',
+        sidebarId: 'portfolio',
+        label: 'Portfolio',
       },
       { to: "/blog", label: "Vista", position: "right" },
       {
@@ -52,22 +58,22 @@ const theme = {
         items: [
           {
             label: "简介",
-            to: "/docs/简介",
+            to: "/docs/repository/简介",
           }, {
             label: "操作系统基础",
-            to: "/docs/操作系统基础",
+            to: "/docs/repository/操作系统基础",
           }, {
             label: "算法和数据结构",
-            to: "/docs/算法和数据结构",
+            to: "/docs/repository/算法和数据结构",
           },
           {
             label: "Rust",
-            to: "/docs/rust",
+            to: "/docs/repository/rust",
           },
          
           {
             label: "数据库",
-            to: "/docs/数据库",
+            to: "/docs/repository/数据库",
           },
          
         ],
@@ -98,7 +104,7 @@ const theme = {
         items: [
           {
             label: "关于我",
-            to: "/docs/关于我",
+            to: "/docs/repository/关于我",
           },
           {
             label: "博客",
@@ -106,7 +112,7 @@ const theme = {
           },
           {
             label: "项目计划",
-            to: "/docs/项目计划",
+            to: "/docs/repository/项目计划",
           },
           {
             label: "讨论",

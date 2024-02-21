@@ -42,6 +42,11 @@
             line-height: 60px;
             color: #474747;
         }
+        span:last-child{
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
     }
     .bottom{
         color: #a7a7a7;

@@ -41,6 +41,11 @@
   line-height: 60px;
   color: #474747;
 }
+.to .top span:last-child {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 .to .bottom {
   color: #a7a7a7;
   font-size: 0.72rem;

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpanovista=self.webpackChunkpanovista||[]).push([[5991],{5820:a=>{a.exports=JSON.parse('{"label":"\u594b\u6597","permalink":"/en/blog/tags/\u594b\u6597","allTagsPath":"/en/blog/tags","count":1,"unlisted":false}')}}]);

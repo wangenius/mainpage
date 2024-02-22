@@ -123,8 +123,10 @@
   symbols: "🌎" "🌽" "🍌" "🔥" "🍀" "🍑" "🍕" "🍪" "🍭" "🎈" "📌" "📢";
   suffix: " ";
 }
-.pagination-nav__label {
-  font-family: "normal";
-  font-weight: 200;
-  font-size: 1.2rem;
+.hash-link {
+  color: #000000;
+}
+
+.katex * {
+  font-family: "KaTeX_Main", "Times New Roman", serif !important;
 }/*# sourceMappingURL=typography.css.map */

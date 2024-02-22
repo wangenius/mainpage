@@ -1,8 +1,11 @@
 ---
-sidebar_position : 1
-title : git
-slug : git
+sidebar_position: 1
+title: Git
+slug: git
+toc_max_heading_level: 4
 ---
+
+# Git
 
 :::info 什么是版本控制？
 
@@ -20,94 +23,93 @@ slug : git
 
 :::
 
-
-# git
+## 基本设置
 
 在打开Git之前，你需要完成一些最基本的设置。例如你的用户名，你的邮箱地址以及在命令行界面中的一些重要的显示设置：
 
-```PowerShell
+```bash
 $ git config --global user.name "wangenius"
 $ git config --global user.email "wangenius@qq.com"
-$ git config --global color.ui auto
 ```
 
+:::warning
+git 不走系统代理，如果`remote`是`github.com`，需要都设置代理。
+:::
 
+### 两种远程连接方式
 
+执行以下命令，查看连接方式，不同的远程连接方式的代理配置不同：
 
-git 不走系统代理，如果remote github，需要当都设置代理
-
-
-
-- 查看远程连接方式
-
-```PowerShell
-git remote -v
-# 执行命令，查看连接方式。
-# (https|http):// 开头的是http方式；
-# git@ 开头的是ssh方式；
-# 两种方式的代理配置不同，如下。
+```bash title="查看远程连接"
+$ git remote -v # (https|http):// 开头的是http方式；git@ 开头的是ssh方式；
 ```
 
+#### http/https连接设置代理
 
-```Plain Text
-#查看当前代理
-    git config --global http.proxy
-#命令行模式下配置(可走http代理也可以走socks5代理)
-    git config --global https.proxy https://proxyuser:proxypassword@ip/域名:port
-    git config --global http.proxy http://proxyuser:proxypassword@ip/域名:port
-    git config --global http.proxy socks5://127.0.0.1:1080	#这里的 socks5 仅仅是代理使用的协议，它依然是针对 http 设置的，所以仅对 http 协议的仓库有效。
-    #特殊字符需要编码
-        ! --> %21    # --> %23    $ --> %24    & --> %26    ' --> %27
-        ( --> %28    ) --> %29    * --> %2A    + --> %2B    , --> %2C
-        / --> %2F    : --> %3A    ; --> %3B    = --> %3D    ? --> %3F
-        @ --> %40    [ --> %5B    ] --> %5D
-#移除代理配置
-    git config --global --unset http.proxy
-
-#只对github.com
-    git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
-    git config --global https.https://github.com.proxy https://127.0.0.1:1080
-#取消代理
-    git config --global --unset http.https://github.com.proxy
+查看当前代理
+```bash
+$ git config --global http.proxy
 ```
 
+移除代理配置
+```bash
+$ git config --global --unset http.proxy
+$ git config --global --unset http.https://github.com.proxy
+```
 
-## ssh
+命令行模式下配置(可走http代理也可以走socks5代理)
+```bash
+$ git config --global https.proxy https://proxyuser:proxypassword@ip/域名:port
+$ git config --global http.proxy http://proxyuser:proxypassword@ip/域名:port
+$ git config --global http.proxy socks5://127.0.0.1:10808 #这里的 socks5 仅仅是代理使用的协议，它依然是针对 http 设置的，所以仅对 http 协议的仓库有效。
+```
+只对github.com
+```bash
+$ git config --global http.https://github.com.proxy socks5://127.0.0.1:10808
+$ git config --global https.https://github.com.proxy https://127.0.0.1:10808
+```
+:::info
+特殊字符需要编码
+:::
 
-```Plain Text
-###方式一
-#ssh配置文件地址为：~/.ssh/config;windows中就是：C:\Users\你的用户名\.ssh\config (若不存在自行创建)
+#### ssh连接设置代理
+1. 方式一
+> ssh配置文件地址为：`~/.ssh/config`;windows中就是：`C:\Users\你的用户名\.ssh\config` (若不存在自行创建)
+
+```bash
 Host github.com *.github.com gitee.com	#可针对域名配置不同的代理；亦可以不配置
-    User git
-    # SSH默认端口22， HTTPS默认端口443
-    Port 22
-    Hostname %h
-    # 这里放你的SSH私钥
-    IdentityFile ~\.ssh\id_rsa
-    # 设置代理, 127.0.0.1:10808 换成你自己代理软件监听的本地地址
-    # HTTPS使用-H，SOCKS使用-S
-    ProxyCommand connect -S 127.0.0.1:10808 %h %p	#ProxyCommand connect -H http://127.0.0.1:22 %h %p
-#配置说明，通过 ProxyCommand1 命令设置代理，其中的 connect 是一个工具用于进行代理的转换。connect 通常需要安装(小乌龟已安装Git\mingw64\bin\connect.exe)。
-    connect项目地址：https://bitbucket.org/gotoh/connect
-    connect.c is the simple relaying command to make network connection via SOCKS and https proxy.
-    windows系统中，下载connect.exe，把所在路径放入系统环境变量，就可以在命令行使用了。
-    这儿的%h表示要连接的目标机,也就是Hostname指定的ip或者主机名,%p表示要连接到目标机的端口.这儿可以直接写死固定值,但是使用%h和%p可以保证在Hostname和Port变化的情况下ProxyCommand这行不用跟着变化.
+User git 
+Port 22 # SSH默认端口22， HTTPS默认端口443
+Hostname %h 
+IdentityFile ~\.ssh\id_rsa # 这里放你的SSH私钥
+ProxyCommand connect -S 127.0.0.1:10808 %h %p 
+```
+:::info title="ProxyCommand"
+设置代理, `127.0.0.1:10808` 换成你自己代理软件监听的本地地址,HTTPS使用-H，SOCKS使用-S
+配置说明，通过 ProxyCommand 命令设置代理，其中的[connect](https://bitbucket.org/gotoh/connect)是一个工具用于进行代理的转换，通常需要安装(小乌龟已安装`Git\mingw64\bin\connect.exe`)。
+windows系统中，下载connect.exe，把所在路径放入系统环境变量，就可以在命令行使用了。
+这儿的`%h`表示要连接的目标机,也就是`Hostname`指定的ip或者主机名,`%p`表示要连接到目标机的端口.这儿可以直接写死固定值,但是使用`%h`和`%p`可以保证在Hostname和Port变化的情况下ProxyCommand这行不用跟着变化.
+:::
 
-###方式二
-#安装 corkscrew
-    sudo apt install corkscrew
-#修改 ~/.ssh/config
-Host github.com gitee.com
-    User git
-    Hostname %h
-    Port 443
-    ProxyCommand /usr/bin/corkscrew proxy_server proxy_port %h %p ~/.ssh/proxyauth
-    IdentityFile ~/.ssh/id_rsa
-#proxy_server 为代理服务器地址，proxy_port 为代理服务器端口。
-#修改 ~/.ssh/proxyauth，写上代理用户名密码
-    username:password
+2. 方式二
+
+
+```bash title="安装corkscrew"
+sudo apt install corkscrew
 ```
 
+```bash title="修改 ~/.ssh/config"
+Host github.com gitee.com
+User git
+Hostname %h
+Port 443
+ProxyCommand /usr/bin/corkscrew proxy_server proxy_port %h %p ~/.ssh/proxyauth #proxy_server 为代理服务器地址，proxy_port 为代理服务器端口。
+IdentityFile ~/.ssh/id_rsa
+```
+
+```bash title="修改 ~/.ssh/proxyauth，写上代理用户名密码"
+username:password
+```
 
 
 

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /**
  * CSS files with the .module.css suffix will be treated as CSS modules
  * and scoped locally.
@@ -23,7 +24,6 @@
 }
 .heroBanner .left {
   flex: 1.4;
-  min-width: 400px;
   padding: 0 120px;
 }
 .heroBanner .right {
@@ -188,7 +188,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  transition: 4s;
+  transition: 1s;
 }
 .heroBanner .buttons {
   display: flex;
@@ -224,6 +224,7 @@
   background-color: #4919aa;
 }
 
+/* 桌面 */
 @media screen and (max-width: 1600px) {
   .heroBanner .left {
     padding: 0 20px;
@@ -234,19 +235,19 @@
     padding: 0;
     margin: 0 auto;
   }
-  .heroBanner .left .buttons {
-    margin: 0 auto;
-  }
   .heroBanner .right {
     padding: 0 100px 0 0;
   }
 }
-@media screen and (max-width: 863px) {
+@media screen and (max-width: 939px) {
   .heroBanner {
+    display: block;
     padding: 4rem 0;
+    height: 100%;
   }
   .heroBanner .left {
-    padding: 0 20px;
+    padding: 0;
+    display: block;
   }
   .heroBanner .left .title {
     width: -moz-fit-content;
@@ -255,11 +256,49 @@
     margin: 0 auto;
   }
   .heroBanner .left .buttons {
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+    max-width: unset;
+  }
+  .heroBanner .left .buttons a {
+    flex: 1;
+    width: 100%;
+    padding: 10px;
+  }
+  .heroBanner .right {
+    padding: 10px;
+    width: 100%;
+  }
+  .heroBanner .right .offsetBox {
     margin: 0 auto;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 560px) {
+  .heroBanner {
+    padding: 4rem 0;
+  }
+  .heroBanner .left {
+    height: 100%;
+  }
+  .heroBanner .left .title {
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 0;
+    margin: 0 auto;
+    font-size: 4rem;
+  }
+  .heroBanner .left .buttons {
+    margin: 20px auto;
+    flex-direction: column;
+    height: 100%;
   }
   .heroBanner .right {
     padding: 0;
-    width: 100%;
+    min-width: unset;
   }
   .heroBanner .right .offsetBox {
     margin: 0 auto;

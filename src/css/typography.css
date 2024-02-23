@@ -1,7 +1,8 @@
-@charset "UTF-8";
+/* hover background color */
 .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
   margin: 2rem 0;
   font-family: "heavy";
+  font-weight: 200;
 }
 .markdown h1 {
   font-size: 3rem;
@@ -12,18 +13,26 @@
 .markdown h3 {
   font-size: 1.5rem;
 }
+.markdown h4 {
+  font-size: 1.2rem;
+}
 .markdown p, .markdown li {
   font-family: "normal";
   letter-spacing: 0.5px;
-  line-height: 1.8rem;
+  line-height: 2rem;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
   margin: 6px 0;
   color: #3f3f3f;
 }
 .markdown p a, .markdown li a {
-  color: var(--ifm-color-primary);
+  color: #5337f0;
+  font-family: "normal";
 }
 .markdown code {
   font-family: "code", "slim";
+  font-display: swap;
   font-size: small;
   background-color: rgba(202, 202, 214, 0.3215686275);
   border: none;
@@ -38,6 +47,7 @@
 }
 .markdown .theme-code-block * {
   font-family: "J_Light", "canger";
+  font-display: swap;
   font-size: 0.88rem;
 }
 .markdown .theme-code-block:hover {
@@ -106,11 +116,11 @@
   border: 1px solid #838a92;
 }
 .markdown ol {
-  list-style: thumbs;
-  margin-left: 20px;
+  list-style: decimal;
+  margin-left: 0;
 }
 .markdown li {
-  margin: 0;
+  margin: 0 !important;
   text-indent: 0;
 }
 .markdown li p {
@@ -118,15 +128,16 @@
   margin: 0;
 }
 
-@counter-style thumbs {
-  system: cyclic;
-  symbols: "🌎" "🌽" "🍌" "🔥" "🍀" "🍑" "🍕" "🍪" "🍭" "🎈" "📌" "📢";
-  suffix: " ";
-}
 .hash-link {
   color: #000000;
 }
 
 .katex * {
   font-family: "KaTeX_Main", "Times New Roman", serif !important;
+}
+
+table {
+  margin: 0 auto;
+  width: -moz-fit-content;
+  width: fit-content;
 }/*# sourceMappingURL=typography.css.map */

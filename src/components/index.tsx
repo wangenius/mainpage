@@ -45,9 +45,8 @@ export const To = ({name,icon,to}:{name:string,icon?:string,to:string})=>{
   </a>
 }
 
-export const MultiPic = ({children}) =>{
-
-  return <div className={style.MultiPic}>
+export const Multi = ({children}) =>{
+  return <div className={style.multi}>
 {children}
   </div>
 }

@@ -64,12 +64,16 @@
           user-select: none;
 }
 
-.MultiPic {
+.multi {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 2rem;
+  margin: 0 auto;
+  width: -moz-fit-content;
+  width: fit-content;
 }
-.MultiPic div, .MultiPic img {
+.multi div, .multi img {
   height: 400px;
   width: -moz-fit-content;
   width: fit-content;

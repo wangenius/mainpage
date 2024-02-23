@@ -66,10 +66,13 @@
 }
 
 
-.MultiPic{
+.multi{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 2rem;
+    margin: 0 auto;
+    width: fit-content;
     div,img{
         height: 400px;
         width: fit-content;

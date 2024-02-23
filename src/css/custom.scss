@@ -1,4 +1,6 @@
 @import "typography";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap');
+@import "const";
 
 @font-face {
   font-family: "baloo";
@@ -7,6 +9,11 @@
 
 @font-face {
   font-family: "normal";
+  src: url("font/常规.otf");
+}
+
+@font-face {
+  font-family: "regular";
   src: url("font/苹方黑体-准-简.ttf");
 }
 
@@ -17,7 +24,7 @@
 
 @font-face {
   font-family: "heavy";
-  src: url("font/苹方黑体-中黑-简.ttf");
+  src: url("font/黑体.otf");
 }
 
 @font-face {
@@ -50,20 +57,13 @@
   src: url("font/JetBrainsMono-Bold.ttf");
 }
 
-/* hover background color */
-$background_color_hover: rgba(70, 65, 65, 0.041);
-$background_color_active:#5337f0;
-$color_primary: #5337f0;
-$color_border: #2c323621;
 
-$color_navItem: #555658;
-$color_font_on_primary: #f0f0f0;
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "normal";
+  font-family: "Noto Sans SC";
   font-display: swap;
 }
 
@@ -138,6 +138,7 @@ sidebar
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 0.9rem;
+  font-family: 'regular';
   color: $color_navItem;
   &:hover {
     color: unset;
@@ -227,7 +228,7 @@ main {
       position: relative;
       .pagination-nav__label {
         color: $color_navItem;
-        font-family: "normal";
+        font-family: "regular";
         font-weight: 200;
         font-size: 1.2rem;
         &::after,
@@ -293,7 +294,7 @@ footer {
       .table-of-contents__link {
         padding: 2px 10px 2px 20px;
         font-size: 0.84rem;
-        font-family: "微软雅黑";
+        font-family: "regular";
         border-radius: 20px;
         border:1px solid transparent;
         position: relative;

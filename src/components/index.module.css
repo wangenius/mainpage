@@ -59,9 +59,7 @@
   padding: 3px 10px;
   font-size: 12px;
   color: #ffffff;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 .multi {
@@ -70,11 +68,11 @@
   justify-content: center;
   gap: 2rem;
   margin: 0 auto;
-  width: -moz-fit-content;
   width: fit-content;
 }
 .multi div, .multi img {
   height: 400px;
-  width: -moz-fit-content;
   width: fit-content;
-}/*# sourceMappingURL=index.module.css.map */
+}
+
+/*# sourceMappingURL=index.module.css.map */

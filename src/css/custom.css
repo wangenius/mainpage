@@ -1,8 +1,45 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@font-face {
+  font-family: "normals";
+  src: url("@/css/font/常规.otf");
+}
+@font-face {
+  font-family: "baloo";
+  src: url("@/css/font/BalooTamma-Regular.ttf");
+}
+@font-face {
+  font-family: "fira";
+  src: url("@/css/font/FiraCode-Regular.ttf");
+}
+@font-face {
+  font-family: "gothic";
+  src: url("@/css/font/SarasaGothicSC-Regular.ttf");
+}
+@font-face {
+  font-family: "sarasa";
+  src: url("@/css/font/SarasaMonoSC-Regular.ttf");
+}
+@font-face {
+  font-family: "pingfang";
+  src: url("@/css/font/苹方黑体-准-简.ttf");
+}
+@font-face {
+  font-family: "code";
+  src: url("@/css/font/CascadiaCode.ttf");
+}
+@font-face {
+  font-family: "cascadia";
+  src: url("@/css/font/CascadiaMono.ttf");
+}
+/* font */
+/* hover background color */
 .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
   margin: 2rem 0;
   font-family: "heavy";
+  font-weight: 200;
 }
 .markdown h1 {
   font-size: 3rem;
@@ -13,17 +50,22 @@
 .markdown h3 {
   font-size: 1.5rem;
 }
+.markdown h4 {
+  font-size: 1.2rem;
+}
 .markdown p, .markdown li {
   font-family: "normal";
   letter-spacing: 0.5px;
-  line-height: 1.8rem;
+  line-height: 2rem;
   font-style: normal;
   font-weight: 400;
+  font-size: 1rem;
   margin: 6px 0;
   color: #3f3f3f;
 }
 .markdown p a, .markdown li a {
-  color: var(--ifm-color-primary);
+  color: #5337f0;
+  font-family: "normal";
 }
 .markdown code {
   font-family: "code", "slim";
@@ -131,6 +173,45 @@
   font-family: "KaTeX_Main", "Times New Roman", serif !important;
 }
 
+table {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+@font-face {
+  font-family: "normals";
+  src: url("@/css/font/常规.otf");
+}
+@font-face {
+  font-family: "baloo";
+  src: url("@/css/font/BalooTamma-Regular.ttf");
+}
+@font-face {
+  font-family: "fira";
+  src: url("@/css/font/FiraCode-Regular.ttf");
+}
+@font-face {
+  font-family: "gothic";
+  src: url("@/css/font/SarasaGothicSC-Regular.ttf");
+}
+@font-face {
+  font-family: "sarasa";
+  src: url("@/css/font/SarasaMonoSC-Regular.ttf");
+}
+@font-face {
+  font-family: "pingfang";
+  src: url("@/css/font/苹方黑体-准-简.ttf");
+}
+@font-face {
+  font-family: "code";
+  src: url("@/css/font/CascadiaCode.ttf");
+}
+@font-face {
+  font-family: "cascadia";
+  src: url("@/css/font/CascadiaMono.ttf");
+}
+/* font */
+/* hover background color */
 @font-face {
   font-family: "baloo";
   src: url("font/BalooTamma-Regular.ttf");
@@ -175,7 +256,6 @@
   font-family: "J_Bold";
   src: url("font/JetBrainsMono-Bold.ttf");
 }
-/* hover background color */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -398,7 +478,6 @@ footer .footer__link-item:hover {
 .theme-doc-toc-desktop .table-of-contents {
   min-width: 240px;
   max-width: 100%;
-  width: -moz-fit-content;
   width: fit-content;
   border: none;
   padding: 6px;
@@ -442,4 +521,6 @@ footer .footer__link-item:hover {
 
 .breadcrumbs__item--active .breadcrumbs__link {
   color: #5337f0;
-}/*# sourceMappingURL=custom.css.map */
+}
+
+/*# sourceMappingURL=custom.css.map */

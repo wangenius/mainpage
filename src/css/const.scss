@@ -1,8 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@font-face {
+  font-family: "normals";
+  src: url("@/css/font/常规.otf");
+}
+@font-face {
+  font-family: "baloo";
+  src: url("@/css/font/BalooTamma-Regular.ttf");
+}
+@font-face {
+  font-family: "fira";
+  src: url("@/css/font/FiraCode-Regular.ttf");
+}
+@font-face {
+  font-family: "gothic";
+  src: url("@/css/font/SarasaGothicSC-Regular.ttf");
+}
+@font-face {
+  font-family: "sarasa";
+  src: url("@/css/font/SarasaMonoSC-Regular.ttf");
+}
+@font-face {
+  font-family: "pingfang";
+  src: url("@/css/font/苹方黑体-准-简.ttf");
+}
+
+@font-face {
+  font-family: "code";
+  src: url("@/css/font/CascadiaCode.ttf");
+}
+
+@font-face {
+  font-family: "cascadia";
+  src: url("@/css/font/CascadiaMono.ttf");
+}
+
+/* font */
+$font_mainText:normals;
+$font_code: code;
+$font_codeblock: fira;
+$font_title: pingfang;
+$font_blockquote: pingfang;
+$font_nav_title: baloo, sans-serif;
+
+
 /* hover background color */
 $background_color_hover: rgba(70, 65, 65, 0.041);
-$background_color_active:#5337f0;
+$background_color_active: #5337f0;
 $color_primary: #5337f0;
 $color_border: #2c323621;
 
 $color_navItem: #555658;
 $color_font_on_primary: #f0f0f0;
+

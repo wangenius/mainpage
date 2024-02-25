@@ -1,1 +1,36 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@font-face {
+  font-family: "normals";
+  src: url("@/css/font/常规.otf");
+}
+@font-face {
+  font-family: "baloo";
+  src: url("@/css/font/BalooTamma-Regular.ttf");
+}
+@font-face {
+  font-family: "fira";
+  src: url("@/css/font/FiraCode-Regular.ttf");
+}
+@font-face {
+  font-family: "gothic";
+  src: url("@/css/font/SarasaGothicSC-Regular.ttf");
+}
+@font-face {
+  font-family: "sarasa";
+  src: url("@/css/font/SarasaMonoSC-Regular.ttf");
+}
+@font-face {
+  font-family: "pingfang";
+  src: url("@/css/font/苹方黑体-准-简.ttf");
+}
+@font-face {
+  font-family: "code";
+  src: url("@/css/font/CascadiaCode.ttf");
+}
+@font-face {
+  font-family: "cascadia";
+  src: url("@/css/font/CascadiaMono.ttf");
+}
+/* font */
 /* hover background color *//*# sourceMappingURL=const.css.map */

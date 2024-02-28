@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkpanovista=self.webpackChunkpanovista||[]).push([[6157],{662:e=>{e.exports=JSON.parse('{"permalink":"/en/blog/tags/speech","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

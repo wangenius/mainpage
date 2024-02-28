@@ -79,18 +79,6 @@ navbar
 sidebar
 */
 
-@keyframes example {
-  from {
-    height: 0;
-    top: 50%;
-  }
-  to {
-    height: 60%;
-    top: 20%;
-  }
-}
-
-
 @mixin navItem {
   padding: 3px 12px;
   white-space: nowrap;
@@ -278,12 +266,9 @@ footer {
   .table-of-contents {
     min-width: 240px;
     max-width: 100%;
-    width: fit-content;
     border: none;
     padding: 6px;
     border-radius: 20px;
-    background-color: #fcfcfc;
- 
 
     li {
       margin: 1px;

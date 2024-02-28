@@ -1,9 +1,19 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./index.module.scss"
 
 export const Tag = ({ children }) => {
   return <span className={style.tag}>{children}</span>;
 };
+
+
+export const Tags = ({items}) =>{
+
+  return <div className={style.tags}>
+    {items.map((item,key)=>{
+      return <Tag key={key}>{item}</Tag>
+    })}
+  </div>
+}
 
 
 function checkImgExists(imgurl: string) {
@@ -48,5 +58,22 @@ export const To = ({name,icon,to}:{name:string,icon?:string,to:string})=>{
 export const Multi = ({children}) =>{
   return <div className={style.multi}>
 {children}
+  </div>
+}
+
+export const Pairs = ({children,title}) => {
+
+  return <div className={style.pairs}>
+    <div className={style.title}>{title}</div>
+    {children}
+  </div>
+}
+
+
+export const Pair = ({children,title}) =>{
+
+  return <div className={style.pair}>
+    <span>{title}</span>
+    <span>{children}</span>
   </div>
 }

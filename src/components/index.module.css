@@ -56,10 +56,18 @@
 .tag {
   background-color: rgba(0, 0, 0, 0.7882352941);
   border-radius: 20px;
-  padding: 3px 10px;
-  font-size: 12px;
+  padding: 3px 12px;
+  font-size: 0.72rem;
   color: #ffffff;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 2px;
 }
 
 .multi {
@@ -68,11 +76,31 @@
   justify-content: center;
   gap: 2rem;
   margin: 0 auto;
+  width: -moz-fit-content;
   width: fit-content;
 }
 .multi div, .multi img {
   height: 400px;
+  width: -moz-fit-content;
   width: fit-content;
 }
 
-/*# sourceMappingURL=index.module.css.map */
+.pairs .title {
+  font-size: 1.2rem;
+  padding: 20px 0;
+}
+.pairs .pair:not(:last-child) {
+  border-bottom: 1px solid #a7a7a7;
+}
+
+.pair {
+  display: flex;
+  padding: 20px;
+}
+.pair * {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.pair span:first-child {
+  flex: 1;
+}/*# sourceMappingURL=index.module.css.map */

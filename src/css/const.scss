@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @font-face {
   font-family: "normals";
   src: url("@/css/font/常规.otf");
@@ -34,22 +33,39 @@
   font-family: "cascadia";
   src: url("@/css/font/CascadiaMono.ttf");
 }
+@font-face {
+  font-family: "Apahal";
+  src: url("@/css/font/Apahal.ttf");
+}
+@font-face {
+  font-family: "Courages";
+  src: url("@/css/font/Boiling.ttf");
+}
+@font-face {
+  font-family: "db";
+  src: url("@/css/font/20db.otf");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* font */
-$font_mainText:normals;
+// $font_mainText:"Noto Sans","Noto Sans SC",sans serif;
+$font_mainText:Chinese Quote,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;
 $font_code: code;
 $font_codeblock: fira;
-$font_title: pingfang;
-$font_blockquote: pingfang;
-$font_nav_title: baloo, sans-serif;
-
+$font_title: $font_mainText;
+$font_blockquote: $font_mainText;
+$font_nav_title: db, sans-serif;
+$font_nav_item:$font_mainText;
 
 /* hover background color */
-$background_color_hover: rgba(70, 65, 65, 0.041);
-$background_color_active: #5337f0;
-$color_primary: #5337f0;
+$color_background_hover: #fafafa;
+$color_primary: #ffab2e;
+$color_background_active:#fafafa;
 $color_border: #2c323621;
-
+$color_font_title:#000000;
 $color_navItem: #555658;
-$color_font_on_primary: #f0f0f0;
+$color_font_on_primary: #ffffff;
+$color_font_main: #3d3d3d;
 
+$color_font_nav_hover:#ff761a;

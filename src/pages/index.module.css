@@ -1,104 +1,84 @@
 @charset "UTF-8";
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@font-face {
+  font-family: "normals";
+  src: url("@/css/font/常规.otf");
+}
+@font-face {
+  font-family: "baloo";
+  src: url("@/css/font/BalooTamma-Regular.ttf");
+}
+@font-face {
+  font-family: "fira";
+  src: url("@/css/font/FiraCode-Regular.ttf");
+}
+@font-face {
+  font-family: "gothic";
+  src: url("@/css/font/SarasaGothicSC-Regular.ttf");
+}
+@font-face {
+  font-family: "sarasa";
+  src: url("@/css/font/SarasaMonoSC-Regular.ttf");
+}
+@font-face {
+  font-family: "pingfang";
+  src: url("@/css/font/苹方黑体-准-简.ttf");
+}
+@font-face {
+  font-family: "code";
+  src: url("@/css/font/CascadiaCode.ttf");
+}
+@font-face {
+  font-family: "cascadia";
+  src: url("@/css/font/CascadiaMono.ttf");
+}
+@font-face {
+  font-family: "Apahal";
+  src: url("@/css/font/Apahal.ttf");
+}
+@font-face {
+  font-family: "Courages";
+  src: url("@/css/font/Boiling.ttf");
+}
+@font-face {
+  font-family: "db";
+  src: url("@/css/font/20db.otf");
+}
+/* font */
+/* hover background color */
+/* heroBanner */
 .heroBanner {
-  padding: 30vh 0;
   height: 100vh;
   text-align: center;
   position: relative;
   margin-top: -60px;
   overflow: hidden;
-  background-color: transparent;
+  background-color: #fdfdfd;
   display: flex;
   flex-flow: wrap;
   gap: 4rem;
+  justify-content: center;
+  align-items: center;
 }
-.heroBanner .tags span {
-  transition: all ease 100ms;
+.heroBanner .logo {
+  max-width: 120px;
 }
-.heroBanner .tags span:hover {
-  scale: 1.05;
-  background-color: #5f29ca;
+.heroBanner .donate {
+  margin-right: 50px;
+  width: 36px;
+  height: 36px;
+  padding: 3px;
+  border-radius: 8px;
 }
-.heroBanner .left {
-  flex: 1.4;
-  padding: 0 120px;
-}
-.heroBanner .right {
-  flex: 1;
-  min-width: 400px;
-  padding: 0 300px 0 0;
-}
-.heroBanner::before {
-  content: "";
-  background: url("../../static/img/panovista.png");
-  background-size: cover;
-  position: absolute;
-  inset: 0;
-  filter: blur(80px);
-  z-index: -2;
-}
-.heroBanner::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-color: rgba(255, 255, 255, 0.5019607843);
+.heroBanner .donate:hover {
+  background-color: rgba(70, 70, 70, 0.0901960784);
 }
 .heroBanner .offsetBox {
   background-color: rgba(255, 255, 255, 0.562);
-  padding: 20px;
-  border-radius: 20px;
-  height: 100%;
-  border: 1px solid white;
   position: relative;
   overflow: hidden;
-}
-.heroBanner .offsetBox::after {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 1px;
-  background-color: #7026c5;
-  top: 0;
-  z-index: 1;
-  left: 60px;
-}
-.heroBanner .info {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding-left: 60px;
-  margin-top: 10px;
-  z-index: 3;
-  padding-bottom: 70px;
-}
-.heroBanner .info > span {
-  position: relative;
-  display: flex;
-  gap: 4px;
-  flex-wrap: wrap;
-  margin-top: 10px;
-  font-family: "slim";
-  text-align: start;
-}
-.heroBanner .info > span span {
-  height: -moz-fit-content;
-  height: fit-content;
-}
-.heroBanner .info > span::before {
-  z-index: 4;
-  box-sizing: border-box;
-  content: "";
-  position: absolute;
-  width: 24px;
-  height: 1px;
-  left: -30px;
-  top: 12px;
-  border-radius: 4px;
-  background-color: #7026c5;
+  margin: 0 auto;
 }
 .heroBanner .field {
   display: flex;
@@ -111,75 +91,33 @@
      -moz-user-select: none;
           user-select: none;
 }
-.heroBanner .field .qrcode {
-  margin-right: 10px;
-  width: 36px;
-  height: 36px;
-  padding: 3px;
-  border-radius: 8px;
-}
-.heroBanner .field .qrcode:hover {
-  background-color: rgba(70, 70, 70, 0.0901960784);
-}
-.heroBanner .field .avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 40px;
-  border: 5px solid white;
-  z-index: 3;
-}
-.heroBanner .field .name {
-  height: 80px;
-  flex: 1;
-  overflow: hidden;
-  text-align: start;
-}
-.heroBanner .field .name a {
-  width: 100%;
-  font-family: "normal";
-  font-size: 1.6rem;
-  line-height: 50px;
-  color: #363636;
-  text-align: start;
-  margin-bottom: 0;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.heroBanner .field .name p {
-  color: #60656b;
-  position: relative;
-  top: -10px;
-  font-size: 1rem;
-  line-height: 30px;
-  text-align: start;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
 .heroBanner .tagline {
-  font-size: 1rem;
   text-indent: 2rem;
   margin: 20px auto;
   padding: 0;
-  font-weight: 200;
+  font-weight: 500;
   max-width: 1200px;
   text-align: start;
-  color: #60656b;
-  font-family: "slim";
+  color: #4d4d4d;
   border-radius: 20px;
   padding: 10px;
 }
+.heroBanner .tagline p {
+  margin: 0;
+}
+.heroBanner .tagline p:last-child {
+  font-size: 0.9rem;
+  color: #999999;
+}
 .heroBanner .tagline:hover {
-  background-color: rgba(112, 112, 112, 0.062745098);
+  background-color: rgba(112, 112, 112, 0.0470588235);
 }
 .heroBanner .title {
   width: 100%;
-  font-size: 6rem;
-  font-family: "baloo";
-  background: linear-gradient(to right, #f02206 0%, #ff643d 30%, #ff9900 60%, #db4113 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 4rem;
+  font-family: db, sans-serif;
+  color: #000000;
+  text-transform: uppercase;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -216,27 +154,18 @@
 }
 .heroBanner .buttons a:first-child {
   flex: 4;
-  background-color: #5f29ca;
+  background-color: #161616;
   color: #f7f7f7;
 }
 .heroBanner .buttons a:first-child:hover {
   text-decoration: none;
-  background-color: #4919aa;
+  background-color: #000000;
 }
 
 /* 桌面 */
 @media screen and (max-width: 1600px) {
-  .heroBanner .left {
+  .heroBanner .offsetBox {
     padding: 0 20px;
-  }
-  .heroBanner .left .title {
-    width: -moz-fit-content;
-    width: fit-content;
-    padding: 0;
-    margin: 0 auto;
-  }
-  .heroBanner .right {
-    padding: 0 100px 0 0;
   }
 }
 @media screen and (max-width: 939px) {
@@ -245,17 +174,21 @@
     padding: 4rem 0;
     height: 100%;
   }
-  .heroBanner .left {
-    padding: 0;
-    display: block;
+  .heroBanner .donate {
+    margin-right: 0;
   }
-  .heroBanner .left .title {
+  .heroBanner .field {
+    display: flex;
+    flex-direction: column;
+  }
+  .heroBanner .field .title {
+    font-size: 3rem;
     width: -moz-fit-content;
     width: fit-content;
     padding: 0;
     margin: 0 auto;
   }
-  .heroBanner .left .buttons {
+  .heroBanner .buttons {
     padding: 0 20px;
     display: flex;
     gap: 20px;
@@ -263,16 +196,12 @@
     margin-bottom: 20px;
     max-width: unset;
   }
-  .heroBanner .left .buttons a {
+  .heroBanner .buttons a {
     flex: 1;
     width: 100%;
     padding: 10px;
   }
-  .heroBanner .right {
-    padding: 10px;
-    width: 100%;
-  }
-  .heroBanner .right .offsetBox {
+  .heroBanner .offsetBox {
     margin: 0 auto;
     width: 100%;
   }
@@ -280,47 +209,18 @@
 @media screen and (max-width: 560px) {
   .heroBanner {
     padding: 4rem 0;
-  }
-  .heroBanner .left {
     height: 100%;
   }
-  .heroBanner .left .title {
-    width: -moz-fit-content;
-    width: fit-content;
-    padding: 0;
-    margin: 0 auto;
-    font-size: 4rem;
-  }
-  .heroBanner .left .buttons {
+  .heroBanner .buttons {
     margin: 20px auto;
     flex-direction: column;
     height: 100%;
   }
-  .heroBanner .right {
+  .heroBanner .field .title {
+    width: -moz-fit-content;
+    width: fit-content;
     padding: 0;
-    min-width: unset;
-  }
-  .heroBanner .right .offsetBox {
     margin: 0 auto;
-    width: 100%;
+    font-size: 2rem;
   }
-}
-.float {
-  display: flex;
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-}
-.float a {
-  display: block;
-  margin: 5px;
-  width: 50px;
-  height: 50px;
-  background-color: #fff;
-  border-radius: 30px;
-  transition: all ease 200ms;
-}
-.float a:hover {
-  scale: 1.2;
-  box-shadow: 0 0 10px 0 #999999;
 }/*# sourceMappingURL=index.module.css.map */

@@ -2,38 +2,35 @@
 .markdown{
   h1,h2,h3,h4,h5,h6{
     margin: 2rem 0;
-    font-family: "heavy";
-    font-weight: 200;
+    font-family: $font_title;
+    font-weight: 400;
   }
-  h1{
-    font-size: 3rem;
+  > h1{
+    font-size: 3.2rem;
+    font-weight: 600;
+    font-family: "微软雅黑";
   }
-  h2{
+  > h2{
     font-size: 2rem;
   }
-  h3{
+  > h3{
     font-size: 1.5rem;
   }
-  h4{
+  > h4{
     font-size: 1.2rem;
   }
-  p,li{
-    font-family: "normal";
+  > p,li{
     letter-spacing: 0.5px;
     line-height: 2rem;
-    font-style: normal;
-    font-weight: 400;
     font-size: 1rem;
     margin: 6px 0;
-    color: #3f3f3f;
+    color: $color_font_main;
     a{
-      color: $color_primary;
-      font-family: "normal";
+
     }
   }
   code{
-    font-family: 'code','slim';
-    font-display: swap;
+    font-family: $font_code;
     font-size: small;
     background-color: #cacad652;
     border: none;
@@ -45,7 +42,7 @@
       padding: 16px;
     }
     *{
-      font-family: "J_Light",'canger';
+      font-family: $font_codeblock;
       font-display: swap;
       font-size: 0.88rem;
     }
@@ -55,7 +52,6 @@
       border: 1px solid rgb(224, 225, 230);
     }
     div[class*="codeBlockTitle"]{
-      // background-color: #252833;
         padding: 8px 20px 0;
         border: none;
         color: #7c7c7c;
@@ -108,7 +104,7 @@
     border-radius: 10px;
     *{
       color: #868686;
-      font-family: "normal";
+      font-family: $font_blockquote;
       font-size: 0.88rem;
     }
     &:hover{
@@ -140,12 +136,6 @@
   }
 }
 
-// @counter-style thumbs {
-//   system: cyclic;
-//   symbols:  "\1F30E" "\1F33D" "\1F34C" "\1F525" "\1F340" "\1F351" "\1F355" "\1F36A" "\1F36D" "\1F388" "\1F4CC" "\1F4E2" ;
-//   suffix: " ";
-// }
-
 .hash-link {
   color: #000000;
 }
@@ -159,4 +149,39 @@
 table{
   margin: 0 auto;
   width: fit-content;
+}
+
+.docusaurus-mermaid-container{
+  margin: 0 auto;
+  width: fit-content;
+  polygon,rect,circle{
+    fill: #fdfaf7 !important;
+    stroke: #f1e9e3 !important;
+  }
+  .edgePaths{
+    *{
+      stroke-width: 1px;
+      stroke: #c1c5ca !important;
+    }
+  }
+  .marker {
+    stroke: none !important;
+    fill: #c1c5ca !important;
+  }
+  .edgeLabel{
+    background-color: transparent !important;
+  }
+  .cluster {
+    fill: transparent !important;
+    stroke-dasharray: 20 10 20 10 !important;
+    stroke-width: 2px !important;
+    stroke: #4d8a52 !important;
+    *{
+      fill: transparent !important;
+      stroke-linejoin: round !important;
+      stroke-dasharray: 10 5 !important;
+      stroke-width: 1px !important;
+      stroke: #83ac87 !important;
+    }
+  }
 }

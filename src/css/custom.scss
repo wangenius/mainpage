@@ -1,122 +1,71 @@
 @import "typography";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap');
 @import "const";
 
-@font-face {
-  font-family: "baloo";
-  src: url("font/BalooTamma-Regular.ttf");
-}
 
-@font-face {
-  font-family: "normal";
-  src: url("font/常规.otf");
-}
+/**
+默认
 
-@font-face {
-  font-family: "regular";
-  src: url("font/苹方黑体-准-简.ttf");
-}
-
-@font-face {
-  font-family: "slim";
-  src: url("font/苹方黑体-细-简.ttf");
-}
-
-@font-face {
-  font-family: "heavy";
-  src: url("font/黑体.otf");
-}
-
-@font-face {
-  font-family: "code";
-  src: url("font/CascadiaCode.ttf");
-}
-
-@font-face {
-  font-family: "mono";
-  src: url("font/CascadiaMono.ttf");
-}
-
-@font-face {
-  font-family: "J_Medium";
-  src: url("font/JetBrainsMono-Medium.ttf");
-}
-
-@font-face {
-  font-family: "J_Regular";
-  src: url("font/JetBrainsMono-Regular.ttf");
-}
-
-@font-face {
-  font-family: "J_Light";
-  src: url("font/JetBrainsMono-Light.ttf");
-}
-
-@font-face {
-  font-family: "J_Bold";
-  src: url("font/JetBrainsMono-Bold.ttf");
-}
-
-
-
+*/
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Noto Sans SC";
+  font-family: $font_mainText;
   font-display: swap;
 }
 
 :root {
   --ifm-menu-link-sublist-icon: url("/static/img/expand.svg");
+  --ifm-footer-background-color:#000 !important;
+}
+
+.footer--dark{
+  --ifm-footer-background-color:#000 !important;
 }
 
 /***
 navbar
 */
 @mixin title {
-  font-size: 1.6rem;
-  text-transform: capitalize;
-  color: $color_primary;
-  font-family: "baloo", sans-serif;
-  font-weight: 200;
+  color: $color_font_title;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-family: $font_nav_title;
+  font-weight: 400;
 }
 
 .navbar {
-  border-bottom: 1px solid $color_border;
   box-shadow: none;
   position: relative;
+
   .navbar__title {
     @include title();
   }
   .navbar__item.navbar__link {
-    border-radius: 10px;
-    border: 1px solid transparent;
     color: unset;
-    border-radius: 10px;
+    font-family: $font_nav_item;
+    font-size: 0.9rem;
+    font-weight: 400;
     margin-right: 5px;
-    &:hover {
-      background-color: $background_color_hover;
-      color: unset;
-    }
+    border-bottom:2px solid transparent;
   }
   .navbar__link--active {
-    border: 1px solid $color_border !important;
+    border-bottom:2px solid $color_primary !important;
   }
-  .navbar__item.navbar__link:nth-child(1) {
-    position: relative;
-    padding-left: 36px;
-    &::after {
-      content: url("/static/img/box.svg");
-      position: absolute;
-      top: 7px;
-      left: 8px;
-      width: 20px;
-      height: 20px;
-      z-index: 1;
+}
+
+.plugin-docs{
+  .navbar{
+    background-color: transparent;
+    .navbar__logo{
+      visibility: hidden;
+    }
+    .navbar__title{
+      visibility: hidden;
     }
   }
 }
+
 
 /* pages中的navbar */
 .plugin-pages {
@@ -130,18 +79,48 @@ navbar
 sidebar
 */
 
+@keyframes example {
+  from {
+    height: 0;
+    top: 50%;
+  }
+  to {
+    height: 60%;
+    top: 20%;
+  }
+}
+
+
 @mixin navItem {
-  border-radius: 8px;
   padding: 3px 12px;
   white-space: nowrap;
   height: 30px;
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 0.9rem;
-  font-family: 'regular';
+  font-family: $font_mainText;
   color: $color_navItem;
+  position: relative;
+  &::before{
+    content: "";
+    width: 3px;
+    height: 0;
+    position: absolute;
+    top: 50%;
+    left: 2px;
+
+    background-color: $color_primary;
+    opacity: 0.5;
+    transition: all ease 100ms;
+  }
   &:hover {
-    color: unset;
+    color: unset;          
+      background-color: transparent !important;
+
+    &::before{
+      height: 60%;
+      top: 20%;
+    }
   }
   &::before,
   &::after {
@@ -167,22 +146,39 @@ aside {
           @include navItem();
         }
         &.menu__link--active {
-          background-color: $color_primary !important;
-          color: $color_font_on_primary;
-          &:hover {
-            color: $color_font_on_primary;
+          background-color: #fafafa !important;
+          &:hover{
+            background-color: #fafafa !important;
+          }
+          &::before{
+            content: "";
+            width: 3px;
+            height: 60%;
+            position: absolute;
+            top: 20%;
+            left: 2px;
+            background-color: $color_primary;
           }
         }
+  
         &.menu__list-item-collapsible {
           @include navItem();
           margin: 0;
           padding: 0;
           /* 激活的下拉菜单 */
-          .menu__link--sublist.menu__link--active {
-            color: $color_primary;
-            &:hover {
-              color: $color_primary;
+          &:hover{
+            background-color: transparent !important;
+          }
+          .menu__link--sublist.menu__link{
+            &:hover{
+              background-color: transparent !important;
             }
+          }
+          &.menu__list-item-collapsible--active{
+              background-color: transparent !important;
+          }
+          .menu__link--sublist.menu__link--active {
+            background-color: transparent !important;
           }
         }
       }
@@ -215,7 +211,7 @@ main {
       font-size: 0.8rem;
       color: $color_navItem;
       &:hover {
-        background-color: $background_color_hover;
+        background-color: $color_background_hover;
         text-decoration: none;
       }
     }
@@ -228,7 +224,7 @@ main {
       position: relative;
       .pagination-nav__label {
         color: $color_navItem;
-        font-family: "regular";
+        font-family: $font_mainText;
         font-weight: 200;
         font-size: 1.2rem;
         &::after,
@@ -238,7 +234,7 @@ main {
       };
 
       &:hover {
-        background-color: $background_color_hover;
+        background-color: $color_background_hover;
         &::before {
           height: 80%;
           top: calc(10%);
@@ -294,12 +290,12 @@ footer {
       .table-of-contents__link {
         padding: 2px 10px 2px 20px;
         font-size: 0.84rem;
-        font-family: "regular";
+        font-family: $font_mainText;
         border-radius: 20px;
         border:1px solid transparent;
         position: relative;
         &:hover {
-          background-color: $background_color_hover;
+          background-color: $color_background_hover;
           color: $color_navItem;
         }
         &.table-of-contents__link--active {
@@ -310,10 +306,10 @@ footer {
             width: 6px;
             border-radius: 5px;
             height: 6px;
-            background-color: $background_color_active;
+            background-color: $color_primary;
             top: calc(50% - 3px);
           }
-          background-color: $background_color_hover;
+          background-color: $color_background_hover;
           color: $color_navItem;
         }
       }
@@ -321,14 +317,14 @@ footer {
   }
 }
 .theme-doc-toc-mobile {
-  background-color: #f7f7f7 !important;
+  background-color: #fcfcfc !important;
   border: #303846;
 }
 
 
 .breadcrumbs__item--active{
   .breadcrumbs__link{
-    color: $color_primary;
+    color: #4d4d4d;
   }
 }
 

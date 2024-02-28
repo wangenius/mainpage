@@ -124,16 +124,15 @@ const theme = {
         type: "docSidebar",
         sidebarId: "repository",
         position: "right",
-        label: "Repository",
-        icon:"/img/box.svg"
+        label: "知识库"
       },
       {
         type: 'docSidebar',
         position: 'right',
         sidebarId: 'portfolio',
-        label: 'Portfolio',
+        label: '作品集',
       },
-      { to: "/blog", label: "Vista", position: "right" },
+      { to: "/blog", label: "博客", position: "right" },
       {
         href: "https://github.com/wangenius/wangenius.github.io",
         label: "GitHub",
@@ -227,7 +226,7 @@ const theme = {
   prism: {
     theme: prism,
     additionalLanguages:['toml','powershell','json','bash'],
-    defaultLanguage:"rust"
+    defaultLanguage:"text"
   },
 } satisfies Preset.ThemeConfig;
 
@@ -290,7 +289,7 @@ export default {
         },
 
         theme: {
-          customCss: "./src/css/custom.scss",
+          customCss: ["./src/css/custom.scss","./src/css/const.scss"],
         },
       } satisfies Preset.Options,
     ],
@@ -305,4 +304,8 @@ export default {
     },
   ],
   themeConfig: theme,
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
 } satisfies Config;

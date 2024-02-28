@@ -1,7 +1,8 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 @font-face {
   font-family: "normals";
   src: url("@/css/font/常规.otf");
@@ -34,42 +35,48 @@
   font-family: "cascadia";
   src: url("@/css/font/CascadiaMono.ttf");
 }
+@font-face {
+  font-family: "Apahal";
+  src: url("@/css/font/Apahal.ttf");
+}
+@font-face {
+  font-family: "Courages";
+  src: url("@/css/font/Boiling.ttf");
+}
+@font-face {
+  font-family: "db";
+  src: url("@/css/font/20db.otf");
+}
 /* font */
 /* hover background color */
 .markdown h1, .markdown h2, .markdown h3, .markdown h4, .markdown h5, .markdown h6 {
   margin: 2rem 0;
-  font-family: "heavy";
-  font-weight: 200;
+  font-family: Chinese Quote, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 400;
 }
-.markdown h1 {
-  font-size: 3rem;
+.markdown > h1 {
+  font-size: 3.2rem;
+  font-weight: 600;
+  font-family: "微软雅黑";
 }
-.markdown h2 {
+.markdown > h2 {
   font-size: 2rem;
 }
-.markdown h3 {
+.markdown > h3 {
   font-size: 1.5rem;
 }
-.markdown h4 {
+.markdown > h4 {
   font-size: 1.2rem;
 }
-.markdown p, .markdown li {
-  font-family: "normal";
+.markdown > p, .markdown li {
   letter-spacing: 0.5px;
   line-height: 2rem;
-  font-style: normal;
-  font-weight: 400;
   font-size: 1rem;
   margin: 6px 0;
-  color: #3f3f3f;
-}
-.markdown p a, .markdown li a {
-  color: #5337f0;
-  font-family: "normal";
+  color: #3d3d3d;
 }
 .markdown code {
-  font-family: "code", "slim";
-  font-display: swap;
+  font-family: code;
   font-size: small;
   background-color: rgba(202, 202, 214, 0.3215686275);
   border: none;
@@ -83,7 +90,7 @@
   padding: 16px;
 }
 .markdown .theme-code-block * {
-  font-family: "J_Light", "canger";
+  font-family: fira;
   font-display: swap;
   font-size: 0.88rem;
 }
@@ -138,7 +145,7 @@
 }
 .markdown blockquote * {
   color: #868686;
-  font-family: "normal";
+  font-family: Chinese Quote, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 0.88rem;
 }
 .markdown blockquote:hover {
@@ -175,7 +182,42 @@
 
 table {
   margin: 0 auto;
+  width: -moz-fit-content;
   width: fit-content;
+}
+
+.docusaurus-mermaid-container {
+  margin: 0 auto;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.docusaurus-mermaid-container polygon, .docusaurus-mermaid-container rect, .docusaurus-mermaid-container circle {
+  fill: #fdfaf7 !important;
+  stroke: #f1e9e3 !important;
+}
+.docusaurus-mermaid-container .edgePaths * {
+  stroke-width: 1px;
+  stroke: #c1c5ca !important;
+}
+.docusaurus-mermaid-container .marker {
+  stroke: none !important;
+  fill: #c1c5ca !important;
+}
+.docusaurus-mermaid-container .edgeLabel {
+  background-color: transparent !important;
+}
+.docusaurus-mermaid-container .cluster {
+  fill: transparent !important;
+  stroke-dasharray: 20 10 20 10 !important;
+  stroke-width: 2px !important;
+  stroke: #4d8a52 !important;
+}
+.docusaurus-mermaid-container .cluster * {
+  fill: transparent !important;
+  stroke-linejoin: round !important;
+  stroke-dasharray: 10 5 !important;
+  stroke-width: 1px !important;
+  stroke: #83ac87 !important;
 }
 
 @font-face {
@@ -210,105 +252,75 @@ table {
   font-family: "cascadia";
   src: url("@/css/font/CascadiaMono.ttf");
 }
+@font-face {
+  font-family: "Apahal";
+  src: url("@/css/font/Apahal.ttf");
+}
+@font-face {
+  font-family: "Courages";
+  src: url("@/css/font/Boiling.ttf");
+}
+@font-face {
+  font-family: "db";
+  src: url("@/css/font/20db.otf");
+}
 /* font */
 /* hover background color */
-@font-face {
-  font-family: "baloo";
-  src: url("font/BalooTamma-Regular.ttf");
-}
-@font-face {
-  font-family: "normal";
-  src: url("font/常规.otf");
-}
-@font-face {
-  font-family: "regular";
-  src: url("font/苹方黑体-准-简.ttf");
-}
-@font-face {
-  font-family: "slim";
-  src: url("font/苹方黑体-细-简.ttf");
-}
-@font-face {
-  font-family: "heavy";
-  src: url("font/黑体.otf");
-}
-@font-face {
-  font-family: "code";
-  src: url("font/CascadiaCode.ttf");
-}
-@font-face {
-  font-family: "mono";
-  src: url("font/CascadiaMono.ttf");
-}
-@font-face {
-  font-family: "J_Medium";
-  src: url("font/JetBrainsMono-Medium.ttf");
-}
-@font-face {
-  font-family: "J_Regular";
-  src: url("font/JetBrainsMono-Regular.ttf");
-}
-@font-face {
-  font-family: "J_Light";
-  src: url("font/JetBrainsMono-Light.ttf");
-}
-@font-face {
-  font-family: "J_Bold";
-  src: url("font/JetBrainsMono-Bold.ttf");
-}
+/**
+默认
+
+*/
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Noto Sans SC";
+  font-family: Chinese Quote, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-display: swap;
 }
 
 :root {
   --ifm-menu-link-sublist-icon: url("/static/img/expand.svg");
+  --ifm-footer-background-color:#000 !important;
+}
+
+.footer--dark {
+  --ifm-footer-background-color:#000 !important;
 }
 
 /***
 navbar
 */
 .navbar {
-  border-bottom: 1px solid rgba(44, 50, 54, 0.1294117647);
   box-shadow: none;
   position: relative;
 }
 .navbar .navbar__title {
-  font-size: 1.6rem;
-  text-transform: capitalize;
-  color: #5337f0;
-  font-family: "baloo", sans-serif;
-  font-weight: 200;
+  color: #000000;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-family: db, sans-serif;
+  font-weight: 400;
 }
 .navbar .navbar__item.navbar__link {
-  border-radius: 10px;
-  border: 1px solid transparent;
   color: unset;
-  border-radius: 10px;
+  font-family: Chinese Quote, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
   margin-right: 5px;
-}
-.navbar .navbar__item.navbar__link:hover {
-  background-color: rgba(70, 65, 65, 0.041);
-  color: unset;
+  border-bottom: 2px solid transparent;
 }
 .navbar .navbar__link--active {
-  border: 1px solid rgba(44, 50, 54, 0.1294117647) !important;
+  border-bottom: 2px solid #ffab2e !important;
 }
-.navbar .navbar__item.navbar__link:nth-child(1) {
-  position: relative;
-  padding-left: 36px;
+
+.plugin-docs .navbar {
+  background-color: transparent;
 }
-.navbar .navbar__item.navbar__link:nth-child(1)::after {
-  content: url("/static/img/box.svg");
-  position: absolute;
-  top: 7px;
-  left: 8px;
-  width: 20px;
-  height: 20px;
-  z-index: 1;
+.plugin-docs .navbar .navbar__logo {
+  visibility: hidden;
+}
+.plugin-docs .navbar .navbar__title {
+  visibility: hidden;
 }
 
 /* pages中的navbar */
@@ -320,16 +332,26 @@ navbar
 /**
 sidebar
 */
+@keyframes example {
+  from {
+    height: 0;
+    top: 50%;
+  }
+  to {
+    height: 60%;
+    top: 20%;
+  }
+}
 aside {
   /* title */
   /* sidebar menu */
 }
 aside b {
-  font-size: 1.6rem;
-  text-transform: capitalize;
-  color: #5337f0;
-  font-family: "baloo", sans-serif;
-  font-weight: 200;
+  color: #000000;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  font-family: db, sans-serif;
+  font-weight: 400;
 }
 aside nav .clean-btn.navbar-sidebar__back {
   background: none;
@@ -339,19 +361,37 @@ aside nav > ul {
 }
 aside nav > ul div.menu__link,
 aside nav > ul a.menu__link {
-  border-radius: 8px;
   padding: 3px 12px;
   white-space: nowrap;
   height: 30px;
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 0.9rem;
-  font-family: "regular";
+  font-family: Chinese Quote, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
   color: #555658;
+  position: relative;
+}
+aside nav > ul div.menu__link::before,
+aside nav > ul a.menu__link::before {
+  content: "";
+  width: 3px;
+  height: 0;
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  background-color: #ffab2e;
+  opacity: 0.5;
+  transition: all ease 100ms;
 }
 aside nav > ul div.menu__link:hover,
 aside nav > ul a.menu__link:hover {
   color: unset;
+  background-color: transparent !important;
+}
+aside nav > ul div.menu__link:hover::before,
+aside nav > ul a.menu__link:hover::before {
+  height: 60%;
+  top: 20%;
 }
 aside nav > ul div.menu__link::before, aside nav > ul div.menu__link::after,
 aside nav > ul a.menu__link::before,
@@ -360,44 +400,79 @@ aside nav > ul a.menu__link::after {
 }
 aside nav > ul div.menu__link--active,
 aside nav > ul a.menu__link--active {
-  background-color: #5337f0 !important;
-  color: #f0f0f0;
+  background-color: #fafafa !important;
 }
 aside nav > ul div.menu__link--active:hover,
 aside nav > ul a.menu__link--active:hover {
-  color: #f0f0f0;
+  background-color: #fafafa !important;
+}
+aside nav > ul div.menu__link--active::before,
+aside nav > ul a.menu__link--active::before {
+  content: "";
+  width: 3px;
+  height: 60%;
+  position: absolute;
+  top: 20%;
+  left: 2px;
+  background-color: #ffab2e;
 }
 aside nav > ul div.menu__list-item-collapsible,
 aside nav > ul a.menu__list-item-collapsible {
-  border-radius: 8px;
   padding: 3px 12px;
   white-space: nowrap;
   height: 30px;
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 0.9rem;
-  font-family: "regular";
+  font-family: Chinese Quote, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
   color: #555658;
+  position: relative;
   margin: 0;
   padding: 0;
   /* 激活的下拉菜单 */
 }
+aside nav > ul div.menu__list-item-collapsible::before,
+aside nav > ul a.menu__list-item-collapsible::before {
+  content: "";
+  width: 3px;
+  height: 0;
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  background-color: #ffab2e;
+  opacity: 0.5;
+  transition: all ease 100ms;
+}
 aside nav > ul div.menu__list-item-collapsible:hover,
 aside nav > ul a.menu__list-item-collapsible:hover {
   color: unset;
+  background-color: transparent !important;
+}
+aside nav > ul div.menu__list-item-collapsible:hover::before,
+aside nav > ul a.menu__list-item-collapsible:hover::before {
+  height: 60%;
+  top: 20%;
 }
 aside nav > ul div.menu__list-item-collapsible::before, aside nav > ul div.menu__list-item-collapsible::after,
 aside nav > ul a.menu__list-item-collapsible::before,
 aside nav > ul a.menu__list-item-collapsible::after {
   fill: rgba(0, 0, 0, 0.0470588235);
 }
+aside nav > ul div.menu__list-item-collapsible:hover,
+aside nav > ul a.menu__list-item-collapsible:hover {
+  background-color: transparent !important;
+}
+aside nav > ul div.menu__list-item-collapsible .menu__link--sublist.menu__link:hover,
+aside nav > ul a.menu__list-item-collapsible .menu__link--sublist.menu__link:hover {
+  background-color: transparent !important;
+}
+aside nav > ul div.menu__list-item-collapsible.menu__list-item-collapsible--active,
+aside nav > ul a.menu__list-item-collapsible.menu__list-item-collapsible--active {
+  background-color: transparent !important;
+}
 aside nav > ul div.menu__list-item-collapsible .menu__link--sublist.menu__link--active,
 aside nav > ul a.menu__list-item-collapsible .menu__link--sublist.menu__link--active {
-  color: #5337f0;
-}
-aside nav > ul div.menu__list-item-collapsible .menu__link--sublist.menu__link--active:hover,
-aside nav > ul a.menu__list-item-collapsible .menu__link--sublist.menu__link--active:hover {
-  color: #5337f0;
+  background-color: transparent !important;
 }
 
 /* scrollbar */
@@ -413,7 +488,7 @@ main article .theme-edit-this-page {
   color: #555658;
 }
 main article .theme-edit-this-page:hover {
-  background-color: rgba(70, 65, 65, 0.041);
+  background-color: #fafafa;
   text-decoration: none;
 }
 main nav .pagination-nav__link {
@@ -423,7 +498,7 @@ main nav .pagination-nav__link {
 }
 main nav .pagination-nav__link .pagination-nav__label {
   color: #555658;
-  font-family: "regular";
+  font-family: Chinese Quote, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-weight: 200;
   font-size: 1.2rem;
 }
@@ -431,7 +506,7 @@ main nav .pagination-nav__link .pagination-nav__label::after, main nav .paginati
   display: none;
 }
 main nav .pagination-nav__link:hover {
-  background-color: rgba(70, 65, 65, 0.041);
+  background-color: #fafafa;
 }
 main nav .pagination-nav__link:hover::before {
   height: 80%;
@@ -445,7 +520,7 @@ main nav .pagination-nav__link--next::before {
   border-radius: 2px;
   top: 30%;
   z-index: 1;
-  background-color: #5337f0;
+  background-color: #ffab2e;
   transition: all ease 200ms;
   right: 2px;
 }
@@ -457,7 +532,7 @@ main nav .pagination-nav__link--prev::before {
   border-radius: 2px;
   top: 30%;
   z-index: 1;
-  background-color: #5337f0;
+  background-color: #ffab2e;
   transition: all ease 200ms;
   left: 2px;
 }
@@ -478,6 +553,7 @@ footer .footer__link-item:hover {
 .theme-doc-toc-desktop .table-of-contents {
   min-width: 240px;
   max-width: 100%;
+  width: -moz-fit-content;
   width: fit-content;
   border: none;
   padding: 6px;
@@ -490,17 +566,17 @@ footer .footer__link-item:hover {
 .theme-doc-toc-desktop .table-of-contents li .table-of-contents__link {
   padding: 2px 10px 2px 20px;
   font-size: 0.84rem;
-  font-family: "regular";
+  font-family: Chinese Quote, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
   border-radius: 20px;
   border: 1px solid transparent;
   position: relative;
 }
 .theme-doc-toc-desktop .table-of-contents li .table-of-contents__link:hover {
-  background-color: rgba(70, 65, 65, 0.041);
+  background-color: #fafafa;
   color: #555658;
 }
 .theme-doc-toc-desktop .table-of-contents li .table-of-contents__link.table-of-contents__link--active {
-  background-color: rgba(70, 65, 65, 0.041);
+  background-color: #fafafa;
   color: #555658;
 }
 .theme-doc-toc-desktop .table-of-contents li .table-of-contents__link.table-of-contents__link--active::before {
@@ -510,17 +586,15 @@ footer .footer__link-item:hover {
   width: 6px;
   border-radius: 5px;
   height: 6px;
-  background-color: #5337f0;
+  background-color: #ffab2e;
   top: calc(50% - 3px);
 }
 
 .theme-doc-toc-mobile {
-  background-color: #f7f7f7 !important;
+  background-color: #fcfcfc !important;
   border: #303846;
 }
 
 .breadcrumbs__item--active .breadcrumbs__link {
-  color: #5337f0;
-}
-
-/*# sourceMappingURL=custom.css.map */
+  color: #4d4d4d;
+}/*# sourceMappingURL=custom.css.map */

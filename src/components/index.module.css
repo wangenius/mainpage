@@ -80,7 +80,7 @@
   width: fit-content;
 }
 .multi div, .multi img {
-  height: 400px;
+  max-height: 500px;
   width: -moz-fit-content;
   width: fit-content;
 }

@@ -12,7 +12,7 @@ function HomepageHeader() {
         <div className={styles.field}>
           <img src="/img/panovista.png" className={styles.logo} />
           <h1 className={styles.title}>{siteConfig.title}</h1>
-          <Link to={"/docs/repository/赞助"}>
+          <Link to={"/docs/repository/赞赏"}>
             <img src="/img/donate.svg" className={styles.donate} />
           </Link>
         </div>
@@ -38,7 +38,7 @@ function HomepageHeader() {
           </p>
         </div>
         <div className={styles.buttons}>
-          <Link to="/docs/repository/简介">探索</Link>
+          <Link to="/docs/repository/致明日的舞">探索</Link>
           <Link to="/blog">博客</Link>
         </div>
       </div>

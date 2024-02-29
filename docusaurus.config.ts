@@ -152,8 +152,8 @@ const theme = {
         title: "知识库",
         items: [
           {
-            label: "简介",
-            to: "/docs/repository/简介",
+            label: "致明日的舞",
+            to: "/docs/repository/致明日的舞",
           }, {
             label: "操作系统基础",
             to: "/docs/repository/操作系统基础",

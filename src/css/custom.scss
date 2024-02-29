@@ -1,7 +1,6 @@
 @import "typography";
 @import "const";
 
-
 /**
 默认
 
@@ -14,13 +13,18 @@
   font-display: swap;
 }
 
-:root {
-  --ifm-menu-link-sublist-icon: url("/static/img/expand.svg");
-  --ifm-footer-background-color:#000 !important;
+/* scrollbar */
+body::-webkit-scrollbar {
+  display: none;
 }
 
-.footer--dark{
-  --ifm-footer-background-color:#000 !important;
+:root {
+  --ifm-menu-link-sublist-icon: url("/static/img/expand.svg");
+  --ifm-footer-background-color: #000 !important;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: #000 !important;
 }
 
 /***
@@ -47,25 +51,24 @@ navbar
     font-size: 0.9rem;
     font-weight: 400;
     margin-right: 5px;
-    border-bottom:2px solid transparent;
+    border-bottom: 2px solid transparent;
   }
   .navbar__link--active {
-    border-bottom:2px solid $color_primary !important;
+    border-bottom: 2px solid $color_primary !important;
   }
 }
 
-.plugin-docs{
-  .navbar{
+.plugin-docs {
+  .navbar {
     background-color: transparent;
-    .navbar__logo{
+    .navbar__logo {
       visibility: hidden;
     }
-    .navbar__title{
+    .navbar__title {
       visibility: hidden;
     }
   }
 }
-
 
 /* pages中的navbar */
 .plugin-pages {
@@ -89,7 +92,7 @@ sidebar
   font-family: $font_mainText;
   color: $color_navItem;
   position: relative;
-  &::before{
+  &::before {
     content: "";
     width: 3px;
     height: 0;
@@ -102,10 +105,10 @@ sidebar
     transition: all ease 100ms;
   }
   &:hover {
-    color: unset;          
-      background-color: transparent !important;
+    color: unset;
+    background-color: transparent !important;
 
-    &::before{
+    &::before {
       height: 60%;
       top: 20%;
     }
@@ -135,10 +138,10 @@ aside {
         }
         &.menu__link--active {
           background-color: #fafafa !important;
-          &:hover{
+          &:hover {
             background-color: #fafafa !important;
           }
-          &::before{
+          &::before {
             content: "";
             width: 3px;
             height: 60%;
@@ -148,22 +151,22 @@ aside {
             background-color: $color_primary;
           }
         }
-  
+
         &.menu__list-item-collapsible {
           @include navItem();
           margin: 0;
           padding: 0;
           /* 激活的下拉菜单 */
-          &:hover{
+          &:hover {
             background-color: transparent !important;
           }
-          .menu__link--sublist.menu__link{
-            &:hover{
+          .menu__link--sublist.menu__link {
+            &:hover {
               background-color: transparent !important;
             }
           }
-          &.menu__list-item-collapsible--active{
-              background-color: transparent !important;
+          &.menu__list-item-collapsible--active {
+            background-color: transparent !important;
           }
           .menu__link--sublist.menu__link--active {
             background-color: transparent !important;
@@ -174,10 +177,7 @@ aside {
   }
 }
 
-/* scrollbar */
-::-webkit-scrollbar {
-  display: none;
-}
+
 
 /** docs */
 @mixin pagination_before {
@@ -219,7 +219,7 @@ main {
         &::before {
           display: none;
         }
-      };
+      }
 
       &:hover {
         background-color: $color_background_hover;
@@ -229,7 +229,7 @@ main {
         }
       }
     }
-    
+
     .pagination-nav__link--next {
       &::before {
         @include pagination_before;
@@ -256,7 +256,7 @@ footer {
   .footer__link-item {
     color: #bebebe;
     &:hover {
-      color: #ffffff;
+      color: $color_primary;
     }
   }
 }
@@ -277,15 +277,15 @@ footer {
         font-size: 0.84rem;
         font-family: $font_mainText;
         border-radius: 20px;
-        border:1px solid transparent;
+        border: 1px solid transparent;
         position: relative;
         &:hover {
           background-color: $color_background_hover;
           color: $color_navItem;
         }
         &.table-of-contents__link--active {
-          &::before{
-            content:"";
+          &::before {
+            content: "";
             position: absolute;
             left: 8px;
             width: 6px;
@@ -306,10 +306,8 @@ footer {
   border: #303846;
 }
 
-
-.breadcrumbs__item--active{
-  .breadcrumbs__link{
+.breadcrumbs__item--active {
+  .breadcrumbs__link {
     color: #4d4d4d;
   }
 }
-

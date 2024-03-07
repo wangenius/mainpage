@@ -1,13 +1,13 @@
 ---
-title : types
-sidebar_position : 2
-slug : types
+title: types
+sidebar_position: 2
+slug: types
 ---
+
 # types
 
-> 用基本类型,const修饰符,声明修饰符构造出来的类型称为内置类型`built-in type`. c++的内置类型及其操作非常丰富. 但是没有为程序员提供便于编写高级应用程序的高层设施. 取而代之在内置类型和操作的基础上增加了一套精致的抽象机制,程序员可用它来构造所需的高层设施. 
-> 即类和枚举. 
-
+> 用基本类型,const修饰符,声明修饰符构造出来的类型称为内置类型`built-in type`. c++的内置类型及其操作非常丰富. 但是没有为程序员提供便于编写高级应用程序的高层设施. 取而代之在内置类型和操作的基础上增加了一套精致的抽象机制,程序员可用它来构造所需的高层设施.
+> 即类和枚举.
 
 ## struct
 
@@ -20,7 +20,7 @@ struct Vector{
 Vector v;
 ```
 
-但是,就v本身而言,用处不大. 因为v的elem指针并没有指向任何东西. 为了让它变得有用, 我们必须给出一些元素,另v指向它们. 
+但是,就v本身而言,用处不大. 因为v的elem指针并没有指向任何东西. 为了让它变得有用, 我们必须给出一些元素,另v指向它们.
 
 ```cpp title="构造函数"
 void vector_init(Vector& v,int s){
@@ -29,14 +29,14 @@ void vector_init(Vector& v,int s){
 }
 ```
 
-也就是说，v的elem成员被赋予了一个由new运算符生成的指针。而v的size成员则得到了元素的数目。Vector&中的&指出,我们是通过非const引用方式传递v的。这样vector_init()就能修改传给他的向量了。new运算符从一块名为自由存储(又称为动态内存或堆)的区域中分配内存。在自由存储中分配的对象独立于它创建时所处的作用域，会一直存活到使用delete运算符销毁它为止。 
+也就是说，v的elem成员被赋予了一个由new运算符生成的指针。而v的size成员则得到了元素的数目。Vector&中的&指出,我们是通过非const引用方式传递v的。这样vector_init()就能修改传给他的向量了。new运算符从一块名为自由存储(又称为动态内存或堆)的区域中分配内存。在自由存储中分配的对象独立于它创建时所处的作用域，会一直存活到使用delete运算符销毁它为止。
 
 ```cpp title="从cin读入s个整数,然后返回这些整数的和,假定s是正的"
 double read_and_sum(int s){
     Vector v;
     vector_init(v,s);
 
-    for(int i=0;i!= s;++i) 
+    for(int i=0;i!= s;++i)
         cin >> v.elem[i];
 
     double sum = 0;
@@ -46,14 +46,111 @@ double read_and_sum(int s){
 }
 ```
 
-> 我们自写的和标准库vector有很大差距.所以不要试图重写vector和string等标准库组件. 直接使用它们更加明智. 
+> 我们自写的和标准库vector有很大差距.所以不要试图重写vector和string等标准库组件. 直接使用它们更加明智.
 
-我们可以通过名字或引用访问struct成员,此时使用`.`,也可以通过指针访问struct成员,此时使用`->`. 
+我们可以通过名字或引用访问struct成员,此时使用`.`,也可以通过指针访问struct成员,此时使用`->`.
 
 ## class
 
+```cpp title="vector类"
+class Vector{
+public:
+    Vector(int s):elem{new double[s]},size{s}{} //构造一个Vector
+    double& operator[](int i){return elem[i];} //使用下表访问元素
+    int get_size(){return size}
+private:
+    double* elem;
+    int size;
+};
+
+Vector var(6); 该对象含有6个元素
+
+```
 
 ## union
 
+联合是一种特殊的struct,它的所有成员被分配在同一块内存区域中,因此联合实际占用的空间就是它最大的成员所占的空间. 自然在某个时刻,一个union中只能保存一个成员的值.
+
+```cpp title="union保存"
+enum Type {ptr,num}; // 一个Type可以保存值的ptr和num
+struct Entry{
+    string name; // string是一个标准库类型
+    Type t; 
+    Node* p;//如果t==ptr, 则使用ps
+    int i;//如果t==num,则使用i
+};
+
+void f(Entry* pe){
+    if(pe -> t == num){
+        cout << pe -> i;
+    } 
+};
+```
+
+因为p和i永远不会同时使用,所以浪费了内存空间.通过将两者定义为一个union成员,可以很容易的解决问题
+
+
+```cpp title="union"
+union Value{
+    Node* p;
+    int i;
+};
+```
+C++不会记录一个union保存了那种值,因此程序员必须自己做这个工作:
+```cpp title="union和结构"
+struct Entry {
+    string name;
+    Type t;
+    Value v;
+};
+
+void f(Entry* entry){
+    if(pe->t == num)
+        cout << pe -> v.i;
+}
+```
+
+维护类型域(type field,在本例中是t)与union中所存类型的对应关系很容易出错. 为了避免错误,我们可以强制这种对应关系:将联合和类型域分装在一个类中,只允许通过能正确使用联合的成员函数来访问他们. 在应用层面上,以来这种标记联合(tagged union)的抽象很常见也很有用. 我们应该尽量少的使用裸的union. 
+
+在大多数情况下我们可以使用标准库类型variant来避免直接使用union. 一个variant保存一组可选类型中一个类型的值. 例如一个`variant<Node*,int>`可以保存一个Node*或者一个int.
+
+使用variant,Entry的例子可改写为:
+```cpp title="variant"
+struct Entry {
+    string name;
+    variant<Node*,int> v;
+};
+
+void f(Entry* entry){
+    if(holds_alternative<int>(pe->v)) //*pe保存一个int吗
+    cout << get<int>(pe->v); //获取一个int
+}
+
+```
+
 
 ## enum
+
+c++还提供了一种形式简单的自定义类型:enum
+```cpp title="enum"
+enum class Color {red,blue,green,yellow};
+enum class Traffic_light {green,yellow,red};
+
+Color col = Color::red;
+Traffic_light traffic = Traffic_light::red;
+```
+
+枚举值位于enum class的作用域之内, 因此我们可以在不同的enum class中重复使用这些枚举值而不至于引起混淆. 例如Color::red和Traffic_light::red显然不是一个东西
+
+```cpp title="初始化和赋值"
+Color x = red; //wrong! which red?
+Color y = Traffic_light::red; // wrong! this red is not that red;
+Color z = Color::red; // correct!
+
+int i = Color::red; // wrong!
+
+Color c = 2; // wrong! 2 is not a Color
+Color x = Color{5}; // correct! but a little verbose
+Color y {6}; // correct!
+```
+

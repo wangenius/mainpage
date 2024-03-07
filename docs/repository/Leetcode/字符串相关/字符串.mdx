@@ -20,3 +20,86 @@ int lengthOfLastWord(string s) {
     return len;
 }
 ```
+## 二进制求和
+
+给你两个二进制字符串 a 和 b ，以二进制字符串的形式返回它们的和。
+
+ 
+
+```
+示例 1：
+输入:a = "11", b = "1"
+输出："100"
+
+示例 2：
+输入：a = "1010", b = "1011"
+输出："10101"
+```
+
+```cpp title="二进制求和"
+string addBinary(string a, string b)
+{
+    int pa = a.size() - 1;
+    int pb = b.size() - 1;
+    int size = pb > pa ? b.size() + 1 : a.size() + 1;
+    int pout = size - 1;
+    string out(size,'0');
+    int c = 0;
+    while (pa >= 0 && pb >= 0)
+    {
+        if (a[pa] - '0' + b[pb] - '0' + c == 2)
+        {
+            out[pout] = '0';
+            c = 1;
+        }
+        else if(a[pa] - '0' + b[pb] - '0' + c == 3){
+            out[pout] = '1';
+            c = 1;
+        }
+        else
+        {
+            out[pout] = a[pa] - '0' + b[pb] - '0' + c + '0';
+            c = 0;
+        }
+        --pa, --pb, --pout;
+    }
+
+    while (pa >= 0)
+    {
+        if (a[pa] - '0' + c == 2)
+        {
+            out[pout] = '0';
+            c = 1;
+        }
+        else
+        {
+            out[pout] = a[pa] - '0' + c + '0';
+            c = 0;
+        }
+        --pa, --pout;
+    }
+    while (pb >= 0)
+    {
+        if (b[pb] - '0' + c == 2)
+        {
+            out[pout] = '0';
+            c = 1;
+        }
+        else
+        {
+            out[pout] = b[pb] - '0' + c + '0';
+            c = 0;
+        }
+        --pb, --pout;
+    }
+
+    if(c == 1)
+    {
+        out[0] = '1';
+        return out;
+    }
+    else {
+        return out.substr(1, size - 1);
+    }
+}
+```

@@ -1,0 +1,82 @@
+---
+title : 查找法
+sidebar_position : 1
+slug : 查找法
+---
+# 查找法
+
+
+## 二分查找法
+给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+
+请必须使用时间复杂度为 O(log n) 的算法。
+
+```cpp title="self"
+using namespace std;
+#include <algorithm>
+#include <array>
+#include <bitset>
+#include <climits>
+#include <deque>
+#include <functional>
+#include <iostream>
+#include <list>
+#include <queue>
+#include <stack>
+#include <tuple>
+#include <unordered_map>
+#include <unordered_set>
+#include <utility>
+#include <vector>
+
+class Solution
+{
+public:
+    int searchInsert(vector<int> &nums, int target)
+    {
+        int right = nums.size() - 1;
+        int left = 0;
+        int n = (left + right) / 2;
+        while (left < right)
+        {
+            if (left == right - 1) break;
+            if (nums[n] > target)
+                right = n;
+            if (nums[n] < target)
+                left = n;
+            n = (left + right) / 2;
+            if (nums[n] == target)
+                return n;
+        }
+        if (nums[right] == target)
+            return right;
+        if (nums[left] == target)
+            return left;
+        if (nums[right] < target)
+            return right + 1;
+        if (nums[left] > target)
+            return left;
+        return left + 1;
+    }
+};
+```
+
+
+```cpp title="simple"
+int searchInsert(vector<int> &nums, int target)
+{
+    int left=-1,right=nums.size(); //left和right直接将扩展下标全部包含进来
+    while(left + 1!=right) //如果left并不相邻
+    {
+        int mid=(left+right)/2; //取中间值
+        if(nums[mid]>=target) //中间值大于等于查询值，则右指针左移到中间指针
+            right=mid;
+        else 
+            left=mid; //否则左指针右移到中间指针。
+        //此时可以知道right一定在最后可以成为结果位置。因为left和right指针最后一定相邻，且n指针一定和left指针重合。
+        //left指针指向不会和target相等，故不管是插入位置还是相等位置，都是right指针位置
+    }
+    return right;
+
+}
+```

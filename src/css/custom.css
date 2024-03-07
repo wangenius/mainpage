@@ -1,16 +1,4 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-@font-face {
-  font-family: "normals";
-  src: url("@/css/font/常规.otf");
-}
-@font-face {
-  font-family: "baloo";
-  src: url("@/css/font/BalooTamma-Regular.ttf");
-}
 @font-face {
   font-family: "fira";
   src: url("@/css/font/FiraCode-Regular.ttf");
@@ -30,22 +18,6 @@
 @font-face {
   font-family: "code";
   src: url("@/css/font/CascadiaCode.ttf");
-}
-@font-face {
-  font-family: "cascadia";
-  src: url("@/css/font/CascadiaMono.ttf");
-}
-@font-face {
-  font-family: "Apahal";
-  src: url("@/css/font/Apahal.ttf");
-}
-@font-face {
-  font-family: "Courages";
-  src: url("@/css/font/Boiling.ttf");
-}
-@font-face {
-  font-family: "db";
-  src: url("@/css/font/20db.otf");
 }
 /* font */
 /* hover background color */
@@ -72,34 +44,45 @@
 .markdown > h4 {
   font-size: 1.2rem;
 }
+.markdown > p {
+  text-align: justify;
+}
 .markdown > p,
 .markdown li {
   letter-spacing: 0.5px;
   line-height: 2rem;
   font-size: 1rem;
   margin: 6px 0;
-  color: #3d3d3d;
+  color: #505050;
 }
 .markdown > p a,
 .markdown li a {
-  color: #f09e24;
+  color: #0e41ad;
+  position: relative;
+  text-decoration: none;
 }
 .markdown > p a::after,
 .markdown li a::after {
-  content: "]";
-  font-family: normals;
-  font-weight: 500;
-  padding-left: 5px;
+  content: "";
+  background: rgba(14, 65, 173, 0.3);
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  z-index: -1;
+  transition: 100ms ease-in-out all;
 }
-.markdown > p a::before,
-.markdown li a::before {
-  content: "[";
-  font-family: normals;
-  font-weight: 500;
-  padding-right: 5px;
+.markdown > p a:hover:after,
+.markdown li a:hover:after {
+  background: rgba(14, 65, 173, 0.1);
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 100%;
 }
 .markdown code {
-  font-family: code;
+  font-family: fira;
   font-size: small;
   background-color: rgba(202, 202, 214, 0.3215686275);
   border: none;
@@ -182,6 +165,11 @@
 .markdown img:hover {
   border: 1px solid #838a92;
 }
+.markdown > p > img {
+  margin: 0 auto;
+  display: block;
+  padding: 8px;
+}
 .markdown ol {
   list-style: decimal;
   margin-left: 0;
@@ -213,6 +201,9 @@ table {
   margin: 0 auto;
   width: -moz-fit-content;
   width: fit-content;
+  min-width: 900px;
+  display: flex;
+  justify-content: center;
 }
 .docusaurus-mermaid-container polygon,
 .docusaurus-mermaid-container rect,
@@ -245,14 +236,17 @@ table {
   stroke: #83ac87 !important;
 }
 
-@font-face {
-  font-family: "normals";
-  src: url("@/css/font/常规.otf");
+.hash-link {
+  color: #000000;
 }
-@font-face {
-  font-family: "baloo";
-  src: url("@/css/font/BalooTamma-Regular.ttf");
+.hash-link:hover {
+  color: #000000;
 }
+
+.theme-admonition p {
+  margin: 0;
+}
+
 @font-face {
   font-family: "fira";
   src: url("@/css/font/FiraCode-Regular.ttf");
@@ -273,22 +267,6 @@ table {
   font-family: "code";
   src: url("@/css/font/CascadiaCode.ttf");
 }
-@font-face {
-  font-family: "cascadia";
-  src: url("@/css/font/CascadiaMono.ttf");
-}
-@font-face {
-  font-family: "Apahal";
-  src: url("@/css/font/Apahal.ttf");
-}
-@font-face {
-  font-family: "Courages";
-  src: url("@/css/font/Boiling.ttf");
-}
-@font-face {
-  font-family: "db";
-  src: url("@/css/font/20db.otf");
-}
 /* font */
 /* hover background color */
 /**
@@ -303,13 +281,18 @@ table {
   font-display: swap;
 }
 
+/* scrollbar */
+body::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   --ifm-menu-link-sublist-icon: url("/static/img/expand.svg");
-  --ifm-footer-background-color:#000 !important;
+  --ifm-footer-background-color: #000 !important;
 }
 
 .footer--dark {
-  --ifm-footer-background-color:#000 !important;
+  --ifm-footer-background-color: #000 !important;
 }
 
 /***
@@ -490,11 +473,6 @@ aside nav > ul a.menu__list-item-collapsible .menu__link--sublist.menu__link--ac
   background-color: transparent !important;
 }
 
-/* scrollbar */
-::-webkit-scrollbar {
-  display: none;
-}
-
 /** docs */
 main article .theme-edit-this-page {
   padding: 10px;
@@ -561,7 +539,7 @@ footer .footer__link-item {
   color: #bebebe;
 }
 footer .footer__link-item:hover {
-  color: #ffffff;
+  color: #ffab2e;
 }
 
 /* toc */

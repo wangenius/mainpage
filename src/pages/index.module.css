@@ -1,14 +1,4 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-@font-face {
-  font-family: "normals";
-  src: url("@/css/font/常规.otf");
-}
-@font-face {
-  font-family: "baloo";
-  src: url("@/css/font/BalooTamma-Regular.ttf");
-}
 @font-face {
   font-family: "fira";
   src: url("@/css/font/FiraCode-Regular.ttf");
@@ -28,22 +18,6 @@
 @font-face {
   font-family: "code";
   src: url("@/css/font/CascadiaCode.ttf");
-}
-@font-face {
-  font-family: "cascadia";
-  src: url("@/css/font/CascadiaMono.ttf");
-}
-@font-face {
-  font-family: "Apahal";
-  src: url("@/css/font/Apahal.ttf");
-}
-@font-face {
-  font-family: "Courages";
-  src: url("@/css/font/Boiling.ttf");
-}
-@font-face {
-  font-family: "db";
-  src: url("@/css/font/20db.otf");
 }
 /* font */
 /* hover background color */

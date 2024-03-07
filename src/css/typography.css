@@ -1,17 +1,8 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
-@font-face {
-  font-family: "normals";
-  src: url("@/css/font/常规.otf");
-}
-@font-face {
-  font-family: "baloo";
-  src: url("@/css/font/BalooTamma-Regular.ttf");
-}
 @font-face {
   font-family: "fira";
   src: url("@/css/font/FiraCode-Regular.ttf");
+  font-display: swap;
 }
 @font-face {
   font-family: "gothic";
@@ -28,22 +19,6 @@
 @font-face {
   font-family: "code";
   src: url("@/css/font/CascadiaCode.ttf");
-}
-@font-face {
-  font-family: "cascadia";
-  src: url("@/css/font/CascadiaMono.ttf");
-}
-@font-face {
-  font-family: "Apahal";
-  src: url("@/css/font/Apahal.ttf");
-}
-@font-face {
-  font-family: "Courages";
-  src: url("@/css/font/Boiling.ttf");
-}
-@font-face {
-  font-family: "db";
-  src: url("@/css/font/20db.otf");
 }
 /* font */
 /* hover background color */
@@ -70,6 +45,9 @@
 .markdown > h4 {
   font-size: 1.2rem;
 }
+.markdown > p {
+  text-align: justify;
+}
 .markdown > p,
 .markdown li {
   letter-spacing: 0.5px;
@@ -80,14 +58,14 @@
 }
 .markdown > p a,
 .markdown li a {
-  color: #753d08;
+  color: #0e41ad;
   position: relative;
   text-decoration: none;
 }
 .markdown > p a::after,
 .markdown li a::after {
   content: "";
-  background: rgba(117, 61, 8, 0.3);
+  background: rgba(14, 65, 173, 0.3);
   position: absolute;
   left: 0;
   bottom: -1px;
@@ -98,7 +76,7 @@
 }
 .markdown > p a:hover:after,
 .markdown li a:hover:after {
-  background: rgba(117, 61, 8, 0.1);
+  background: rgba(14, 65, 173, 0.1);
   left: 0;
   bottom: -2px;
   width: 100%;
@@ -188,6 +166,11 @@
 .markdown img:hover {
   border: 1px solid #838a92;
 }
+.markdown > p > img {
+  margin: 0 auto;
+  display: block;
+  padding: 8px;
+}
 .markdown ol {
   list-style: decimal;
   margin-left: 0;
@@ -259,4 +242,8 @@ table {
 }
 .hash-link:hover {
   color: #000000;
+}
+
+.theme-admonition p {
+  margin: 0;
 }/*# sourceMappingURL=typography.css.map */

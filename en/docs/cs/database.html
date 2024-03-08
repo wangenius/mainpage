@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-cs/database/database" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.1.1">
+<title data-rh="true">数据库 | Panovista</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://wangenius.github.io/en/docs/cs/database"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="数据库 | Panovista"><meta data-rh="true" name="description" content="数据库是以电子方式存储的系统数据集合。它可以包含任何类型的数据，包括文字、数字、图像、视频和文件。您可以使用称为数据库管理系统 (DBMS) 的软件来存储、检索和编辑数据。在计算机系统中，“数据库” 一词也可以指任何 DBMS、数据库系统或与数据库关联的应用程序。"><meta data-rh="true" property="og:description" content="数据库是以电子方式存储的系统数据集合。它可以包含任何类型的数据，包括文字、数字、图像、视频和文件。您可以使用称为数据库管理系统 (DBMS) 的软件来存储、检索和编辑数据。在计算机系统中，“数据库” 一词也可以指任何 DBMS、数据库系统或与数据库关联的应用程序。"><link data-rh="true" rel="icon" href="/en/img/panovista.svg"><link data-rh="true" rel="canonical" href="https://wangenius.github.io/en/docs/cs/database"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/en/docs/cs/database" hreflang="en"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/docs/cs/database" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/docs/cs/database" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/en/blog/rss.xml" title="Panovista RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/en/blog/atom.xml" title="Panovista Atom Feed">
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/en/assets/css/styles.7cd0c6ef.css">
+<script src="/en/assets/js/runtime~main.d1849786.js" defer="defer"></script>
+<script src="/en/assets/js/main.ce1ffe02.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top navbarHideable_m1mJ"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/en/"><div class="navbar__logo"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">panovista</b></a></div><div class="navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">算法</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/algorithm/dsa/data_structure">DSA</a></li><li><a class="dropdown__link" href="/en/docs/algorithm/leetcode/字符串相关/公共字段">leetcode刷题</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">计算机原理</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/cs/computer_sciences/编码系统">组成原理</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/en/docs/cs/database/SQL">数据库</a></li><li><a class="dropdown__link" href="/en/docs/cs/os/overview">操作系统</a></li><li><a class="dropdown__link" href="/en/docs/cs/web/LAN和以太网">计算机网络</a></li><li><a class="dropdown__link" href="/en/docs/other/git/安装和设置">Git</a></li><li><a class="dropdown__link" href="/en/docs/cs/software_industrials/生命周期模型">软件工程</a></li><li><a class="dropdown__link" href="/en/docs/other/tools/scoop">工具和工作流</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">语言</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/language/cpp/Grammar">C++</a></li><li><a class="dropdown__link" href="/en/docs/language/python/RhinoPython">Python</a></li><li><a class="dropdown__link" href="/en/docs/language/rust/模块系统">Rust</a></li><li><a class="dropdown__link" href="/en/docs/language/ts/CSS">TypeScript</a></li><li><a class="dropdown__link" href="/en/docs/language/fundamentals_of_compiling/自动机">编译原理</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">更多</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/other/math/space">数学</a></li><li><a class="dropdown__link" href="/en/docs/other/git/安装和设置">git</a></li><li><a class="dropdown__link" href="/en/docs/other/tools/scoop">工具和工作流</a></li><li><a class="dropdown__link" href="/en/docs/other/docker/Docker">docker</a></li></ul></div><a class="navbar__item navbar__link" href="/en/docs/portfolio/overview">作品集</a><a class="navbar__item navbar__link" href="/en/blog">博客</a><a class="navbar__item navbar__link" href="/en/docs/about/致明日的舞">关于</a><a href="https://github.com/wangenius/wangenius.github.io" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd sidebarWithHideableNavbar_wUlq"><a tabindex="-1" class="sidebarLogo_isFc" href="/en/"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"><b>panovista</b></a><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/en/docs/cs/database/SQL">SQL</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/en/docs/cs/database/ER图">ER图</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/en/docs/cs/database/MySQL数据库">MySQL数据库</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/en/docs/cs/database/Mysql">Mysql</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/en/docs/cs/database">数据库</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/en/docs/cs/database/事务">事务</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/en/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">数据库</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><h1>数据库</h1>
+<blockquote>
+<p>数据库是以电子方式存储的系统数据集合。它可以包含任何类型的数据，包括文字、数字、图像、视频和文件。您可以使用称为数据库管理系统 (DBMS) 的软件来存储、检索和编辑数据。在计算机系统中，“数据库” 一词也可以指任何 DBMS、数据库系统或与数据库关联的应用程序。</p>
+</blockquote>
+<div class="theme-admonition theme-admonition-success admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>数据独立性</div><div class="admonitionContent_BuS1"><p>应用程序和数据库中的数据不存在依赖关系。</p><ol>
+<li>
+<p>逻辑独立性：数据库全局逻辑结构发生变化（数据定义的修改，数据之间联系的变更，增加新的数据类型），不影响局部逻辑结构的性质，应用程序不需要修改。</p>
+</li>
+<li>
+<p>物理独立性：数据的存储结构和存取方法发生变更时，数据库的全局逻辑结构和应用程序不必修改。</p>
+</li>
+</ol></div></div>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="数据库对象">数据库对象<a href="#数据库对象" class="hash-link" aria-label="Direct link to 数据库对象" title="Direct link to 数据库对象">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="主要的逻辑数据模型">主要的逻辑数据模型<a href="#主要的逻辑数据模型" class="hash-link" aria-label="Direct link to 主要的逻辑数据模型" title="Direct link to 主要的逻辑数据模型">​</a></h3>
+<ol>
+<li>
+<p>非关系模型：层次模型（树状），网状（多对多）</p>
+</li>
+<li>
+<p>关系模型：表格状：面向对象数据模型，对象关系数据模型，半结构化数据模型。</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="表">表<a href="#表" class="hash-link" aria-label="Direct link to 表" title="Direct link to 表">​</a></h3>
+<p>表是一种结构化的文件，存储在表中的数据是同一种类型的数据或清单。每一个表都有一个唯一的名字。</p>
+<p>表具有一些特性，包括数据在表中如何存储、存储什么样的数据、数据如何分解等。模式描述了表或数据库的这些特性信息。</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="列">列<a href="#列" class="hash-link" aria-label="Direct link to 列" title="Direct link to 列">​</a></h4>
+<p>表由列组成，列是表中的一个<code>字段</code>。使用表存储数据时要正确地将数据分解为多个列。每个列都有相应的<code>数据类型</code>，限定了可存储在该列中地数据种类。</p>
+<blockquote>
+<p>数据类型及其名称的不同是 SQL 不兼容的一个主要原因。</p>
+</blockquote>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="行">行<a href="#行" class="hash-link" aria-label="Direct link to 行" title="Direct link to 行">​</a></h4>
+<p>行是表中的一个<code>记录</code>，表中的数据是按行存储的。</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="主键">主键<a href="#主键" class="hash-link" aria-label="Direct link to 主键" title="Direct link to 主键">​</a></h4>
+<p>表中每一行都应该有一列或几列可以唯一地标识自己，这一列或几列就是表的主键。</p>
+<blockquote>
+<p>表中应该总是有一个主键。</p>
+</blockquote>
+<p>作为主键的列需要满足的条件：</p>
+<ol>
+<li>
+<p>任意两行都不具有相同的主键值</p>
+</li>
+<li>
+<p>每一行都必须有一个主键值（主键列不允许有NULL值）</p>
+</li>
+<li>
+<p>主键列中的值不允许修改或更新</p>
+</li>
+<li>
+<p>主键值不能重用（如果某行从表中删除，它的主键不能赋给以后的新行）</p>
+</li>
+</ol>
+<p>当多个列作为主键时，只需要所有的列值的组合是唯一的，单个列的值可以不唯一。</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="数据库技术">数据库技术<a href="#数据库技术" class="hash-link" aria-label="Direct link to 数据库技术" title="Direct link to 数据库技术">​</a></h2>
+<blockquote>
+<p>数据管理技术经历了人工管理，文件管理，数据库系统3个阶段。</p>
+</blockquote>
+<p>数据库技术应数据管理任务的需要而产生，数据管理则是对数据进行分类，组织，编码，存储，检索，维护。他是数据处理的中心问题。</p>
+<div class="theme-admonition theme-admonition-success admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>文件系统和数据库系统的区别</div><div class="admonitionContent_BuS1"><ol>
+<li>
+<p>数据库系统程序和数据分离，文件系统程序和数据在一起。</p>
+</li>
+<li>
+<p>文件系统用操作系统中的存取方法对数据进行管理，数据库系统用DBMS统一管理和控制数据。</p>
+</li>
+<li>
+<p>文件系统实现以文件为单位的数据共享。数据库系统实现以记录和字段为单位的数据共享</p>
+</li>
+<li>
+<p>数据库系统是在文件系统的基础上发展出来的</p>
+</li>
+</ol></div></div>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="数据库管理系统dbms">数据库管理系统DBMS<a href="#数据库管理系统dbms" class="hash-link" aria-label="Direct link to 数据库管理系统DBMS" title="Direct link to 数据库管理系统DBMS">​</a></h3>
+<p>数据库软件是数据库管理系统（DBMS），数据库是通过 DBMS 创建和操纵的容器。</p>
+<p>RDBMS 指关系型数据库管理系统。RDBMS 是 SQL 的基础，同样也是所有现代数据库系统的基础。</p>
+<p>RDBMS 中的数据存储在被称为表<code>tables</code>的数据库对象中。</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="数据库三级模式结构">数据库三级模式结构<a href="#数据库三级模式结构" class="hash-link" aria-label="Direct link to 数据库三级模式结构" title="Direct link to 数据库三级模式结构">​</a></h3>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="概念模式">概念模式<a href="#概念模式" class="hash-link" aria-label="Direct link to 概念模式" title="Direct link to 概念模式">​</a></h4>
+<p>数据库设计者综合所有用户的数据，按照统一的观点构造的全局逻辑结构，是对数据库中全部数据的逻辑结构和特征的总体描述，是所有用户的公共数据视图。由数据库管理系统提供的数据模式描述语言来描述、定义的，体现反映了数据库系统的整体观。</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="外模式用户模式">外模式：用户模式<a href="#外模式用户模式" class="hash-link" aria-label="Direct link to 外模式：用户模式" title="Direct link to 外模式：用户模式">​</a></h4>
+<p>对应用户级。某个或某几个用户所看到的数据库的数据视图。是与某一应用有关的数据的逻辑表示。外模式是从概念模式导出的一个子集，包含模式中允许特定用户使用的那部分数据。</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="内模式存储模式">内模式：存储模式<a href="#内模式存储模式" class="hash-link" aria-label="Direct link to 内模式：存储模式" title="Direct link to 内模式：存储模式">​</a></h4>
+<p>对应物理级。</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="数据冗余">数据冗余<a href="#数据冗余" class="hash-link" aria-label="Direct link to 数据冗余" title="Direct link to 数据冗余">​</a></h3>
+<p>同一数据存储在不同数据文件中的现象。</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="关系模型">关系模型<a href="#关系模型" class="hash-link" aria-label="Direct link to 关系模型" title="Direct link to 关系  模型">​</a></h3>
+<p>关系模型由关系数据结构，关系操作集合和关系完整性约束三部分组成。</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="关系">关系<a href="#关系" class="hash-link" aria-label="Direct link to 关系" title="Direct link to 关系">​</a></h4>
+<p>在用户看来关系模型中的数据的逻辑结构是一张扁平的二维表</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="元组">元组<a href="#元组" class="hash-link" aria-label="Direct link to 元组" title="Direct link to 元组">​</a></h4>
+<p>二维表中具有相同数据类型的一行</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="域">域<a href="#域" class="hash-link" aria-label="Direct link to 域" title="Direct link to 域">​</a></h4>
+<p>二维表中具有相同数据类型的某一列</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="笛卡尔积">笛卡尔积<a href="#笛卡尔积" class="hash-link" aria-label="Direct link to 笛卡尔积" title="Direct link to 笛卡尔积">​</a></h4>
+<p>两个集合X，Y的笛卡尔积<code>Cartesian product</code>，又称直积，表示为X×Y，第一个对象是X的成员而第二个对象是Y的所有可能有序对的其中一个成员。</p>
+<p>例如：X={A,B},Y={C,D}</p>
+<p>X • Y={(A,C),(A,D),(B,C),(B,D)}</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="候选码">候选码<a href="#候选码" class="hash-link" aria-label="Direct link to 候选码" title="Direct link to 候选码">​</a></h3>
+<p>一个关系中的某一个属性能够标识一个元组，该属性组叫候选码。多候选码选择一个作为该关系的主键。</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="关系操作">关系操作<a href="#关系操作" class="hash-link" aria-label="Direct link to 关系操作" title="Direct link to 关系操作">​</a></h3>
+<ol>
+<li>
+<p>select</p>
+</li>
+<li>
+<p>project</p>
+</li>
+<li>
+<p>join</p>
+</li>
+<li>
+<p>divide</p>
+</li>
+<li>
+<p>union</p>
+</li>
+<li>
+<p>intersection</p>
+</li>
+<li>
+<p>difference</p>
+</li>
+<li>
+<p>cartesian product</p>
+</li>
+<li>
+<p>query</p>
+</li>
+<li>
+<p>insert</p>
+</li>
+<li>
+<p>delete</p>
+</li>
+<li>
+<p>update</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="数据库中存储过程函数触发器的区别">数据库中存储过程、函数、触发器的区别<a href="#数据库中存储过程函数触发器的区别" class="hash-link" aria-label="Direct link to 数据库中存储过程、函数、触发器的区别" title="Direct link to 数据库中存储过程、函数、触发器的区别">​</a></h2>
+<p>//todo</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/wangenius/wangenius.github.io/tree/master/docs/cs/database/database.mdx" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/en/docs/cs/database/Mysql"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Mysql</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/en/docs/cs/database/事务"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">事务</div></a></nav></div><div>Loading Comments...</div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#数据库对象" class="table-of-contents__link toc-highlight">数据库对象</a><ul><li><a href="#主要的逻辑数据模型" class="table-of-contents__link toc-highlight">主要的逻辑数据模型</a></li><li><a href="#表" class="table-of-contents__link toc-highlight">表</a></li></ul></li><li><a href="#数据库技术" class="table-of-contents__link toc-highlight">数据库技术</a><ul><li><a href="#数据库管理系统dbms" class="table-of-contents__link toc-highlight">数据库管理系统DBMS</a></li><li><a href="#数据库三级模式结构" class="table-of-contents__link toc-highlight">数据库三级模式结构</a></li><li><a href="#数据冗余" class="table-of-contents__link toc-highlight">数据冗余</a></li><li><a href="#关系模型" class="table-of-contents__link toc-highlight">关系模型</a></li><li><a href="#候选码" class="table-of-contents__link toc-highlight">候选码</a></li><li><a href="#关系操作" class="table-of-contents__link toc-highlight">关系操作</a></li></ul></li><li><a href="#数据库中存储过程函数触发器的区别" class="table-of-contents__link toc-highlight">数据库中存储过程、函数、触发器的区别</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">知识库</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/en/docs/about/致明日的舞">致明日的舞</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/cs/os/overview">操作系统基础</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/algorithm/dsa">算法和数据结构</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/language/rust">Rust</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/cs/database">数据库</a></li></ul></div><div class="col footer__col"><div class="footer__title">社区</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://weibo.com/u/6320492937" target="_blank" rel="noopener noreferrer" class="footer__link-item">微博<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://space.bilibili.com/247967944" target="_blank" rel="noopener noreferrer" class="footer__link-item">bilibili<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.zhihu.com/people/wangenius" target="_blank" rel="noopener noreferrer" class="footer__link-item">知乎<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/wangenius" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">更多</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/en/docs/about/关于我">关于我</a></li><li class="footer__item"><a class="footer__link-item" href="/en/blog">博客</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/about/项目计划">项目计划</a></li><li class="footer__item"><a href="https://github.com/wangenius/wangenius.github.io/discussions" target="_blank" rel="noopener noreferrer" class="footer__link-item">讨论<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/wangenius/wangenius.github.io/issues" target="_blank" rel="noopener noreferrer" class="footer__link-item">FAQ<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 吕麓弥章, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

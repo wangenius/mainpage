@@ -125,11 +125,11 @@ const theme = {
       {
         type: "dropdown",
         position: "right",
-        label: "算法",
+        label: "DSA",
         items:[  {
           type: "docSidebar",
-          sidebarId: "dsa",
-          label: "DSA",
+          sidebarId: "ds",
+          label: "数据结构",
         },
           {
             type: "docSidebar",
@@ -281,16 +281,16 @@ const theme = {
             to: "/docs/cs/os/overview",
           }, {
             label: "算法和数据结构",
-            to: "/docs/dsa/overview",
+            to: "/docs/dsa/ds/overviews",
           },
           {
             label: "Rust",
-            to: "/docs/lang/rust",
+            to: "/docs/lang/rust/overview",
           },
          
           {
             label: "数据库",
-            to: "/docs/cs/db",
+            to: "/docs/cs/db/overview",
           },
          
         ],

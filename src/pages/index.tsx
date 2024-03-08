@@ -38,7 +38,7 @@ function HomepageHeader() {
           </p>
         </div>
         <div className={styles.buttons}>
-          <Link to="/docs/portfolio/overview">作品集</Link>
+          <Link to="/docs/opus/overview">作品集</Link>
           <Link to="/blog">博客</Link>
         </div>
       </div>

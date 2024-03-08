@@ -5,7 +5,9 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import path from 'path';
 
-
+/**
+ * 主题 
+ */
 const prism = {
   ...prismThemes.github,
   styles: [
@@ -144,12 +146,12 @@ const theme = {
         items:[
           {
             type: "docSidebar",
-            sidebarId: "computer_sciences",
+            sidebarId: "co",
             label: "组成原理"
           },
           {
             type: "docSidebar",
-            sidebarId: "database",
+            sidebarId: "db",
             label: "数据库"
           },
           {
@@ -169,7 +171,7 @@ const theme = {
           },
            {
             type: "docSidebar",
-            sidebarId: "software_industrials",
+            sidebarId: "si",
             label: "软件工程"
           },
            {
@@ -207,7 +209,7 @@ const theme = {
           },
           {
             type: "docSidebar",
-            sidebarId: "fundamentals_of_compiling",
+            sidebarId: "compile",
             label: "编译原理"
           },
        
@@ -243,7 +245,7 @@ const theme = {
       {
         type: 'docSidebar',
         position: 'right',
-        sidebarId: 'portfolio',
+        sidebarId: 'opus',
         label: '作品集',
       },
       { to: "/blog", label: "博客", position: "right" },
@@ -279,16 +281,16 @@ const theme = {
             to: "/docs/cs/os/overview",
           }, {
             label: "算法和数据结构",
-            to: "/docs/algorithm/dsa",
+            to: "/docs/dsa/overview",
           },
           {
             label: "Rust",
-            to: "/docs/language/rust",
+            to: "/docs/lang/rust",
           },
          
           {
             label: "数据库",
-            to: "/docs/cs/database",
+            to: "/docs/cs/db",
           },
          
         ],

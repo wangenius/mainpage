@@ -121,10 +121,124 @@ const theme = {
     hideOnScroll:true,
     items: [
       {
-        type: "docSidebar",
-        sidebarId: "repository",
+        type: "dropdown",
         position: "right",
-        label: "知识库"
+        label: "算法",
+        items:[  {
+          type: "docSidebar",
+          sidebarId: "dsa",
+          label: "DSA",
+        },
+          {
+            type: "docSidebar",
+            sidebarId: "leetcode",
+            label: "leetcode刷题",
+          },
+        
+        ]
+      },
+      {
+        type: "dropdown",
+        label:"计算机原理",
+        position:"right",
+        items:[
+          {
+            type: "docSidebar",
+            sidebarId: "computer_sciences",
+            label: "组成原理"
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "database",
+            label: "数据库"
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "os",
+            label: "操作系统"
+          },
+           {
+            type: "docSidebar",
+            sidebarId: "web",
+            label: "计算机网络"
+          },
+           {
+            type: "docSidebar",
+            sidebarId: "git",
+            label: "Git"
+          },
+           {
+            type: "docSidebar",
+            sidebarId: "software_industrials",
+            label: "软件工程"
+          },
+           {
+            type: "docSidebar",
+            sidebarId: "tools",
+            label: "工具和工作流"
+          },
+     
+        ]
+      },
+      {
+        type: "dropdown",
+        label:"语言",
+        position:"right",
+        items:[
+          {
+            type: "docSidebar",
+            sidebarId: "cpp",
+            label: "C++"
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "python",
+            label: "Python"
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "rust",
+            label: "Rust"
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "ts",
+            label: "TypeScript"
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "fundamentals_of_compiling",
+            label: "编译原理"
+          },
+       
+        ]
+      },
+      {
+        type: "dropdown",
+        position: "right",
+        label:"更多",
+        items:[
+          {
+            type: "docSidebar",
+            sidebarId: "math",
+            label: "数学"
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "git",
+            label: "git"
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "tools",
+            label: "工具和工作流"
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "docker",
+            label: "docker"
+          },
+        ]
       },
       {
         type: 'docSidebar',
@@ -133,7 +247,13 @@ const theme = {
         label: '作品集',
       },
       { to: "/blog", label: "博客", position: "right" },
+      
       {
+        type: 'docSidebar',
+        position: 'right',
+        sidebarId: 'about',
+        label: '关于',
+      },  {
         href: "https://github.com/wangenius/wangenius.github.io",
         label: "GitHub",
         position: "right",
@@ -153,22 +273,22 @@ const theme = {
         items: [
           {
             label: "致明日的舞",
-            to: "/docs/repository/致明日的舞",
+            to: "/docs/about/致明日的舞",
           }, {
             label: "操作系统基础",
-            to: "/docs/repository/操作系统基础",
+            to: "/docs/cs/os/overview",
           }, {
             label: "算法和数据结构",
-            to: "/docs/repository/算法和数据结构",
+            to: "/docs/algorithm/dsa",
           },
           {
             label: "Rust",
-            to: "/docs/repository/rust",
+            to: "/docs/language/rust",
           },
          
           {
             label: "数据库",
-            to: "/docs/repository/数据库",
+            to: "/docs/cs/database",
           },
          
         ],
@@ -199,7 +319,7 @@ const theme = {
         items: [
           {
             label: "关于我",
-            to: "/docs/repository/关于我",
+            to: "/docs/about/关于我",
           },
           {
             label: "博客",
@@ -207,7 +327,7 @@ const theme = {
           },
           {
             label: "项目计划",
-            to: "/docs/repository/项目计划",
+            to: "/docs/about/项目计划",
           },
           {
             label: "讨论",

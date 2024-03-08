@@ -38,6 +38,16 @@ navbar
   font-weight: 400;
 }
 
+@mixin navbarItem {
+  color: unset;
+  font-family: $font_nav_item;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-right: 5px;
+  border-bottom: 2px solid transparent;
+  text-transform: capitalize;
+}
+
 .navbar {
   box-shadow: none;
   position: relative;
@@ -46,17 +56,53 @@ navbar
     @include title();
   }
   .navbar__item.navbar__link {
-    color: unset;
-    font-family: $font_nav_item;
-    font-size: 0.9rem;
-    font-weight: 400;
-    margin-right: 5px;
-    border-bottom: 2px solid transparent;
+    @include navbarItem();
+
+  }
+  .navbar__item.dropdown {
+    @include navbarItem();
+  
+    .navbar__link{
+      position: relative;
+
+      padding-right: 20px;
+      &::after{
+        content: url(/static/img/down.svg);
+        border: none;
+        font-family: $font_title;
+        position: absolute;
+        top: 15px;
+        right: 0;
+        display: block;
+      
+   
+        
+      }
+    }
+    &:hover{
+      .navbar__link{
+        color:$color_primary;
+     
+      }
+    
+    }
   }
   .navbar__link--active {
     border-bottom: 2px solid $color_primary !important;
   }
+
+  .dropdown__menu{
+    box-shadow: none;
+    border: $border;
+    padding: 5px;
+  }
+
+  .dropdown__link.dropdown__link--active{
+    color:$color_primary;
+  }
+
 }
+
 
 .plugin-docs {
   .navbar {
@@ -92,6 +138,8 @@ sidebar
   font-family: $font_mainText;
   color: $color_navItem;
   position: relative;
+  text-transform: capitalize;
+
   &::before {
     content: "";
     width: 3px;

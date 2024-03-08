@@ -280,8 +280,8 @@ const theme = {
             label: "操作系统基础",
             to: "/docs/cs/os/overview",
           }, {
-            label: "算法和数据结构",
-            to: "/docs/dsa/ds/overviews",
+            label: "数据结构",
+            to: "/docs/dsa/ds/overview",
           },
           {
             label: "Rust",

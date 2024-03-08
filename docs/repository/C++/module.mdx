@@ -5,13 +5,163 @@ slug : module
 ---
 # module
 
+一个C程序包含许多独立开发的部分，例如函数，用户自定义类型，类层次和模板。其管理的关键就是清晰的定义。这些组成部分之间的交互。第一步也是最重要的一步是将每一个部分的接口和实现分离开来。在语言层面，C使用声明来表达接口。声明Declaration指明了使用一个函数或者一个类型所需要的东西。
+
+```cpp title="declaration"
+double sqrt(double);
+
+class Vector {
+public:
+    Vector(int s);
+    double& operator[](int i);
+    int size();
+private:
+    double* elem;
+    int sz;
+};
+```
+
+这里的关键点是函数体，即函数的定义是位于别处的. 我们可能也想让Vector的表示位于别处, 不过稍后将在对此进行介绍. 
+
+定义:
+
+```cpp title="definition"
+Vector::Vector(int x):elem{new double[x]},sz{x}{}
+double& Vector::operator[](int x){return elem[i]}
+int Vector::size(){return sz;}
+```
+
+
 ## 分别编译
 
+C++ 支持一种分别编译的概念. 用户代码只能看见所用类型和函数的声明. 这些类型和函数的定义放置在分离的源文件中,被分别编译. 这种机制有助于将一个程序组织成一组半独立的代码片段。这种分离可以用来最小化编译时间。并严格强制程序中逻辑独立的部分分离开来。库通常是一组分别编译的代码片段，如函数的集合。通常我们将说明模块接口的声明放置在一个文件中。文件名指示出预期用途。
 
-## module
+```cpp title="Vector.h"
+class Vector {
+public:
+    Vector(int s);
+    double& operator[](int i);
+    int size();
+private:
+    double* elem;
+    int sz;
+};
+```
+
+我们称这种文件为头文件`header file`。用户将其包含到自己程序中，以便访问接口。
+
+```cpp title="user.cpp"
+#include "Vector.h"
+double sqrt_sum(){
+
+};
+```
+
+为了帮助编译器确保一致性, 负责提供Vector实现部分的.cpp文件同样应该办好提供接口的.h文件. 
+
+```cpp title="Vector.cpp"
+#include "Vector.h"
+
+Vector::Vector(int x):elem{new double[x]},sz{x}{}
+double& Vector::operator[](int x){return elem[i]}
+int Vector::size(){return sz;}
+```
+
+user.cpp和Vector.cpp中的代码共享Vector.h中提供的接口信息,但这两个文件是相互独立的,可以被分别编译.
+
+```mermaid
+graph LR;
+    A[user.cpp: 使用Vector] --> B[Vector.h:Vector接口];
+    C[Vector.cpp: 定义Vector] --> B;
+```
+
+
+## module(C++20)
+
+使用#include是一种古老的易出错的且代价相当高的程序模块化组织方式。如果你在101个编译单元中使用它。编译器将会处理头文件文本101次。如果你在header2.h之前使用header1.h,则header1.h的声明和宏可能影响header2.h中代码的含义.
+
+```cpp title="Vector.cpp"
+module; //将该编译单元定义为一个模块
+
+export module Vector; // 定义成为Vector的模块
+
+export class Vector{
+public:
+    Vector(int s);
+    double& operator[](int i);
+    int size();
+private:
+    double* elem;
+    int sz;
+};
+
+Vector::Vector(int x):elem{new double[x]},sz{x}{}
+double& Vector::operator[](int x){return elem[i]}
+int Vector::size(){return sz;}
+
+export int size(const Vector& v){
+    return v.size()
+};
+```
+
+Vector模块导出了类Vector及其所有成员函数和非成员函数size. 
+
+```cpp title="使用"
+import Vector;
+#include <cmath> //获取标准库数学函数接口, 包含sqrt()
+
+double sqrt_sum(Vector& v){
+    double sum = 0;
+    for (int i = 0; i < v.size(); ++i) sum += std::sqrt(v[i]);
+    return sum;
+}
+```
+
+> 标准库也可以使用import
+
+头文件和模块的差异不只是在语法上.
+1. 一个模块只会编译一遍
+2. 两个模块可以按任意顺序导入
+3. 如果你将一些东西导入一个模块中,则模块的使用者不会隐式的获得这些东西的访问权(但也不会被他们所困扰): import无传递性
+
+
 
 ## namespace
 
+用来表达某些声明属于一个整体以及他们的名字不会和其他名字发生冲突. 
 
-## error handler
+```cpp title="namespace"
+namespace My_code{
+    class complex{
+        //...
+    };
+    complex sqrt(complex);
+    //...
+    int main();
+}
+
+int My_code::main(){
+    complex z{1,2};
+    auto z2 = sqrt(z);
+    std::cout << "{" << z2.real() <<"," << z2.imag() << std::endl;
+}
+
+int main(){
+    return My_code::main();
+};
+```
+
+将命名空间引入作用域:
+```cpp title="using"
+void my_code(vector<int>& x, vector<int>& y, vector<int>& z){
+    using std::swap;
+    swap(x, y);
+    other::swap(x, y); //其他的某个swap
+}
+
+using namespace std; //获取标准库名字空间的所有名字的访问权
+
+```
+
+
 

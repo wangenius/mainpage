@@ -1,4 +1,11 @@
-```Rust
+---
+title : 泛型
+sidebar_position : 2
+slug : 泛型
+---
+# 泛型
+
+```rust
 fn add<T>(a:T, b:T)->T{ 
     a+b  // 编译会报错，因为不是所有的类型都能相加，需要使用trait对T进行限制,我们称之为特征约束
 }

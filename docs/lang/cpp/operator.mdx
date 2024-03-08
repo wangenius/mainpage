@@ -3,5 +3,240 @@ title : operator
 sidebar_position : 4
 slug : operator
 ---
-# operator
+# 基本操作
 
+某些操作如初始化, 赋值, 拷贝和移动, 语言规则认为它们是基本操作. 会对他们做一些假设. 其他一些操作如`==`或`<<`,则具有常规含义, 如被忽略是很危险的. 
+
+类型的构造函数, 析构函数, 拷贝操作和移动操作在逻辑上有千丝万缕的关系. 它们的定义必须是匹配的,否则就会遇到逻辑或者性能问题. 如果类X的析构函数执行了一些重要任务,比如释放自由存储空间或者释放锁, 则该类很可能需要全套函数:
+
+```cpp title="x"
+class X{
+    public:
+    X(Sometype); //普通构造函数
+    X(); //默认构造函数
+    X(const X&); //拷贝构造函数
+    X(X&&); //移动构造函数
+    X& operator=(const X&);  //拷贝赋值: 清理目标对象并拷贝
+    X& operator=(X&&); //移动赋值: 清理目标对象并移动
+    ~X();
+};
+```
+
+当下面5中情况发生时,对象会被移动或者拷贝
+1. 被赋值给其它对象
+2. 作为对象的初始值
+3. 作为函数的实参
+4. 作为函数的返回值
+5. 作为异常
+
+:::warning 拷贝构造函数和移动构造函数
+这一部分还是比较复杂和难理解的,需要进一步探讨. 此处按下不表. 
+:::
+
+
+## 类型转换
+
+接收单个参数的构造函数定义了从参数类型到类类型的转换. 
+
+例如:
+
+```cpp
+complex z1 = 3.14; //z1 -> {3.14,0.0}
+complex z2 = z1 * 2; //z2 -> z1 * {2.0,0} == {6.28,0.0}
+```
+这种隐式类型转换有时很理想,有时则不然. 例如
+```cpp 
+Vector v = 9; //ok, but it means v has 9 elems.
+```
+避免这种问题的方法是只允许显式类型转换. 
+
+```cpp
+class Vector{
+    public:
+    explicit Vector(int s); //表示禁止int到Vector的隐式类型转换
+};
+
+Vector v1(7); // v1 has 7 elements
+Vector v2 = 7; // v2禁止int到Vector的隐式类型转换
+```
+
+关于类型转换的问题,大多数类型和Vector相似,complex则只能代表一部分,因此除非你有充分的理由,否则最好将接受单个参数的构造函数声明为explicit.
+
+## 成员默认值
+
+```cpp
+class complex{
+    double re = 0;
+    double im = 0;
+    public:
+    complex(double r,double i):re{r},im{i}
+    complex(double r):re{r}{}
+    complex(){}
+};
+```
+如果构造函数未提供值则使用默认值{0,0}
+
+## 拷贝和移动
+
+默认情况下我们可以拷贝对象,不论是用户自定义类型的对象还是内置类型的对象都是如此.
+
+拷贝的默认含义是逐成员的拷贝,即依次复制每个成员:
+
+```cpp
+void test(complex z1){
+    complex z2{z1}; //拷贝初始化
+    complex z3;
+    z3 = z2;  //拷贝赋值
+}
+```
+此时z1,z2,z3具有相同的值. 当设计一个类时, 必须一直考虑对象是否会被拷贝以及如何拷贝的问题. 对于简单的具体类型, 逐成员的拷贝通常就是正确的拷贝语义. 但对于某些复杂的具体类型, 如Vector,逐成员拷贝不是正确的拷贝语义, 而对于抽象类型,几乎总是如此.
+
+### 拷贝容器
+
+当一个类作为资源句柄时,即当这个类对一个通过指针访问的对象负责时,默认的逐成员拷贝通常意味着灾难. 逐成员拷贝会违反资源句柄的不变式. 下面默认拷贝将产生一个与元对象指向相同元素的vector副本:
+
+```cpp
+void bad_copy(Vector v1){
+    Vector v2 = v1; //v1's expression to v2
+    v1[0] = 2; //v2[0] = 2 now!
+    v2[1] = 3; //v1[1] = 3 now!
+}
+```
+
+假设v1包含4个元素,则结果:
+![...](/res/copy_class.png)
+
+幸运的是,Vector具有析构函数这一事实强烈暗示默认的拷贝语义是错误的. 编译器应该至少对此发出警告. 我们为其定义更好的拷贝语义.
+
+类对象的拷贝通过两个成员来定义: 拷贝构造函数和拷贝赋值运算符.
+
+```cpp
+class Vector{
+private:
+    double* elem;
+    int sz;
+public:
+    Vector(int s); //建立不变式获取资源
+    ~Vector(){delete[] elem;}
+    Vector(const Vector& other); // 拷贝构造函数
+    Vector& operator=(const Vector& other); //拷贝赋值运算符
+
+    double& operator[](int i);
+    const double& operator[](int i) const;
+
+    int size() const;
+};
+```
+
+对Vector来说, 拷贝构造函数的正确定义应该首先为指定数量的元素分配空间, 然后把元素拷贝到其中,这样拷贝完成后,每个Vector就拥有自己的元素副本了:
+```cpp
+Vector::Vector(const Vector& other) //拷贝构造函数
+    :elem{new double[a.sz]},//为元素分配空间
+    sz{a.sz}{
+        for(int i=0; i < sz; ++i){ //拷贝元素
+            elem[i] = a.elem[i]
+        }
+    }
+```
+![...](/res/copy_class2.png)
+
+当然,在拷贝构造函数之外我们还需要一个拷贝运算符:
+```cpp title="拷贝赋值运算符"
+Vector& Vector::operator=(const Vector& a){
+    double* p = new double[a.sz];
+    for(int i = 0; i != a.sz; ++i){
+        p[i] = a.elem[i];
+    };
+    delete[] elem;  //删除旧元素
+    elem p;
+    sz = a.sz;
+    return *this;
+}
+```
+
+### 移动容器
+
+//todo
+
+## 资源管理
+
+//todo
+
+## 常规操作
+
+### 比较
+
+相等比较(==或!=)的含义和拷贝紧密相关. 在拷贝之后,副本应该是相等的.
+```cpp
+X a = sth;
+X b = a;
+assert(a==b);
+```
+为了等价的处理 == 这样的二元运算符的两个运算对象, 最好将其定义为类所在名字空间中的独立函数(而非成员函数):
+```cpp
+namespace NX{
+    class X{
+
+    };
+    bool operator==(const X&, const X&);
+};
+```
+### Container Ops
+
+除非有非常充分的理由, 否则我们应该按标准库容器的风格来设计容器. 特别是, 通过容器实现为句柄并为其实现恰当的基本操作来令它是资源安全的.
+
+标准库容器都知道自己的元素数目. 我们可以调用size()来获取.
+```cpp
+for(size_t i = 0; i < c.size(); ++i) //size_t 是标准库size()返回类型的名字
+    c[i] = 0;
+```
+但是标准库算法并不是使用从0到size()的下标来遍历容器, 二是依赖于序列sequence的概念,一个序列是用一对迭代器iterator框定的.
+```cpp
+for(auto p = c.begin(); p!= c.end(); ++p) *p = 0;
+```
+
+这里c.begin()是一个指向c的首元素是的迭代器. 而c.end()指向尾元素. 类似于指针,迭代器使用++操作移动到下一元素, 以及用*访问指向元素的值. 这种迭代器模型, 具有非常高的通用性和效率,用来将序列传递给标准库算法.例如
+```cpp
+sort(v.begin(),v.end())
+```
+另一种隐式使用元素数目的算法是范围for循环:
+```cpp
+for(auto&x :v){
+    x = 0;
+};
+```
+这段代码隐式的使用了c.begin()和c.end(),它大致等价于显式使用迭代器循环.
+
+### io ops
+
+对于整数运算对象`<<`左移,`>>`右移. 但对于iostream, 它们分别是输入运算符和输出运算符.
+
+
+### user-defined literal
+
+对于内置类型,我们可以声明字面值:
+
+```cpp
+int x = 123;
+unsigned int y = 0xFF00u;
+double z = 123.456;
+const char[10] = "Surprise!";
+
+#<string>
+#<chrono>
+#<complex>
+
+std::string x = "Surprise!"s;
+second y = 1.2s;
+complex t = 12.5i + 1.2;
+```
+
+### swap()
+
+很多算法使用swap()函数交换两个对象的值, 特别是sort(); 这类算法通常假定swap()非常快且不会抛出异常. 标准库提供了一个std::swap(a,b)来实现. 他进行了3步操作:`temp = a; a = b; b = temp`. 如果你设计一个类的拷贝代价很高而且有可能被交换, 则应为其提供移动操作和swap(). 
+
+标准库容器和string都具有快速移动操作.
+
+### `hash<>`
+
+标准库`unordered_map<K,V>`是一种哈希表,K是关键字类型,V是值类型. 将类型X用作关键字, 我们必须定义`hash<X>`

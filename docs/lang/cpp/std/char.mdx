@@ -1,0 +1,34 @@
+```cpp
+string s = "Hello, world";
+
+isdigit(s[2]);
+isalpha(s[2]);
+cout<<islower('a'); //非零
+cout<<islower('2'); //输出0
+cout<<islower('A'); //输出0
+cout<<isupper('a'); //返回0
+cout<<isupper('2'); //返回0
+cout<<isupper('A'); //返回非零
+
+tolower(s[0]);
+toupper(s[1]);
+
+isalnum(s[2]);
+```
+
+
+## char 和 int 的转换
+
+```cpp
+int x = 5;
+
+char i = x; //越界
+char i = x - '0'; //越界
+char i = x + '0'; //'5'
+
+char y = '0';
+
+int j = y; //48 ascii
+int j = y - '0'; //0
+int j = y + '0'; //96
+```

@@ -1,0 +1,89 @@
+# 模式匹配
+
+给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串的第一个匹配项的下标（下标从 0 开始）。如果 needle 不是 haystack 的一部分，则返回 -1 。
+
+```cpp title='简单模式匹配,一般解法'
+int strStr(string haystack, string needle) {
+    if (needle.empty()) {
+        return 0;
+    }
+    if (needle.size() > haystack.size()) {
+        return -1;
+    }
+    for (int i = 0; i <= haystack.size() - needle.size(); ++i) {
+        if (haystack.substr(i, needle.size()) == needle) {
+            return i;
+        }
+    }
+    return -1;
+}
+```
+
+## KMP算法
+
+Knuth-Morris-Pratt 算法的核心为前缀函数,记作pi(i). 对于长度为m的模式串s,前缀函数pi(i)(0\<i\<m)表示s的子串s[0,i]的**最长的相等的真前缀和真后缀的长度**. 特别的如果不存在符合条件的前后缀,那么pi(i) = 0;其中真前缀与真后缀的定义为不等于自身的的前缀与后缀。
+
+我们举个例子说明：字符串`aabaaab`的前缀函数值依次为 0,1,0,1,2,2,3。
+
+```cpp
+pi(0) = 0; // a 没有真前缀和真后缀,
+pi(1) = 1; // aa 有一个相等的真前缀和真后缀a
+pi(2) = 0; // aab 没有
+pi(3) = 1; // aaba -> a
+pi(4) = 2; // aabaa -> aa
+pi(5) = 2; // aabaaa -> aa
+pi(6) = 3; // aabaaab -> aab
+```
+
+有了前缀函数，我们就可以快速地计算出模式串在主串中的每一次出现。
+
+### 求解前缀函数(核心问题)
+
+前缀函数的性质:
+
+1. `pi(i) <= pi(i-1) + 1`
+2. 如果`s[i] = s[pi(i - 1)]`那么`pi(i) == pi(i - 1) + 1`
+
+依据这两个性质:
+
+找到最大的j使得`s[0:j-1] = s[i-j:i-1]`且`s[j] = s[i]`
+
+j的取值总被描述为`pi(...) - 1`所以算法迭代产生:
+
+1. 当 `i = 0` 时 `pi(0) = 0` 确定的.
+2. 设定`pi(i) = j + 1`, j的初始值为`pi(i - 1)`;
+3. 不断迭代j,令j变成`pi(j-1)`,直到`s[i]==s[j]`或者`j = 0`
+
+```cpp title="前缀算法"
+vector<int> get_pi(string s){
+    vector<int> pi(m);  //前缀函数
+    //前缀函数的算法
+    for (int i = 1, j = 0; i < m; ++i) {
+        // 当j> 0 或者 s[i] != s[j]时, 迭代;
+        while (j > 0 && s[i] != s[j]) j = pi[j - 1];
+        // 如果 s[i] == s[j] 则 j 自增
+        if (s[i] == s[j]) ++j;
+        pi[i] = j;
+    }
+
+    return pi;
+}
+```
+
+
+```cpp
+int strStr(string haystack, string needle) {
+    int n = haystack.size(), m = needle.size();
+    if (m == 0)  return 0; // no needle return 0;
+    //获取模式串的前缀函数
+    vector<int> pi = get_pi(needle);
+    //遍历主字符串
+    for (int i = 0, j = 0; i < n; ++i) {
+        while (j > 0 && haystack[i] != needle[j]) j = pi[j - 1];
+        if (haystack[i] == needle[j])  ++j;
+        // 遍历完模式串 就可以得到结果
+        if (j == m) return i - m + 1;
+    }
+    return -1;
+}
+```

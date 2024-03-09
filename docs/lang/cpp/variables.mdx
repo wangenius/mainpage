@@ -1,0 +1,542 @@
+---
+title : variable
+sidebar_position : 1
+slug : variable
+---
+# variable
+
+
+## variable
+
+There are three types of variables based on the scope of variables in C++
+
+1. Local Variables: Local Variables: A variable defined within a block or method or constructor is called a local variable.
+> These variables are created when entered into the block or the function is called and destroyed after exiting from the block or when the call returns from the function.
+<br/> The scope of these variables exists only within the block in which the variable is declared. i.e. we can access this variable only within that block.
+<br/> Initialization of Local Variable is Mandatory.
+2. Instance Variables: Instance variables are non-static variables and are declared in a class outside any method, constructor, or block. 
+>As instance variables are declared in a class, these variables are created when an object of the class is created and destroyed when the object is destroyed.
+>Unlike local variables, we may use access specifiers for instance variables. If we do not specify any access specifier then the default access specifier will be used.
+>Initialization of Instance Variable is not Mandatory.
+>Instance Variable can be accessed only by creating objects.
+3. Static Variables: Static variables are also known as Class variables. 
+>These variables are declared similarly as instance variables, the difference is that static variables are declared using the static keyword within a class outside any method constructor or block.
+>Unlike instance variables, we can only have one copy of a static variable per class irrespective of how many objects we create.
+>Static variables are created at the start of program execution and destroyed automatically when execution ends.
+>Initialization of Static Variable is not Mandatory. Its default value is 0
+>If we access the static variable like the Instance variable (through an object), the compiler will show the warning message and it won’t halt the program. The compiler will replace the object name with the class name automatically.
+>If we access the static variable without the class name, the Compiler will automatically append the class name.
+
+```cpp
+class Example
+{
+    static int a; // static variable
+    int b;        // instance variable
+    public:
+    func(){
+        int c; // local variable
+    }
+};
+```
+:::success difference between instance variables and static variables
+
+Each object will have its own copy of the instance variable whereas We can only have one copy of a static variable per class irrespective of how many objects we create.
+
+Changes made in an instance variable using one object will not be reflected in other objects as each object has its own copy of the instance variable. In the case of static, changes will be reflected in other objects as static variables are common to all objects of a class.
+
+We can access instance variables through object references and Static Variables can be accessed directly using the class name.
+
+:::
+
+
+## Scope of Variables
+
+In general, the scope is defined as the extent up to which something can be worked with. In programming also the scope of a variable is defined as the extent of the program code within which the variable can be accessed or declared or worked with. There are mainly two types of variable scopes: 
+
+1. Local Variables
+2. Global Variables
+
+```cpp
+int global_variable = 3;
+
+int main() {
+    int local_variable = 4;
+};
+```
+
+### local variables
+Variables defined within a function or block are said to be local to those functions.  
+
+1. Anything between `{` and `}` is said to inside a block.
+2. Local variables do not exist outside the block in which they are declared, i.e. they can not be accessed or used outside that block.
+3. Declaring local variables: Local variables are declared inside a block.
+
+### global variables
+
+As the name suggests, Global Variables can be accessed from any part of the program.
+
+1. They are available through out the life time of a program.
+2. They are declared at the top of the program outside all of the functions or blocks.
+3. Declaring global variables: Global variables are usually declared outside of all of the functions and blocks, at the top of the program. They can be accessed from any portion of the program.
+
+```cpp
+// C++ program to show that we can access a global  
+// variable using scope resolution operator :: when   
+// there is a local variable with same name  
+#include<iostream>  
+using namespace std; 
+   
+// Global x   
+int x = 0;   
+    
+int main() 
+{ 
+  // Local x     
+  int x = 10;  
+  cout << "Value of global x is " << ::x; 
+  cout<< "\nValue of local x is " << x;   
+  return 0; 
+} 
+```
+```bash title="output"
+Value of global x is 0
+Value of local x is 10
+```
+
+
+## Storage Classes
+
+C++ Storage Classes are used to describe the characteristics of a variable/function. It determines the lifetime, visibility, default value, and storage location which helps us to trace the existence of a particular variable during the runtime of a program. Storage class specifiers are used to specify the storage class for a variable.
+
+C++ uses 6 storage classes, which are as follows:
+
+* auto Storage Class
+* register Storage Class
+* extern Storage Class
+* static Storage Class
+* mutable Storage Class
+* thread_local Storage Class
+
+|storage class| keyword | lifetime | visibility | initial value|
+|-|-|-|-|-|
+| Automatic | auto | function block | local | garbage |
+| external | extern | whole program | global | 0 |
+| static | static | whole program | local | 0 |
+| register(deprecated in C++17) | register | block | local | garbage |
+| mutable | mutable | class | local | garbage |
+| thread local | thread_local | whole thread | local or global | garbage |
+
+
+### auto
+
+The auto storage class is the default class of all the variables declared inside a block. The auto stands for automatic and all the local variables that are declared in a block automatically belong to this class.
+
+Properties of auto Storage Class Objects
+* Scope: Local
+* Default Value: Garbage Value
+* Memory Location: RAM
+* Lifetime: Till the end of its scope
+
+### extern Storage Class
+
+The extern storage class simply tells us that the variable is defined elsewhere and not within the same block where it is used (i.e. external linkage). Basically, the value is assigned to it in a different block and this can be overwritten/changed in a different block as well. An extern variable is nothing but a global variable initialized with a legal value where it is declared in order to be used elsewhere.
+
+A normal global variable can be made extern as well by placing the ‘extern’ keyword before its declaration/definition in any function/block. The main purpose of using extern variables is that they can be accessed between two different files which are part of a large program.
+
+Properties of extern Storage Class Objects
+* Scope: Global
+* Default Value: Zero
+* Memory Location: RAM
+* Lifetime: Till the end of the program.
+
+```cpp
+#include <iostream>
+using namespace std;
+ 
+// declaring the variable which is to
+// be made extern an initial value can
+// also be initialized to x
+int x;
+void externStorageClass()
+{
+ 
+    cout << "Demonstrating extern class\n";
+ 
+    // telling the compiler that the variable
+    // x is an extern variable and has been
+    // defined elsewhere (above the main
+    // function)
+    extern int x;
+ 
+    // printing the extern variables 'x'
+    cout << "Value of the variable 'x'"
+         << "declared, as extern: " << x << "\n";
+ 
+    // value of extern variable x modified
+    x = 2;
+ 
+    // printing the modified values of
+    // extern variables 'x'
+    cout << "Modified value of the variable 'x'"
+         << " declared as extern: "
+         << x;
+}
+ 
+int main()
+{
+ 
+    // To demonstrate extern Storage Class
+    externStorageClass();
+ 
+    return 0;
+}
+```
+
+
+```bash title="output"
+Demonstrating extern class
+Value of the variable 'x'declared, as extern: 0
+Modified value of the variable 'x' declared as extern: 2
+```
+
+### static
+
+The static storage class is used to declare static variables which are popularly used while writing programs in C++ language. Static variables have the property of preserving their value even after they are out of their scope! Hence, static variables preserve the value of their last use in their scope.
+
+We can say that they are initialized only once and exist until the termination of the program. Thus, no new memory is allocated because they are not re-declared. Global static variables can be accessed anywhere in the program.
+
+Properties of static Storage Class
+* Scope: Local
+* Default Value: Zero
+* Memory Location: RAM
+* Lifetime: Till the end of the program
+
+
+```cpp
+#include <iostream>
+using namespace std;
+ 
+// Function containing static variables
+// memory is retained during execution
+int staticFun()
+{
+    cout << "For static variables: ";
+    static int count = 0;
+    count++;
+    return count;
+}
+ 
+// Function containing non-static variables
+// memory is destroyed
+int nonStaticFun()
+{
+    cout << "For Non-Static variables: ";
+ 
+    int count = 0;
+    count++;
+    return count;
+}
+ 
+int main()
+{
+ 
+    // Calling the static parts
+    cout << staticFun() << "\n";
+    cout << staticFun() << "\n";
+     
+ 
+    // Calling the non-static parts
+ 
+    cout << nonStaticFun() << "\n";
+     
+    cout << nonStaticFun() << "\n";
+     
+    return 0;
+}
+```
+
+```bash title="output"
+For static variables: 1
+For static variables: 2
+For Non-Static variables: 1
+For Non-Static variables: 1
+```
+
+The static keyword has different meanings when used with different types. We can use static keywords with:
+
+1. Static Variables: Variables in a function, Variables in a class
+     1. Static variables in a Function: When a variable is declared as static, space for it gets allocated for the lifetime of the program. Even if the function is called multiple times, space for the static variable is allocated only once and the value of the variable in the previous call gets carried through the next function call. This is useful for implementing coroutines in C/C++ or any other application where the previous state of function needs to be stored. 
+2. Static Members of Class: Class objects and Functions in a class Let us now look at each one of these uses of static in detail.
+
+#### static variables
+
+```cpp
+#include <iostream>
+#include <string>
+using namespace std;
+ 
+void demo()
+{
+    // static variable
+    static int count = 0;
+    cout << count << " ";
+ 
+    // value is updated and
+    // will be carried to next
+    // function calls
+    count++;
+}
+ 
+int main()
+{
+    for (int i = 0; i < 5; i++)
+        demo();
+    return 0;
+}
+//output: 0 1 2 3 4
+```
+
+
+Static variables in a class: As the variables declared as static are initialized only once as they are allocated space in separate static storage so, the static variables in a class are shared by the objects. There can not be multiple copies of the same static variables for different objects. Also because of this reason static variables can not be initialized using constructors. 
+
+```cpp
+#include <iostream>
+using namespace std;
+ 
+class GfG {
+public:
+    static int i;
+ 
+    GfG(){
+        // Do nothing
+    };
+};
+ 
+int main()
+{
+    GfG obj1;
+    GfG obj2;
+    obj1.i = 2;
+    obj2.i = 3;
+ 
+    // prints value of i
+    cout << obj1.i << " " << obj2.i;
+}
+```
+
+```text title="output"
+undefined reference to `GfG::i'
+collect2: error: ld returned 1 exit status
+```
+
+You can see in the above program that we have tried to create multiple copies of the static variable i for multiple objects. But this didn’t happen. So, a static variable inside a class should be initialized explicitly by the user using the class name and scope resolution operator outside the class as shown below: 
+
+```cpp
+#include <iostream>
+using namespace std;
+ 
+class GfG {
+public:
+    static int i;
+ 
+    GfG(){
+        // Do nothing
+    };
+};
+ 
+int GfG::i = 1;
+ 
+int main()
+{
+    GfG obj;
+    // prints value of i
+    cout << obj.i;
+}
+```
+
+```text title="output"
+1
+```
+
+#### Static Members of Class
+
+Class objects as static: Just like variables, objects also when declared as static have a scope till the lifetime of the program. Consider the below program where the object is non-static. 
+
+```cpp
+#include <iostream>
+using namespace std;
+ 
+class GfG {
+    int i;
+ 
+public:
+    GfG()
+    {
+        i = 0;
+        cout << "Inside Constructor\n";
+    }
+    ~GfG() { cout << "Inside Destructor\n"; }
+};
+ 
+int main()
+{
+    int x = 0;
+    if (x == 0) {
+        GfG obj;
+    }
+    cout << "End of main\n";
+}
+```
+
+```text title="output"
+Inside Constructor
+Inside Destructor
+End of main
+```
+
+In the above program, the object is declared inside the if block as non-static. So, the scope of a variable is inside the if block only. So when the object is created the constructor is invoked and soon as the control of if block gets over the destructor is invoked as the scope of the object is inside the if block only where it is declared. Let us now see the change in output if we declare the object as static. 
+
+```cpp
+#include <iostream>
+using namespace std;
+ 
+class GfG {
+    int i = 0;
+ 
+public:
+    GfG()
+    {
+        i = 0;
+        cout << "Inside Constructor\n";
+    }
+ 
+    ~GfG() { cout << "Inside Destructor\n"; }
+};
+ 
+int main()
+{
+    int x = 0;
+    if (x == 0) {
+        static GfG obj;
+    }
+    cout << "End of main\n";
+}
+```
+
+```text title="output"
+Inside Constructor
+End of main
+Inside Destructor
+```
+
+You can clearly see the change in output. Now the destructor is invoked after the end of the main. This happened because the scope of static objects is throughout the lifetime of the program.
+
+Static functions in a class: Just like the static data members or static variables inside the class, static member functions also do not depend on the object of the class. We are allowed to invoke a static member function using the object and the ‘.’ operator but it is recommended to invoke the static members using the class name and the scope resolution operator. Static member functions are allowed to access only the static data members or other static member functions, they can not access the non-static data members or member functions of the class. 
+
+```cpp
+// C++ program to demonstrate static
+// member function in a class
+#include <iostream>
+using namespace std;
+ 
+class GfG {
+public:
+    // static member function
+    static void printMsg() { cout << "Welcome to GfG!"; }
+};
+ 
+// main function
+int main()
+{
+    // invoking a static member function
+    GfG::printMsg();
+}
+```
+
+```text title="output"
+Welcome to GfG!
+```
+
+### register
+
+The register storage class declares register variables using the ‘register’ keyword which has the same functionality as that of the auto variables. The only difference is that the compiler tries to store these variables in the register of the microprocessor if a free register is available. This makes the use of register variables to be much faster than that of the variables stored in the memory during the runtime of the program. If a free register is not available, these are then stored in the memory only. 
+
+An important and interesting point to be noted here is that we cannot obtain the address of a register variable using pointers.
+
+Properties of register Storage Class Objects
+* Scope: Local
+* Default Value: Garbage Value
+* Memory Location: Register in CPU or RAM
+* Lifetime: Till the end of its scope
+
+```cpp
+#include <iostream>
+using namespace std;
+ 
+void registerStorageClass()
+{
+ 
+    cout << "Demonstrating register class\n";
+ 
+    // declaring a register variable
+    register char b = 'G';
+ 
+    // printing the register variable 'b'
+    cout << "Value of the variable 'b'"
+         << " declared as register: " << b;
+}
+int main()
+{
+ 
+    // To demonstrate register Storage Class
+    registerStorageClass();
+    return 0;
+}
+```
+
+### mutable
+
+Sometimes there is a requirement to modify one or more data members of class/struct through the const function even though you don’t want the function to update other members of class/struct. This task can be easily performed by using the mutable keyword. The keyword mutable is mainly used to allow a particular data member of a const object to be modified. 
+
+When we declare a function as const, this pointer passed to the function becomes const. Adding a mutable to a variable allows a const pointer to change members.
+
+The mutable specifier does not affect the linkage or lifetime of the object. It will be the same as the normal object declared in that place.
+
+```cpp
+#include <iostream>
+using std::cout;
+ 
+class Test {
+public:
+    int x;
+ 
+    // defining mutable variable y
+    // now this can be modified
+    mutable int y;
+ 
+    Test()
+    {
+        x = 4;
+        y = 10;
+    }
+};
+ 
+int main()
+{
+    // t1 is set to constant
+    const Test t1;
+ 
+    // trying to change the value
+    t1.y = 20;
+    cout << t1.y;
+ 
+    // Uncommenting below lines
+    // will throw error
+    // t1.x = 8;
+    // cout << t1.x;
+    return 0;
+}
+```
+```bash title="output"
+20
+```

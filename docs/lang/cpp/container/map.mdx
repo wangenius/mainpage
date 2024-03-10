@@ -1,0 +1,37 @@
+---
+title : map
+sidebar_position : 3
+slug : map
+---
+# map
+
+std提供了一个名为map的平衡二叉搜索树(红黑树)
+
+也被称为关联数组或字典.
+
+```cpp
+map<string,int> phone_book{
+    {"xiao ming",123},
+        {"li yuan fang",223},
+    {"liu bai",339547674124}
+}
+```
+
+map支持下标操作, 给定下标值应该是map的第一个类型(称为关键字key),得到的结果是与关键字关联的值(map的值或者映射类型)
+
+```cpp
+int get_num(const string& s){
+    return phone_book[s];
+}
+```
+换句话,对map进行下标操作本质上是进行一次搜索, 如果未能找到key,则向map插入一个新元素.
+
+如果避免讲一个无效电话号码添加到电话簿中,就应该使用find()和insert()来代替`[]`;
+
+## unordered_map
+
+搜索map的时间代价是o(log n), n是map中元素的数目. 通常情况下这样的性能非常好. 
+
+unordered_map是哈希表. 
+
+

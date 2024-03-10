@@ -1,12 +1,16 @@
-# template
+---
+title : 模板
+sidebar_position : 1
+slug : template
+---
 
+# 模板
 
 模板是一个类或者一个函数，我们用一组类型或值对其进行参数化。 我们用模板表示那些最好理解为通用事务的概念. 然后通过指定参数(例如vector指定元素类型是double)生成特定的类型.
 
 ## 参数化类型
 
 对于之前使用的双精度浮点数向量, 只要将其改成template并且用一个类型参数替换特定类型的double,就能将其泛化.
-
 
 ```cpp
 template <typename T>
@@ -37,7 +41,6 @@ const T& Vector<T>::operator[](int i) const {
     return elem[i];
 }
 ```
-
 
 前缀`template<typename T>`指出T是该声明的参数. 它是数学上对所有类型T成立的更精确的C++表达.
 
@@ -93,19 +96,19 @@ void fct(){
 }
 ```
 
-
-
 ### 模板参数推断
+
 标准库模板pair的使用：
+
 ```cpp
 pair<int,double> p {1,5.2};
 ```
+
 每次需要指出模板参数类型是很麻烦的。
 
 ```cpp
 auto p = make_pair(1,5.2); //p是一个pair<int,double>
 ```
-
 
 ## 参数化操作
 
@@ -122,6 +125,7 @@ Value sum (const Sequence& s, Value v){
     return v;
 };
 ```
+
 模板参数Value和函数参数v使得调用者可以指定累加器(用于求和的变量)的类型和初始值:
 
 ```cpp
@@ -132,15 +136,15 @@ void use(Vector<int>& vi, list<double>& id, vector<complex<double>>& vc){
     auto z = sum(vc,complex{0.0,0.0}) //complex<double> 向量的和
 };
 ```
+
 > 这里的sum()可以看作是标准库accumulate()的简化版本;
-
-
 
 ### 函数对象
 
+import { Tag } from "@components";
+
 <Tag>function object</Tag>
 <Tag>functor函子</Tag>
-
 
 一个可以携带数据并像函数一样调用的对象
 
@@ -181,8 +185,6 @@ int count(const C& c,P pred){
 }
 ```
 
-
-
 ### lambda表达式
 
 函数对象的简写形式
@@ -198,8 +200,8 @@ void f(const vector<int>& vec, const list<string>& lst, int x, const string & s)
 }
 ```
 
-`[&](int a){return a < x;}`这种表示方法被称为lambda表达式. 他声称一个和LessThan\<int>{x}完全一样的函数对象.
-[&]是一个捕获列表. 它指出lambda体使用的所有局部名字将通过引用访问. 如果希望只捕获x, 则写作[&x]; 如果希望给生成的函数对象传递一个x的拷贝,则写成[=x]. 什么也不捕获写作[]. 捕获所有通过引用访问的局部名字是[&],捕获所有以值访问的局部名字是[=];
+`[&](int a){return a < x;}`这种表示方法被称为lambda表达式. 他声称一个和`LessThan<int>{x}`完全一样的函数对象.
+`[&]`是一个捕获列表. 它指出lambda体使用的所有局部名字将通过引用访问. 如果希望只捕获x, 则写作`[&x]`; 如果希望给生成的函数对象传递一个x的拷贝,则写成`[=x]`. 什么也不捕获写作[]. 捕获所有通过引用访问的局部名字是`[&]`,捕获所有以值访问的局部名字是`[=]`;
 
 虽然lambda简单便捷,但晦涩难懂. 对于复杂的操作, 我们更愿意给该操作起一个名字.
 
@@ -220,12 +222,3 @@ void user2(){
 
 }
 ```
-
-
-## 模板机制
-
-### 可变参数模板
-
-### 别名
-
-### 编译时if

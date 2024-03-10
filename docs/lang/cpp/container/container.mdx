@@ -1,0 +1,54 @@
+# container
+
+大多数计算任务都会涉及到创建值的集合然后对这些集合进行操作. 一个简单的例子就是读取字符存入string当中,然后打印这个string. 如果一个类的主要目的是保存对象, 我们通常称之为容器. 对给定的任务提供合适的容器即其上有用的基本操作,是构建任何程序的重要步骤.
+
+
+1. 顺序序列
+顺序容器中的元素按照严格的线性顺序排序。可以通过元素在序列中的位置访问对应的元素。
+
+2. 动态数组
+支持对序列中的任意元素进行快速直接访问，甚至可以通过指针算述进行该操作。提供了在序列末尾相对快速地添加/删除元素的操作。
+
+3. 能够感知内存分配器的（Allocator-aware）
+容器使用一个内存分配器对象来动态地处理它的存储需求。
+
+## 概述
+
+|type|descriptions|
+|-|-|
+|vector\<T>| 可变大小向量|
+|list\<T>| 双向链表|
+|forward_list\<T>| 单向链表|
+|deque\<T>| 双端队列|
+|set\<T>| 集合(只有关键字没有值的map)|
+|multiset\<T>| 允许重复值的集合|
+|map\<K,V>| 关联数组|
+|multimap\<K,V>| 允许重复关键字的map|
+|unordered_map\<K,V>| 采用哈希搜索的map|
+|unordered_multimap\<K,V>| 采用哈希搜索的multimap|
+|unordered_set\<K,V>| 采用哈希搜索的set|
+|unordered_multiset\<K,V>| 采用哈希搜索的multiset|
+|queue\<T>||
+|stack\<T>||
+|priority_queue\<T>||
+|array\<T,N>| 定长数组|
+|bitset\<N>||
+
+## 标准库容器的部分操作
+| operates | descriptions |
+|-|-|
+|p = c.begin()| p指向c的首元素, c.begin()返回指向const的迭代器 |
+|p = c.end()| p指向c的尾后位置, c.end()返回指向const的迭代器|
+|k = c.size()| k是c元素的数目|
+|c.empty()| 空返回true|
+|k = c.capacity()| c能容纳的元素数目|
+|c.reserve(k)| 令c容量变为k|
+|c.resize(k)| 令c的元素数目变为k, 如需要添加值为value_type{}的元素|
+|c[k]| c的第k个元素,无范围检查|
+|c.at(k)|c的第k个元素,越界out_of_range异常|
+|c.push_back(x)|c后添加x,大小+1|
+|c.emplace_back(a)|将valuetype \{a}添加到c的末尾,将c的大小增加1|
+|q = c.insert(p,x)|将x添加到p之前|
+|q = c.erase(p)| 删除p处的元素|
+
+

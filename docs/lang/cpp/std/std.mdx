@@ -1,15 +1,72 @@
-## \<algorithm>
-## \<array>
-## \<bitset>
-## \<climits>
-## \<deque>
-## \<functional>
-## \<iostream>
-## \<list>
-## \<queue>
-## \<stack>
-## \<tuple>
-## \<unordered_map>
-## \<unordered_set>
-## \<utility>
-## \<vector>
+# 标准库概览
+
+在ISOC++标准中, 标准库规范占了2/3的篇幅. 除了提供标准库组件外, 大多数C++实现还提供GUI,web api, database api等.
+
+标准库提供的设施分为以下:
+1. 运行时语言支持: 对资源分配和运行时类型信息的支持
+2. C标准库: 进行了非常小的修改,以便尽量减少和类型系统的冲突
+3. 字符串: 包括对国际字符集,本地化和子串只读视图的支持
+4. 对正则表达式的支持
+5. IO流: 一个可扩展的IO框架, 用户可以向其中添加自己设计的类型,流,缓冲策略,区域设定和字符集等.
+6. 容器(如vector和map)和算法(find,sort,merge)框架:人们习惯上称这个框架为标准模板库(STL), 用户可以向其中添加自己定义的容器或算法.
+7. 对数值计算的支持
+8. 对并发程序的设计和支持:包括thread和锁机制
+9. 大多数STL算法和一些数值算法的并行版本
+10. 支持模板源程序设计的工具(类型萃取等),STL风格的泛型程序设计(pair),通用程序设计(variant,optional等)和clock
+11. 高效安全的通用资源管理和可选的垃圾收集器的接口
+12. 用于资源管理的智能指针: unique_ptr和shared_ptr
+13. 特殊用途容器:array,bitset,tuple等
+14. 对应常计量单位的后缀:ms毫秒,i虚部
+
+## 标准库头文件和名字空间
+
+每个标准库设施都是通过若干标准库头文件提供的
+
+```cpp
+#include <string>
+#include <list>
+```
+包含这两个头文件,程序就可以使用string和list了
+标准库定义在一个名为std的名字空间中, 要使用把标准库设施, 可以使用std::前缀:
+```cpp
+std::string sheep {"hello word"};
+std::list<std::string> slogans {"hello","world"};
+```
+
+c++ 标准库中也提供了来自c标准库的头文件如stdlib.h. 这类头文件都有一个对应的版本，名字加了前缀c而少了后缀.h. 对应版本中的声明都放在了std名字空间中.
+
+|std header files| some content|
+|-|-|
+|\<algorithm>|copy(),find(),sort()|
+|\<array>|array|
+|\<chrono>|duration,time_point|
+|\<bitset>||
+|\<cmath>|sqrt(),pow()|
+|\<complex>|complex,sqrt(),pow()|
+|\<climits>||
+|\<deque>||
+|\<filesystem>|path|
+|\<forward_list>|forward_list|
+|\<fstream>|fstream,ifstream,ofstream|
+|\<functional>||
+|\<future>|future,promise|
+|\<ios>|hex,dec,scientific,fixed,defaultfloat|
+|\<iostream>|istream,ostream,cin,cout|
+|\<list>||
+|\<map>|map,multimap|
+|\<memory>|unique_ptr,shared_ptr,allocator|
+|\<random>|default_random_engine,normal_distribution|
+|\<regex>|regex,smatch|
+|\<string>|string,basic_string|
+|\<set>|set,multiset|
+|\<sstream>|istringstream,ostringstream|
+|\<stdexcept>|length_error,out_of_range,runtime_error|
+|\<thread>|thread|
+|\<queue>||
+|\<stack>||
+|\<tuple>||
+|\<unordered_map>|unordered_map,unordered_multimap|
+|\<unordered_set>||
+|\<utility>|move(),swap(),pair()|
+|\<variant>|variant|
+|\<vector>|vector|

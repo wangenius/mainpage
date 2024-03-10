@@ -203,6 +203,23 @@ void f(const vector<int>& vec, const list<string>& lst, int x, const string & s)
 
 虽然lambda简单便捷,但晦涩难懂. 对于复杂的操作, 我们更愿意给该操作起一个名字.
 
+```cpp
+template<typename C,typename Oper>
+void forall(C& c, Oper op){
+    for(auto& x: c){
+        op(x);
+    }
+};
+
+void user2(){
+    vector<unique_ptr<Shape>> v;
+    while (cin)
+        v.push_back(read_shape(cin));
+    for_all(v,[](unique_ptr<Shape> & ps){ps->draw();});
+    for_all(v,[](unique_ptr<Shape> & ps){ps->rotate(45);});
+
+}
+```
 
 
 ## 模板机制

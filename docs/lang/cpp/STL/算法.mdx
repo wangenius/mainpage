@@ -1,0 +1,181 @@
+---
+title : 算法
+sidebar_position : 3
+slug : 算法
+---
+# 算法
+
+在STL中，除了用容器类模板自身提供的成员函数来操作容器元素外，还提供了一系列通用的对容器中元素进行操作的函数模板，称为算法。 
+
+STL算法实现了对序列元素的一些常规操作，用函数模板实现的，主要包括： 
+
+* 调序算法
+* 编辑算法
+* 查找算法
+* 算术算法
+* 集合算法
+* 堆算法
+* 元素遍历算法
+
+除了算术算法在头文件`numeric`中定义外，其它算法都在头文件`algorithm`中定义。
+
+大部分`STL`算法都是遍历指定容器中某范围内的元素，对满足条件的元素执行某项操作。 
+
+算法的内部实现往往隐含着循环操作，但这对使用者是隐藏的。 
+
+1. 使用者只需要提供：容器（迭代器）、操作条件以及可能的自定义操作。
+2. 算法的控制逻辑则由算法内部实现，这体现了一种抽象的编程模式。
+
+## 算法和容器的关系
+
+在STL中，不是把容器传给算法，而是把容器的某些迭代器传给它们，在算法中通过迭代器来访问和遍历相应容器中的元素。
+
+这样做的好处是：使得算法不依赖于具体的容器，提高了算法的通用性。 
+
+虽然容器各不相同，但它们的迭代器往往具有相容关系，一个算法往往可以接受相容的多种迭代器。
+
+## 算法接受的迭代器类型
+
+一个算法能接收的迭代器的类型是通过算法模板参数的名字来体现的。例如：
+
+```cpp
+template <class InIt, class OutIt>
+OutIt copy(InIt src_first, InIt src_last, OutIt dst_first) {...}
+```
+
+1. src_first和src_last是输入迭代器，算法中只能读取它们指向的元素。
+2. dst_first是输出迭代器，算法中可以修改它指向的元素。
+3. 以上参数可以接受其它相容的迭代器。
+
+## 算法的操作范围
+
+用算法对容器中的元素进行操作时，大都需要用两个迭代器来指出要操作的元素的范围。
+
+例如：
+```cpp
+void sort(RanIt first, RanIt last);
+```
+first是第一个元素的位置.
+last是最后一个元素的下一个位置.
+
+有些算法可以有多个操作范围，这时，除第一个范围外，其它范围可以不指定最后一个元素位置，它由第一个范围中元素的个数决定。例如：
+```cpp
+OutIt copy(InIt src_first, InIt src_last, OutIt dst_first);
+```
+一个操作范围的两个迭代器必须属于同一个容器，而不同操作范围的迭代器可以属于不同的容器。
+
+## 算法的自定义操作条件
+
+有些算法可以让使用者提供一个函数或函数对象来作为自定义操作条件（或称为谓词），其参数类型为相应容器的元素类型，返回值类型为bool。
+
+自定义操作条件可分为：
+
+1. Pred：一元“谓词”，需要一个元素作为参数
+2. BinPred：二元“谓词”，需要两个元素作为参数
+
+### Pred
+
+```cpp title="一种'统计'算法的使用"
+size_t count_if(InIt first, InIt last, Pred cond);
+
+#include <vector>
+#include <algorithm>
+#include <iostream>
+using namespace std;
+
+bool f(int x) { return x > 0; }
+
+int main() 
+{
+    vector<int> v;
+    ...... // 往容器中放了元素
+    cout << count_if(v.begin(), v.end(), f); // 统计v中正数的个数
+    return 0;
+}
+```
+### BinPred
+
+```cpp
+void sort(RanIt first, RanIt last); // 按“<”排序
+void sort(RanIt first, RanIt last, BinPred comp); // 按comp返回true规定的次序
+
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+bool greater2(int x1, int x2) { return x1 > x2; }
+
+int main()
+{
+    vector<int> v;
+    ...... // 往容器中放了元素
+    sort(v.begin(), v.end()); // 从小到大排序
+    sort(v.begin(), v.end(), greater2); // 从大到小排序
+    return 0;
+}
+```
+
+## 算法的自定义操作
+
+有些算法可以让使用者提供一个函数或函数对象作为自定义操作，其参数和返回值类型由相应的算法决定。
+
+自定义操作可分为：
+
+1. Op或Fun：一元操作，需要一个参数
+2. BinOp或BinFun：二元操作，需要两个参数
+
+```cpp title="元素遍历的Op算法"
+Fun for_each(InIt first, InIt last, Fun f);
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+void f(int x) { cout << ' ' << x; }
+
+int main()
+{
+     vector<int> v;
+     ...... // 往容器中放了元素
+     for_each(v.begin(), v.end(), f); // 对v中的每个元素去调用函数f进行操作
+     return 0;
+}
+```
+
+
+```cpp title="二元操作"
+T accumulate(InIt first, InIt last, T val); // 按“+”操作
+T accumulate(InIt first, InIt last, T val, BinOp op); // 由op决定累积的含义
+
+#include <vector>
+#include <numeric>
+using namespace std;
+
+int f1(int partial, int x) { return partial * x; }
+int f2(int partial, int x) { return partial + x * x; }
+double f3(double partial, int x) { return partial + 1.0 / x; }
+
+int main
+{
+    vector<int> v;
+    ...... // 往容器中放了元素
+    
+    int sum = accumulate(v.begin(), v.end(), 0); // 所有元素和
+    int product = accumulate(v.begin(), v.end(), 1, f1); // 所有元素的乘积
+    int sq_sum = accumulate(v.begin(), v.end(), 0, f2); // 所有元素平方和
+    int rec_sum = accumulate(v.begin(), v.end(), 0.0, f3); // 元素倒数和
+    
+    return 0;
+}
+```
+
+## swap()
+
+很多算法使用swap()函数交换两个对象的值, 特别是sort(); 这类算法通常假定swap()非常快且不会抛出异常. 标准库提供了一个std::swap(a,b)来实现. 他进行了3步操作:`temp = a; a = b; b = temp`. 如果你设计一个类的拷贝代价很高而且有可能被交换, 则应为其提供移动操作和swap(). 
+
+标准库容器和string都具有快速移动操作.
+
+## `hash<>`
+
+标准库`unordered_map<K,V>`是一种哈希表,K是关键字类型,V是值类型. 将类型X用作关键字, 我们必须定义`hash<X>`

@@ -1,7 +1,7 @@
 ---
-title : operator
+title : 基本操作
 sidebar_position : 4
-slug : operator
+slug : 基本操作
 ---
 # 基本操作
 
@@ -74,7 +74,7 @@ class complex{
     complex(){}
 };
 ```
-如果构造函数未提供值则使用默认值{0,0}
+如果构造函数未提供值则使用默认值\{0,0}
 
 ## 拷贝和移动
 
@@ -181,62 +181,9 @@ namespace NX{
     bool operator==(const X&, const X&);
 };
 ```
-### Container Ops
-
-除非有非常充分的理由, 否则我们应该按标准库容器的风格来设计容器. 特别是, 通过容器实现为句柄并为其实现恰当的基本操作来令它是资源安全的.
-
-标准库容器都知道自己的元素数目. 我们可以调用size()来获取.
-```cpp
-for(size_t i = 0; i < c.size(); ++i) //size_t 是标准库size()返回类型的名字
-    c[i] = 0;
-```
-但是标准库算法并不是使用从0到size()的下标来遍历容器, 二是依赖于序列sequence的概念,一个序列是用一对迭代器iterator框定的.
-```cpp
-for(auto p = c.begin(); p!= c.end(); ++p) *p = 0;
-```
-
-这里c.begin()是一个指向c的首元素是的迭代器. 而c.end()指向尾元素. 类似于指针,迭代器使用++操作移动到下一元素, 以及用*访问指向元素的值. 这种迭代器模型, 具有非常高的通用性和效率,用来将序列传递给标准库算法.例如
-```cpp
-sort(v.begin(),v.end())
-```
-另一种隐式使用元素数目的算法是范围for循环:
-```cpp
-for(auto&x :v){
-    x = 0;
-};
-```
-这段代码隐式的使用了c.begin()和c.end(),它大致等价于显式使用迭代器循环.
-
-### io ops
-
-对于整数运算对象`<<`左移,`>>`右移. 但对于iostream, 它们分别是输入运算符和输出运算符.
 
 
-### user-defined literal
 
-对于内置类型,我们可以声明字面值:
 
-```cpp
-int x = 123;
-unsigned int y = 0xFF00u;
-double z = 123.456;
-const char[10] = "Surprise!";
 
-#<string>
-#<chrono>
-#<complex>
 
-std::string x = "Surprise!"s;
-second y = 1.2s;
-complex t = 12.5i + 1.2;
-```
-
-### swap()
-
-很多算法使用swap()函数交换两个对象的值, 特别是sort(); 这类算法通常假定swap()非常快且不会抛出异常. 标准库提供了一个std::swap(a,b)来实现. 他进行了3步操作:`temp = a; a = b; b = temp`. 如果你设计一个类的拷贝代价很高而且有可能被交换, 则应为其提供移动操作和swap(). 
-
-标准库容器和string都具有快速移动操作.
-
-### `hash<>`
-
-标准库`unordered_map<K,V>`是一种哈希表,K是关键字类型,V是值类型. 将类型X用作关键字, 我们必须定义`hash<X>`

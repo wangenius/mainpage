@@ -1,0 +1,46 @@
+---
+title : 表达式和语句
+sidebar_position : 1
+slug : 表达式和语句
+---
+
+# 表达式和语句
+
+## 表达式
+
+
+## 语句
+
+
+C++提供了一套用于表达选择和循环结构的常规语句. 如if,switch,while,for等. 
+```cpp
+bool _if(){
+    cout << "do you want to preceed (y/n): \n";
+    char answer = 0;
+    cin >> answer;
+    if(answer == 'y') return true;
+    return false;
+}
+
+bool _switch(){
+    cout << "do you want to preceed (y/n): \n";
+    char answer = 0;
+    cin >> answer;
+    switch(answer) {
+        case 'y':
+        return true;
+        case 'n':
+        return false;
+        default:
+        cout << "I'll take that for a no.\n";
+        return false;
+    }
+}
+```
+switch语句检验一个值是否存在于一组常量中,这些常量被称为case标签,彼此之间不能重复,如果待检验的值不等于任何case分支,则执行default分支. 如果没有提供default分支,则什么也不做. 
+
+在switch语句中如果想退出某个case分支,不必从当前函数返回,通常我们只是希望继续执行switch语句后面的语句,为此只需使用一条break语句.
+```cpp 
+
+
+```

@@ -1,0 +1,127 @@
+---
+title : 迭代器和算法
+sidebar_position : 999
+slug : 迭代器和算法
+---
+# 迭代器和算法
+
+一个孤零零的数据结构，如一个链表或是一个向量。是没有太大用处的。为了使用一个数据结构，我们还需要一些能对其进行基本访问的操作，如添加或删除元素的操作。就像为list或vector提供的那些操作。而且我们很少仅将对象保存在容器中了事，而是需要对它们进行排序打印抽取子集删除元素搜索对象等更复杂的操作。因此，标准库除了提供最常用的容器类型外。还为这些容器提供了最常用的算法。例如，我们可以简单而高效的排序一个entry的vector。后世将所有不重复的vector元素。拷贝到另一个list中。
+
+## 迭代器
+
+import {Tag} from '@components'
+
+<Tag>对象(类)</Tag>
+
+```cpp
+void function(vector<Entry>& vec,list<Entry>& lst){
+    sort(vec.begin(),vec.end()); //用 < 确定元素的序
+    unique_copy(vec.begin(),vec.end(),lst.begin());
+};
+```
+这段代码能够正确执行有一个前提: Entry必须定义了小于运算符`<`和相等判定运算符`==`:
+
+```cpp
+bool operator<(const Entry& x, const Entry& y){
+    return x.name < y.name;
+};
+```
+
+标准库算法都描述为元素的序列上的操作. 一个序列有一对迭代器表示, 它们分别指向首元素和尾后位置.
+
+
+![](/res/迭代器.png)
+
+lst中元素至少应该vec中不重复元素一样多
+
+如果我们希望将不重复元素存入一个新容器中, 而不是覆盖一个容器中的旧元素:
+
+```cpp
+list<Entry> function(vector<Entry>& vec){
+    list<Entry> res;
+    sort(vec.begin(), vec.end());
+    unique_copy(vec.begin(), vec.end(),back_inserter(res));
+    return res;
+};
+```
+调用back_inserter为res创建了一个迭代器, 这种迭代器能将元素追加到容器的末尾, 在追加过程中可扩展容器空间来容纳新元素.
+
+如果你认为`sort(vec.begin(),vec.end())`这种使用迭代器的代码太冗长, 可以定义容器版本的新方法. 代码就能简化成`sort(vec)`;
+
+
+## 使用迭代器
+
+对于一个容器, 可获得一些指向有用元素的迭代器, begin()和end()就是最好的例子. 
+
+标准库算法 find() 在一个序列中 查找一个值,返回指向找到元素的迭代器:
+```cpp
+bool has_c(const string& s, char c){
+    return find(s.begin(),s.end(),c) != s.end(); 
+}
+```
+一个更有意思的练习是在字符串中查找一个字符出现的所有位置: 我们可以返回一个string的迭代器vector, 其中保存出现位置的集合. 返回一个vector是很高效的. 因为vector提供了移动语义, 假定希望修改找到的位置, 就应该提供一个非const字符串:
+
+```cpp
+vector<string::iterator> find_all(string& s, char c){
+    vector<string::iterator> res;
+    for(auto p = s.begin(); p != s.end();++p){
+        if(*p == c){
+            res.push_back(p);
+        };
+    };
+    return res;
+}
+```
+
+```cpp title="调用find_all()"
+void use(){
+    string m {"wangenius.com"};
+    for(auto p : find_all(m,'n'))
+        if(*p != 'n')
+            cerr << "a bug!\n";
+};
+```
+迭代器和标准库算法在所有标准库容器上的工作方式都是相同的, 前提是它们适用于该容器. 因此我们可以[泛化](../模板和泛型/模板)find_all()
+
+```cpp
+template<typename C, typename V>
+vector<typename C::iterator> find_all(C& c,V v){
+    vector<typename C::iterator> res;
+    for(auto p = c.begin(); p != c.end(); ++p)
+        if(*p == v) res.push_back(p);
+    return res;
+};
+```
+
+\<typename C::iterator> 的typename是有必要的, 它通知编译器C的iterator是一个类型, 而不是某种类型的值. 可以通过Iterator引入一个类型别名来隐藏这些细节.
+
+```cpp
+template<typename T>
+using Iterator = typename T::iterator;
+
+template<typename C, typename V>
+vector<Iterator<C>> find_all(C& c, V v);
+```
+
+## 迭代器
+
+迭代器的本质是什么: 当然任何一种特定的迭代器都是某种类型的对象. 不过,迭代器的类型非常多, 因为每个迭代器都是和某个特定容器类型相关联的, 他需要保存一些必要的信息, 以便完成对容器的某些任务. 因此有多少种容器就有多少种迭代器. 有多少种特殊要求就有多少种迭代器. 例如一个vector迭代器可能就是一个普通指针, 因为指针是一种引用vector元素的非常合理的方式.
+
+或者, 一个vector迭代器也可以实现为一个指向vector(存储空间起始地址)的指针再加上一个offset索引.
+
+采用这种迭代器就能进行范围检查.
+
+一个list迭代器把必须是比某种指向元素的简单指针更加复杂的东西. 因为一个list元素通常不知道它的下一个元素在哪里, 因此一个list迭代器可能是指向一个连接的指针.
+
+所有的迭代器类型的语义以及其操作和命名都是相似的。对任何迭代器使用++运算符。都会得到一个指向下一个元素的迭代器。类似的使用称运算符。会得到迭代器所指向的元素。世界上任何符合这些简单规则的对象都是一个迭代期。迭代器是一个概念。而且用户很少需要知道一个特定迭代器的类型。迭代器都是知道自己的迭代器类型是什么而且能够通过规范的名字。 iterator, const_iterator来正确声明自己的迭代器类型。例如。 List\<entry>::Iterator是list\<entry>的迭代器类型。我们很少需要操心这些类型是如何定义的细节。
+
+
+### swap()
+
+很多算法使用swap()函数交换两个对象的值, 特别是sort(); 这类算法通常假定swap()非常快且不会抛出异常. 标准库提供了一个std::swap(a,b)来实现. 他进行了3步操作:`temp = a; a = b; b = temp`. 如果你设计一个类的拷贝代价很高而且有可能被交换, 则应为其提供移动操作和swap(). 
+
+标准库容器和string都具有快速移动操作.
+
+### `hash<>`
+
+标准库`unordered_map<K,V>`是一种哈希表,K是关键字类型,V是值类型. 将类型X用作关键字, 我们必须定义`hash<X>`

@@ -1,10 +1,26 @@
 ---
-title : Class
-sidebar_position : 7
-slug : Class
+title : 类和对象
+sidebar_position : 4
+slug : 类和对象
 ---
+# 类和对象
 
-# Class
+C++中的类，可以看做是C语言结构体的升级版，它既可以包含变量，也可以包含函数。C++中的对象，可以理解为通过类定义出来的变量。和结构体一样，类是我们自定义的一种数据类型，而对象就是类这种数据类型的一个变量。一个类可以创建多个对象，每个对象都是类的一个具体实例，拥有类中的变量和函数。
+
+```cpp title="vector类"
+class Vector{
+public:
+    Vector(int s):elem{new double[s]},size{s}{} //构造一个Vector
+    double& operator[](int i){return elem[i];} //使用下表访问元素
+    int get_size(){return size}
+private:
+    double* elem;
+    int size;
+};
+
+Vector var(6); 该对象含有6个元素
+
+```
 
 ## concrete class
 

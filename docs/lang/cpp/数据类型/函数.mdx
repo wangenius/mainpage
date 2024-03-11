@@ -1,0 +1,98 @@
+---
+title : 函数
+sidebar_position : 4
+slug : 函数
+---
+# 函数
+
+## 声明
+
+A Function is a block of code or program segment that is defined to perform a specific well-defined task. A function is generally defined to save the user from writing the same lines of code again and again for the same input. All the lines of code are put together inside a single function and this can be called anywhere required. main() is a default function that is defined in every program of C++.
+
+syntax :
+
+```cpp
+FunctionType FunctionName(parameters);
+```
+
+## inline function
+
+C++语言新增关键字 inline，用于将一个函数声明为内联函数。在程序编译时，编译器会将内联函数调用处用函数体替换，这一点类似于 C语言中的宏扩展。
+
+采用内联函数可以有效避免函数调用的开销，程序执行效率更高。使用内联函数的缺点就是，如果被声明为内联函数的函数体非常大，则编译器编译后程序的可执行码将会变得很大。另外，如果函数体内出现循环或者其它复杂的控制结构的时候，这个时候处理这些复杂控制结构所花费的时间远大于函数调用所花的时间，因此将这类函数声明为内联函数的意义不大，反而会使得编译后可执行代码变长。
+
+在程序设计过程中，我们通常会将一些频繁被调用的短小函数声明为内联函数。
+
+为了使得 inline 声明内联函数有效，我们必须将 inline 关键字与函数体放在一起才行，否则 inline 关键字是不能成功将函数声明内联函数的。如例 1 所示，inline 关键字则无丝毫作用，而例 2 中则成功将 swap() 函数声明为了一个内联函数。
+
+```cpp
+void swap(int &a, int &b);
+inline void swap(int &a, int &b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+```
+
+## function
+
+### 声明 declaration 
+
+1. 声明：是指出存储类型，并给存储单元指定名称。
+
+2. 定义：是分配内存空间，还可为变量指定初始值。
+
+3. extern关键字：通过使用extern关键字声明变量名，而不是定义它。
+
+声明不一定是定义：extern声明没有分配内存空间，所以不是定义；extern告诉编译器变量在其他地方定义了。定义也是声明：定义变量的时候，同时给变量指出了存储类型，并给变量的存储单元指定了名称，所以也是声明。
+
+声明有指定初始值：如果指定了初始值，即使前面加了extern关键字，也是定义。
+
+函数原型（又称函数声明）：函数原型之于函数，相当于变量声明之于变量，只有函数头的就是函数原型。函数定义：带有函数体的就是定义，函数原型的返回值类型与函数定义必须相同。函数原型的形参表的类型与顺序必须与函数定义相同，但是函数原型可以不写形参名称，即便写了形参名称也可以和原函数不一样。
+
+```cpp
+Elem* next_elem();
+void next_elem(int);
+double next_elem(double);
+```
+
+在函数被调用之前必须先有函数原型，函数定义可以放在调用函数的后面。
+
+```cpp
+int func(); // 必须在调用函数的前面
+
+int main() { int ret = func(); }
+
+int func() { return 0; } 可以在调用函数的后
+```
+
+
+> 函数声明也可以包含参数名。有助于读者理解程序的含义。但实际上，除非该声明同时也是函数的定义。否则编译器会简单忽略参数名。
+
+```cpp
+double get(const vector<double>& vec,int index);
+//
+```
+
+### member functions in class
+
+```cpp
+char& String::operator[](int index);
+```
+
+### function overloading
+
+函数重载:如果程序中存在名字相同但参数类型不同的函数,则编译器会为每次调用选择最恰当的版本.
+
+```cpp
+void print(int);
+void print(double);
+void print(string);
+
+void user(){
+    print(42);
+    print(9.65);
+    print("hello world");
+}
+```

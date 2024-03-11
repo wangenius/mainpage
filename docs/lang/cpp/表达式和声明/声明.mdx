@@ -1,0 +1,53 @@
+---
+title : 声明
+sidebar_position : 2
+slug : 声明
+---
+# 声明
+
+一个声明declaration就是一条语句.为程序引入一个实体,并为该实体指明类型:
+
+1. 类型type:定义了一组可能的值及一组(对象上的)操作
+2. 对象object:存放某种类型值的内存空间
+3. 值value:二进制位,具体的含义由其类型决定
+4. 变量variable:命名的对象
+
+## 生命周期
+
+声明语句将一个名字引入到了一个作用域中:
+
+1. 局部作用域local scope: 声明在函数或者lambda内的名字叫做局部名字.局部名字的作用域从声明它的地方开始,到声明语句所在的块的末尾位置,界限是`{}`. 函数的参数也属于局部名字.
+2. 类作用域class scope: 如果一个名字定义在一个类中,且位于恩赫的函数,lambda,enum class之外,称为成员名字. 作用域从包含它的声明的起始\{开始,到该声明结束为止.
+3. 名字空间作用域namespace scope: 如果一个名字定义在一个名字空间内,同时位于任何函数,lambda,类,enum class之外,称为名字空间成员名字. 他的作用域从其声明位置开始,到名字空间结束为止.
+4. 声明在所有结构之外的名字称为全局名字,称为它位于在全局名字空间中.
+
+此外对象也可以没有名字.
+
+```cpp
+vector<int> vec;
+struct Record {
+    string name;
+}
+
+void function(int arg){
+    string motto {"Who dares wins"};
+    auto p = new Record{"wangenius"};
+};
+```
+
+## 分配
+
+在 C语言中，动态分配和释放内存的函数是 `malloc`、`calloc` 和 `free`，而在 C++语言中，`new`、`new[]`、`delete` 和 `delete[]` 操作符通常会被用来动态地分配内存和释放内存。
+
+需要注意的是，`new`、`new[]`、`delete` 和 `delete[]` 是操作符，而非函数。new 和 delete 是 C++ 的关键字。
+
+1. `new` 用于动态分配单个空间
+2. `new[]` 则是用于动态分配一个数组
+3. `delete` 用于释放由 `new` 分配的空间
+4. `delete[]` 则用于释放 `new[]` 分配的一个数组。
+
+```cpp
+int *p = new int;  //为 p 指针分配了一个 int 型的空间。new 操作符根据请求分配的数据类型来推断所需的空间大小。
+int *A = new int[10]; // 分配了10个连续的int地址, A指向首地址;
+```
+为了避免内存泄露, `new`、`new[]`、`delete` 和 `delete[]` 都是成对出现. 

@@ -5,6 +5,18 @@ slug : string
 ---
 # string
 
+
+声明:
+```cpp
+string s = "Hello";
+```
+std提供了string类型,弥补了简单字符串字面值的不足,还提供了Regular类型来拥有和操纵不同字符类型的字符序列.
+
+string类型提供了很多有用的字符串操作,如连接操作
+
+
+
+
 :::success basic_string
 basic_string与vector类似，不同之处在于其元素为字符类型，并提供了一系列与字符串相关的操作。 
 C风格字符串（以\0结尾的字符数组）太过复杂，难于掌握，不太适合大程序的开发，所以C++STL中定义了一种string类，在头文件\<string>中。
@@ -229,4 +241,133 @@ int toupper(int c); // 如果字符c是小写字母，则返回其大写形式�
 string str = "Hello, World!";
 transform(str.begin(), str.end(), str.begin(), toupper); //字符串转大写
 transform(str.begin(), str.end(), str.begin(), tolower); //字符串转小写
+```
+
+## 连接
+
+```cpp
+string compose(const string& name ,const string& domain){
+    return name + "@" + domain;
+};
+
+auto addr = compose("wangenius","qq.com")
+
+stirng s = "ok";
+s += '\n';//追加换行
+```
+
+## 下标操作
+
+```cpp
+string name = "wangenius";
+
+string s = name.substr(3,6); // "genius"
+name.replace(4,9,"zheng"); // "wangzheng"
+name[0] = toupper(name[0]); // "Wangenius"
+```
+如果一个c风格字符串(以0结尾的char数组),string支持对其包含的字符进行只读访问:
+```cpp
+void print(const string& s){
+    printf("for people who like printf: %s \n",s.c_str());//s.c_str()返回指向s字符的指针
+    cout << "for people who like streams:" << s << '\n';
+};
+```
+
+字符串字面值的类型是`const char *`类型, 为了得到std::string类型的字面需要使用后缀s
+
+```cpp
+auto s = "wangenius"s; // std::string类型
+auto p = "wangenius"; //c风格字符串 const char * 类型
+```
+
+## string类的实现
+
+短字符串优化技术: 短字符串(大约14个字符)直接保存在string对象内部, 长字符串保存在动态存储区.
+
+string的实际性能严重依赖运行时环境.  特别是在多线程实现中, 内存分配操作的代价相对较高. 当程序使用大量长度不一样的字符串时, 内存碎片问题会很严重. 所以采用短字符串优化技术. 
+
+> 为了处理多字符集, std定义了一个通用的字符串模板basic_string, string实际上是此模板用字符类型char实例化的一个别名;
+
+## string视图
+
+字符序列最常见的用途是传递给某个函数让它读取. 这可以通过字符串的值,引用或者c风格字符串方式传递string参数来实现. 都有额外的复杂性.
+std提供了string_view, 是一个(指针,长度)对, 表示一个字符序列.
+
+```cpp
+string_view : {begin(),size()}
+```
+
+我们通过string_view可以实现对一个连续字符序列的访问. 字符的存储可以是很多方式之一,包括string和char*. string_view类似指针或者引用,因为它并不拥有它所指向的字符. 这一点上,它很想STL迭代器对.
+
+
+```cpp title="一个简单的将字符串连接的代码块" showLineNumbers
+string cat(string_view sv1, string_view sv2){
+    string res(sv1.length() + sv2.length());
+    char * p = &res[0];
+    for (char c : sv1)  //一种拷贝方法
+        *p++ = c;
+    copy(sv2.begin(), sv2.end(),p); //另一种拷贝方法
+    return res;
+};
+//调用
+string name = "wangenius";
+
+auto s1 = cat(name,".com");
+auto s2 = cat(name,name);
+auto s3 = cat("wangenius",".com"sv); //const char* && string_view
+auto s4 = cat({&name[0],2},".com"sv); //wa.com
+```
+这个cat()和接受const string& 实参的compose()相比:
+1. 它可以用以不同方式管理的字符序列
+2. 对于C风格字符串实参,不会创建临时string实参
+3. 我们可以简单的传递子串
+
+后缀sv表示字符串视图, 必须:
+```cpp
+using namespace std::literals::string::string_view_literals;
+```
+
+## empty()
+
+```cpp
+s.empty(); // s为空字符串返回1, 否则返回0
+```
+
+## size()
+
+```cpp
+s.size(); // s的大小 == 5;
+```
+
+## substr()
+
+```cpp
+s.substr(off,count); // off是开始的位置,count是子字符串个数
+```
+
+## Regex
+
+```cpp
+#include <regex>;
+std::regex pat {R"(\w{2}\s*\d{5}(-\d{4})?)"}; //美国邮政编码 xxddddd-dddd及其变形
+```
+1. regex_match() : 将regex和一个字符串进行匹配
+2. regex_search() : 在一个任意长的数据流中搜索与正则表达式匹配的字符串
+3. regex_replace() : 在一个任意长的数据流中搜索与正则表达式匹配的字符串并将其替换
+4. regex_iterator : 遍历匹配结果和子匹配
+5. regex_token_iterator : 遍历未匹配结果部分
+
+
+
+举例:搜索的使用模式的最简单的方式就是在流中搜索它:
+
+```cpp
+int lineno = 0;
+for(string line; getline(cin,line);){
+    ++lineno;
+    smatch matches;
+    if(regex_search(line,matches,pat)){
+        cout << lineno << ":" << matches[0] << endl;
+    }
+}
 ```

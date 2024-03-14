@@ -285,7 +285,7 @@ const theme = {
           },
           {
             label: "Rust",
-            to: "/docs/lang/rust/overview",
+            to: "/docs/lang/rust/简介",
           },
          
           {
@@ -326,10 +326,6 @@ const theme = {
           {
             label: "博客",
             to: "/blog",
-          },
-          {
-            label: "项目计划",
-            to: "/docs/about/项目计划",
           },
           {
             label: "讨论",

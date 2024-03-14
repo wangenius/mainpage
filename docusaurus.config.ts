@@ -278,10 +278,10 @@ const theme = {
             to: "/docs/about/致明日的舞",
           }, {
             label: "操作系统基础",
-            to: "/docs/cs/os/overview",
+            to: "/docs/cs/os/概述",
           }, {
             label: "数据结构",
-            to: "/docs/dsa/ds/overview",
+            to: "/docs/dsa/ds/概述",
           },
           {
             label: "Rust",
@@ -290,7 +290,7 @@ const theme = {
          
           {
             label: "数据库",
-            to: "/docs/cs/db/overview",
+            to: "/docs/cs/db/概述",
           },
          
         ],

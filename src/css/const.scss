@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
 @font-face {
   font-family: "fira";
   src: url("@/css/font/FiraCode-Regular.ttf");
@@ -23,7 +26,8 @@
 
 /* font */
 $font_mainText:
-  Chinese Quote,
+  "Noto Sans SC",
+  "Roboto",
   Segoe UI,
   PingFang SC,
   Hiragino Sans GB,
@@ -38,10 +42,12 @@ $font_title: $font_mainText;
 $font_blockquote: $font_mainText;
 $font_nav_title: db, sans-serif;
 $font_nav_item: $font_mainText;
+$font_side_item: Segoe UI,PingFang SC;
 
 /* hover background color */
 $color_background_hover: #fafafa;
-$color_primary: #ffab2e;
+$color_primary: #071b5d;
+$color_primary_3: rgb(15, 8, 82);
 $color_background_active: #fafafa;
 $color_border: #2c323621;
 $color_font_title: #000000;
@@ -49,7 +55,7 @@ $color_navItem: #555658;
 $color_font_on_primary: #ffffff;
 $color_font_main: #505050;
 
-$color_font_nav_hover: #ff761a;
+$color_font_nav_hover: #221aff;
 
 $color_link: #f09e24; 
 $link: #0e41ad;

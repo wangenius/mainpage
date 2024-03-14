@@ -264,7 +264,7 @@ const theme = {
   },
   docs: {
     sidebar: {
-      autoCollapseCategories: true,
+      // autoCollapseCategories: true,
     },
   },
   footer: {

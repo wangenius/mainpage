@@ -40,9 +40,8 @@ navbar
 
 @mixin navbarItem {
   color: unset;
-  font-family: $font_nav_item;
   font-size: 0.9rem;
-  font-weight: 400;
+  font-weight: 400 !important;
   margin-right: 5px;
   border-bottom: 2px solid transparent;
   text-transform: capitalize;
@@ -55,18 +54,19 @@ navbar
   .navbar__title {
     @include title();
   }
+  .navbar__link {
+    font-weight: 400;
+  }
   .navbar__item.navbar__link {
     @include navbarItem();
-
   }
   .navbar__item.dropdown {
     @include navbarItem();
-  
-    .navbar__link{
-      position: relative;
 
+    .navbar__link {
+      position: relative;
       padding-right: 20px;
-      &::after{
+      &::after {
         content: url(/static/img/down.svg);
         border: none;
         font-family: $font_title;
@@ -74,35 +74,30 @@ navbar
         top: 15px;
         right: 0;
         display: block;
-      
-   
-        
       }
     }
-    &:hover{
-      .navbar__link{
-        color:$color_primary;
-     
+    &:hover {
+      .navbar__link {
+        color: $color_primary;
       }
-    
     }
   }
   .navbar__link--active {
     border-bottom: 2px solid $color_primary !important;
   }
 
-  .dropdown__menu{
+  .dropdown__menu {
     box-shadow: none;
     border: $border;
+
     padding: 5px;
+    font-family: $font_nav_item;
   }
 
-  .dropdown__link.dropdown__link--active{
-    color:$color_primary;
+  .dropdown__link.dropdown__link--active {
+    color: $color_primary;
   }
-
 }
-
 
 .plugin-docs {
   .navbar {
@@ -129,32 +124,31 @@ sidebar
 */
 
 @mixin navItem {
-  padding: 3px 12px;
+  padding: 3px 8px;
   white-space: nowrap;
-  height: 30px;
+  height: 24px;
   text-overflow: ellipsis;
   overflow: hidden;
-  font-size: 0.9rem;
-  font-family: $font_mainText;
+  font-size: 0.84rem;
+  font-family: $font_nav_item;
   color: $color_navItem;
   position: relative;
   text-transform: capitalize;
 
-  &::before {
-    content: "";
-    width: 3px;
-    height: 0;
-    position: absolute;
-    top: 50%;
-    left: 2px;
-
-    background-color: $color_primary;
-    opacity: 0.5;
-    transition: all ease 100ms;
-  }
+  // &::before {
+  //   content: "";
+  //   width: 3px;
+  //   height: 0;
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 2px;
+  //   background-color: $color_primary;
+  //   opacity: 0.5;
+  //   transition: all ease 100ms;
+  // }
   &:hover {
-    color: unset;
-    background-color: transparent !important;
+    // color: unset;
+    // background-color: transparent !important;
 
     &::before {
       height: 60%;
@@ -185,38 +179,57 @@ aside {
           @include navItem();
         }
         &.menu__link--active {
-          background-color: #fafafa !important;
+          background-color: $color_primary !important;
+          color: rgb(255, 255, 255) !important;  
           &:hover {
-            background-color: #fafafa !important;
+            background-color: $color_primary_3 !important;
           }
-          &::before {
-            content: "";
-            width: 3px;
-            height: 60%;
-            position: absolute;
-            top: 20%;
-            left: 2px;
-            background-color: $color_primary;
-          }
+          // &::before {
+          //   content: "";
+          //   width: 6px;
+          //   height: 6px;
+          //   border-radius:3px;
+          //   position: absolute;
+          //   top: 20%;
+          //   left: 2px;
+          //   background-color: $color_primary;
+          // }
         }
 
         &.menu__list-item-collapsible {
           @include navItem();
           margin: 0;
           padding: 0;
+          .clean-btn {
+            height: 24px;
+            width: 24px;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+          }
+
           /* 激活的下拉菜单 */
           &:hover {
             background-color: transparent !important;
           }
           .menu__link--sublist.menu__link {
+            padding-right:2px;
+            &:after {
+              &:hover{
+                background-color: #fafafa !important;
+              }
+            }
             &:hover {
               background-color: transparent !important;
             }
           }
           &.menu__list-item-collapsible--active {
+            color: $color_primary !important;
             background-color: transparent !important;
           }
           .menu__link--sublist.menu__link--active {
+            color: $color_primary !important;
             background-color: transparent !important;
           }
         }
@@ -224,8 +237,6 @@ aside {
     }
   }
 }
-
-
 
 /** docs */
 @mixin pagination_before {
@@ -304,7 +315,7 @@ footer {
   .footer__link-item {
     color: #bebebe;
     &:hover {
-      color: $color_primary;
+      color: white;
     }
   }
 }

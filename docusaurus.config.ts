@@ -343,7 +343,7 @@ const theme = {
   },
   prism: {
     theme: prism,
-    additionalLanguages:['toml','powershell','json','bash'],
+    additionalLanguages:['toml','powershell','json','bash','python'],
     defaultLanguage:"text"
   },
 } satisfies Preset.ThemeConfig;

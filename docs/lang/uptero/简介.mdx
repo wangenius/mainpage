@@ -1,0 +1,145 @@
+---
+title: 简介
+sidebar_position: 1
+slug: 简介
+---
+
+# 简介
+
+uptero 是我打算自制的一款编程语言。
+
+借鉴c++，JavaScript，TypeScript，rust等语言格式并简化。
+
+我很喜欢python的易用，
+但我实在看不惯缩进块这种反直觉的产物
+
+我只想把我这个uptero做成易用性很强，通用型语言。
+
+> 也许会借鉴rust的安全性，但是这是后话了，我自身的水平还不能达到，需要一边学习。
+
+## 内置类型
+
+### 基本类型
+
+1. int
+2. bool
+3. float
+4. char
+
+### 衍生类型
+
+1. string
+2. array
+3. map
+4. set
+5. enum
+6. function
+7. CONSTANT
+
+### 用户自定义类型
+
+1. class
+
+### 语法
+
+1. 声明：
+
+```text
+int a;
+arr<T> a;
+bool x;
+
+map::ordered m;
+bool::true;
+
+类型嵌套：
+
+map.ordered m;
+
+
+```
+
+2. 初始化
+
+```text
+
+```
+
+### 类型声明
+
+```text title="people.up"
+
+
+module people
+
+    class doctor(){
+
+    }
+
+    class teacher(){
+
+    }
+
+    class students(){
+
+    }
+
+    void eat(){
+        out("I'm eating.");
+        int a;
+        in(a);
+
+    }
+
+```
+
+## 项目结构
+
+```bash
+uptero get -g nodb
+PS D:\\project> uptero get nodb # 将nodb下载到当前目录下的 external 文件夹
+uptero main.up
+```
+
+```toml
+[../root]
+- main.up
+- [external]
+```
+
+```text
+@local.people; //自定义库
+@main.math;
+@main.io; // 调用系统api的基本库
+@local.@nodb; // 导入nodb库
+```
+
+### 文件和模块
+
+```text title="people"
+// 不说明则一个文件是一个模块
+
+export int m = 0; // 该变量的生命周期为导入它的位置决定。
+
+int n = 10; // 该变量生命周期为该模块的生命周期 如果该模块在别的模块的头部导入，则生命周期为别的模块的生命周期
+int main(){
+    // main()函数是主程序入口
+    int i = 0; //改变量的生命周期是到块（函数）结束
+    @local.people{people}; //eat导入。生命周期是块结束
+
+}// i end
+
+```
+
+```text title="people"
+export module people {
+    export class people(){
+        // 默认的变量都是私有变量
+        constructor(name:string){
+            this.name = name;
+        }
+    }
+}
+```
+
+## 声明和初始化

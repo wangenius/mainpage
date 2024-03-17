@@ -212,6 +212,11 @@ const theme = {
             sidebarId: "compile",
             label: "编译原理"
           },
+          {
+            type: "docSidebar",
+            sidebarId: "uptero",
+            label: "uptero"
+          },
        
         ]
       },

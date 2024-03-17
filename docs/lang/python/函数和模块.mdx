@@ -5,6 +5,13 @@ slug : 函数和模块
 ---
 # 函数和模块
 
+## 函数
+A function is a block of code which only runs when it is called.
+
+You can pass data, known as parameters, into a function.
+
+A function can return data as a result.
+
 ### 定义函数
 
 在Python中可以使用`def`关键字来定义函数，和变量一样每个函数也有一个响亮的名字，而且命名规则跟变量的命名规则是一致的。在函数名后面的圆括号中可以放置传递给函数的参数，这一点和数学上的函数非常相似，程序中函数的参数就相当于是数学上说的函数的自变量，而函数执行完成后我们可以通过`return`关键字来返回一个值，这相当于数学上说的函数的因变量。
@@ -12,19 +19,11 @@ slug : 函数和模块
 在了解了如何定义函数后，我们可以对上面的代码进行重构，所谓重构就是在不影响代码执行结果的前提下对代码的结构进行调整，重构之后的代码如下所示。
 
 ```Python
-"""
-输入M和N计算C(M,N)
-
-Version: 0.1
-Author: 骆昊
-"""
 def fac(num):
-    """求阶乘"""
     result = 1
     for n in range(1, num + 1):
         result *= n
     return result
-
 
 m = int(input('m = '))
 n = int(input('n = '))
@@ -42,7 +41,6 @@ print(fac(m) // fac(n) // fac(m - n))
 ```Python
 from random import randint
 
-
 def roll_dice(n=2):
     """摇色子"""
     total = 0
@@ -50,11 +48,9 @@ def roll_dice(n=2):
         total += randint(1, 6)
     return total
 
-
 def add(a=0, b=0, c=0):
     """三个数相加"""
     return a + b + c
-
 
 # 如果没有指定参数那么使用默认值摇两颗色子
 print(roll_dice())
@@ -79,7 +75,6 @@ def add(*args):
     for val in args:
         total += val
     return total
-
 
 # 在调用add函数时可以传入0个或多个参数
 print(add())
@@ -200,67 +195,6 @@ import module3
 # 导入module3时 不会执行模块中if条件成立时的代码 因为模块的名字是module3而不是__main__
 ```
 
-### 练习
-
-#### 练习1：实现计算求最大公约数和最小公倍数的函数。
-
-参考答案：
-
-```Python
-def gcd(x, y):
-    """求最大公约数"""
-    (x, y) = (y, x) if x > y else (x, y)
-    for factor in range(x, 0, -1):
-        if x % factor == 0 and y % factor == 0:
-            return factor
-
-
-def lcm(x, y):
-    """求最小公倍数"""
-    return x * y // gcd(x, y)
-```
-
-#### 练习2：实现判断一个数是不是回文数的函数。
-
-参考答案：
-
-```Python
-def is_palindrome(num):
-    """判断一个数是不是回文数"""
-    temp = num
-    total = 0
-    while temp > 0:
-        total = total * 10 + temp % 10
-        temp //= 10
-    return total == num
-```
-
-#### 练习3：实现判断一个数是不是素数的函数。
-
-参考答案：
-
-```Python
-def is_prime(num):
-    """判断一个数是不是素数"""
-    for factor in range(2, int(num ** 0.5) + 1):
-        if num % factor == 0:
-            return False
-    return True if num != 1 else False
-```
-
-#### 练习4：写一个程序判断输入的正整数是不是回文素数。
-
-参考答案：
-
-```Python
-if __name__ == '__main__':
-    num = int(input('请输入正整数: '))
-    if is_palindrome(num) and is_prime(num):
-        print('%d是回文素数' % num)
-```
-
-> **注意**：通过上面的程序可以看出，当我们**将代码中重复出现的和相对独立的功能抽取成函数**后，我们可以**组合使用这些函数**来解决更为复杂的问题，这也是我们为什么要定义和使用函数的一个非常重要的原因。
-
 ### 变量的作用域
 
 最后，我们来讨论一下Python中有关变量作用域的问题。
@@ -323,14 +257,44 @@ if __name__ == '__main__':
 
 > **说明：** 很多人经常会将“闭包”和[“匿名函数”](https://zh.wikipedia.org/wiki/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0)混为一谈，但实际上它们并不是一回事，如果想了解这个概念，可以看看[维基百科](https://zh.wikipedia.org/wiki/)的解释或者[知乎](https://www.zhihu.com/)上对这个概念的讨论。
 
-说了那么多，其实结论很简单，从现在开始我们可以将Python代码按照下面的格式进行书写，这一点点的改进其实就是在我们理解了函数和作用域的基础上跨出的巨大的一步。
+## Lambda
 
-```Python
-def main():
-    # Todo: Add your code here
-    pass
+A lambda function is a small anonymous function.
 
+A lambda function can take any number of arguments, but can only have one expression.
 
-if __name__ == '__main__':
-    main()
+```python
+x = lambda a : a + 10
+print(x(5))
+```
+
+```text title="output"
+15
+```
+
+The power of lambda is better shown when you use them as an anonymous function inside another function.
+
+Say you have a function definition that takes one argument, and that argument will be multiplied with an unknown number:
+
+```python
+def myfunc(n):
+  return lambda a : a * n
+```
+
+Use that function definition to make a function that always doubles the number you send in:
+
+```python
+def myfunc(n):
+  return lambda a : a * n
+
+mydoubler = myfunc(2)
+mytripler = myfunc(3)
+
+print(mydoubler(11))
+print(mytripler(11))
+```
+
+```text title="output"
+22
+33
 ```

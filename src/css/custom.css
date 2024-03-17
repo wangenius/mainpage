@@ -511,7 +511,7 @@ main nav .pagination-nav__link {
 main nav .pagination-nav__link .pagination-nav__label {
   color: #555658;
   font-family: "Noto Sans SC", "Roboto", Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
-  font-weight: 200;
+  font-weight: 500;
   font-size: 1.2rem;
 }
 main nav .pagination-nav__link .pagination-nav__label::after, main nav .pagination-nav__link .pagination-nav__label::before {

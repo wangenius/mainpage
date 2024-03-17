@@ -1,0 +1,32 @@
+---
+title : 编译
+sidebar_position : 2
+slug : 编译
+---
+# 编译
+
+source code：
+```text
+int num = ( max + min ) / 2;
+```
+## scanning
+
+第一步是扫描，也就是所谓的词法分析 ( lexing 或者强调写法 lexical analysis )。扫描和词法分析的意思相近。我喜欢词法分析这个描述，因为这听起来像是一个邪恶的超级大坏蛋会做的事情，但我还是用扫描，因为它似乎更常见一些。
+
+扫描器(词法解析器)接收线性字符流，并将它们切分成一系列更类似于“单词”的东西。在编程语言中，这些词的每一个都被称为词法单元。有些词法单元是单个字符，比如`{`和 `,`。其他的可能是几个字符长的，比如数字（123）、字符串字元（"hi!"）和标识符（min）。
+
+源文件中的一些字符实际上没有任何意义。空格通常是无关紧要的，而注释，从定义就能看出来，会被变成语言忽略。扫描器通常会丢弃这些字符，留下一个干净的有意义的词法单元序列。
+
+分解成：
+
+`int` `num` `=` `(` `max` `+` `min` `)` `/` `2` `;`
+
+
+## parsing
+语法分析
+
+The next step is parsing. This is where our syntax gets a grammar—the ability to compose larger expressions and statements out of smaller parts. Did you ever diagram sentences in English class? If so, you’ve done what a parser does, except that English has thousands and thousands of “keywords” and an overflowing cornucopia of ambiguity. Programming languages are much simpler.
+下一步是解析。 这就是我们从句法中得到语法的地方——语法能够将较小的部分组成较大的表达式和语句。你在英语课上做过语法图解吗？如果有，你就做了解析器所做的事情，区别在于，英语中有成千上万的“关键字”和大量的歧义，而编程语言要简单得多。
+
+
+解析器将扁平的词法单元序列转化为树形结构，树形结构能更好地反映语法的嵌套本质。这些树有两个不同的名称:解析树或抽象语法树，这取决于它们与源语言的语法结构有多接近。在实践中，语言黑客通常称它们为“语法树”、“AST”，或者干脆直接说“树”。

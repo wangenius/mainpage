@@ -107,6 +107,17 @@
 .markdown .theme-code-block:hover {
   border: 1px solid rgb(224, 225, 230);
 }
+.markdown .theme-code-block:hover .prism-code {
+  position: relative;
+}
+.markdown .theme-code-block:hover .prism-code.language-cpp:before {
+  content: "C++";
+  font-size: 0.88rem;
+  color: #a3a3a3;
+  position: absolute;
+  top: calc(var(--ifm-pre-padding));
+  right: calc(var(--ifm-pre-padding) * 3);
+}
 .markdown .theme-code-block div[class*=codeBlockTitle] {
   padding: 8px 20px 0;
   border: none;
@@ -247,6 +258,15 @@ table {
   color: #000000;
 }
 
+.theme-admonition * {
+  font-size: 0.86rem !important;
+}
+.theme-admonition ul {
+  margin: 5px 0;
+}
+.theme-admonition ul li {
+  color: var(--ifm-alert-foreground-color);
+}
 .theme-admonition p {
   margin: 0;
 }

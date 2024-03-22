@@ -1,151 +1,120 @@
 ---
-sidebar_position : 3
+sidebar_position: 3
 ---
-
 
 # 树
 
-树，二叉树：有左右子树的区分和度不超过2.
+树的存储结构
 
-二叉排序树：左子树均小于根，根均小于右节点。。
+1. 顺序存储结构: 双亲表示法
+2. 链式存储结构: 常规表示方法
 
-线索二叉树：设置两个标识标记左右指针指向的是孩子还是前躯节点。
+## 二叉树
 
-平衡二叉树：左右子树高度差绝对值小于等于1。
+几个基本的关系:
 
-哈夫曼树：压缩用的。权值大小排列。
-
-完全二叉树：只能从右边为空。
-
-## 树和森林
-
-树和森林与二叉树的转换：
-
-左指针指向第一个孩子，右指针指向下一个兄弟。
-
-1. 顺序存储结构：双亲表示法
-
-2. 链式存储结构
-
-3. 存储结构
-
-  1. 孩子表示法 (图的邻接表存储结构)
-
-  2. 孩子兄弟表示法（树和森林与二叉树的相互转换关系密切）
-
-# 二叉树
-$$
-b = n - 1 = n_1 + 2n_2
-$$
-
-$$
-2^{i-1}
-$$
-$$
-2^k - 1
-$$
-$$
-h(n) = \dfrac{C_{2n}^n}{n+1}
-$$
-$$
-h = floor(\log_2n)+1 = ceil(\log_2n+1)
-$$
-
-```Rust title="树的结构"
-typedef struct Node{
-    struct info {};
-    struct Node *lchild;
-    struct Node *rchild;
-}Node,*Tree;
+```cpp
+Tree& tree = new Tree();
+assert(tree.branches.length == tree.nodes.length - 1);
+assert(tree.layers(i).nodes.length == 2 ** (i - 1));
+assert(tree.layers(0,n).nodes.length == 2 ** n - 1);
+assert(tree.layers.length == floor(log(tree.nodes.length))+1);
+assert(tree.layers.length == ceil(log(tree.nodes.length + 1)));
 ```
 
-
-## 遍历
-
-```Rust
-先序遍历
-void preorder(BTNode *p){
-	if(p!==NULL){
-     visit(p);
-     preorder(p->lchild);
-     preorder(p->rchild);
-    }
-}
-中序遍历
-
-
-后序遍历
-
-
-层次遍历
-辅助队列,出队时访问,分别将左右子树入队.
-```
-
-
-```Rust
-非递归算法
-//前序遍历
-建栈入根,loop(s.top != -1){出栈访问并入栈先右后左孩子}
-//中序遍历
-建栈建指针指根,loop(s.top != -1 || p != NULL){有左孩子继续入根,没左孩子出栈访问并指向右孩子}
-//后续遍历
-建两栈建一针,loop(s1.top != -1){出栈入栈2,先左后右孩子入栈1},loop(s2.top != -1){出栈访问}
-```
-
-
-## 线索二叉树
-
-tag = 1,指向前驱后继，tag = 0,指向左右子树
-
-# 二叉排序树BST
-
-算法：相似继承算法：被删除节点的直接前驱或直接后继代替被删除节点，然后删除被删除节点的直接前驱或直接后继。
-
-## 平衡二叉树AVL
-
-平衡因子：左高度-右高度
-
-插入：中间派贿赂算法，插入后破坏平衡,势力大的一方的中间派上台
-
-删除：相似继承算法+中间派贿赂算法+回溯
-
-## 红黑树RBT
-
-民主革命算法：
-
-4. 中下无权者(红色)连结时(相连)
-
-5.
-
-  1. 中层内部分化：无权者贿赂算法获取领导权（）
-
-  2. 中层内部团结：中层获得控制权，领导者失去控制权（中层变黑，领导变红）
-
-## B树
-
-m阶：最多n=m-1个key，最少key= [n/2]
-
-插入：插后溢阶,中值飞切
-
-删除：不能借就合并
-
-## B+树
-
-最多n=m个key
-
-叶子包含全部信息
-
-结点最少key = `<n/2>`
-
-:::success B和B+树的区别
-关键字的数量不同：B+树中分支结点有m个关键字，其叶子结点也有m个，其关键字只是起到了一个索引的作用，但是B树虽然也有m个子结点，但是其只拥有m-1个关键字。
-
-存储的位置不同：B+树中的数据都存储在叶子结点上，也就是其所有叶子结点的数据组合起来就是完整的数据，但是B树的数据存储在每一个结点中，并不仅仅存储在叶子结点上。
-
-分支结点的构造不同：B+树的分支结点仅仅存储着关键字信息和儿子的指针（这里的指针指的是磁盘块的偏移量），也就是说内部结点仅仅包含着索引信息。
-
-查询不同:B树在找到具体的数值以后，则结束，而B+树则需要通过索引找到叶子结点中的数据才结束，也就是说B+树的搜索过程中走了一条从根结点到叶子结点的路径。
+:::success 补充
+满二叉树的高度$$h(n) =\dfrac{C_{2n}^n}{n+1}$$
 :::
+
+```cpp title="二叉树的结构"
+struct TreeNode {
+    int val;          // 节点值
+    TreeNode *left;   // 左子节点指针
+    TreeNode *right;  // 右子节点指针
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+```
+
+### 遍历
+
+#### 递归算法
+
+```cpp title="先序遍历"
+void preorder(TreeNode *root){
+    if (root == nullptr)
+        return;
+    vec.push_back(root->val);
+    preOrder(root->left);
+    preOrder(root->right);
+}
+```
+
+```cpp title="中序遍历"
+void inOrder(TreeNode *root) {
+    if (root == nullptr)
+        return;
+    inOrder(root->left);
+    vec.push_back(root->val);
+    inOrder(root->right);
+}
+```
+
+```cpp title="后序遍历"
+void postOrder(TreeNode *root) {
+    if (root == nullptr)
+        return;
+    postOrder(root->left);
+    postOrder(root->right);
+    vec.push_back(root->val);
+}
+```
+
+```cpp title="层次遍历: 辅助队列,出队时访问,分别将左右子树入队."
+vector<int> levelOrder(TreeNode *root) {
+    // 初始化队列，加入根节点
+    queue<TreeNode *> queue;
+    queue.push(root);
+    // 初始化一个列表，用于保存遍历序列
+    vector<int> vec;
+    while (!queue.empty()) {
+        TreeNode *node = queue.front();
+        queue.pop();              // 队列出队
+        vec.push_back(node->val); // 保存节点值
+        if (node->left != nullptr)
+            queue.push(node->left); // 左子节点入队
+        if (node->right != nullptr)
+            queue.push(node->right); // 右子节点入队
+    }
+    return vec;
+}
+```
+
+#### 非递归算法
+
+```cpp title="前序遍历"
+vector<int> preorder(TreeNode *node){
+  // TODO: create a stack
+  stack<TreeNode *> stack;
+  vector<int> res;
+  stack.push(node);
+  TreeNode * temp;
+  while(!stack.empty()){
+    temp = stack.top();
+    stack.pop();
+    if(temp -> right != nullptr) stack.push(temp -> right);
+    if(temp -> left != nullptr) stack.push(temp -> left);
+  };
+  return res;
+}
+```
+
+:::success 线索二叉树
+`tree` 结构体中多了一个 `tag` 位. `tag = 1`,指向前驱后继，`tag = 0`,指向左右子树
+:::
+
+
+
+
 
 ## 赫夫曼树
 
@@ -157,10 +126,9 @@ m阶：最多n=m-1个key，最少key= [n/2]
 
 9. 构造：最小权结点做兄弟，父结点权值=权值之和。
 
-```Rust
+```cpp
 loop{选择最小的两个结点构造棵树,根节点的权值和等于两结点的权值和}
 ```
-
 
 10. 结点总数2n-1
 
@@ -175,4 +143,15 @@ loop{选择最小的两个结点构造棵树,根节点的权值和等于两结�
 Decision Tree
 
 
+## 并查集
+
+并查集是一种用于管理元素所属集合的数据结构，实现为一个森林，其中每棵树表示一个集合，树中的节点表示对应集合中的元素。
+
+顾名思义，并查集支持两种操作：
+
+合并（Union）：合并两个元素所属集合（合并对应的树）
+查询（Find）：查询某个元素所属集合（查询对应的树的根节点），这可以用于判断两个元素是否属于同一集合
+并查集在经过修改后可以支持单个元素的删除、移动；使用动态开点线段树还可以实现可持久化并查集。
+
+> 并查集无法以较低复杂度实现集合的分离。
 

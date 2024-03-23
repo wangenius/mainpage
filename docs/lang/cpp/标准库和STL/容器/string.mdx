@@ -14,10 +14,19 @@ std提供了string类型,弥补了简单字符串字面值的不足,还提供了
 
 string类型提供了很多有用的字符串操作,如连接操作
 
+在 C 语言中，提供了字符串的操作，但只能通过字符数组的方式来实现字符串。而 string 则是一个简单的类，使用简单，在 OI 竞赛中被广泛使用。并且相较于其他 STL 容器，string 的常数可以算是非常优秀的，基本与字符数组不相上下。
 
+string 可以动态分配空间
+和许多 STL 容器相同，string 能动态分配空间，这使得我们可以直接使用 std::cin 来输入，但其速度则同样较慢。这一点也同样让我们不必为内存而烦恼。
+
+string 重载了加法运算符和比较运算符
+string 的加法运算符可以直接拼接两个字符串或一个字符串和一个字符。和 std::vector 类似，string 重载了比较运算符，同样是按字典序比较的，所以我们可以直接调用 std::sort 对若干字符串进行排序。
 
 
 :::success basic_string
+
+`std::string` 是在标准库 `<string>`（注意不是 C 语言中的 `<string.h>` 库）中提供的一个类，本质上是 `std::basic_string<char>` 的别称。
+
 basic_string与vector类似，不同之处在于其元素为字符类型，并提供了一系列与字符串相关的操作。 
 C风格字符串（以\0结尾的字符数组）太过复杂，难于掌握，不太适合大程序的开发，所以C++STL中定义了一种string类，在头文件\<string>中。
 
@@ -29,6 +38,15 @@ string和wstring分别是它的两个实例：
 
 string 本质上是一个动态的char数组。char\*是一个指针，string是一个类, string封装了char\*，管理这个字符串，是一个char\*型的容器。string管理char\*所分配的内存，每一次string的复制/赋值，取值都由string类负责维护，不用担心复制越界和取值越界等。
 
+:::success 转为char数组
+
+在 C 语言里，也有很多字符串的函数，但是它们的参数都是 char 指针类型的，为了方便使用，string 有两个成员函数能够将自己转换为 char 指针——data()/c_str()（它们几乎是一样的，但最好使用 c_str()，因为 c_str() 保证末尾有空字符，而 data() 则不保证），如：
+```cpp
+printf("%s", s);          // 编译错误
+printf("%s", s.data());   // 编译通过，但是是 undefined behavior
+printf("%s", s.c_str());  // 一定能够正确输出
+```
+:::
 
 ## 构造函数
 ```cpp

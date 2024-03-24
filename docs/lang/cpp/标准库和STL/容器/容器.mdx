@@ -83,6 +83,30 @@ STL中包含了很多种容器，虽然这些容器提供了一些相同的操�
 |array\<T,N>| 定长数组|
 |bitset\<N>||
 
+我们知道，unordered_set和unordered_map与set和map是一样的，前者不是真正的键值对，它的value值和key值相同；后者是真正的键值对。STL非常注重代码的复用，它们在底层使用了同一棵红黑树模板实现，这也是此文要用同一个哈希表实现unordered_set和unordered_map的原因。如果各自拥有一个哈希表，set和unordered_set只要一个key值即可。
+
+unordered_set
+```cpp
+template<class K>
+class unordered_set
+{
+public:
+    // ..
+private:
+    HashTable<K, K> _ht;
+};
+```
+unordered_map
+```cpp
+template<class K, class V>
+class unordered_map
+{
+public:
+    //...
+private:
+    HashTable<K, pair<K, V>> _ht;
+};
+```
 
 ## 标准库容器的部分操作
 | operates | descriptions |

@@ -114,6 +114,12 @@ const theme = {
     category: 'General',
     categoryId: 'DIC_kwDOLSHki84CdVYI',
   },
+  mermaid: {
+    theme: {light: 'forest'},
+    options: {
+      maxTextSize: 200,
+    },
+  },
   navbar: {
     title: "panovista",
     logo: {

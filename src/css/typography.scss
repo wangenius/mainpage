@@ -142,7 +142,8 @@
   blockquote {
     background-color: #f7f7f8;
     transition: all ease 100ms;
-    padding: 5px 15px;
+    margin: 10px 0;
+    padding: 15px 20px;
     border: none;
     border-radius: 10px;
     * {
@@ -212,45 +213,45 @@ table {
   width: fit-content;
 }
 
-.docusaurus-mermaid-container {
-  margin: 0 auto;
-  width: fit-content;
-  min-width: 900px;
-  display: flex;
-  justify-content: center;
-  polygon,
-  rect,
-  circle {
-    fill: #fdfaf7 !important;
-    stroke: #f1e9e3 !important;
-  }
-  .edgePaths {
-    * {
-      stroke-width: 1px;
-      stroke: #c1c5ca !important;
-    }
-  }
-  .marker {
-    stroke: none !important;
-    fill: #c1c5ca !important;
-  }
-  .edgeLabel {
-    background-color: transparent !important;
-  }
-  .cluster {
-    fill: transparent !important;
-    stroke-dasharray: 20 10 20 10 !important;
-    stroke-width: 2px !important;
-    stroke: #4d8a52 !important;
-    * {
-      fill: transparent !important;
-      stroke-linejoin: round !important;
-      stroke-dasharray: 10 5 !important;
-      stroke-width: 1px !important;
-      stroke: #83ac87 !important;
-    }
-  }
-}
+// .docusaurus-mermaid-container {
+//   margin: 0 auto;
+//   width: fit-content;
+//   min-width: 900px;
+//   display: flex;
+//   justify-content: center;
+//   polygon,
+//   rect,
+//   circle {
+//     fill: #fdfaf7 !important;
+//     stroke: #f1e9e3 !important;
+//   }
+//   .edgePaths {
+//     * {
+//       stroke-width: 1px;
+//       stroke: #c1c5ca !important;
+//     }
+//   }
+//   .marker {
+//     stroke: none !important;
+//     fill: #c1c5ca !important;
+//   }
+//   .edgeLabel {
+//     background-color: transparent !important;
+//   }
+//   .cluster {
+//     fill: transparent !important;
+//     stroke-dasharray: 20 10 20 10 !important;
+//     stroke-width: 2px !important;
+//     stroke: #4d8a52 !important;
+//     * {
+//       fill: transparent !important;
+//       stroke-linejoin: round !important;
+//       stroke-dasharray: 10 5 !important;
+//       stroke-width: 1px !important;
+//       stroke: #83ac87 !important;
+//     }
+//   }
+// }
 
 .hash-link {
   color: #000000;

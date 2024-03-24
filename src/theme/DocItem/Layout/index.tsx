@@ -15,6 +15,8 @@ import type {Props} from '@theme/DocItem/Layout';
 import Comment from '../../../components/Comment';
 
 import styles from './styles.module.css';
+import mermaidAPI from 'mermaid';
+
 
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports

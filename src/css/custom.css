@@ -218,7 +218,7 @@
 }
 
 table {
-  margin: 0 auto;
+  margin: 10px auto;
   width: -moz-fit-content;
   width: fit-content;
 }
@@ -384,6 +384,60 @@ aside b {
   font-family: db, sans-serif;
   font-weight: 400;
 }
+aside nav .menu__list {
+  padding: 0;
+  padding-left: 0 !important;
+}
+aside nav .menu__link {
+  font-weight: 400;
+  font-size: 0.9rem;
+  font-family: "Noto Sans SC", "Roboto", Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+  color: #1a1a1a;
+  padding-left: 30px !important;
+  position: relative;
+}
+aside nav .menu__link::before {
+  position: absolute;
+  content: "";
+  left: 5px;
+  top: 3px;
+}
+aside nav .menu__link:hover {
+  background-color: transparent !important;
+  text-decoration: underline;
+}
+aside nav .menu__link--active:not(.menu__link--sublist) {
+  background-color: transparent !important;
+}
+aside nav .menu__link--active:not(.menu__link--sublist):hover {
+  color: unset !important;
+}
+aside nav .menu__link--active:not(.menu__link--sublist)::before {
+  content: "☞";
+}
+aside nav .menu__list-item-collapsible {
+  margin: 20px 0 6px;
+}
+aside nav .menu__list-item-collapsible .menu__link:first-child {
+  font-size: 0.9rem;
+  font-family: db, sans-serif;
+  font-weight: 400;
+  color: #7e7e7e;
+  text-decoration: unset;
+  padding-left: 5px !important;
+  position: relative;
+}
+aside nav .menu__list-item-collapsible .menu__link:first-child::before {
+  position: relative !important;
+  content: "#️⃣";
+  padding-right: 5px;
+  left: 0;
+  top: 0;
+}
+aside nav .menu__list-item-collapsible:hover {
+  background-color: transparent;
+  color: unset !important;
+}
 aside nav .clean-btn.navbar-sidebar__back {
   background: none;
 }
@@ -392,96 +446,31 @@ aside nav > ul {
 }
 aside nav > ul div.menu__link,
 aside nav > ul a.menu__link {
-  padding: 3px 8px;
+  margin: 2px 0;
   white-space: nowrap;
-  height: 24px;
+  height: 22px;
   text-overflow: ellipsis;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   overflow: hidden;
-  font-size: 0.84rem;
-  font-family: "Noto Sans SC", "Roboto", Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
-  color: #555658;
   position: relative;
   text-transform: capitalize;
 }
-aside nav > ul div.menu__link:hover::before,
-aside nav > ul a.menu__link:hover::before {
-  height: 60%;
-  top: 20%;
-}
-aside nav > ul div.menu__link::before, aside nav > ul div.menu__link::after,
-aside nav > ul a.menu__link::before,
-aside nav > ul a.menu__link::after {
-  fill: rgba(0, 0, 0, 0.0470588235);
-}
-aside nav > ul div.menu__link--active,
-aside nav > ul a.menu__link--active {
-  background-color: #071b5d !important;
-  color: rgb(255, 255, 255) !important;
-}
-aside nav > ul div.menu__link--active:hover,
-aside nav > ul a.menu__link--active:hover {
-  background-color: rgb(15, 8, 82) !important;
-}
-aside nav > ul div.menu__list-item-collapsible,
-aside nav > ul a.menu__list-item-collapsible {
-  padding: 3px 8px;
+aside nav > ul div.menu__list-item,
+aside nav > ul a.menu__list-item {
+  margin: 2px 0;
   white-space: nowrap;
-  height: 24px;
+  height: 22px;
   text-overflow: ellipsis;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   overflow: hidden;
-  font-size: 0.84rem;
-  font-family: "Noto Sans SC", "Roboto", Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
-  color: #555658;
   position: relative;
   text-transform: capitalize;
   margin: 0;
   padding: 0;
-  /* 激活的下拉菜单 */
-}
-aside nav > ul div.menu__list-item-collapsible:hover::before,
-aside nav > ul a.menu__list-item-collapsible:hover::before {
-  height: 60%;
-  top: 20%;
-}
-aside nav > ul div.menu__list-item-collapsible::before, aside nav > ul div.menu__list-item-collapsible::after,
-aside nav > ul a.menu__list-item-collapsible::before,
-aside nav > ul a.menu__list-item-collapsible::after {
-  fill: rgba(0, 0, 0, 0.0470588235);
-}
-aside nav > ul div.menu__list-item-collapsible .clean-btn,
-aside nav > ul a.menu__list-item-collapsible .clean-btn {
-  height: 24px;
-  width: 24px;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-aside nav > ul div.menu__list-item-collapsible:hover,
-aside nav > ul a.menu__list-item-collapsible:hover {
-  background-color: transparent !important;
-}
-aside nav > ul div.menu__list-item-collapsible .menu__link--sublist.menu__link,
-aside nav > ul a.menu__list-item-collapsible .menu__link--sublist.menu__link {
-  padding-right: 2px;
-}
-aside nav > ul div.menu__list-item-collapsible .menu__link--sublist.menu__link:after:hover,
-aside nav > ul a.menu__list-item-collapsible .menu__link--sublist.menu__link:after:hover {
-  background-color: #fafafa !important;
-}
-aside nav > ul div.menu__list-item-collapsible .menu__link--sublist.menu__link:hover,
-aside nav > ul a.menu__list-item-collapsible .menu__link--sublist.menu__link:hover {
-  background-color: transparent !important;
-}
-aside nav > ul div.menu__list-item-collapsible.menu__list-item-collapsible--active,
-aside nav > ul a.menu__list-item-collapsible.menu__list-item-collapsible--active {
-  color: #071b5d !important;
-  background-color: transparent !important;
-}
-aside nav > ul div.menu__list-item-collapsible .menu__link--sublist.menu__link--active,
-aside nav > ul a.menu__list-item-collapsible .menu__link--sublist.menu__link--active {
-  color: #071b5d !important;
-  background-color: transparent !important;
 }
 
 /** docs */

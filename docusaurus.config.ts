@@ -395,7 +395,7 @@ export default {
             "https://github.com/wangenius/wangenius.github.io/tree/master/",
           remarkPlugins: [remarkMath],
           rehypePlugins: [rehypeKatex],
-          
+          sidebarCollapsible: false,
         },
         blog: {
           showReadingTime: true, // Please change this to your repo.

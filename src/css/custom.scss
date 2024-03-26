@@ -124,41 +124,14 @@ sidebar
 */
 
 @mixin navItem {
-  padding: 3px 8px;
+  margin: 2px 0;
   white-space: nowrap;
-  height: 24px;
+  height: 22px;
   text-overflow: ellipsis;
+  user-select: none;
   overflow: hidden;
-  font-size: 0.84rem;
-  font-family: $font_nav_item;
-  color: $color_navItem;
   position: relative;
   text-transform: capitalize;
-
-  // &::before {
-  //   content: "";
-  //   width: 3px;
-  //   height: 0;
-  //   position: absolute;
-  //   top: 50%;
-  //   left: 2px;
-  //   background-color: $color_primary;
-  //   opacity: 0.5;
-  //   transition: all ease 100ms;
-  // }
-  &:hover {
-    // color: unset;
-    // background-color: transparent !important;
-
-    &::before {
-      height: 60%;
-      top: 20%;
-    }
-  }
-  &::before,
-  &::after {
-    fill: #0000000c;
-  }
 }
 
 aside {
@@ -168,6 +141,73 @@ aside {
   }
   /* sidebar menu */
   nav {
+    .menu__list{
+      padding: 0;
+      padding-left: 0 !important;
+    }
+
+    .menu__link{
+      font-weight: 400;
+      font-size:0.9rem;
+      font-family: $font_nav_item;
+      color: #1a1a1a;
+      padding-left: 30px !important;
+      position: relative;
+      &::before{
+        position:absolute;
+        content:"";
+        left: 5px;
+        top: 3px;
+
+      }
+      &:hover{
+        background-color: transparent !important;
+        text-decoration: underline;
+      }
+    }
+    .menu__link--active:not(.menu__link--sublist){
+      background-color: transparent !important;
+      &:hover{
+        color:unset !important;
+      }
+      &::before{
+        content:"☞";
+  
+      }
+    }
+    .menu__list-item-collapsible{
+      margin: 20px 0 6px;
+      .menu__link:first-child{
+        font-size: 0.9rem;
+        font-family: $font_nav_title;
+        font-weight: 400;
+        color:#7e7e7e;
+        text-decoration: unset;
+      padding-left: 5px !important;
+        position: relative;
+        &::before{
+          position:relative !important;
+          content:"#️⃣";
+          padding-right: 5px;
+          left: 0;
+          top: 0;
+          // height: 100%;
+          // width: 6px;
+          // position: absolute;
+          // top: 0;
+          // left:3px;
+          // background-color: #000;
+        }
+      }
+
+      &:hover{
+        background-color: transparent;
+        color:unset !important;
+      }
+    }
+
+
+
     .clean-btn.navbar-sidebar__back {
       background: none;
     }
@@ -178,60 +218,12 @@ aside {
         &.menu__link {
           @include navItem();
         }
-        &.menu__link--active {
-          background-color: $color_primary !important;
-          color: rgb(255, 255, 255) !important;  
-          &:hover {
-            background-color: $color_primary_3 !important;
-          }
-          // &::before {
-          //   content: "";
-          //   width: 6px;
-          //   height: 6px;
-          //   border-radius:3px;
-          //   position: absolute;
-          //   top: 20%;
-          //   left: 2px;
-          //   background-color: $color_primary;
-          // }
-        }
 
-        &.menu__list-item-collapsible {
+
+        &.menu__list-item {
           @include navItem();
           margin: 0;
           padding: 0;
-          .clean-btn {
-            height: 24px;
-            width: 24px;
-            padding: 0;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-          }
-
-          /* 激活的下拉菜单 */
-          &:hover {
-            background-color: transparent !important;
-          }
-          .menu__link--sublist.menu__link {
-            padding-right:2px;
-            &:after {
-              &:hover{
-                background-color: #fafafa !important;
-              }
-            }
-            &:hover {
-              background-color: transparent !important;
-            }
-          }
-          &.menu__list-item-collapsible--active {
-            color: $color_primary !important;
-            background-color: transparent !important;
-          }
-          .menu__link--sublist.menu__link--active {
-            color: $color_primary !important;
-            background-color: transparent !important;
-          }
         }
       }
     }

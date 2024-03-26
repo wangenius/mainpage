@@ -188,6 +188,7 @@
   }
   table {
     width: 100%;
+
     tr:nth-child(2n){
       background-color: #ffffff;
     }
@@ -209,7 +210,7 @@
 }
 
 table {
-  margin: 0 auto;
+  margin: 10px auto;
   width: fit-content;
 }
 

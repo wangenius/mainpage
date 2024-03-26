@@ -223,6 +223,7 @@ vector<int> levelOrder(TreeNode *root) {
 vector<int> preorder(TreeNode *node){
   stack<TreeNode *> stack;
   vector<int> res;
+  if(!node) return res;
   stack.push(node);
   TreeNode * temp;
   while(!stack.empty()){

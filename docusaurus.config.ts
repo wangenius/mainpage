@@ -115,10 +115,7 @@ const theme = {
     categoryId: 'DIC_kwDOLSHki84CdVYI',
   },
   mermaid: {
-    theme: {light: 'forest'},
-    options: {
-      maxTextSize: 200,
-    },
+    theme: {light: 'forest'}
   },
   navbar: {
     title: "panovista",
@@ -217,12 +214,7 @@ const theme = {
             type: "docSidebar",
             sidebarId: "compile",
             label: "编译原理"
-          },
-          {
-            type: "docSidebar",
-            sidebarId: "uptero",
-            label: "uptero"
-          },
+          }
        
         ]
       },
@@ -245,12 +237,7 @@ const theme = {
             type: "docSidebar",
             sidebarId: "tools",
             label: "工具和工作流"
-          },
-          {
-            type: "docSidebar",
-            sidebarId: "docker",
-            label: "docker"
-          },
+          }
         ]
       },
       {

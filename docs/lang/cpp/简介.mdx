@@ -302,3 +302,25 @@ if (int x = f(); is_good(x)) {
 }
 ```
 这是可能的，因为 C++17。
+
+尽量少使用 using 指示
+
+```cpp
+using namespace std;
+```
+应该多使用 using 声明
+```cpp
+int x;
+std::cin >> x ;
+std::cout << x << std::endl;
+```
+或者
+
+```cpp
+using std::cin;
+using std::cout;
+using std::endl;
+int x;
+cin >> x;
+cout << x << endl;
+```

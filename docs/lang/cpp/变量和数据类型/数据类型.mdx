@@ -24,7 +24,7 @@ import {Tag} from '@components'
 
 ### 整数类型
 
-> 由于历史原因，C++ 中布尔类型和字符类型会被视作特殊的整型。  
+> 由于历史原因，C++ 中布尔类型和字符类型会被视作特殊的整型。
 在几乎所有的情况下都 不应该 将除 signed char 和 unsigned char 之外的字符类型作为整型使用。
 
 整数类型一般按位宽有 5 个梯度：char,short,int,long,long long.
@@ -51,6 +51,8 @@ long：表示 至少 32 位整数；
 在不引发歧义的情况下，允许省略部分修饰关键字，或调整修饰关键字的顺序。这意味着同一类型会存在多种等价表述。
 
 例如 int，signed，int signed，signed int 表示同一类型，而 unsigned long 和 unsigned long int 表示同一类型。
+
+c++中`^`不是幂运算.幂运算是`power(x,y)`;
 
 
 ```cpp

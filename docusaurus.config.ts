@@ -132,7 +132,7 @@ const theme = {
         items:[  {
           type: "docSidebar",
           sidebarId: "ds",
-          label: "数据结构",
+          label: "算法和数据结构",
         },
           {
             type: "docSidebar",
@@ -177,12 +177,6 @@ const theme = {
             sidebarId: "si",
             label: "软件工程"
           },
-           {
-            type: "docSidebar",
-            sidebarId: "tools",
-            label: "工具和工作流"
-          },
-     
         ]
       },
       {
@@ -227,11 +221,6 @@ const theme = {
             type: "docSidebar",
             sidebarId: "math",
             label: "数学"
-          },
-          {
-            type: "docSidebar",
-            sidebarId: "git",
-            label: "git"
           },
           {
             type: "docSidebar",

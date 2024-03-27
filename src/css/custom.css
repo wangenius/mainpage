@@ -233,6 +233,9 @@ table {
 .theme-admonition * {
   font-size: 0.86rem !important;
 }
+.theme-admonition div:first-child span:first-child {
+  display: none !important;
+}
 .theme-admonition ul {
   margin: 5px 0;
 }
@@ -241,6 +244,18 @@ table {
 }
 .theme-admonition p {
   margin: 0;
+}
+
+sup {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+sup a {
+  padding: 0 2px;
+}
+
+.markdown > p, .markdown li {
+  color: unset !important;
 }
 
 @font-face {
@@ -375,6 +390,7 @@ sidebar
 */
 aside {
   /* title */
+  border-right: none !important;
   /* sidebar menu */
 }
 aside b {
@@ -383,6 +399,12 @@ aside b {
   text-transform: uppercase;
   font-family: db, sans-serif;
   font-weight: 400;
+}
+aside nav {
+  padding: 0 0 30px 10px !important;
+}
+aside nav.thin-scrollbar {
+  scrollbar-width: unset !important;
 }
 aside nav .menu__list {
   padding: 0;

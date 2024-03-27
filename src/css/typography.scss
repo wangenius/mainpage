@@ -262,8 +262,14 @@ table {
 }
 
 .theme-admonition {
+  border: none !important;
   * {
     font-size: 0.86rem !important;
+  }
+  div:first-child{
+    span:first-child{
+      display: none !important;
+    }
   }
 
   ul {
@@ -276,4 +282,22 @@ table {
   p {
     margin: 0;
   }
+}
+
+sup{
+  margin-left: 2px;
+  margin-right: 2px;
+  a{
+    // background-color: #1a1a1a;
+    // color: #fff !important;
+    padding: 0 2px;
+    // fill: #fff;
+    // &:hover{
+    //   color: #fff;
+    // }
+  }
+}
+
+.markdown > p, .markdown li {
+  color: unset !important;
 }

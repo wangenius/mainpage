@@ -136,58 +136,72 @@ sidebar
 
 aside {
   /* title */
+  border-right: none !important;
   b {
     @include title();
   }
+
   /* sidebar menu */
   nav {
-    .menu__list{
+    padding: 0 0 30px 10px !important;
+    &.thin-scrollbar {
+      scrollbar-width: unset !important;
+    }
+    .menu__list {
       padding: 0;
       padding-left: 0 !important;
     }
+    // &:after{
+    //   content: "";
+    //   position:absolute !important;
+    //   right: 0;
+    //   top: 80px;
+    //   clear: both;
+    //   width: 1px;
+    //   height: 200px;
+    //   background-color: #000;
+    // }
 
-    .menu__link{
+    .menu__link {
       font-weight: 400;
-      font-size:0.9rem;
+      font-size: 0.9rem;
       font-family: $font_nav_item;
       color: #1a1a1a;
       padding-left: 30px !important;
       position: relative;
-      &::before{
-        position:absolute;
-        content:"";
+      &::before {
+        position: absolute;
+        content: "";
         left: 5px;
         top: 3px;
-
       }
-      &:hover{
+      &:hover {
         background-color: transparent !important;
         text-decoration: underline;
       }
     }
-    .menu__link--active:not(.menu__link--sublist){
+    .menu__link--active:not(.menu__link--sublist) {
       background-color: transparent !important;
-      &:hover{
-        color:unset !important;
+      &:hover {
+        color: unset !important;
       }
-      &::before{
-        content:"☞";
-  
+      &::before {
+        content: "☞";
       }
     }
-    .menu__list-item-collapsible{
+    .menu__list-item-collapsible {
       margin: 20px 0 6px;
-      .menu__link:first-child{
+      .menu__link:first-child {
         font-size: 0.9rem;
         font-family: $font_nav_title;
         font-weight: 400;
-        color:#7e7e7e;
+        color: #7e7e7e;
         text-decoration: unset;
-      padding-left: 5px !important;
+        padding-left: 5px !important;
         position: relative;
-        &::before{
-          position:relative !important;
-          content:"#️⃣";
+        &::before {
+          position: relative !important;
+          content: "#️⃣";
           padding-right: 5px;
           left: 0;
           top: 0;
@@ -200,13 +214,11 @@ aside {
         }
       }
 
-      &:hover{
+      &:hover {
         background-color: transparent;
-        color:unset !important;
+        color: unset !important;
       }
     }
-
-
 
     .clean-btn.navbar-sidebar__back {
       background: none;
@@ -218,7 +230,6 @@ aside {
         &.menu__link {
           @include navItem();
         }
-
 
         &.menu__list-item {
           @include navItem();

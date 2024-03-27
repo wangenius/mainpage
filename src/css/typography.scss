@@ -263,6 +263,8 @@ table {
 
 .theme-admonition {
   border: none !important;
+  box-shadow: none !important;
+  border-radius: 12px !important;
   * {
     font-size: 0.86rem !important;
   }

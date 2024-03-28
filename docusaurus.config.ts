@@ -174,9 +174,21 @@ const theme = {
           },
            {
             type: "docSidebar",
-            sidebarId: "si",
+            sidebarId: "se",
             label: "软件工程"
           },
+        ]
+      },
+      {
+        type: "dropdown",
+        label:"AI",
+        position:"right",
+        items:[
+           {
+            type: "docSidebar",
+            sidebarId: "ml",
+            label: "机器学习"
+          }
         ]
       },
       {

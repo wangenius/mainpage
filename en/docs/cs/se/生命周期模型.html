@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-cs/se/生命周期模型" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.1.1">
+<title data-rh="true">生命周期模型 | Panovista</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://wangenius.github.io/en/docs/cs/se/生命周期模型"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="生命周期模型 | Panovista"><meta data-rh="true" name="description" content="软件生命周期是软件定义、软件开发、运行维护三个时期。 每个时期又分为若干阶段："><meta data-rh="true" property="og:description" content="软件生命周期是软件定义、软件开发、运行维护三个时期。 每个时期又分为若干阶段："><link data-rh="true" rel="icon" href="/en/img/panovista.svg"><link data-rh="true" rel="canonical" href="https://wangenius.github.io/en/docs/cs/se/生命周期模型"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/en/docs/cs/se/生命周期模型" hreflang="en"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/docs/cs/se/生命周期模型" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/docs/cs/se/生命周期模型" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/en/blog/rss.xml" title="Panovista RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/en/blog/atom.xml" title="Panovista Atom Feed">
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/en/assets/css/styles.9d024903.css">
+<script src="/en/assets/js/runtime~main.3aab34f3.js" defer="defer"></script>
+<script src="/en/assets/js/main.a3becc44.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top navbarHideable_m1mJ"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/en/"><div class="navbar__logo"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">panovista</b></a></div><div class="navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">DSA</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/dsa/ds/概述">算法和数据结构</a></li><li><a class="dropdown__link" href="/en/docs/dsa/leetcode/字符串相关/公共字段">leetcode刷题</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">计算机原理</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/cs/co/概述">组成原理</a></li><li><a class="dropdown__link" href="/en/docs/cs/db/SQL">数据库</a></li><li><a class="dropdown__link" href="/en/docs/cs/os/概述">操作系统</a></li><li><a class="dropdown__link" href="/en/docs/cs/web/LAN和以太网">计算机网络</a></li><li><a class="dropdown__link" href="/en/docs/more/git/安装和设置">Git</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/en/docs/cs/se/概述">软件工程</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">AI</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/ai/ml/概述">机器学习</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">语言</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/lang/cpp/简介">C++</a></li><li><a class="dropdown__link" href="/en/docs/lang/python/概述">Python</a></li><li><a class="dropdown__link" href="/en/docs/lang/rust/简介">Rust</a></li><li><a class="dropdown__link" href="/en/docs/lang/ts/CSS">TypeScript</a></li><li><a class="dropdown__link" href="/en/docs/lang/compile/概述">编译原理</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">更多</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/more/math/space">数学</a></li><li><a class="dropdown__link" href="/en/docs/more/tools/scoop">工具和工作流</a></li></ul></div><a class="navbar__item navbar__link" href="/en/docs/opus/overview">作品集</a><a class="navbar__item navbar__link" href="/en/blog">博客</a><a class="navbar__item navbar__link" href="/en/docs/about/关于我">关于</a><a href="https://github.com/wangenius/wangenius.github.io" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd sidebarWithHideableNavbar_wUlq"><a tabindex="-1" class="sidebarLogo_isFc" href="/en/"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"><b>panovista</b></a><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/en/docs/cs/se/概述">概述</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/en/docs/cs/se/生命周期模型">生命周期模型</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/en/docs/cs/se/软件测试">软件测试</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/en/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">生命周期模型</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><h1>生命周期模型</h1>
+<p>软件生命周期是软件定义、软件开发、运行维护三个时期。 每个时期又分为若干阶段：</p>
+<ol>
+<li>软件定义<!-- -->
+<ol>
+<li>问题定义</li>
+<li>可行性研究</li>
+<li>需求分析：问题识别、分析和综合、导出软件的逻辑模型、编写文档</li>
+</ol>
+</li>
+<li>软件开发<!-- -->
+<ol>
+<li>概要设计</li>
+<li>详细设计</li>
+<li>编码</li>
+<li>测试</li>
+</ol>
+</li>
+<li>运行维护<!-- -->
+<ol>
+<li>软件维护： 矫正性维护、适应性维护、完善性维护、预防性维护</li>
+</ol>
+</li>
+</ol>
+<div class="theme-admonition theme-admonition-success admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>数据字典</div><div class="admonitionContent_BuS1"><p>数据字典是指对数据的数据项、数据结构、数据流、数据存储、处理逻辑等进行定义和描述，其目的是对数据流图中的各个元素作出详细的说明，使用数据字典为简单的建模项目。 简而言之，数据字典是描述数据的信息集合，是对系统中使用的所有数据元素的定义的集合。</p><ol>
+<li>作为分析阶段的工具</li>
+<li>估计由变更产生的影响</li>
+<li>作为数据库开发的基础</li>
+</ol></div></div>
+<p>既然所有的开发模型都具有相同的开发周期，那不同的开发模型的差别从哪里体现呢？或者说不同的开发模型在指导开发过程中的差异点在哪里？</p>
+<p>我理解的差别点主要体现在：</p>
+<p>每个周期活动的工作上限
+每个周期被重复的次数
+周期活动被重复的时机
+对软件开发活动的指导范围</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="瀑布模型">瀑布模型<a href="#瀑布模型" class="hash-link" aria-label="Direct link to 瀑布模型" title="Direct link to 瀑布模型">​</a></h2>
+<p>六大步：收集需求、分析、设计、编码、测试、维护</p>
+<p>理想化模型，现实中不存在</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="v模型">V模型<a href="#v模型" class="hash-link" aria-label="Direct link to V模型" title="Direct link to V模型">​</a></h2>
+<p>rap application development 快速软件开发</p>
+<ol start="7">
+<li>
+<p>需求分析</p>
+</li>
+<li>
+<p>概要设计：主要是架构实现，搭建架构，表述各模块功能，模块接口连接，数据传递和实现</p>
+</li>
+<li>
+<p>详细设计：对各模块进行深入分析，达到伪代码级别，已经把程序中的具体实现的功能现象描述出来，包含数据库设计说明。</p>
+</li>
+<li>
+<p>软件编码</p>
+</li>
+<li>
+<p>单元测试</p>
+</li>
+<li>
+<p>集成测试</p>
+</li>
+<li>
+<p>系统测试</p>
+</li>
+<li>
+<p>验收测试</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="增量模型">增量模型<a href="#增量模型" class="hash-link" aria-label="Direct link to 增量模型" title="Direct link to 增量模型">​</a></h2>
+<p>增量模型将整个系统结构化的拆成几个增量（功能模块）-- 比如3个，每一个完整的周期完成一个增量，有几个增量就重复几个周期。</p>
+<p>思想是先开发出一个初始的实现，给用户使用并听取用户的使用意见和建议，通过对多个版本的不断修改直到产生一个充分的系统。描述、开发和有效性验证等活动不是分离的而是交织在一起。同时让这些活动之间都能得到快速的反馈信息传递。</p>
+<p>增量式开发反映了我们解决问题的方法，系统的每一个增量或版本包括用户需要的一部分功能。通常，系统的早期增量包括最重要或最紧急的功能需求。这就意味着在早期开发阶段，用户可以相对早地评估系统，看它是否满足需要。若不满足需要，就只需要改变当前的增量即可，又或许有新的功能被发现并为下个增量做准备，因此可以大幅度地减少成本。</p>
+<p>增量式开发相比于瀑布模型的一些重要优点：
+降低了适应用户需求变更的成本。重新分析和修改文档的工作量较之瀑布模型要少很多。</p>
+<p>在开发过程中更容易得到用户对于已做的开发工作的反馈意见。用户可以评价软件的现实版本，并可以看到已经实现了多少。这比让用户从软件设计文档中判断工程进度要好很多。
+使更快地交付和部署有用的软件到客户方变成了可能，虽然不是所有的功能都已经包含在内。相比于瀑布模型，用户可以更早地使用软件并创造商业价值。
+从管理的角度看，增量式方法存在的问题：
+过程不可见。管理者需要通过经常性的可交付文档来把握进度，若系统开发速度太快，要产生反映系统每个版本的文档就很不划算。</p>
+<p>伴随着新的增量的添加，系统结构在逐渐退化。除非投入时间和金钱 用在重构系统结构上以改善软件，否则定期的变更会损坏系统的结构。随着时间的推移，越往后变更系统越困难，而且成本也将逐渐上升。</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="螺旋模型">螺旋模型<a href="#螺旋模型" class="hash-link" aria-label="Direct link to 螺旋模型" title="Direct link to 螺旋模型">​</a></h2>
+<p>螺旋模型属于演化开发（也属于迭代开发）。螺旋模型结合了演化开发的迭代和瀑布模型的系统性和监控。最大的特点就是引入了其它模型不具备的风险分析。在每一个迭代里，当确定了目标、方案和限制条件以后，进入风险评估阶段（识别并消除风险）。如果有不确定的风险，则需要进一步工作以将所有风险都确定。风险过大甚至会终止项目。当风险识别完成并有确定的风险消除方案以后，就继续采用瀑布模型完成一次迭代开发。在多次迭代以后，达成所期望的戏疼。</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="喷泉模型">喷泉模型<a href="#喷泉模型" class="hash-link" aria-label="Direct link to 喷泉模型" title="Direct link to 喷泉模型">​</a></h2>
+<p>喷泉模型体现了软件开发的无边界性（每个阶段之间没有清晰的边界）和反复性。就像喷泉水喷出又落下。开发的阶段也是这样，可能从某个阶段回落到之前的任何一个阶段（比如，从测试回到需求获取）。PS：感觉像边改边做模型。</p>
+<div class="theme-admonition theme-admonition-success admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>增量开发与迭代开发的区别</div><div class="admonitionContent_BuS1"><p>增量开发：
+每个阶段都完成一个高质量的发布版本，后一阶段不对前一阶段的内容进行任何修改，只在前一阶段的基础上增加新的业务功能实现，称为增量，直至最后一个阶段，形成最终的软件产品。
+增量开发只是在原有的基础上增加新的东西。</p><p>迭代开发：
+第一个阶段就覆盖了项目整体范围，以后每个阶段都是在前一阶段的基础上改进、完善，没有业务范围的扩展。
+迭代开发每一次都是在原有的基础上进行改进和完善。
+迭代开发只是要求将开发分成多个迭代，并没有回答一个重要的问题：怎么划分迭代，哪个任务在这个迭代，哪个任务在下个迭代？这时，一般采用&quot;增量开发&quot;（incremental development）划分迭代。</p><p>所谓&quot;增量开发&quot;，指的是软件的每个版本，都会新增一个用户可以感知的完整功能。也就是说，按照新增功能来划分迭代。</p></div></div></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/wangenius/wangenius.github.io/tree/master/docs/cs/se/生命周期模型.mdx" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/en/docs/cs/se/概述"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">概述</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/en/docs/cs/se/软件测试"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">软件测试</div></a></nav></div><div>Loading Comments...</div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#瀑布模型" class="table-of-contents__link toc-highlight">瀑布模型</a></li><li><a href="#v模型" class="table-of-contents__link toc-highlight">V模型</a></li><li><a href="#增量模型" class="table-of-contents__link toc-highlight">增量模型</a></li><li><a href="#螺旋模型" class="table-of-contents__link toc-highlight">螺旋模型</a></li><li><a href="#喷泉模型" class="table-of-contents__link toc-highlight">喷泉模型</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">知识库</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/en/docs/about/致明日的舞">致明日的舞</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/cs/os/概述">操作系统基础</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/dsa/ds/概述">数据结构</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/lang/rust/简介">Rust</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/cs/db/概述">数据库</a></li></ul></div><div class="col footer__col"><div class="footer__title">社区</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://weibo.com/u/6320492937" target="_blank" rel="noopener noreferrer" class="footer__link-item">微博<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://space.bilibili.com/247967944" target="_blank" rel="noopener noreferrer" class="footer__link-item">bilibili<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.zhihu.com/people/wangenius" target="_blank" rel="noopener noreferrer" class="footer__link-item">知乎<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/wangenius" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">更多</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/en/docs/about/关于我">关于我</a></li><li class="footer__item"><a class="footer__link-item" href="/en/blog">博客</a></li><li class="footer__item"><a href="https://github.com/wangenius/wangenius.github.io/discussions" target="_blank" rel="noopener noreferrer" class="footer__link-item">讨论<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/wangenius/wangenius.github.io/issues" target="_blank" rel="noopener noreferrer" class="footer__link-item">FAQ<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 吕麓弥章, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

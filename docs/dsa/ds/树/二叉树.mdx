@@ -217,6 +217,28 @@ vector<int> preorder(TreeNode *node){
 }
 ```
 
+```cpp title="中序遍历"
+void inorderTraversal(TreeNode* root) {
+    // 辅助结构： 一栈一指针
+    stack<TreeNode*> st; 
+    TreeNode* current = root;
+    while (current != nullptr || !st.empty()) {
+        // 将当前节点的左子树全部入栈
+        while (current != nullptr) {
+            st.push(current);
+            current = current->left;
+        }
+        
+        // 访问当前节点并处理右子树
+        current = st.top();
+        st.pop();
+        visit(current);
+        current = current->right;
+    }
+}
+
+```
+
 ## 线索化
 线索二叉树的 `node` 结构体中多了一个 `tag` 位. `tag = 1`,指向前驱后继，`tag = 0`,指向左右子树
 

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpanovista=self.webpackChunkpanovista||[]).push([[983],{6433:s=>{s.exports=JSON.parse('{"label":"speech","permalink":"/blog/tags/speech","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

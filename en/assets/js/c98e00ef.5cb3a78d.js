@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkpanovista=self.webpackChunkpanovista||[]).push([[1395],{54347:s=>{s.exports=JSON.parse('{"label":"music","permalink":"/en/blog/tags/music","allTagsPath":"/en/blog/tags","count":1,"unlisted":false}')}}]);

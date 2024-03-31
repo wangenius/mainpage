@@ -17,7 +17,6 @@ const prism = {
       style: {
         color: '#0550AE',
         fontWeight: 'bold',
-        
       },
     },
     {
@@ -28,8 +27,8 @@ const prism = {
     },
     {
       types: ['boolean', 'rule', 'color', 'number', 'constant', 'property'],
-      style: {
-        color: '#005CC5',
+      style: {  
+        color: '#1750EB',
       },
     },
     {
@@ -47,19 +46,19 @@ const prism = {
     {
       types: ['operator', 'unit', 'rule'],
       style: {
-        color: '#D73A49',
+        color: 'rgb(216, 60, 8)',
       },
     },
     {
       types: ['font-matter', 'string', 'attr-value'],
       style: {
-        color: '#C6105F',
+        color: '#067D17',
       },
     },
     {
       types: ['class-name'],
       style: {
-        color: '#116329',
+        color: '#008080',
       },
     },
     {
@@ -71,13 +70,13 @@ const prism = {
     {
       types: ['keyword'],
       style: {
-        color: '#CF222E',
+        color: '#0033B3',
       },
     },
     {
       types: ['function'],
       style: {
-        color: '#8250DF',
+        color: '#00627A',
       },
     },
     {
@@ -95,7 +94,7 @@ const prism = {
     {
       types: ['comment'],
       style: {
-        color: '#6B6B6B',
+        color: '#8C8C8C',
       },
     },
   ],
@@ -347,27 +346,21 @@ const theme = {
   },
 } satisfies Preset.ThemeConfig;
 
-// noinspection JSUnusedGlobalSymbols
+
 export default {
   title: "Panovista",
   tagline:
     "故事的开始是一个有限但维数很大的矩阵空间。每一次的选择，矩阵空间都会做一次降维折叠，直到空间湮灭，主体消散。而折叠路径串起的大小传奇，将作为整个宇宙的岁月史书中，某个角落的蒙尘日志。日志的主人公形象是光线在躯壳和意识之间的反射，当一个环节发生变故，就会像日出后的雪人一样令人唏嘘的不见。那就把左矩阵刻录下来，叠成教训的谱，将歌声传向每一个开放的终端。",
-  url: "https://wangenius.github.io", // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  url: "https://wangenius.github.io",
   baseUrl: "/",
-  favicon: "img/panovista.svg", // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "wangenius", // Usually your GitHub org/{username}.
-  projectName: "wangenius.github.io", // Usually your repo name.
+  favicon: "img/panovista.svg",
+  organizationName: "wangenius",
+  projectName: "wangenius.github.io",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   trailingSlash: false,
   deploymentBranch: "gh-pages",
   // clientModules: [require.resolve('./src/clientModules/routeModules.ts')],
-
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "zh-Hans",
     locales: ["en", "zh-Hans"],
@@ -389,9 +382,7 @@ export default {
       "@docusaurus/preset-classic",
       {
         docs: {
-          // routeBasePath:"/",
-          sidebarPath: "./sidebars.ts", // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          sidebarPath: "./sidebars.ts",
           editUrl:
             "https://github.com/wangenius/wangenius.github.io/tree/master/",
           remarkPlugins: [remarkMath],
@@ -399,8 +390,7 @@ export default {
           sidebarCollapsible: false,
         },
         blog: {
-          showReadingTime: true, // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          showReadingTime: true,
           editUrl:
             "https://github.com/wangenius/wangenius.github.io/tree/master/",
         },
@@ -423,6 +413,5 @@ export default {
   themeConfig: theme,
   markdown: {
     mermaid: true,
-  },
-  themes: ['@docusaurus/theme-mermaid'],
+  }
 } satisfies Config;

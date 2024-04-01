@@ -4,6 +4,9 @@ sidebar_position : 6
 slug : priority_queue
 ---
 # priority_queue
+
+就是堆。 但无法任意删除一个数。
+
 它与queue的操作类似，不同之处在于：每次增加/删除元素之后，它将对元素位置进行调整，使得头部元素总是最大的。也就是说，每次删除操作总是把最大（优先级最高）的元素去掉。
 
 在头文件queue中定义，可基于deque和vector来实现。

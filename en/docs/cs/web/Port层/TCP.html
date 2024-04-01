@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-cs/web/Port层/TCP" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.1.1">
+<title data-rh="true">TCP | Panovista</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://wangenius.github.io/en/docs/cs/web/Port层/TCP"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="TCP | Panovista"><meta data-rh="true" name="description" content="运输层向它上面的应用层提供通信服务。面向通信部分的最高层，也是用户功能的最底层。"><meta data-rh="true" property="og:description" content="运输层向它上面的应用层提供通信服务。面向通信部分的最高层，也是用户功能的最底层。"><link data-rh="true" rel="icon" href="/en/img/panovista.svg"><link data-rh="true" rel="canonical" href="https://wangenius.github.io/en/docs/cs/web/Port层/TCP"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/en/docs/cs/web/Port层/TCP" hreflang="en"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/docs/cs/web/Port层/TCP" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://wangenius.github.io/docs/cs/web/Port层/TCP" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/en/blog/rss.xml" title="Panovista RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/en/blog/atom.xml" title="Panovista Atom Feed">
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/en/assets/css/styles.a544cf3e.css">
+<script src="/en/assets/js/runtime~main.5abf1fdd.js" defer="defer"></script>
+<script src="/en/assets/js/main.a28c3197.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top navbarHideable_m1mJ"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/en/"><div class="navbar__logo"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">panovista</b></a></div><div class="navbar__items navbar__items--right"><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">DSA</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/dsa/ds/概述">算法和数据结构</a></li><li><a class="dropdown__link" href="/en/docs/dsa/leetcode/双指针相关/三数之和">leetcode刷题</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">计算机原理</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/cs/co/概述">组成原理</a></li><li><a class="dropdown__link" href="/en/docs/cs/db/SQL">数据库</a></li><li><a class="dropdown__link" href="/en/docs/cs/os/概述">操作系统</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/en/docs/cs/web/概述">计算机网络</a></li><li><a class="dropdown__link" href="/en/docs/more/git/安装和设置">Git</a></li><li><a class="dropdown__link" href="/en/docs/cs/se/概述">软件工程</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">AI</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/ai/ml/概述">机器学习</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">语言</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/lang/cpp/简介">C++</a></li><li><a class="dropdown__link" href="/en/docs/lang/python/概述">Python</a></li><li><a class="dropdown__link" href="/en/docs/lang/rust/简介">Rust</a></li><li><a class="dropdown__link" href="/en/docs/lang/ts/CSS">TypeScript</a></li><li><a class="dropdown__link" href="/en/docs/lang/compile/概述">编译原理</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">更多</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/docs/more/math/space">数学</a></li><li><a class="dropdown__link" href="/en/docs/more/tools/scoop">工具和工作流</a></li></ul></div><a class="navbar__item navbar__link" href="/en/docs/opus/overview">作品集</a><a class="navbar__item navbar__link" href="/en/blog">博客</a><a class="navbar__item navbar__link" href="/en/docs/about/关于我">关于</a><a href="https://github.com/wangenius/wangenius.github.io" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd sidebarWithHideableNavbar_wUlq"><a tabindex="-1" class="sidebarLogo_isFc" href="/en/"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/en/img/panovista.png" alt="logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"><b>panovista</b></a><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/en/docs/cs/web/概述">概述</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link">IP层</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/docs/cs/web/IP层/网络IP地址和IP数据报">IP协议</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/docs/cs/web/IP层/网络设备">hub</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/docs/cs/web/IP层/路由器原理">路由器原理</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link">MAC层</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/docs/cs/web/MAC层/LAN和以太网">LAN和以太网</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/docs/cs/web/MAC层/介质访问控制和帧">介质访问控制和帧</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/docs/cs/web/MAC层/物理信道传输原理和静态复用">物理信道传输原理和静态复用</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--active">Port层</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/en/docs/cs/web/Port层/TCP">TCP</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link">应用层</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/docs/cs/web/应用层/HTTP">HTTP/HTTPs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/docs/cs/web/应用层/DNS协议">DNS协议</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/docs/cs/web/应用层/FTP">FTP</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/docs/cs/web/应用层/邮件系统">邮件系统</a></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_z5aJ"><div class="docItemContainer_c0TR"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/en/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Port层</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">TCP</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><p>运输层向它上面的应用层提供通信服务。面向通信部分的最高层，也是用户功能的最底层。</p>
+<ol>
+<li>
+<p>提供<strong>进程</strong>之间的逻辑通信</p>
+</li>
+<li>
+<p>传输层对收到的报文进行差错检测（首部和数据部分），网络层只检查IP数据报的首部，不检查数据部分是否出错</p>
+</li>
+<li>
+<p>复用和分用</p>
+</li>
+<li></li>
+<li>
+<p>复用：发送方不同的应用进程都可以使用一个 运输层协议传送  数据</p>
+</li>
+<li>
+<p>分用：接收方的运输层在剥去报文的首部后能够把这些数据正确交付目的的应用进程。</p>
+</li>
+</ol>
+<h1>UDP</h1>
+<p>用户数据报协议,<strong>面向报文</strong>的<strong>无连接</strong>、<strong>不可靠服务(尽最大努力交付)</strong>。有差错检验**.没有拥塞控制**，<strong>支持一对一，多对一，一对多，多对多的交互通信</strong>。<strong>首部开销小</strong>。</p>
+<p>接收方UDP发现报文目的端口号不正确，不存在对应端口号的应用进程，丢弃该报文，并由ICMP发送端口不可达的差错报文给发送方。<code>traceroute</code></p>
+<p>首部：8B，4个字段组成，每个字段都是2B.</p>
+<p>伪首部：<code>UDP checksum</code>的计算方法和<code>IP packet checksum</code>的计算方法相似，但不同的是，<code>IP packet checksum</code>只检验<code>ip packet head</code>，但<code>UDP checksum</code> 则检查包括伪首部、首部和数据部分。</p>
+<ol>
+<li>
+<p>反码计算出16位字的和，将和的反码装进检验和字段发送。</p>
+</li>
+<li>
+<p>接收方连同伪首部反码计算16位字和，如果全为1，则没有差错。</p>
+</li>
+</ol>
+<p>伪首部第三字段全0，第四字段是IP首部中协议字段的值，UDP协议的该字段是17，第五字段是UDP数据报的长度。</p>
+<p>差错校验：</p>
+<ol>
+<li>
+<p>UDP检验和的计算方法和IP数据报首部校验和的计算方法相似，但不同的是，IP数据报的校验和只检验IP数据报的首部，但UDP的校验和则检查首部和数据部分。</p>
+</li>
+<li>
+<p>反码计算出16位字的和，将和的反码装进检验和字段发送</p>
+</li>
+<li>
+<p>接收方连同伪首部反码计算16位字和，如果全为1，则没有差错。</p>
+</li>
+</ol>
+<h1>TCP</h1>
+<p>传输控制协议，传输数据之前必须要建立连接，完成后释放。不提供广播和多播服务，由于TCP要提供可靠的、面向连接的服务，因此不可避免 的增加了许多开销。面向字节，面向连接，提供可靠交付的虚电路服务。每条连接只能有两个端点，每一条TCP连接只能是<strong>点对点</strong>的。不提供广播和多播服务。提供<strong>可靠交付</strong>服务，无差错，不丢失，不重复，按序到达，因此不可避免的增加了许多开销。<strong>全双工通信</strong>，允许通信双方的应用进程在任何时侯都能发送数据，TCP两端都设有<strong>发送缓存和接收缓存</strong>，用来临时存放双向通信的数据。<strong>面向字节流</strong>，TCP只把应用程序交下来的数据看作是一连串无结构的字节流。TCP不不知道所传送的字节流的含义。一个TCP报文段包含上千个字节是很常见的。</p>
+<ol>
+<li>
+<p>面向连接的运输层协议，每条连接之能有两个端点，每一条TCP连接只能是点对点的</p>
+</li>
+<li>
+<p>提供可靠交付服务，无差错，不丢失，不重复，按序到达</p>
+</li>
+<li>
+<p>全双工通信，允许通信双方的应用进程在任何时侯都能发送数据，TCP两端都设有发送缓存和接收缓存，用来临时存放双向通信的数据。</p>
+</li>
+<li>
+<p>面向字节流，TCP中的stream指的是流入到进程或从进程流出的字节序列。TCP只把应用程序交下来的数据看作是一连串无结构的字节流。TCP不不知道所传送的字节流的含义。不保证接收方应用程序收到的数据块和发送方应用程序所发出的数据块具有对应大小的关系，但接收到的字节流必须是完全一样的。</p>
+</li>
+<li>
+<p>一个TCP报文段包含上千个字节是很常见的。</p>
+</li>
+<li>
+<p>TCP虽然是面向字节流的，但是传送的数据单元是报文段segment。</p>
+</li>
+</ol>
+<p>将<code>datagram</code>分成多个<code>segment</code>，<code>TCP</code>管理数据可靠性传输的<code>PDU</code>。</p>
+<ol>
+<li>
+<p><code>Sequence</code>：保证数据有序，发送本<code>segment</code>第一  个<code>bytes</code>在<code>data</code>中的序号</p>
+</li>
+<li>
+<p><code>Acknowledgment</code>：表示到序号<code>n-1</code>为止的数据均已正确收到。期望收到对方<code>next segment</code>的<code>data</code>的<code>1st bytes</code>的<code>sequence</code>，默认使用<em>累计确认</em>。</p>
+</li>
+<li>
+<p><code>header length</code>：<code>unit = 4b =&gt; max(this) = 60B</code>,<code>head.fixed = 20B</code></p>
+</li>
+<li>
+<p><code>URG</code>：告诉系统有紧急数据，尽快送达。</p>
+</li>
+<li>
+<p><code>ACK</code>：确认报文。</p>
+</li>
+<li>
+<p><code>PSH</code>：接收方<em>尽快交付</em>给接收应用进程，不再等整个缓存填满后在向上交付。</p>
+</li>
+<li>
+<p><code>RST</code>：<code>TCP</code>连接出错，必须释放连接，<em>重新建立连接</em></p>
+</li>
+<li>
+<p><code>SYN</code>：在连接建立时用来<em>同步序号</em>，<code>SYN=1,ACK=0</code>,连接请求报文段，对方同意建立连接，响应报文段中使用<code>SYN=1,ACK=1</code>。</p>
+</li>
+<li>
+<p><code>FIN</code>：释放连接报文。</p>
+</li>
+<li>
+<p><code>window size</code>：发送报文段的一方的<code>RWND</code>，告诉对方从本报文段首部中的确认号算起，接收方目前允许对方发送的数据量（字节为单位）。窗口字段明确指出了现在允许对方发送的数据量。窗口值经常在动态变化着。</p>
+</li>
+<li>
+<p><code>check sum</code>：和<code>UDP</code>相同，范围包括首部和数据部分，在计算校验和时，要加<code>12B</code>伪首部，伪首部中的协议字段改成<code>TCP</code>的<code>6</code>.</p>
+</li>
+<li>
+<p><code>URG</code>：指出本<code>segment</code>中紧急数据的字节数，紧急指针指出紧急数据末尾在<code>segment</code>中的位置，紧急数据结束后就是普通数据。当所有紧急数据都处理完时，<code>TCP</code>告诉应用程序恢复到正常操作，即使窗口为<code>0</code>也可以发送紧急数据。</p>
+</li>
+<li>
+<p><code>option</code>：长度可变，最长<code>40B</code>。最初只有一种选项<code>MSS</code>，规定每一个TCP报文段中的数据字段的最大长度。后面还有窗口扩大选项，时间戳选项，选择确认选项。</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="连接管理">连接管理<a href="#连接管理" class="hash-link" aria-label="Direct link to 连接管理" title="Direct link to 连接管理">​</a></h2>
+<p>TCP的连接：采用C/S方式，主动发起连接建立的进程叫作客户，被动等待连接建立的进程叫作服务器。</p>
+<ol>
+<li>
+<p>TCP把连接作为最基本的抽象，TCP的许多特性和TCP是面向连接的这个基本特性有关。TCP连接的端点叫套接字socket或插口。端口号拼接到IP地址构成了套接字</p>
+</li>
+<li></li>
+<li>
+<p><code>TCP连接::= {socket1, socket2} = {(IP1:port1), (IP2:port2)}</code></p>
+</li>
+</ol>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="建立三次握手">建立：三次握手<a href="#建立三次握手" class="hash-link" aria-label="Direct link to 建立：三次握手" title="Direct link to 建立：三次握手">​</a></h3>
+<p>三次握手：<code>client</code>和<code>server</code>之间交换三个<code>segment</code>：<code>req-&gt;ack-&gt;ack</code></p>
+<p>连接准备：首先创建<code>transmission control block(TCB)</code>，用来存储<code>TCP</code>连接中的一些重要信息。例如<code>TCP</code>连接表、指向发送和接收缓存的指针、指向重传队列的指针，当前的发送和接收序号等。<code>server process</code>是被动等待来自<code>client process</code>的请求，因此称为<em>被动打开连接</em>。服务进程准备接收客户进程处于LISTEN状态，等待客户的连接请求。</p>
+<ol>
+<li>
+<p>允许双方协商参数（最大窗口值，是否使用窗口扩大选项和时间戳）</p>
+</li>
+<li>
+<p>对运输实体资源（缓存大小、连接表中的项目）的分配。</p>
+</li>
+<li>
+<p>SYN报文段不能携带数据，但要消耗一个序号</p>
+</li>
+<li>
+<p>同步确认后为该TCP连接分配缓存和变量</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="废弃四次挥手">废弃：四次挥手<a href="#废弃四次挥手" class="hash-link" aria-label="Direct link to 废弃：四次挥手" title="Direct link to 废弃：四次挥手">​</a></h3>
+<p><code>4way handshake</code>（交换4个<code>segment</code>：C请求，S确认关闭，S请求，C确认关闭）</p>
+<ol>
+<li>
+<p><code>C</code>端中断请求，向<code>TCP</code>发送<code>seg(FIN)</code>。进入<code>FIN1</code>的状态。</p>
+</li>
+<li>
+<p><code>S</code>收到<code>seg(FIN)</code>发出<code>seg(ACK)</code>，进入<code>close-wait</code>状态，<code>C-&gt;S</code>方向的连接释放，<code>TCP</code>连接处于半关闭的状态。但S到C的连接并未关闭，<code>S</code>要发送数据，<code>C</code>仍然要接收。</p>
+</li>
+<li>
+<p><code>S</code>如果发送结束，发送<code>seg(FIN)</code>，还需重复上次发送的确认号<code>{ACK = 1,ack = x + 1}</code>，S进入<code>LAST-ACK</code>。</p>
+</li>
+<li>
+<p><code>C</code>收到<code>seg(FIN)</code>后，必须发出<code>seg(ACK)</code>，必须经过<code>2MSL</code>后，<code>C</code>才进入连接关闭状态。</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="滑动窗口协议swp">滑动窗口协议SWP<a href="#滑动窗口协议swp" class="hash-link" aria-label="Direct link to 滑动窗口协议SWP" title="Direct link to 滑动窗口协议SWP">​</a></h2>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="可靠传输">可靠传输<a href="#可靠传输" class="hash-link" aria-label="Direct link to 可靠传输" title="Direct link to 可靠传输">​</a></h3>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="停等协议sw-arq">停等协议SW ARQ<a href="#停等协议sw-arq" class="hash-link" aria-label="Direct link to 停等协议SW ARQ" title="Direct link to 停等协议SW ARQ">​</a></h4>
+<p>采用单滑动窗口，TCP的滑动窗口是以字节为单位的</p>
+<p>重传机制：只有接收窗口向前滑动，发送窗口才能向前滑动（接收到<code>ACK</code>）</p>
+<ol>
+<li></li>
+<li>
+<p>超时重传：超时计时器设置应当比数据在<code>RTT</code>更长一些，但这个往返时间无法确定</p>
+</li>
+<li>
+<p>快速重传（冗余<code>ACK</code>）：以时间为驱动，而是以数据驱动重传，</p>
+</li>
+</ol>
+<p><code>(SWND,RWND) = (1,1)</code>，信道利用率很低，发送方需要对刚发送的数据帧进行缓存副本，在出差错时候进行重传。接收<code>ACK package</code>后清除副本。</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="后退n帧-gbn-arq">后退N帧 GBN ARQ<a href="#后退n帧-gbn-arq" class="hash-link" aria-label="Direct link to 后退N帧 GBN ARQ" title="Direct link to 后退N帧 GBN ARQ">​</a></h4>
+<p>超时重传快速重传累计确认</p>
+<p><code>(WND,RWND) = (n,1)</code></p>
+<p>连续发送数据帧提高了信道利用率，但另一方面在重传时又必须把原来已经传送正确的数字帧进行了重传（仅因为这些数字帧的前面由一个数据帧出了错）使得传送效率降低</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="选择性重传-sr-arq">选择性重传 SR ARQ<a href="#选择性重传-sr-arq" class="hash-link" aria-label="Direct link to 选择性重传 SR ARQ" title="Direct link to 选择性重传 SR ARQ">​</a></h4>
+<p>接收窗口&gt;1，通常和发送窗口大小相同</p>
+<p>接收窗口内来者不拒，只重传错帧</p>
+<p>发送周期：从发送方开始发送数据到收到第一个确认帧为止，为一个发送周期，=发送时延+ 往返传播时延</p>
+<p>信道效率：一个发送周期内，发送方有效的发送数据所需要的时间占整个发送周期的比值</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="流量控制">流量控制<a href="#流量控制" class="hash-link" aria-label="Direct link to 流量控制" title="Direct link to 流量控制">​</a></h3>
+<p>确认报文可以进行流量控制，<code>RWND</code>减小到<code>0</code>时，就不允许发送方再发送数据了。<code>TCP</code>为每一个连接设有一个<em>持续计时器</em>，<code>TCP</code>连接的一方收到对方的零窗口通知，就启用持续计时器，如果持续计数器设置的时间到期，就发送一个零窗口探测报文段，携带<code>1B</code>的数据，对方就在确认这个<code>probe</code>时给出了现在的窗口值。窗口值仍然是零，那么收到这个报文段的一方就重新设置持续计时器，如果窗口不是零，死锁就被打破了。</p>
+<p>应用进程将数据传送到TCP的发送缓存中，剩下发送的任务就交给TCP来控制了。<strong>TCP报文段的发送时机</strong>：</p>
+<ol>
+<li>
+<p>MSS，<strong>最大报文段长度</strong>，达到即发送</p>
+</li>
+<li>
+<p>由发送方应用进程指名要求发送报文段，即<strong>TCP支持的推送PSH操作</strong></p>
+</li>
+<li>
+<p>发送方发送<strong>计时器到期</strong>，就把当前缓存数据装入报文段，不能超过MSS</p>
+</li>
+</ol>
+<p>传输层定义的是端到端用户之间的流量控制，数据链路层定义两个中间的相邻结点的流量控制</p>
+<p><strong>数据链路层的滑动窗口协议的窗口大小不能动态变化，传输层的则可以动态变化</strong></p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="拥塞控制">拥塞控制<a href="#拥塞控制" class="hash-link" aria-label="Direct link to 拥塞控制" title="Direct link to 拥塞控制">​</a></h3>
+<p>不能完全避免<code>congestion</code>，拥塞引起的重传并不会缓解网络的拥塞，反而会加剧网络的拥塞：拥塞常常趋于恶化，如果一个路由器没有足够的<code>cache</code>，他就会丢弃新到的分组，源点就回重传该分组，甚至还要重传多次。会引起更多的分组流入网络和被网络中的  路由器丢弃。</p>
+<ol>
+<li>
+<p>开环控制：静态控制，设计网络时考虑拥塞因素，避免运行拥塞</p>
+</li>
+<li>
+<p>闭环控制：基于<strong>反馈环路的动态控制</strong>，根据拥塞信息调整网络系统的运行以解决问题。</p>
+</li>
+</ol>
+<p><code>SWND.MAX= MIN{RWND,CWND}=&gt;SWND = RWND</code></p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="慢开始">慢开始<a href="#慢开始" class="hash-link" aria-label="Direct link to 慢开始" title="Direct link to 慢开始">​</a></h4>
+<p>网络没有拥塞，<code>CWND.init = 1</code>每个<code>RTT</code>呈二倍数增加。 只要网络没有出现拥塞，拥塞窗口就可以增大些（二倍数增加），以便把更多的分组发出去，增加网络利用率。</p>
+<p><code>2CWND</code>&gt;<code>ssthresh</code>时，下一个<code>RTT</code>后<code>CWND = ssthresh</code>，不能越过。</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="拥塞避免">拥塞避免<a href="#拥塞避免" class="hash-link" aria-label="Direct link to 拥塞避免" title="Direct link to 拥塞避免">​</a></h4>
+<ol>
+<li>
+<p>当<code>CWND&lt;ssthresh</code>，使用慢开始算法</p>
+</li>
+<li>
+<p>当<code>CWND&gt;ssthresh</code>，改用拥塞避免算法，线性增长</p>
+</li>
+</ol>
+<p>拥塞避免不能完全避免拥塞，只能使拥塞窗口控制改为线型增长，使网络不容易出现拥塞</p>
+<ol>
+<li>
+<p><code>CWND</code>增加放缓，采用加法增大</p>
+</li>
+<li>
+<p>只要出现拥塞，就把<code>ssthresh</code>减小一半</p>
+</li>
+</ol>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="快重传">快重传<a href="#快重传" class="hash-link" aria-label="Direct link to 快重传" title="Direct link to 快重传">​</a></h4>
+<p>以时间为驱动，而是以数据驱动重传，冗余<code>ACK</code>，可以让发送方尽早知道发生了个别报文段丢失的情况，当发送方连续收到三个重复的ACK报文时，直接重传对方尚未收到的报文 段，而不必等待那个报文段设置的重传计时器超时。</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="快恢复">快恢复<a href="#快恢复" class="hash-link" aria-label="Direct link to 快恢复" title="Direct link to 快恢复">​</a></h4>
+<p>快重传出现拥塞，<code>ssthresh</code>降为当时<code>CWND</code>的一半，<code>CWND = ssthresh</code></p>
+<p><strong>拥塞控制和流量控制的区别：</strong></p>
+<ol>
+<li>
+<p>拥塞控制防止过多的数据注入到网络中，这样可以使网络中的路由器或链路不至于过载，拥塞控制所要左的都有一个前提，就是网络能够承受现在的网络复合，拥塞控制是一个全局性的过程。</p>
+</li>
+<li>
+<p>流量控制往往是指点对点通信量的控制，是个端到端的问题，流量控制所要做的就是抑制发送端发送数据的速率，以便接收端来得及接收</p>
+</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/wangenius/wangenius.github.io/tree/master/docs/cs/web/Port层/TCP.mdx" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/en/docs/cs/web/MAC层/物理信道传输原理和静态复用"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">物理信道传输原理和静态复用</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/en/docs/cs/web/应用层/HTTP"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">HTTP/HTTPs</div></a></nav></div><div>Loading Comments...</div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#连接管理" class="table-of-contents__link toc-highlight">连接管理</a><ul><li><a href="#建立三次握手" class="table-of-contents__link toc-highlight">建立：三次握手</a></li><li><a href="#废弃四次挥手" class="table-of-contents__link toc-highlight">废弃：四次挥手</a></li></ul></li><li><a href="#滑动窗口协议swp" class="table-of-contents__link toc-highlight">滑动窗口协议SWP</a><ul><li><a href="#可靠传输" class="table-of-contents__link toc-highlight">可靠传输</a></li><li><a href="#流量控制" class="table-of-contents__link toc-highlight">流量控制</a></li><li><a href="#拥塞控制" class="table-of-contents__link toc-highlight">拥塞控制</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">知识库</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/en/docs/about/致明日的舞">致明日的舞</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/cs/os/概述">操作系统基础</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/dsa/ds/概述">数据结构</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/lang/rust/简介">Rust</a></li><li class="footer__item"><a class="footer__link-item" href="/en/docs/cs/db/概述">数据库</a></li></ul></div><div class="col footer__col"><div class="footer__title">社区</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://weibo.com/u/6320492937" target="_blank" rel="noopener noreferrer" class="footer__link-item">微博<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://space.bilibili.com/247967944" target="_blank" rel="noopener noreferrer" class="footer__link-item">bilibili<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.zhihu.com/people/wangenius" target="_blank" rel="noopener noreferrer" class="footer__link-item">知乎<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/wangenius" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">更多</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/en/docs/about/关于我">关于我</a></li><li class="footer__item"><a class="footer__link-item" href="/en/blog">博客</a></li><li class="footer__item"><a href="https://github.com/wangenius/wangenius.github.io/discussions" target="_blank" rel="noopener noreferrer" class="footer__link-item">讨论<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/wangenius/wangenius.github.io/issues" target="_blank" rel="noopener noreferrer" class="footer__link-item">FAQ<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 吕麓弥章, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

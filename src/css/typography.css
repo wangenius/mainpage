@@ -176,6 +176,7 @@
   border: 1px solid transparent;
   transition: all ease-in 50ms;
   border-radius: 12px;
+  position: relative;
 }
 .markdown img:hover {
   border: 1px solid #838a92;
@@ -229,6 +230,11 @@ table {
   color: #000000;
 }
 
+.theme-admonition {
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 12px !important;
+}
 .theme-admonition * {
   font-size: 0.86rem !important;
 }

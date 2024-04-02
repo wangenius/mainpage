@@ -160,6 +160,8 @@
     border: 1px solid transparent;
     transition: all ease-in 50ms;
     border-radius: 12px;
+    position: relative;
+  
 
     &:hover {
       border: 1px solid #838a92;

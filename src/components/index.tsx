@@ -85,3 +85,39 @@ export const Pair = ({ children, title }) => {
     </div>
   );
 };
+
+interface TableItem {
+  rowspan: number;
+  colspan: number;
+  content: string;
+}
+
+type Item = Partial<TableItem> | string;
+
+export const Table = ({
+  children,
+  title,
+}: {
+  title: string[];
+  children: Item[][];
+}) => {
+  return (
+    <table>
+      <tr>
+        {title.map((it) => {
+          return <th key={it}>{it}</th>;
+        })}
+      </tr>
+      {children.map((item, key) => {
+        return (
+          <tr key={key}>
+            {item.map((it) => {
+              if(typeof it === 'string') return <td>{it}</td>
+              return <td rowSpan={it.rowspan != undefined ? it.rowspan : 1} colSpan={it.colspan != undefined ? it.colspan : 1}  key={it.content}>{it.content}</td>;
+            })}
+          </tr>
+        );
+      })}
+    </table>
+  );
+};

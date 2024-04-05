@@ -92,6 +92,7 @@ this 关键字是指向类的实例的指针。 它在非静态成员函数中�
 命名空间作用域符（namespace::name）:用于表示指定类型的作用域范围是具体某个命名空间的
 
 :: 使用
+
 ```cpp
 int count = 0;        // 全局（::）的 count
 
@@ -111,6 +112,7 @@ int main() {
     return 0;
 }
 ```
+
 #### name
 
 ```cpp
@@ -190,6 +192,14 @@ A<int> // a template id
 | 按位“与或”/赋值 | `\|=`        |
 | 逗号运算符      | `,`          |
 
+:::success 优先级
+
+1. `*p++` 先取指针p指向的值（数组第一个元素1），再将指针p自增1；（`*`和`++`两个处于同一优先级,结合方向是自右向左.但是前提是当++在变量前面的时候才处理同一优先级,当++在变量之后时,你可以将++的优先级看成最低级的,比逗号运算符的优先级还低）
+2. `(*p)++` 先取指针p指向的值（数组第一个元素1），再将该值自增1(数组第一个元素变为2)
+3. `++p` 先将指针p自增1（此时指向数组第二个元素），操作再取出该值
+4. `++*p` 先取指针p指向的值（数组第一个元素1），再将该值自增1（数组第一个元素变为2）
+
+:::
 
 ### lambda表达式
 
@@ -226,21 +236,26 @@ auto b = f();  // f 从捕获列表里获得 a 的值，无需通过参数传入
 #### parameters 参数列表
 
 大多数情况下类似于函数的参数列表，例如：
+
 ```cpp
 auto lam = [](int a, int b) { return a + b; };
 std::cout << lam(1, 9) << " " << lam(2, 6) << std::endl;
 ```
+
 C++14 中，若参数类型是泛型，则可以使用 auto 声明类型：
 
 ```cpp
 auto lam = [](auto a, auto b);
 ```
+
 一个例子：
+
 ```cpp
 int x[] = {5, 1, 7, 6, 1, 4, 2};
 std::sort(x, x + 7, [](int a, int b) { return (a > b); });
 for (auto i : x) std::cout << i << " ";
 ```
+
 这将打印出 x 数组从大到小排序后的结果。
 
 由于 parameters 参数列表 是可选的，如果不将参数传递给 Lambda 表达式，并且其 Lambda 声明器不包含 mutable，且没有后置返回值类型，则可以省略空括号。
@@ -279,10 +294,12 @@ int main() {
 利用可变规范，Lambda 表达式的主体可以修改通过值捕获的变量。若使用此关键字，则 parameters 不可省略（即使为空）。
 
 一个例子，使用 capture 捕获字句 中的例子，来观察 a 的值的变化：
+
 ```cpp
 int a = 0;
 auto func = [a]() mutable { ++a; };
 ```
+
 此时 lambda 中的 a 的值改变为 1，lambda 外的 a 保持不变。
 
 return-type 返回类型
@@ -293,13 +310,13 @@ return-type 返回类型
 ```c
 auto lam = [](int a, int b) -> int
 ```
+
 再举两个例子:
 
 ```c
 auto x1 = [](int i) { return i; };  // OK
 auto x2 = [] { return {1, 2}; };    // Error, 返回类型被推导为 void
 ```
-
 
 #### statement Lambda 主体
 
@@ -322,6 +339,7 @@ int main() {
   return 0;
 }
 ```
+
 最后我们得到输出 5 0。这是由于 n 是通过值捕获的，在调用 Lambda 表达式后仍保持原来的值 0 不变。mutable 规范允许 n 在 Lambda 主体中被修改，将 mutable 删去则编译不通过。
 
 ## 语句

@@ -200,43 +200,90 @@ vector<int> levelOrder(TreeNode *root) {
 
 ### 非递归算法
 
+:::success 口诀
+前序栈辅助, while判非空, 出栈再访问, 入栈右左树.
+中序栈指针, 三步两循环. 所有左入栈, 再指右子树.
+:::
+
+#### 前序遍历
+
+前序遍历方法:
+1. 初始化结果容器: 这里使用`vector`
+2. 参数安全性校验: 防止非法参数进入. 这里主要是防止传入空指针
+3. 初始化辅助容器: 这里使用前序栈. 并将其初始化
+4. 条件判断和执行: 条件是栈不空
+    1. 出栈访问
+    2. 右节点入栈
+    3. 左节点入栈
+
+
+
 ```cpp title="前序遍历"
-vector<int> preorder(TreeNode *node){
-  stack<TreeNode *> stack;
-  vector<int> res;
-  if(!node) return res;
-  stack.push(node);
-  TreeNode * temp;
+vector<int> preorder(TreeNode *root){
+  vector<int> res; //结果容器
+  if(!root) return res; //安全性判断
+  stack<TreeNode *> stack; //前序栈
+  stack.push(root); // 初始化根节点入栈
   while(!stack.empty()){
-    temp = stack.top();
+    TreeNode *temp = stack.top();
+    res.push_back(temp->val);
     stack.pop();
-    if(temp -> right != nullptr) stack.push(temp -> right);
-    if(temp -> left != nullptr) stack.push(temp -> left);
+    if(temp -> right) stack.push(temp -> right);
+    if(temp -> left) stack.push(temp -> left);
   };
   return res;
 }
 ```
 
+
+#### 中序遍历
+
+中序遍历特点:
+1. 辅助结构: 一栈一指针
+2. 左节点入栈,右节点不入栈
+
+```cpp
+while(栈中有节点 || 当前指针指向有效节点){
+    1. 当前节点和它的所有左节点入栈
+    2. 访问栈顶节点
+    3. 指向右节点
+}
+```
+
+
 ```cpp title="中序遍历"
-void inorderTraversal(TreeNode* root) {
+void inorder(TreeNode* root) {
+    vector<int> res;
+    if(!root) return res;
     // 辅助结构： 一栈一指针
     stack<TreeNode*> st; 
     TreeNode* current = root;
-    while (current != nullptr || !st.empty()) {
+    while (current || !st.empty()) {
         // 将当前节点的左子树全部入栈
-        while (current != nullptr) {
+        while (current) {
             st.push(current);
             current = current->left;
         }
-        
-        // 访问当前节点并处理右子树
+        // 访问当前节点
         current = st.top();
         st.pop();
-        visit(current);
+        res.push_back(current->val);
+        // 访问结束
+        // 指针指向刚刚访问过节点的右节点
         current = current->right;
     }
 }
 
+```
+
+
+```cpp title="遍历节点个数"
+int countNodes(TreeNode* root) {
+	if(root == null) return 0;
+	int left = countNodes(root -> left);
+	int right = countNodes(root -> right);
+	return left+right+1;
+}
 ```
 
 ## 线索化

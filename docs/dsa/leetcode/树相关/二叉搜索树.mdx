@@ -1,29 +1,8 @@
 # 树相关
 
-## 二叉搜索树
+二叉搜索树的问题求解思路:暴力解法
 
-给你一个整数数组 nums ，其中元素已经按 升序 排列，请你将其转换为一棵 平衡 二叉搜索树。
-
-```cpp
-class Solution{
-private:
-    TreeNode *buildTree(vector<int> &nums, int start, int end)
-    {
-        if (start > end) return nullptr;
-        int mid = start + ((end - start) >> 1);
-        TreeNode *root = new TreeNode(nums[mid]);
-        root->left = buildTree(nums, start, mid - 1);
-        root->right = buildTree(nums, mid + 1, end);
-        return root;
-    }
-public:
-    TreeNode *sortedArrayToBST(vector<int> &nums)
-    {
-        return buildTree(nums, 0, nums.size() - 1);
-    }
-};
-```
-
+1. 中序遍历生成数组, 然后双指针操作
 
 ## 平衡二叉树
 给定一个二叉树，判断它是否是 平衡二叉树  
@@ -113,3 +92,28 @@ public:
     }
 };
 ```
+
+
+## 二叉搜索树的最近公共祖先
+
+```cpp
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        while(root != nullptr) {
+            if(root->val < p->val && root->val < q->val) // p,q 都在 root 的右子树中
+                root = root->right; // 遍历至右子节点
+            else if(root->val > p->val && root->val > q->val) // p,q 都在 root 的左子树中
+                root = root->left; // 遍历至左子节点
+            else break;
+        }
+        return root;
+    }
+};
+```
+
+
+作者：Krahets
+链接：https://leetcode.cn/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/solutions/216894/mian-shi-ti-68-i-er-cha-sou-suo-shu-de-zui-jin-g-7/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

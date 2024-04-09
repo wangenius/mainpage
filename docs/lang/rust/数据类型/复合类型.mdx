@@ -1,3 +1,12 @@
+---
+title : 复合类型
+sidebar_position : 2
+slug : 复合类型
+---
+# 复合类型
+
+复合类型有:元祖,数组,枚举,动态数组等等.
+
 Rust 复杂类型的赋值，可以称为所有权转移或者移动 (move)，就像是浅拷贝，同时让第一个变量失效。当所有者 (变量) 离开作用域范围时，这个值将被丢弃(drop)
 
 ```Rust
@@ -87,7 +96,6 @@ fn vector() {
     println!("{}", a);
 }
 
-/**
 ["world"]
 world
 hello
@@ -217,131 +225,67 @@ fn main() {
 }
 ```
 
-# 枚举
 
-假设我们要处理 `IP`地址。目前被广泛使用的两个主要IP标准`IPv4`和`IPv6`。可以通过在代码中定义一个 `IpAddrKind` 枚举来表现这个概念并列出可能的 IP 地址类型，`V4` 和 `V6`。这被称为枚举的 **成员**（*variants*）：
 
-```Rust
-enum IpAddrKind {
-    V4,
-    V6,
-}
-//创建实例
-let four = IpAddrKind::V4;
-let six = IpAddrKind::V6;
-```
 
-枚举的成员位于其标识符的命名空间中，并使用两个冒号分开。这么设计的益处是现在 `IpAddrKind::V4` 和 `IpAddrKind::V6` 都是 `IpAddrKind` 类型的。例如，接着可以定义一个函数来获取任何 `IpAddrKind`：
 
-```Rust
-fn route(ip_type: IpAddrKind) { }
-//调用
-route(IpAddrKind::V4);
-route(IpAddrKind::V6);
-```
 
-```Rust
-enum IpAddrKind {
-    V4,
-    V6,
+```rust
+use std::mem;
+
+// This function borrows a slice.
+fn analyze_slice(slice: &[i32]) {
+    println!("First element of the slice: {}", slice[0]);
+    println!("The slice has {} elements", slice.len());
 }
 
-struct IpAddr {
-    kind: IpAddrKind,
-    address: String,
-}
+fn main() {
+    // Fixed-size array (type signature is superfluous).
+    let xs: [i32; 5] = [1, 2, 3, 4, 5];
 
-let home = IpAddr {
-    kind: IpAddrKind::V4,
-    address: String::from("127.0.0.1"),
-};
+    // All elements can be initialized to the same value.
+    let ys: [i32; 500] = [0; 500];
 
-let loopback = IpAddr {
-    kind: IpAddrKind::V6,
-    address: String::from("::1"),
-};
-```
+    // Indexing starts at 0.
+    println!("First element of the array: {}", xs[0]);
+    println!("Second element of the array: {}", xs[1]);
 
-我们可以使用一种更简洁的方式来表达相同的概念，仅仅使用枚举并将数据直接放进每一个枚举成员而不是将枚举作为结构体的一部分。`IpAddr` 枚举的新定义表明了 `V4` 和 `V6` 成员都关联了 `String` 值：
+    // `len` returns the count of elements in the array.
+    println!("Number of elements in array: {}", xs.len());
 
-```PowerShell
+    // Arrays are stack allocated.
+    println!("Array occupies {} bytes", mem::size_of_val(&xs));
 
-enum IpAddr {
-    V4(String),
-    V6(String),
-}
+    // Arrays can be automatically borrowed as slices.
+    println!("Borrow the whole array as a slice.");
+    analyze_slice(&xs);
 
-let home = IpAddr::V4(String::from("127.0.0.1"));
+    // Slices can point to a section of an array.
+    // They are of the form [starting_index..ending_index].
+    // `starting_index` is the first position in the slice.
+    // `ending_index` is one more than the last position in the slice.
+    println!("Borrow a section of the array as a slice.");
+    analyze_slice(&ys[1 .. 4]);
 
-let loopback = IpAddr::V6(String::from("::1"));
-```
+    // Example of empty slice `&[]`:
+    let empty_array: [u32; 0] = [];
+    assert_eq!(&empty_array, &[]);
+    assert_eq!(&empty_array, &[][..]); // Same but more verbose
 
-用枚举替代结构体还有另一个优势：每个成员可以处理不同类型和数量的数据。IPv4 版本的 IP 地址总是含有四个值在 0 和 255 之间的数字部分。如果我们想要将 `V4` 地址存储为四个 `u8` 值而 `V6` 地址仍然表现为一个 `String`，这就不能使用结构体了。枚举则可以轻易处理的这个情况：
-
-```Rust
-enum IpAddr {
-    V4(u8, u8, u8, u8),
-    V6(String),
-}
-
-let home = IpAddr::V4(127, 0, 0, 1);
-
-let loopback = IpAddr::V6(String::from("::1"));
-```
-
-这些代码展示了使用枚举来存储两种不同 IP 地址的几种可能的选择。然而，事实证明存储和编码 IP 地址实在是太常见了以致标准库提供了一个开箱即用的定义！让我们看看标准库是如何定义 `IpAddr` 的：它正有着跟我们定义和使用的一样的枚举和成员，不过它将成员中的地址数据嵌入到了两个不同形式的结构体中，它们对不同的成员的定义是不同的：
-
-```Rust
-
-struct Ipv4Addr {
-    // --snip--
-}
-
-struct Ipv6Addr {
-    // --snip--
-}
-
-enum IpAddr {
-    V4(Ipv4Addr),
-    V6(Ipv6Addr),
-}
-```
-
-这些代码展示了可以将任意类型的数据放入枚举成员中：例如字符串、数字类型或者结构体。甚至可以包含另一个枚举！另外，标准库中的类型通常并不比你设想出来的要复杂多少。
-
-注意虽然标准库中包含一个 `IpAddr` 的定义，仍然可以创建和使用我们自己的定义而不会有冲突，因为我们并没有将标准库中的定义引入作用域。第七章会讲到如何导入类型。
-
-```Rust
-enum Message {
-    Quit,//没有关联任何数据
-    Move { x: i32, y: i32 },//一个匿名结构体
-    Write(String),//包含单独一个 String
-    ChangeColor(i32, i32, i32),//
-}
-
-struct QuitMessage; // 类单元结构体
-struct MoveMessage {
-    x: i32,
-    y: i32,
-}
-struct WriteMessage(String); // 元组结构体
-struct ChangeColorMessage(i32, i32, i32); // 元组结构体
-```
-
-结构体和枚举还有另一个相似点：就像可以使用 `impl` 来为结构体定义方法那样，也可以在枚举上定义方法。这是一个定义于我们 `Message` 枚举上的叫做 `call` 的方法：
-
-```Rust
-impl Message {
-    fn call(&self) {
-        // 在这里定义方法体
+    // Arrays can be safely accessed using `.get`, which returns an
+    // `Option`. This can be matched as shown below, or used with
+    // `.expect()` if you would like the program to exit with a nice
+    // message instead of happily continue.
+    for i in 0..xs.len() + 1 { // Oops, one element too far!
+        match xs.get(i) {
+            Some(xval) => println!("{}: {}", i, xval),
+            None => println!("Slow down! {} is too far!", i),
+        }
     }
+
+    // Out of bound indexing on array causes compile time error.
+    //println!("{}", xs[5]);
+    // Out of bound indexing on slice causes runtime error.
+    //println!("{}", xs[..][5]);
 }
-
-let m = Message::Write(String::from("hello"));
-m.call();
 ```
-
-方法体使用了 `self` 来获取调用方法的值。这个例子中，创建了一个值为 `Message::Write(String::from("hello"))` 的变量 `m`，而且这就是当 `m.call()` 运行时 `call` 方法中的 `self` 的值。
-
-
-

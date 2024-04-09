@@ -1,4 +1,18 @@
-关于交叉编译
+# 编译
+
+## 本地编译
+
+```bash
+> rustc main.rs
+> .\main.exe
+Hello, world!
+```
+
+`println!` 调用 Rust 宏。如果它调用了一个函数，则它将输入为 `println` （不带 `!` ）。我们将在第 19 章中更详细地讨论 Rust 宏。现在，您只需要知道使用 `!` 意味着您正在调用宏而不是普通函数，并且宏不始终遵循与函数相同的规则。
+
+
+
+## 交叉编译
 一般编程阶段用的是Windows或者Mac系统，部署平台是Linux，这种情况下就需要使用Cross-Compiler交叉编译，意思是可以在当前平台Host下编译出目标平台target的可执行文件，
 
 尤其是做ARM平台开发的同学对这个更为熟悉。
@@ -52,7 +66,7 @@ linker = "x86_64-linux-musl-gcc"
 [target.x86_64-pc-windows-gnu]
 linker = "x86_64-w64-mingw32-gcc"
 ar = "x86_64-w64-mingw32-gcc-ar"
- ```
+```
 
 编译(Linux环境程序)
 

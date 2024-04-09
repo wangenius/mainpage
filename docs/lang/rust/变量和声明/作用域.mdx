@@ -1,0 +1,182 @@
+---
+title : 作用域
+sidebar_position : 3
+slug : 作用域
+---
+# 作用域
+
+## 资源获取即初始化RAII
+范围在所有权、借用和生命周期中发挥着重要作用。也就是说，它们向编译器指示借用何时有效、何时可以释放资源以及何时创建或销毁变量。
+
+Rust 中的变量不仅仅是在堆栈中保存数据：它们还拥有资源，例如 `Box<T>` 拥有堆中的内存。 Rust 强制执行 RAII（资源获取即初始化），因此每当对象超出范围时，就会调用其析构函数并释放其拥有的资源。
+
+此行为可以防止资源泄漏错误，因此您永远不必手动释放内存或再次担心内存泄漏！这是一个快速展示：
+
+```rust
+// raii.rs
+fn create_box() {
+    // Allocate an integer on the heap
+    let _box1 = Box::new(3i32);
+
+    // `_box1` is destroyed here, and memory gets freed
+}
+
+fn main() {
+    // Allocate an integer on the heap
+    let _box2 = Box::new(5i32);
+
+    // A nested scope:
+    {
+        // Allocate an integer on the heap
+        let _box3 = Box::new(4i32);
+
+        // `_box3` is destroyed here, and memory gets freed
+    }
+
+    // Creating lots of boxes just for fun
+    // There's no need to manually free memory!
+    for _ in 0u32..1_000 {
+        create_box();
+    }
+
+    // `_box2` is destroyed here, and memory gets freed
+}
+```
+当然，我们可以使用 valgrind 仔细检查内存错误：
+
+```bash
+$ rustc raii.rs && valgrind ./raii
+==26873== Memcheck, a memory error detector
+==26873== Copyright (C) 2002-2013, and GNU GPLd, by Julian Seward et al.
+==26873== Using Valgrind-3.9.0 and LibVEX; rerun with -h for copyright info
+==26873== Command: ./raii
+==26873==
+==26873==
+==26873== HEAP SUMMARY:
+==26873==     in use at exit: 0 bytes in 0 blocks
+==26873==   total heap usage: 1,013 allocs, 1,013 frees, 8,696 bytes allocated
+==26873==
+==26873== All heap blocks were freed -- no leaks are possible
+==26873==
+==26873== For counts of detected and suppressed errors, rerun with: -v
+==26873== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
+```
+这里没有泄漏！
+
+```rust
+fn main() {
+    let shadowed_binding = 1;
+
+    {
+        println!("before being shadowed: {}", shadowed_binding);
+
+        // This binding *shadows* the outer one
+        let shadowed_binding = "abc";
+
+        println!("shadowed in inner block: {}", shadowed_binding);
+    }
+    println!("outside inner block: {}", shadowed_binding);
+
+    // This binding *shadows* the previous binding
+    let shadowed_binding = 2;
+    println!("shadowed in outer block: {}", shadowed_binding);
+}
+```
+
+##
+
+当数据被同名不可改变地绑定时，它也会冻结。在不可变绑定超出范围之前，无法修改冻结数据：
+
+
+```rust
+fn main() {
+    let mut _mutable_integer = 7i32;
+
+    {
+        // Shadowing by immutable `_mutable_integer`
+        let _mutable_integer = _mutable_integer;
+
+        // Error! `_mutable_integer` is frozen in this scope
+        _mutable_integer = 50;
+        // FIXME ^ Comment out this line
+
+        // `_mutable_integer` goes out of scope
+    }
+
+    // Ok! `_mutable_integer` is not frozen in this scope
+    _mutable_integer = 3;
+}
+```
+
+## 析构函数
+Rust 中析构函数的概念是通过 Drop 特征提供的。当资源超出范围时，将调用析构函数。不需要为每个类型实现此特征，仅当您需要自己的析构函数逻辑时才为您的类型实现它。
+
+运行以下示例以查看 Drop 特征如何工作。当 main 函数中的变量超出范围时，将调用自定义析构函数。
+```rust
+struct ToDrop;
+
+impl Drop for ToDrop {
+    fn drop(&mut self) {
+        println!("ToDrop is being dropped");
+    }
+}
+
+fn main() {
+    let x = ToDrop;
+    println!("Made a ToDrop!");
+}
+```
+
+## 生命周期
+
+生命周期是编译器（或更具体地说，其借用检查器）用来确保所有借用有效的构造。具体来说，变量的生命周期从创建时开始，到销毁时结束。虽然生命周期和作用域经常一起提及，但它们并不相同。
+
+以我们通过 & 借用变量的情况为例。借用的生命周期由声明它的位置决定。因此，只要借贷在贷方被消灭之前结束，借贷就是有效的。但是，借用的范围取决于引用的使用位置。
+
+在下面的示例和本节的其余部分中，我们将了解生命周期与作用域的关系，以及两者有何不同。
+
+```rust
+// Lifetimes are annotated below with lines denoting the creation
+// and destruction of each variable.
+// `i` has the longest lifetime because its scope entirely encloses 
+// both `borrow1` and `borrow2`. The duration of `borrow1` compared 
+// to `borrow2` is irrelevant since they are disjoint.
+fn main() {
+    let i = 3; // Lifetime for `i` starts. ────────────────┐
+    //                                                     │
+    { //                                                   │
+        let borrow1 = &i; // `borrow1` lifetime starts. ──┐│
+        //                                                ││
+        println!("borrow1: {}", borrow1); //              ││
+    } // `borrow1` ends. ─────────────────────────────────┘│
+    //                                                     │
+    //                                                     │
+    { //                                                   │
+        let borrow2 = &i; // `borrow2` lifetime starts. ──┐│
+        //                                                ││
+        println!("borrow2: {}", borrow2); //              ││
+    } // `borrow2` ends. ─────────────────────────────────┘│
+    //                                                     │
+}   // Lifetime ends. ─────────────────────────────────────┘
+```
+
+请注意，没有为标签生命周期分配名称或类型。正如我们将看到的，这限制了生命周期的使用方式。
+
+## 显式注释
+
+借用检查器使用显式的生命周期注释来确定引用的有效时间。在没有省略生命周期 1 的情况下，Rust 需要显式注释来确定引用的生命周期应该是什么。显式注释生命周期的语法使用撇号字符，如下所示：
+
+```rust
+foo<'a>
+// `foo` has a lifetime parameter `'a`
+```
+与闭包类似，使用生命周期需要泛型。此外，此生命周期语法指示 foo 的生命周期不得超过 'a 的生命周期。类型的显式注释具有 `&'a T` 形式，其中已经引入了 'a 。
+
+在具有多个生命周期的情况下，语法类似：
+```rust
+foo<'a, 'b>
+// `foo` has lifetime parameters `'a` and `'b`
+```
+在这种情况下， foo 的生命周期不能超过 'a 或 'b 的生命周期。
+
+有关使用中的显式生命周期注释，请参阅以下示例：

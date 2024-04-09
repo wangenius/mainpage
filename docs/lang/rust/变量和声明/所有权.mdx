@@ -1,3 +1,117 @@
+---
+title : 所有权
+sidebar_position : 3
+slug : 所有权
+---
+# 所有权
+
+因为变量负责释放自己的资源，所以资源只能有一个所有者。这可以防止资源被多次释放。请注意，并非所有变量都拥有资源（例如引用）。
+
+当进行赋值（ let x = y ）或按值传递函数参数（ foo(x) ）时，资源的所有权将被转移。在 Rust 语言中，这被称为移动。
+
+资源移动后，原所有者将无法再使用。这可以避免创建悬空指针。
+```rust
+// This function takes ownership of the heap allocated memory
+fn destroy_box(c: Box<i32>) {
+    println!("Destroying a box that contains {}", c);
+
+    // `c` is destroyed and the memory freed
+}
+
+fn main() {
+    // _Stack_ allocated integer
+    let x = 5u32;
+
+    // *Copy* `x` into `y` - no resources are moved
+    let y = x;
+
+    // Both values can be independently used
+    println!("x is {}, and y is {}", x, y);
+
+    // `a` is a pointer to a _heap_ allocated integer
+    let a = Box::new(5i32);
+
+    println!("a contains: {}", a);
+
+    // *Move* `a` into `b`
+    let b = a;
+    // The pointer address of `a` is copied (not the data) into `b`.
+    // Both are now pointers to the same heap allocated data, but
+    // `b` now owns it.
+    
+    // Error! `a` can no longer access the data, because it no longer owns the
+    // heap memory
+    //println!("a contains: {}", a);
+    // TODO ^ Try uncommenting this line
+
+    // This function takes ownership of the heap allocated memory from `b`
+    destroy_box(b);
+
+    // Since the heap memory has been freed at this point, this action would
+    // result in dereferencing freed memory, but it's forbidden by the compiler
+    // Error! Same reason as the previous Error
+    //println!("b contains: {}", b);
+    // TODO ^ Try uncommenting this line
+}
+```
+
+当所有权转移时，数据的可变性可以改变。
+
+```rust
+fn main() {
+    let immutable_box = Box::new(5u32);
+
+    println!("immutable_box contains {}", immutable_box);
+
+    // Mutability error
+    //*immutable_box = 4;
+
+    // *Move* the box, changing the ownership (and mutability)
+    let mut mutable_box = immutable_box;
+
+    println!("mutable_box contains {}", mutable_box);
+
+    // Modify the contents of the box
+    *mutable_box = 4;
+
+    println!("mutable_box now contains {}", mutable_box);
+}
+```
+## 部分动作
+
+在单个变量的解构中，可以同时使用 by-move 和 by-reference 模式绑定。这样做将导致变量的部分移动，这意味着变量的一部分将被移动，而其他部分将保留。在这种情况下，父变量以后不能作为整体使用，但是仅被引用（而不是移动）的部分仍然可以使用。
+
+```rust
+fn main() {
+    #[derive(Debug)]
+    struct Person {
+        name: String,
+        age: Box<u8>,
+    }
+
+    let person = Person {
+        name: String::from("Alice"),
+        age: Box::new(20),
+    };
+
+    // `name` is moved out of person, but `age` is referenced
+    let Person { name, ref age } = person;
+
+    println!("The person's age is {}", age);
+
+    println!("The person's name is {}", name);
+
+    // Error! borrow of partially moved value: `person` partial move occurs
+    //println!("The person struct is {:?}", person);
+
+    // `person` cannot be used but `person.age` can be used as it is not moved
+    println!("The person's age from person struct is {}", person.age);
+}
+```
+
+（在本例中，我们将 age 变量存储在堆上来说明部分移动：删除上述代码中的 ref 会产生错误，因为 person.age 。如果 Person.age 存储在堆栈上，则不需要 ref 作为 age 复制数据而不移动它。）
+
+
 所有程序都需要管理自己运行时使用的内存空间。使用垃圾回收机制的语言会在运行时定期检查并回收那些没有被继续使用的内存：比如`golang`，`java`；还有一些语言是需要程序员去手动释放内存的，比如`C/C++`。但是`Rust`另辟蹊径：使用所有权系统来管理内存，这套规则允许编译器在编译过程中执行检查工作，而不产生任何的运行时的开销。
 
 # 所有权规则
@@ -98,6 +212,7 @@ error\[E0382\]: borrow of moved value: \`s1\`
 4 |     println!("{},world!",s1);
   |                          ^^ value borrowed here after move
 error: aborting due to previous error; 1 warning emitted 
+*/
 ```
 
 ## 克隆clone
@@ -197,9 +312,8 @@ fn calculate_length(s: &String) -> usize {
 
 首先需要注意的是，变量声明及函数返回值中的那些元组代码都消失了。我们调用`calculate_length`函数使用了`&s1`作为参数，且在该函数的定义中，我们使用`&String`替代了`String`。
 
-这些`&`代表的就是引用语义，它们允许你在不获取所有权的前提下使用值，如下图的图解
+这些`&`代表的就是引用语义，它们允许你在不获取所有权的前提下使用值
 
-<!-- ![https://images-1253546493.cos.ap-shanghai.myqcloud.com/%26String%20s-%3EString%20s1.jpg](../../@asset/file.jpg) -->
 
 与使用`&`进行引用相反的操作被称为解引用`dereferencing`，它使用`*`作为运算符。
 
@@ -236,6 +350,7 @@ error\[E0596\]: cannot borrow `*some_string` as mutable, as it is behind a `&` r
   |                        \-\-\-\-\-\-\- help: consider changing this to be a mutable reference: `&mut std::string::String`
 7 |     some\_string.push\_str("world");
   |     ^^^^^^^^^^^ \`some_string\` is a `&` reference, so the data it refers to cannot be borrowed as mutable 
+  */
 ```
 
 ```Rust
@@ -268,6 +383,7 @@ error\[E0499\]: cannot borrow \`s\` as mutable more than once at a time
   |              ^^^^^^ second mutable borrow occurs here
 5 |     println!("{},{},{}",s,r1,r2);
   |                           \-\- first borrow later used here 
+  */
 ```
 
 但在另外一方面，在Rust中遵循这条限制性规则则可以帮助我们在编译中避免数据竞争。数据竞争与竞态条件十分类似，它会在指令满足以下3种情形下发生：
@@ -300,6 +416,7 @@ error\[E0502\]: cannot borrow \`s\` as mutable because it is also borrowed as im
   |              ^^^^^^ mutable borrow occurs here
 6 |     println!("{},{},{}",r1,r2,r3);
   |                         \-\- immutable borrow later used here 
+  */
 ```
 
 可变引用和不可变引用不可以共存。**我们不能在拥有不可变引用的同时创建可变引用。同时可变引用是唯一的。**
@@ -330,6 +447,7 @@ error[E0106]: missing lifetime specifier
   = help: this function's return type contains a borrowed value, but there is
   no value for it to be borrowed from
   = help: consider giving it a 'static lifetime
+  */
 ```
 
 错误信息引用了一个我们还未介绍的功能：生命周期。
@@ -380,4 +498,209 @@ fn no_dangle() -> String {
 结构体字段如果需要使用引用类型，就必须加上生命周期，否则就会报错。
 
 
+## 借用
+大多数时候，我们希望访问数据而不取得数据的所有权。为了实现这一点，Rust 使用了借用机制。对象可以通过引用传递( &T )，而不是按值传递对象( T )。
 
+编译器静态地保证（通过其借用检查器）引用始终指向有效的对象。也就是说，当存在对对象的引用时，该对象不能被销毁。
+```rust
+// This function takes ownership of a box and destroys it
+fn eat_box_i32(boxed_i32: Box<i32>) {
+    println!("Destroying box that contains {}", boxed_i32);
+}
+
+// This function borrows an i32
+fn borrow_i32(borrowed_i32: &i32) {
+    println!("This int is: {}", borrowed_i32);
+}
+
+fn main() {
+    // Create a boxed i32 in the heap, and a i32 on the stack
+    // Remember: numbers can have arbitrary underscores added for readability
+    // 5_i32 is the same as 5i32
+    let boxed_i32 = Box::new(5_i32);
+    let stacked_i32 = 6_i32;
+
+    // Borrow the contents of the box. Ownership is not taken,
+    // so the contents can be borrowed again.
+    borrow_i32(&boxed_i32);
+    borrow_i32(&stacked_i32);
+
+    {
+        // Take a reference to the data contained inside the box
+        let _ref_to_i32: &i32 = &boxed_i32;
+
+        // Error!
+        // Can't destroy `boxed_i32` while the inner value is borrowed later in scope.
+        eat_box_i32(boxed_i32);
+
+        // Attempt to borrow `_ref_to_i32` after inner value is destroyed
+        borrow_i32(_ref_to_i32);
+        // `_ref_to_i32` goes out of scope and is no longer borrowed.
+    }
+
+    // `boxed_i32` can now give up ownership to `eat_box` and be destroyed
+    eat_box_i32(boxed_i32);
+}
+```
+
+
+可以使用 &mut T 可变地借用可变数据。这称为可变引用，并为借用者提供读/写访问权限。相比之下， &T 通过不可变引用借用数据，借用者可以读取数据但不能修改它：
+
+```rust
+#[allow(dead_code)]
+#[derive(Clone, Copy)]
+struct Book {
+    // `&'static str` is a reference to a string allocated in read only memory
+    author: &'static str,
+    title: &'static str,
+    year: u32,
+}
+
+// This function takes a reference to a book
+fn borrow_book(book: &Book) {
+    println!("I immutably borrowed {} - {} edition", book.title, book.year);
+}
+
+// This function takes a reference to a mutable book and changes `year` to 2014
+fn new_edition(book: &mut Book) {
+    book.year = 2014;
+    println!("I mutably borrowed {} - {} edition", book.title, book.year);
+}
+
+fn main() {
+    // Create an immutable Book named `immutabook`
+    let immutabook = Book {
+        // string literals have type `&'static str`
+        author: "Douglas Hofstadter",
+        title: "Gödel, Escher, Bach",
+        year: 1979,
+    };
+
+    // Create a mutable copy of `immutabook` and call it `mutabook`
+    let mut mutabook = immutabook;
+    
+    // Immutably borrow an immutable object
+    borrow_book(&immutabook);
+
+    // Immutably borrow a mutable object
+    borrow_book(&mutabook);
+    
+    // Borrow a mutable object as mutable
+    new_edition(&mut mutabook);
+    
+    // Error! Cannot borrow an immutable object as mutable
+    new_edition(&mut immutabook);
+}
+```
+
+#### aliasing
+
+数据可以被不可变地借用任意次数，但是在不可变地借用的同时，原始数据不能被可变地借用。另一方面，一次只允许一次可变借用。只有最后一次使用可变引用后，才能再次借用原始数据。
+
+```rust
+struct Point { x: i32, y: i32, z: i32 }
+
+fn main() {
+    let mut point = Point { x: 0, y: 0, z: 0 };
+
+    let borrowed_point = &point;
+    let another_borrow = &point;
+
+    // Data can be accessed via the references and the original owner
+    println!("Point has coordinates: ({}, {}, {})",
+                borrowed_point.x, another_borrow.y, point.z);
+
+    // Error! Can't borrow `point` as mutable because it's currently
+    // borrowed as immutable.
+    // let mutable_borrow = &mut point;
+    // TODO ^ Try uncommenting this line
+
+    // The borrowed values are used again here
+    println!("Point has coordinates: ({}, {}, {})",
+                borrowed_point.x, another_borrow.y, point.z);
+
+    // The immutable references are no longer used for the rest of the code so
+    // it is possible to reborrow with a mutable reference.
+    let mutable_borrow = &mut point;
+
+    // Change data via mutable reference
+    mutable_borrow.x = 5;
+    mutable_borrow.y = 2;
+    mutable_borrow.z = 1;
+
+    // Error! Can't borrow `point` as immutable because it's currently
+    // borrowed as mutable.
+    // let y = &point.y;
+    // TODO ^ Try uncommenting this line
+
+    // Error! Can't print because `println!` takes an immutable reference.
+    // println!("Point Z coordinate is {}", point.z);
+    // TODO ^ Try uncommenting this line
+
+    // Ok! Mutable references can be passed as immutable to `println!`
+    println!("Point has coordinates: ({}, {}, {})",
+                mutable_borrow.x, mutable_borrow.y, mutable_borrow.z);
+
+    // The mutable reference is no longer used for the rest of the code so it
+    // is possible to reborrow
+    let new_borrowed_point = &point;
+    println!("Point now has coordinates: ({}, {}, {})",
+             new_borrowed_point.x, new_borrowed_point.y, new_borrowed_point.z);
+}
+```
+
+#### ref
+
+通过 let 绑定进行模式匹配或解构时， ref 关键字可用于获取对结构/元组字段的引用。下面的示例显示了一些有用的实例：
+
+```rust
+#[derive(Clone, Copy)]
+struct Point { x: i32, y: i32 }
+
+fn main() {
+    let c = 'Q';
+
+    // A `ref` borrow on the left side of an assignment is equivalent to
+    // an `&` borrow on the right side.
+    let ref ref_c1 = c;
+    let ref_c2 = &c;
+
+    println!("ref_c1 equals ref_c2: {}", *ref_c1 == *ref_c2);
+
+    let point = Point { x: 0, y: 0 };
+
+    // `ref` is also valid when destructuring a struct.
+    let _copy_of_x = {
+        // `ref_to_x` is a reference to the `x` field of `point`.
+        let Point { x: ref ref_to_x, y: _ } = point;
+
+        // Return a copy of the `x` field of `point`.
+        *ref_to_x
+    };
+
+    // A mutable copy of `point`
+    let mut mutable_point = point;
+
+    {
+        // `ref` can be paired with `mut` to take mutable references.
+        let Point { x: _, y: ref mut mut_ref_to_y } = mutable_point;
+
+        // Mutate the `y` field of `mutable_point` via a mutable reference.
+        *mut_ref_to_y = 1;
+    }
+
+    println!("point is ({}, {})", point.x, point.y);
+    println!("mutable_point is ({}, {})", mutable_point.x, mutable_point.y);
+
+    // A mutable tuple that includes a pointer
+    let mut mutable_tuple = (Box::new(5u32), 3u32);
+    
+    {
+        // Destructure `mutable_tuple` to change the value of `last`.
+        let (_, ref mut last) = mutable_tuple;
+        *last = 2u32;
+    }
+    
+    println!("tuple is {:?}", mutable_tuple);
+}
+```

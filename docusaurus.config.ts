@@ -283,7 +283,7 @@ const theme = {
           },
           {
             label: "Rust",
-            to: "/docs/lang/rust/简介",
+            to: "/docs/lang/rust/概述",
           },
          
           {

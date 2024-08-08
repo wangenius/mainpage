@@ -362,8 +362,8 @@ export default {
   deploymentBranch: "gh-pages",
   // clientModules: [require.resolve('./src/clientModules/routeModules.ts')],
   i18n: {
-    defaultLocale: "zh-Hans",
-    locales: ["en", "zh-Hans"],
+    defaultLocale: "en",
+    locales: ["en"],
   },
   plugins: [
     "docusaurus-plugin-sass",

@@ -360,11 +360,6 @@ export default {
   onBrokenMarkdownLinks: "warn",
   trailingSlash: false,
   deploymentBranch: "gh-pages",
-  // clientModules: [require.resolve('./src/clientModules/routeModules.ts')],
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
-  },
   plugins: [
     "docusaurus-plugin-sass",
     [

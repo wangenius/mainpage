@@ -1,12 +1,15 @@
 ---
-title : SQL
-sidebar_position : 1
-slug : SQL
+title: SQL
+sidebar_position: 2
+slug: SQL
 ---
+
 # SQL
-import {Multi} from "@components"
+
+import { Multi } from "@components";
 
 ## 四种连接
+
 <Multi>
 |ID|NAME|
 |-|-|
@@ -14,11 +17,12 @@ import {Multi} from "@components"
 |2|李四|
 |3|王五|
 
-|ID|JOB|ParentID|
-|-|-|-|
-|1|23|1|
-|2|34|2|
-|3|34|4|
+| ID  | JOB | ParentID |
+| --- | --- | -------- |
+| 1   | 23  | 1        |
+| 2   | 34  | 2        |
+| 3   | 34  | 4        |
+
 </Multi>
 ### 内连接
 
@@ -28,11 +32,11 @@ import {Multi} from "@components"
 select a.*,b.* from a inner join b on a.ID = b.ParentID
 ```
 
-|||||
-|-|-|-|-|
-|ID|name|job|parentID|
-|1|张三|23|1|
-|2|李四|34|2|
+|     |      |     |          |
+| --- | ---- | --- | -------- |
+| ID  | name | job | parentID |
+| 1   | 张三 | 23  | 1        |
+| 2   | 李四 | 34  | 2        |
 
 ### 外连接
 
@@ -44,11 +48,11 @@ select a.*,b.* from a inner join b on a.ID = b.ParentID
 select a.*,b.* from a left join b on a.ID = b.ParentID
 ```
 
-|ID/a|name|ID/b|job|parentID|
-|-|-|-|-|-|
-|1|张三|1|23|1|
-|2|李四|2|34|2|
-|3|王五|NULL|||
+| ID/a | name | ID/b | job | parentID |
+| ---- | ---- | ---- | --- | -------- |
+| 1    | 张三 | 1    | 23  | 1        |
+| 2    | 李四 | 2    | 34  | 2        |
+| 3    | 王五 | NULL |     |          |
 
 #### 右连接
 
@@ -56,11 +60,11 @@ select a.*,b.* from a left join b on a.ID = b.ParentID
 select a.*,b.* from a right join b on a.ID = b.ParentID
 ```
 
-|ID/a|name|ID/b|job|parentID|
-|-|-|-|-|-|
-|1|张三|1|23|1|
-|2|李四|2|34|2|
-|NULL||3|34|4|
+| ID/a | name | ID/b | job | parentID |
+| ---- | ---- | ---- | --- | -------- |
+| 1    | 张三 | 1    | 23  | 1        |
+| 2    | 李四 | 2    | 34  | 2        |
+| NULL |      | 3    | 34  | 4        |
 
 #### 完全连接
 
@@ -68,12 +72,12 @@ select a.*,b.* from a right join b on a.ID = b.ParentID
 select a.*,b.* from a full join b on a.ID = b.ParentID
 ```
 
-|ID/a|name|ID/b|job|parentID|
-|-|-|-|-|-|
-|1|张三|1|23|1|
-|2|李四|2|34|2|
-|NULL||3|34|4|
-|3|王五|NULL|||
+| ID/a | name | ID/b | job | parentID |
+| ---- | ---- | ---- | --- | -------- |
+| 1    | 张三 | 1    | 23  | 1        |
+| 2    | 李四 | 2    | 34  | 2        |
+| NULL |      | 3    | 34  | 4        |
+| 3    | 王五 | NULL |     |          |
 
 ### 交叉连接
 
@@ -102,8 +106,6 @@ select a.*,b.* from a full join b on a.ID = b.ParentID
 `select`：查看结果集中的哪个列，或列的计算结果
 
 `order by`：按照什么样的顺序来查看返回的数据
-
-
 
 #### count，sum
 
@@ -158,6 +160,4 @@ delete from [table_name] where ...
 安全性是指防止数据库被恶意的破坏和非法存取。
 
 某一种机制可以用于安全性和完整性的保证。
-
-
 

@@ -7,50 +7,39 @@ slug : MySQL数据库
 
 :::info 什么是数据库
 
-数据库：DB（DataBase）
-
-**概念**：数据仓库，软件，安装在操作系统之上
-
-**作用**：存储数据，管理数据
+数据库：DB(DataBase): 数据仓库，软件，安装在操作系统之上
 :::
 
 ## 数据库分类
 
-1. **关系型数据库：SQL**（Structured Query Language）
+1. 关系型数据库：SQL（Structured Query Language）
+    1. MySQL,Oracle,Sql Server,DB2,SQlite
+    2. 通过表和表之间，行和列之间的关系进行数据的存储
+    3. 通过外键关联来建立表与表之间的关系
+2. 非关系型数据库：NoSQL（Not Only SQL）
+    1. Redis、MongoDB
+    2. 指数据以**对象**的形式存储在数据库中，而对象之间的关系通过每个对象自身的属性来决定
 
-* MySQL,Oracle,Sql Server,DB2,SQLlite
-* 通过表和表之间，行和列之间的关系进行数据的存储
-* 通过外键关联来建立表与表之间的关系
 
-2. **非关系型数据库：NoSQL**（Not Only SQL）
+:::info DBMS（数据库管理系统）
+数据库的管理软件，科学有效的管理、维护和获取我们的数据
+MySQL就是数据库管理系统
+:::
 
-*   Redis、MongoDB
-*   指数据以**对象**的形式存储在数据库中，而对象之间的关系通过每个对象自身的属性来决定
+### 安装
 
-* * *
+> 云数据库
+```
+hostname
+username
+password
+```
 
-### 1.3、相关概念
-
-> **DBMS（数据库管理系统）**
-
-*   数据库的管理**软件**，科学有效的管理、维护和获取我们的数据
-*   **MySQL**就是数据库管理系统
-
-![](https://img-blog.csdnimg.cn/img_convert/6ca15d7eee443107638939952d09ed79.png)
-
-* * *
-
-### 1.4、MySQL及其安装
-
-*   [MySQL最新版8.0.21安装配置教程~](https://bareth.blog.csdn.net/article/details/107369405)
-
-* * *
-
-### 1.5、基本命令
+### 基本命令
 
 > 所有的语句都要以分号结尾
 
-```
+```Sql
 `show databases;	
 use 数据库名;	
 show tables;	
@@ -59,41 +48,23 @@ create database 数据库名;
 exit` 
 ```
 
-* * *
 
-  
+### 操作数据库
 
-2、操作数据库
--------
-
-### 2.1、操作数据库
-
-1、创建数据库
-
-```
-`CREATE DATABASE [IF NOT EXISTS] 数据库名;` 
-
-*   1
-
-
+```sql title="创建数据库"
+CREATE DATABASE [IF NOT EXISTS] 数据库名;
 ```
 
-2、删除数据库
-
-```
-`DROP DATABASE [if EXISTS] 数据库名;` 
+```sql title="删除数据库"
+DROP DATABASE [if EXISTS] 数据库名;
 ```
 
-3、使用数据库
-
-```
- `use 数据库名;` 
+```sql title="使用数据库"
+use 数据库名;
 ```
 
-4、查看数据库
-
-```
-`SHOW DATABASES;` 
+```sql title="查看数据库"
+SHOW DATABASES;
 ```
 
 * * *
@@ -187,10 +158,10 @@ exit`
 
 * * *
 
-### 2.4、创建数据库表
+## 创建数据库表
 
-```
-``CREATE TABLE IF NOT EXISTS `student`(
+```sql
+CREATE TABLE IF NOT EXISTS `student`(
 	`id` INT(4)	NOT NULL AUTO_INCREMENT COMMENT '学号',
 	`name` VARCHAR(30) NOT NULL DEFAULT '匿名' COMMENT '姓名',
 	`pwd` VARCHAR(20) NOT NULL DEFAULT '123456' COMMENT '密码',
@@ -199,82 +170,39 @@ exit`
 	`address` VARCHAR(100) DEFAULT NULL COMMENT '家庭住址',
 	`email` VARCHAR(50) DEFAULT NULL COMMENT '邮箱',
 	PRIMARY KEY (`id`)
-)ENGINE=INNODB DEFAULT CHARSET=utf8`` 
-
-*   1
-*   2
-*   3
-*   4
-*   5
-*   6
-*   7
-*   8
-*   9
-*   10
-
-
+)ENGINE=INNODB DEFAULT CHARSET=utf8
 ```
 
-`注意点`：
+注意点：
 
 *   表名和字段尽量使用``括起来
-    
 *   AUTO_INCREMENT 代表自增
-    
 *   所有的语句后面加逗号，最后一个不加
-    
 *   字符串使用单引号括起来
-    
 *   主键的声明一般放在最后，便于查看
-    
 *   不设置字符集编码的话，会使用MySQL默认的字符集编码Latin1，不支持中文，可以在my.ini里修改
-    
 
-> 格式：
-
-```
-``CREATE TABLE IF NOT EXISTS `student`(
+```sql title="格式"
+CREATE TABLE IF NOT EXISTS `student`(
 	'字段名' 列类型 [属性] [索引] [注释],
     '字段名' 列类型 [属性] [索引] [注释],
     ......
     '字段名' 列类型 [属性] [索引] [注释]
-)[表的类型][字符集设置][注释]`` 
-
-*   1
-*   2
-*   3
-*   4
-*   5
-*   6
-
-
+)[表的类型][字符集设置][注释]
 ```
 
-**常用命令：** 
+**
 
-```
+```sql title="常用命令"
 `SHOW CREATE DATABASE 数据库名;
 SHOW CREATE TABLE 表名;
 DESC 表名;` 
-
-*   1
-*   2
-*   3
-
-
 ```
 
-* * *
+### 数据库存储引擎
 
-### 2.5、数据库存储引擎
-
-**INNODB**
-
-*   默认使用，安全性高，支持事务的处理，多表多用户操作
-
-**MYISAM**
-
-*   早些年使用，节约空间，速度较快
+1. INNODB:  默认使用，安全性高，支持事务的处理，多表多用户操作
+2. MYISAM:  早些年使用，节约空间，速度较快
 
 |  | MYISAM | INNODB |
 | --- | --- | --- |
@@ -318,8 +246,8 @@ DESC 表名;`
 
 **删除字段** : ALTER TABLE 表名 DROP 字段名
 
-```
- `ALTER TABLE teacher RENAME AS teachers;
+```sql title="修改"
+ALTER TABLE teacher RENAME AS teachers;
 
 ALTER TABLE teachers ADD age INT(11);
 
@@ -327,28 +255,7 @@ ALTER TABLE teachers MODIFY age VARCHAR(11);
 
 ALTER TABLE teachers CHANGE age age1 INT(1);
 
-ALTER TABLE teachers DROP age1;` 
-
-![](https://csdnimg.cn/release/blogv2/dist/pc/img/newCodeMoreWhite.png)
-
-*   1
-*   2
-*   3
-*   4
-*   5
-*   6
-*   7
-*   8
-*   9
-*   10
-*   11
-*   12
-*   13
-*   14
-*   15
-*   16
-*   17
-
+ALTER TABLE teachers DROP age1;
 
 ```
 
@@ -359,27 +266,13 @@ ALTER TABLE teachers DROP age1;`
 *   IF EXISTS为可选 , 判断是否存在该数据表
 *   如删除不存在的数据表会抛出错误
 
-```
- `DROP TABLE IF EXISTS teachers;` 
-
-*   1
-*   2
-
-
+```Sql
+DROP TABLE IF EXISTS teachers;
 ```
 
-**所有的创建和删除尽量加上判断，以免报错~**
+**所有的创建和删除尽量加上判断，以免报错**
 
-* * *
-
-  
-
-3、MySQL数据管理
------------
-
-### 3.1、外键
-
-> 外键概念
+### 外键
 
 如果公共关键字在一个关系中是主关键字，那么这个公共关键字被称为另一个关系的外键。由此可见，外键表示了两个关系之间的相关联系。以另一个关系的外键作主关键字的表被称为**主表**，具有此外键的表被称为主表的**从表**。
 
@@ -389,16 +282,12 @@ ALTER TABLE teachers DROP age1;`
 
 保持数据**一致性**，**完整性**，主要目的是控制存储在外键表中的数据,**约束**。使两张表形成关联，外键只能引用外表中的列的值或使用空值。
 
-* * *
-
 **目标**：学生表（student）的gradeid字段 要去引用年级表（grade）的 gradeid字段
 
-> 创建外键
+创建外键
 
-**方式一：在创建表的时候增加约束**
-
-```
- ``CREATE TABLE IF NOT EXISTS `student`(
+```sql title="在创建表的时候增加约束"
+CREATE TABLE IF NOT EXISTS `student`(
 	`id` INT(4) NOT NULL AUTO_INCREMENT COMMENT '学号',
 	`name` VARCHAR(30) NOT NULL DEFAULT '匿名' COMMENT '姓名',
 	`pwd` VARCHAR(20) NOT NULL DEFAULT '123456' COMMENT '密码',
@@ -416,46 +305,14 @@ CREATE TABLE `grade`(
 	`gradeid` INT(10) NOT NULL COMMENT '年级id',
 	`gradename` VARCHAR(50) NOT NULL COMMENT '年纪名称',
 	PRIMARY KEY (`gradeid`)
-)ENGINE=INNODB DEFAULT CHARSET=utf8`` 
-
-![](https://csdnimg.cn/release/blogv2/dist/pc/img/newCodeMoreWhite.png)
-
-*   1
-*   2
-*   3
-*   4
-*   5
-*   6
-*   7
-*   8
-*   9
-*   10
-*   11
-*   12
-*   13
-*   14
-*   15
-*   16
-*   17
-*   18
-*   19
-*   20
-*   21
-*   22
-*   23
-*   24
-
-
+)ENGINE=INNODB DEFAULT CHARSET=utf8
 ```
 
 删除有外键关系的表的时候，必须要先删除引用别人的表（从表），再删除被引用的表（主表）
 
-* * *
 
-**方法二：创建表成功后，添加外键约束**
-
-```
- ``CREATE TABLE IF NOT EXISTS `student`(
+```sql title="创建表成功后，添加外键约束"
+CREATE TABLE IF NOT EXISTS `student`(
 	`id` INT(4) NOT NULL AUTO_INCREMENT COMMENT '学号',
 	`name` VARCHAR(30) NOT NULL DEFAULT '匿名' COMMENT '姓名',
 	`pwd` VARCHAR(20) NOT NULL DEFAULT '123456' COMMENT '密码',
@@ -474,38 +331,7 @@ CREATE TABLE `grade`(
 	`gradeid` INT(10) NOT NULL COMMENT '年级id',
 	`gradename` VARCHAR(50) NOT NULL COMMENT '年纪名称',
 	PRIMARY KEY (`gradeid`)
-)ENGINE=INNODB DEFAULT CHARSET=utf8`` 
-
-![](https://csdnimg.cn/release/blogv2/dist/pc/img/newCodeMoreWhite.png)
-
-*   1
-*   2
-*   3
-*   4
-*   5
-*   6
-*   7
-*   8
-*   9
-*   10
-*   11
-*   12
-*   13
-*   14
-*   15
-*   16
-*   17
-*   18
-*   19
-*   20
-*   21
-*   22
-*   23
-*   24
-*   25
-*   26
-
-
+)ENGINE=INNODB DEFAULT CHARSET=utf8
 ```
 
 以上的操作都是物理外键，数据库级别的外键，不建议使用！避免数据库过多造成困扰！
@@ -527,33 +353,18 @@ CREATE TABLE `grade`(
 
 #### 1\. 添加 [insert](https://so.csdn.net/so/search?q=insert&spm=1001.2101.3001.7020)
 
-```
- ``INSERT INTO `student`(`name`) VALUES ('zsr');
+```sql
+INSERT INTO `student`(`name`) VALUES ('zsr');
 
 INSERT INTO `student`(`name`,`pwd`,`sex`) VALUES ('zsr','200024','男'),('gcc','000421','女');
 
-INSERT INTO `student` VALUES (5,'Bareth','123456','男','2000-02-04','武汉','1412@qq.com',1);`` 
-
-*   1
-*   2
-*   3
-*   4
-*   5
-*   6
-*   7
-*   8
-
-
+INSERT INTO `student` VALUES (5,'Bareth','123456','男','2000-02-04','武汉','1412@qq.com',1);
 ```
 
 **语法：** 
 
-```
-`INSERT INTO 表名([字段1,字段2..])VALUES('值1','值2'..),[('值1','值2'..)..];` 
-
-*   1
-
-
+```sql
+INSERT INTO 表名([字段1,字段2..])VALUES('值1','值2'..),[('值1','值2'..)..];`
 ```
 
 **注意**：
@@ -566,28 +377,14 @@ INSERT INTO `student` VALUES (5,'Bareth','123456','男','2000-02-04','武汉','1
 
 #### 2\. 修改 update
 
-```
- ``UPDATE `student` SET `name`='zsr204' WHERE id=1;
+```sql
+UPDATE `student` SET `name`='zsr204' WHERE id=1;
 
 UPDATE `student` SET `name`='zsr204';
 
 UPDATE `student` SET `name`='zsr',`address`='湖北' WHERE id=1;
 
-UPDATE `student` SET `name`='zsr204' WHERE `name`='zsr' AND `pwd`='200024';`` 
-
-*   1
-*   2
-*   3
-*   4
-*   5
-*   6
-*   7
-*   8
-*   9
-*   10
-*   11
-
-
+UPDATE `student` SET `name`='zsr204' WHERE `name`='zsr' AND `pwd`='200024';
 ```
 
 **语法**：
@@ -618,16 +415,10 @@ UPDATE `student` SET `name`='zsr204' WHERE `name`='zsr' AND `pwd`='200024';``
 
 #### 3\. 删除 delete
 
-```
- ``DELETE FROM `student`;
+```sql
+DELETE FROM `student`;
 
-DELETE FROM `student` WHERE id=1;`` 
-
-*   1
-*   2
-*   3
-*   4
-*   5
+DELETE FROM `student` WHERE id=1;
 
 
 ```
@@ -635,11 +426,7 @@ DELETE FROM `student` WHERE id=1;``
 **语法**：
 
 ```
-`DELETE FROM 表名 [WHERE 条件]` 
-
-*   1
-
-
+DELETE FROM 表名 [WHERE 条件]
 ```
 
 关于`DELETE`删除的问题，重启数据库现象：
@@ -660,7 +447,7 @@ DELETE FROM `student` WHERE id=1;``
     
 
 ```
-``CREATE TABLE `test`(
+CREATE TABLE `test`(
 	`id` INT(4) NOT NULL AUTO_INCREMENT,
 	`coll` VARCHAR(20) NOT NULL,
 	PRIMARY KEY (`id`)
@@ -670,23 +457,7 @@ INSERT INTO `test`(`coll`) VALUES('1'),('2'),('3');
 
 DELETE FROM `test`;
 
-TRUNCATE TABLE `test`;`` 
-
-*   1
-*   2
-*   3
-*   4
-*   5
-*   6
-*   7
-*   8
-*   9
-*   10
-*   11
-*   12
-*   13
-
-
+TRUNCATE TABLE `test`;
 ```
 
 * * *
@@ -708,17 +479,6 @@ FROM table_name [as table_alias]
   [HAVING]  
   [ORDER BY ...]  
   [LIMIT {[offset,]row_count | row_countOFFSET offset}];` 
-
-*   1
-*   2
-*   3
-*   4
-*   5
-*   6
-*   7
-*   8
-*   9
-
 
 ```
 
@@ -787,77 +547,6 @@ INSERT INTO `subject`(`SubjectNo`,`SubjectName`,`ClassHour`,`GradeID`)
 VALUES(1,'高数','96',2),(2,'大物','112',2),(3,'程序设计',64,3);
 
 SELECT 字段 FROM 表;`` 
-
-![](https://csdnimg.cn/release/blogv2/dist/pc/img/newCodeMoreWhite.png)
-
-*   1
-*   2
-*   3
-*   4
-*   5
-*   6
-*   7
-*   8
-*   9
-*   10
-*   11
-*   12
-*   13
-*   14
-*   15
-*   16
-*   17
-*   18
-*   19
-*   20
-*   21
-*   22
-*   23
-*   24
-*   25
-*   26
-*   27
-*   28
-*   29
-*   30
-*   31
-*   32
-*   33
-*   34
-*   35
-*   36
-*   37
-*   38
-*   39
-*   40
-*   41
-*   42
-*   43
-*   44
-*   45
-*   46
-*   47
-*   48
-*   49
-*   50
-*   51
-*   52
-*   53
-*   54
-*   55
-*   56
-*   57
-*   58
-*   59
-*   60
-*   61
-*   62
-*   63
-*   64
-*   65
-*   66
-*   67
-
 
 ```
 

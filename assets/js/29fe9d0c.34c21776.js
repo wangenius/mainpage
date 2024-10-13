@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwangenius=self.webpackChunkwangenius||[]).push([[6751],{4152:a=>{a.exports=JSON.parse('{"label":"music","permalink":"/mainpage/blog/tags/music","allTagsPath":"/mainpage/blog/tags","count":1,"unlisted":false}')}}]);

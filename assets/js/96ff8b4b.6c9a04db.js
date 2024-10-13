@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwangenius=self.webpackChunkwangenius||[]).push([[2738],{6441:a=>{a.exports=JSON.parse('{"label":"english","permalink":"/mainpage/blog/tags/english","allTagsPath":"/mainpage/blog/tags","count":1,"unlisted":false}')}}]);

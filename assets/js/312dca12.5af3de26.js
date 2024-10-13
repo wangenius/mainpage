@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwangenius=self.webpackChunkwangenius||[]).push([[9736],{7798:e=>{e.exports=JSON.parse('{"permalink":"/mainpage/blog/tags/collection","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

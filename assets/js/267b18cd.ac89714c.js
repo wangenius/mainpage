@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwangenius=self.webpackChunkwangenius||[]).push([[2746],{6217:e=>{e.exports=JSON.parse('{"label":"speech","permalink":"/mainpage/blog/tags/speech","allTagsPath":"/mainpage/blog/tags","count":1,"unlisted":false}')}}]);
